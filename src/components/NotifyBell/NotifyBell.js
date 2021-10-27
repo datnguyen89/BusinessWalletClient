@@ -1,21 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ICONS from '../../icons'
-import { Badge } from 'antd'
+import { Badge, Dropdown, Menu } from 'antd'
 
 const NotifyBell = props => {
+  const menu = (
+    <Menu>
+      <Menu.Item key='0'>
+        <a href='https://www.antgroup.com'>1st menu item</a>
+      </Menu.Item>
+      <Menu.Item key='1'>
+        <a href='https://www.aliyun.com'>2nd menu item</a>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key='3'>3rd menu item</Menu.Item>
+    </Menu>
+  )
   return (
-    <>
-      <Badge count={9} size={'small'}>
-        <img src={ICONS.NOTIFY_BELL} alt={''} />
-      </Badge>
-
-    </>
+    <div id={'notify-bell-wrapper'}>
+      <Dropdown overlay={menu}
+                placement={'bottomCenter'}
+                trigger={['click']}
+                getPopupContainer={() => document.getElementById('notify-bell-wrapper')}>
+        <Badge count={9} size={'small'}>
+          <img src={ICONS.NOTIFY_BELL} alt={''} />
+        </Badge>
+      </Dropdown>
+    </div>
   )
 }
 
-NotifyBell.propTypes = {
-  
-}
+NotifyBell.propTypes = {}
 
 export default NotifyBell

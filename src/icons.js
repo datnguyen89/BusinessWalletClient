@@ -5,5 +5,7 @@ const ICONS = {
   LINK_BANK_ICON: `${process.env.PUBLIC_URL}/assets/icons/lienket.png`,
   WITHDRAW_ICON: `${process.env.PUBLIC_URL}/assets/icons/ruttien.png`,
   WHITE_ARROW_DOWN: `${process.env.PUBLIC_URL}/assets/icons/white-arrow-down.png`,
+  LOGOUT: `${process.env.PUBLIC_URL}/assets/icons/log-out.svg`,
+  SETTING: `${process.env.PUBLIC_URL}/assets/icons/setting.svg`,
 }
 export default ICONS

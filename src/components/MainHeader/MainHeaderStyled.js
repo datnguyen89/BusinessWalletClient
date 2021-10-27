@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const MainHeaderWrapper = styled.header`
   display: flex;
@@ -17,6 +17,7 @@ export const HeaderLogoArea = styled.a`
   display: flex;
   align-items: center;
   margin-left: 16px;
+
   span {
     margin-left: 16px;
     color: #fff;
@@ -31,10 +32,17 @@ export const MainHeaderRight = styled.div`
     display: none;
   }
 `
+export const MainHeaderRightMobile = styled.div`
+  display: none;
+  @media only screen and (max-width: 768px) {
+    display: block;
+    margin-right: 16px;
+  }
+`
 export const HeaderTransactionArea = styled.div`
   display: flex;
   align-items: center;
-  
+
   span {
     margin-left: 12px;
     color: #fff;
@@ -50,17 +58,5 @@ export const HeaderTransactionItem = styled.a`
 `
 export const HeaderNotifyArea = styled.div`
   margin: 0 16px;
-`
-export const HeaderUserArea = styled.a`
-  color: #fff;
-  display: flex;
-  align-items: center;
-  margin: 0 16px;
-  &:hover {
-    color: #fff;
-  }
-  span {
-    margin: 0 8px;
-    font-size: 1.2rem;
-  }
+  cursor: pointer;
 `

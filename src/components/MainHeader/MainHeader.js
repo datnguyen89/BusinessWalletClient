@@ -1,21 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { inject, observer } from 'mobx-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faFileInvoiceDollar, faHandHoldingUsd, faLink, faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
 import {
   HeaderLogoArea, HeaderNotifyArea,
   HeaderTransactionArea,
   HeaderTransactionItem,
-  HeaderUserArea,
-  MainHeaderRight,
+  MainHeaderRight, MainHeaderRightMobile,
   MainHeaderWrapper,
 } from './MainHeaderStyled'
 import IMAGES from '../../images'
 import NotifyBell from '../NotifyBell'
 import ICONS from '../../icons'
-import UserAvatar from '../UserAvatar'
+import { Drawer, Dropdown, Menu } from 'antd'
+import HeaderUserArea from '../HeaderUserArea'
 
 const MainHeader = props => {
   const { commonStore } = props
+  const [visibleMobileDrawer, setVisibleMobileDrawer] = useState(false)
   const { device } = commonStore
+
+  const handleClickDrawerMenu = (e) => {
+    console.log(e)
+  }
+
   return (
     <MainHeaderWrapper>
       <HeaderLogoArea href={'/'}>
@@ -44,13 +52,46 @@ const MainHeader = props => {
         <HeaderNotifyArea>
           <NotifyBell />
         </HeaderNotifyArea>
-        <HeaderUserArea>
-          <UserAvatar avatarUrl={null} />
-          <span>Administrator</span>
-          <img src={ICONS.WHITE_ARROW_DOWN} alt={''} height={8} />
-        </HeaderUserArea>
+        <HeaderUserArea />
       </MainHeaderRight>
-
+      <MainHeaderRightMobile>
+        <FontAwesomeIcon
+          onClick={() => setVisibleMobileDrawer(true)}
+          icon={faBars}
+          size={'2x'}
+          color={'#fff'}
+          style={{ cursor: 'pointer' }} />
+        <Drawer
+          title={'Ví doanh nghiệp'}
+          placement='right'
+          style={{ padding: 0 }}
+          onClose={() => setVisibleMobileDrawer(false)}
+          visible={visibleMobileDrawer}>
+          <Menu
+            onClick={handleClickDrawerMenu}
+            style={{ width: '100%' }}
+            defaultSelectedKeys={['1']}
+            mode='inline'
+          >
+            <Menu.Item key='1'>
+              <FontAwesomeIcon style={{ marginRight: '16px' }} icon={faFileInvoiceDollar} />
+              Nạp tiền
+            </Menu.Item>
+            <Menu.Item key='2'>
+              <FontAwesomeIcon style={{ marginRight: '16px' }} icon={faExchangeAlt} />
+              Chuyển tiền
+            </Menu.Item>
+            <Menu.Item key='3'>
+              <FontAwesomeIcon style={{ marginRight: '16px' }} icon={faLink} />
+              Liên kết
+            </Menu.Item>
+            <Menu.Item key='4'>
+              <FontAwesomeIcon style={{ marginRight: '16px' }} icon={faHandHoldingUsd} />
+              Rút tiền
+            </Menu.Item>
+          </Menu>
+        </Drawer>
+      </MainHeaderRightMobile>
     </MainHeaderWrapper>
 
   )
