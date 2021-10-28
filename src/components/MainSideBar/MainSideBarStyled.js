@@ -92,6 +92,7 @@ export const SocialIconWrapper = styled.div`
   bottom: 84px;
   transform: translateX(-50%);
   display: flex;
+  flex-direction: ${props => props.flexDirection};
 
   a {
     margin: 8px;

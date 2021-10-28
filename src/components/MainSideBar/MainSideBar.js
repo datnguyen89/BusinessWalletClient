@@ -154,7 +154,7 @@ const MainSideBar = props => {
           <span className={'menu-sidebar-label'} style={{ display: isCollapse ? 'none' : 'block' }}>Trợ giúp</span>
         </MenuSidebarItem>
       </MenuSidebarArea>
-      <SocialIconWrapper>
+      <SocialIconWrapper flexDirection={isCollapse ? 'column' : 'row'}>
         <Link to={'#'}>
           <img src={ICONS.FACEBOOK} alt={''} />
         </Link>

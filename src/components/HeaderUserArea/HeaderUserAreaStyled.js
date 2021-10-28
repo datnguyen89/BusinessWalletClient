@@ -7,7 +7,7 @@ export const HeaderUserAreaWrapper = styled.a`
   margin: 0 16px;
 
   &:hover {
-    color: #fff;
+    color: #fff !important;
   }
 
   span {
