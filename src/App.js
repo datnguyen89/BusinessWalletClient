@@ -14,6 +14,13 @@ import NotFoundPage from './pages/NotFoundPage'
 import NotPermissionPage from './pages/NotPermissionPage'
 import ProtectedPage from './pages/ProtectedPage'
 import LoginPage from './pages/LoginPage'
+import IdentityInfoPage from './pages/IdentityInfoPage'
+import PolicyPage from './pages/PolicyPage'
+import SupportPage from './pages/SupportPage'
+import TransactionHistoryPage from './pages/TransactionHistoryPage'
+import TransactionManagePage from './pages/TransactionManagePage'
+import TransferMobileMoneyPage from './pages/TransferMobileMoneyPage'
+import TransferMultiplePage from './pages/TransferMultiplePage'
 
 
 const history = createBrowserHistory()
@@ -50,9 +57,16 @@ const App = () => {
       <ThemeProvider>
         <Router history={history}>
           <Switch>
-            <Route exact path={'/'} component={HomePage} />            
-            <Route exact path={'/not-permission'} component={NotPermissionPage} />
+            <Route exact path={'/'} component={HomePage} />
+            <Route exact path={'/identity-info'} component={IdentityInfoPage} />
+            <Route exact path={'/transfer-multiple'} component={TransferMultiplePage} />
+            <Route exact path={'/transfer-mobile-money'} component={TransferMobileMoneyPage} />
+            <Route exact path={'/transaction-manage'} component={TransactionManagePage} />
+            <Route exact path={'/transaction-history'} component={TransactionHistoryPage} />
+            <Route exact path={'/policy'} component={PolicyPage} />
+            <Route exact path={'/support'} component={SupportPage} />
             <Route exact path={'/login'} component={LoginPage} />
+            <Route exact path={'/not-permission'} component={NotPermissionPage} />
             <ProtectedRoute exact path={'/protected'} component={ProtectedPage} />
             <Route component={NotFoundPage} />
           </Switch>

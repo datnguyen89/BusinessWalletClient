@@ -2,6 +2,10 @@ import { action, observable } from 'mobx'
 import { commonRequest } from '../requests/commonRequest'
 
 class CommonStore {
+    @observable pageName = null
+    @action setPageName = name => {
+        this.pageName = name
+    }
     // Device
     @observable device = null
 

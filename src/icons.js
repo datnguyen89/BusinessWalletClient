@@ -7,5 +7,15 @@ const ICONS = {
   WHITE_ARROW_DOWN: `${process.env.PUBLIC_URL}/assets/icons/white-arrow-down.png`,
   LOGOUT: `${process.env.PUBLIC_URL}/assets/icons/log-out.svg`,
   SETTING: `${process.env.PUBLIC_URL}/assets/icons/setting.svg`,
+  IDENTITY_ICON: `${process.env.PUBLIC_URL}/assets/icons/identity-icon.svg`,
+  TRANSFER_MULTI_ICON: `${process.env.PUBLIC_URL}/assets/icons/transfer-multi.svg`,
+  MOBILE_MONEY_ICON: `${process.env.PUBLIC_URL}/assets/icons/mobile-money-icon.svg`,
+  TRANSACTION_ICON: `${process.env.PUBLIC_URL}/assets/icons/transaction-icon.svg`,
+  HISTORY_ICON: `${process.env.PUBLIC_URL}/assets/icons/history-icon.svg`,
+  POLICY_ICON: `${process.env.PUBLIC_URL}/assets/icons/policy-icon.svg`,
+  SUPPORT_ICON: `${process.env.PUBLIC_URL}/assets/icons/support-icon.svg`,
+  FACEBOOK: `${process.env.PUBLIC_URL}/assets/icons/facebook.png`,
+  INSTAGRAM: `${process.env.PUBLIC_URL}/assets/icons/instagram.png`,
+  YOUTUBE: `${process.env.PUBLIC_URL}/assets/icons/youtube.png`,
 }
 export default ICONS

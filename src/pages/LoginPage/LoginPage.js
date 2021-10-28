@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { inject, observer } from 'mobx-react'
 import AuthLayout from '../../layouts/AuthLayout'
 import { Input, Form, Checkbox, Button, Row, Col } from 'antd'
 import { AuthShadowBox } from '../../components/CommonStyled/CommonStyled'
@@ -8,6 +9,7 @@ import { LoginFormTitle, LoginPageWrapper } from './LoginPageStyled'
 import { Link, useHistory } from 'react-router-dom'
 
 const LoginPage = props => {
+  const { commonStore } = props
   const history = useHistory()
 
   const onFinish = (formCollection) => {
@@ -23,7 +25,7 @@ const LoginPage = props => {
       <LoginPageWrapper>
         <AuthShadowBox>
           <img src={IMAGES.AUTH_LOGO} alt={''} />
-          <LoginFormTitle>ĐĂNG NHẬP MOBIFONE PAY DOANH NGHIỆP</LoginFormTitle>
+          <LoginFormTitle>ĐĂNG NHẬP MOBIFONE PAY DOANH NGHIỆP {commonStore.pageName}</LoginFormTitle>
           <Form
             name='basic'
             labelCol={{ span: 0 }}
@@ -69,4 +71,4 @@ const LoginPage = props => {
 
 LoginPage.propTypes = {}
 
-export default LoginPage
+export default inject('commonStore')(observer(LoginPage))

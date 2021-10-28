@@ -37,58 +37,8 @@ const HomePage = props => {
       <div>
         {timeLeft === 0 ? <a onClick={() => setTimeLeft(3)}>reset</a> : timeLeft}
       </div>
-      <p>321</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>adsd</p><br />
-      <p>end</p><br />
+      <p>{commonStore.pageName}</p><br />
+
     </DefaultLayout>
   )
 }
