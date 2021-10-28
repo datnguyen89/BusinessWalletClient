@@ -21,6 +21,7 @@ import TransactionHistoryPage from './pages/TransactionHistoryPage'
 import TransactionManagePage from './pages/TransactionManagePage'
 import TransferMobileMoneyPage from './pages/TransferMobileMoneyPage'
 import TransferMultiplePage from './pages/TransferMultiplePage'
+import LoadingOverLay from './components/LoadingOverLay'
 
 
 const history = createBrowserHistory()
@@ -71,6 +72,7 @@ const App = () => {
             <Route component={NotFoundPage} />
           </Switch>
         </Router>
+        <LoadingOverLay />
       </ThemeProvider>
     </Provider>
   )

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { TransferMultiplePageWrapper } from './TransferMultiplePageStyled'
 import DefaultLayout from '../../layouts/DefaultLayout'
 import { Helmet } from 'react-helmet/es/Helmet'
+import { BREADCRUMB_DATA } from '../../utils/constant'
+import MainBreadCrumb from '../../components/MainBreadCrumb'
 
 const TransferMultiplePage = props => {
   return (
@@ -11,6 +13,7 @@ const TransferMultiplePage = props => {
         <title>Chuyển tiền theo Lô</title>
       </Helmet>
       <TransferMultiplePageWrapper>
+        <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TRANSFER_MULTIPLE} />
         TransferMultiplePage
       </TransferMultiplePageWrapper>
     </DefaultLayout>
