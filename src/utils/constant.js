@@ -5,3 +5,6 @@ export const DEVICE = {
     tablet: "Tablet", 
     desktop: "Desktop"
 }
+export const BreadcrumbData = {
+
+}

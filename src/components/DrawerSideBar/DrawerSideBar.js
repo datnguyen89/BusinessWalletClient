@@ -5,17 +5,17 @@ import { faBars, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons'
 import {
   BankAvatarWrapper,
   BankInfoArea,
-  MainSideBarWrapper, MenuSidebarArea,
+  DrawerSideBarWrapper, MenuSidebarArea,
   MenuSidebarItem,
   MenuSidebarWrapper, SocialIconWrapper,
-} from './MainSideBarStyled'
+} from './DrawerSideBarStyled'
 import { DEVICE, SIDEBAR_WIDTH_COLLAPSE, SIDEBAR_WIDTH_EXPAND } from '../../utils/constant'
 import IMAGES from '../../images'
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 import { Link, useHistory } from 'react-router-dom'
 import ICONS from '../../icons'
 
-const MainSideBar = props => {
+const DrawerSideBar = props => {
   const { commonStore } = props
   const { isCollapse, device, pageName } = commonStore
 
@@ -35,24 +35,14 @@ const MainSideBar = props => {
 
 
   return (
-    <MainSideBarWrapper
-      display={device === DEVICE.mobile ? 'none' : 'block'}
+    <DrawerSideBarWrapper
       width={isCollapse ? SIDEBAR_WIDTH_COLLAPSE : SIDEBAR_WIDTH_EXPAND}>
       <BankInfoArea display={isCollapse ? 'none' : 'flex'}>
         <BankAvatarWrapper>
           <img src={IMAGES.SACOMBANK} alt={''} height={60} />
         </BankAvatarWrapper>
         <span className={'bank-name-sidebar'}>Ngân hàng cổ phần thương mại Sài Gòn</span>
-        <CaretLeftOutlined
-          onClick={() => handleToggleSideBar(true)}
-          className={'collapse-sidebar-icon'}
-          style={{ display: (device === DEVICE.mobile || device === DEVICE.tablet) ? 'none' : 'block' }} />
       </BankInfoArea>
-      <FontAwesomeIcon
-        onClick={() => handleToggleSideBar(false)}
-        className={'expand-sidebar-icon'}
-        style={{ display: !isCollapse ? 'none' : 'inline-block' }}
-        icon={faBars} />
       <MenuSidebarArea>
         <MenuSidebarItem
           onClick={() => handleClickMenu('identity-info')}
@@ -164,10 +154,10 @@ const MainSideBar = props => {
         </Link>
       </SocialIconWrapper>
 
-    </MainSideBarWrapper>
+    </DrawerSideBarWrapper>
   )
 }
 
-MainSideBar.propTypes = {}
+DrawerSideBar.propTypes = {}
 
-export default inject('commonStore')(observer(MainSideBar))
+export default inject('commonStore')(observer(DrawerSideBar))

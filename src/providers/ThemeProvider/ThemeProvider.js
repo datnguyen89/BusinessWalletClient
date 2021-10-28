@@ -20,23 +20,14 @@ const ThemeProvider = props => {
 
   useEffect(() => {
     if (!isDesktop) return
-    if (isCollapse) {
-      commonStore.setIsCollapse(false)
-    }
     commonStore.setDevice(DEVICE.desktop)
   }, [isDesktop])
   useEffect(() => {
     if (!isTablet) return
-    if (!isCollapse) {
-      commonStore.setIsCollapse(true)
-    }
     commonStore.setDevice(DEVICE.tablet)
   }, [isTablet])
   useEffect(() => {
     if (!isMobile) return
-    if (!isCollapse) {
-      commonStore.setIsCollapse(true)
-    }
     commonStore.setDevice(DEVICE.mobile)
   }, [isMobile])
 

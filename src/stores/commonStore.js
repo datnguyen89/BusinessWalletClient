@@ -94,9 +94,10 @@ class CommonStore {
         this.appLanguage = lang
     }
     // Sidebar collapse
-    @observable isCollapse = false
+    @observable isCollapse = JSON.parse(localStorage.getItem('isCollapse')) || false
 
     @action setIsCollapse(status) {
+        localStorage.setItem('isCollapse', status)
         this.isCollapse = status
     }
 

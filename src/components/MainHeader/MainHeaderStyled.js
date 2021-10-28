@@ -13,7 +13,7 @@ export const MainHeaderWrapper = styled.header`
   background: #4C68EF;
   z-index: 1;
 `
-export const HeaderLogoArea = styled.a`
+export const HeaderLogoArea = styled.div`
   display: flex;
   align-items: center;
   margin-left: 16px;
