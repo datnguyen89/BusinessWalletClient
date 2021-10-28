@@ -17,5 +17,8 @@ const ICONS = {
   FACEBOOK: `${process.env.PUBLIC_URL}/assets/icons/facebook.png`,
   INSTAGRAM: `${process.env.PUBLIC_URL}/assets/icons/instagram.png`,
   YOUTUBE: `${process.env.PUBLIC_URL}/assets/icons/youtube.png`,
+  SUCCESS: `${process.env.PUBLIC_URL}/assets/icons/success.png`,
+  WAITING: `${process.env.PUBLIC_URL}/assets/icons/waiting.png`,
+  REJECT: `${process.env.PUBLIC_URL}/assets/icons/reject.png`,
 }
 export default ICONS

@@ -1,3 +1,5 @@
+import ICONS from '../icons'
+
 export const SIDEBAR_WIDTH_EXPAND = 240
 export const SIDEBAR_WIDTH_COLLAPSE = 64
 export const DEVICE = {
@@ -38,3 +40,26 @@ export const BREADCRUMB_DATA = {
     { LABEL: 'Trợ giúp', PATH: null },
   ],
 }
+export const HOME_WIDGET_DATA = [
+  {
+    ID: 1,
+    NUMBER: 440,
+    ICON: ICONS.SUCCESS,
+    LABEL: 'Đã duyệt',
+    COLOR: '#7EBD50',
+  },
+  {
+    ID: 2,
+    NUMBER: 800,
+    ICON: ICONS.WAITING,
+    LABEL: 'Đang chờ duyệt',
+    COLOR: '#FFA50C',
+  },
+  {
+    ID: 3,
+    NUMBER: 100,
+    ICON: ICONS.REJECT,
+    LABEL: 'Từ chối',
+    COLOR: '#CE3939',
+  },
+]
