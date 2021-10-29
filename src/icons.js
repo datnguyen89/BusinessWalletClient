@@ -17,5 +17,21 @@ const ICONS = {
   FACEBOOK: `${process.env.PUBLIC_URL}/assets/icons/facebook.png`,
   INSTAGRAM: `${process.env.PUBLIC_URL}/assets/icons/instagram.png`,
   YOUTUBE: `${process.env.PUBLIC_URL}/assets/icons/youtube.png`,
+  SUCCESS: `${process.env.PUBLIC_URL}/assets/icons/success.png`,
+  WAITING: `${process.env.PUBLIC_URL}/assets/icons/waiting.png`,
+  REJECT: `${process.env.PUBLIC_URL}/assets/icons/reject.png`,
+  SERVICE1: `${process.env.PUBLIC_URL}/assets/icons/services/s1.png`,
+  SERVICE2: `${process.env.PUBLIC_URL}/assets/icons/services/s2.png`,
+  SERVICE3: `${process.env.PUBLIC_URL}/assets/icons/services/s3.png`,
+  SERVICE4: `${process.env.PUBLIC_URL}/assets/icons/services/s4.png`,
+  SERVICE5: `${process.env.PUBLIC_URL}/assets/icons/services/s5.png`,
+  SERVICE6: `${process.env.PUBLIC_URL}/assets/icons/services/s6.png`,
+  SERVICE7: `${process.env.PUBLIC_URL}/assets/icons/services/s7.png`,
+  SERVICE8: `${process.env.PUBLIC_URL}/assets/icons/services/s8.png`,
+  SERVICE9: `${process.env.PUBLIC_URL}/assets/icons/services/s9.png`,
+  SERVICE10: `${process.env.PUBLIC_URL}/assets/icons/services/s10.png`,
+  SERVICE11: `${process.env.PUBLIC_URL}/assets/icons/services/s11.png`,
+  SERVICE12: `${process.env.PUBLIC_URL}/assets/icons/services/s12.png`,
+
 }
 export default ICONS

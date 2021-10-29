@@ -9,7 +9,7 @@ const MainBody = props => {
     const { isCollapse, device } = commonStore
 
     const renderContentMargin = () => {
-        if (device === DEVICE.mobile) return 0;
+        if (device === DEVICE.MOBILE) return 0;
         if (isCollapse) {
             return SIDEBAR_WIDTH_COLLAPSE
         } else {

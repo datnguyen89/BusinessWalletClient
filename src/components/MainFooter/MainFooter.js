@@ -12,6 +12,7 @@ import {
   TelsArea,
 } from './MainFooterStyled'
 import IMAGES from '../../images'
+import { Link } from 'react-router-dom'
 
 const MainFooter = props => {
   const { commonStore } = props
@@ -19,9 +20,9 @@ const MainFooter = props => {
   return (
     <MainFooterWrapper fontColor={appTheme.fontColor}>
       <MainFooterLeft>
-        <a href={'#'}>
+        <Link to={'#'}>
           <img src={IMAGES.AUTH_LOGO} alt={''} />
-        </a>
+        </Link>
         <MainFooterLeftInfo>
           <CompanyName color={appTheme.fontColor}>Tổng công ty Viễn Thông MobiFone </CompanyName>
           <p>Số 01 phố Phạm Văn Bạch, Yên Hòa, Cầu Giấy, Hà Nội</p>

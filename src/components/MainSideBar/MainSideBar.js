@@ -36,7 +36,7 @@ const MainSideBar = props => {
 
   return (
     <MainSideBarWrapper
-      display={device === DEVICE.mobile ? 'none' : 'block'}
+      display={device === DEVICE.MOBILE ? 'none' : 'block'}
       width={isCollapse ? SIDEBAR_WIDTH_COLLAPSE : SIDEBAR_WIDTH_EXPAND}>
       <BankInfoArea display={isCollapse ? 'none' : 'flex'}>
         <BankAvatarWrapper>
@@ -46,7 +46,7 @@ const MainSideBar = props => {
         <CaretLeftOutlined
           onClick={() => handleToggleSideBar(true)}
           className={'collapse-sidebar-icon'}
-          style={{ display: (device === DEVICE.mobile || device === DEVICE.tablet) ? 'none' : 'block' }} />
+          style={{ display: (device === DEVICE.MOBILE || device === DEVICE.TABLET) ? 'none' : 'block' }} />
       </BankInfoArea>
       <FontAwesomeIcon
         onClick={() => handleToggleSideBar(false)}

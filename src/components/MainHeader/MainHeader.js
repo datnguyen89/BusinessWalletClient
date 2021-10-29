@@ -47,7 +47,7 @@ const MainHeader = props => {
           icon={faList}
           size={'2x'}
           style={{
-            display: device === DEVICE.mobile ? 'block' : 'none',
+            display: device === DEVICE.MOBILE ? 'block' : 'none',
             cursor: 'pointer',
             color: '#fff',
             marginLeft: 8,

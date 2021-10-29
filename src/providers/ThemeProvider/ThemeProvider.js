@@ -20,15 +20,15 @@ const ThemeProvider = props => {
 
   useEffect(() => {
     if (!isDesktop) return
-    commonStore.setDevice(DEVICE.desktop)
+    commonStore.setDevice(DEVICE.DESKTOP)
   }, [isDesktop])
   useEffect(() => {
     if (!isTablet) return
-    commonStore.setDevice(DEVICE.tablet)
+    commonStore.setDevice(DEVICE.TABLET)
   }, [isTablet])
   useEffect(() => {
     if (!isMobile) return
-    commonStore.setDevice(DEVICE.mobile)
+    commonStore.setDevice(DEVICE.MOBILE)
   }, [isMobile])
 
   return (
