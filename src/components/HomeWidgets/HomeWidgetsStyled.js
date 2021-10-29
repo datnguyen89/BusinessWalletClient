@@ -8,6 +8,10 @@ export const WidgetItemBox = styled.div`
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   overflow: hidden;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  }
 `
 export const WidgetItemTop = styled.div`
   display: flex;

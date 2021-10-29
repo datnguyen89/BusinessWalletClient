@@ -7,5 +7,6 @@ const IMAGES = {
   DEFAULT_AVATAR: `${process.env.PUBLIC_URL}/assets/images/default-avatar.png`,
   BANK_BG: `${process.env.PUBLIC_URL}/assets/images/bank-bg.png`,
   SACOMBANK: `${process.env.PUBLIC_URL}/assets/images/SACOMBANK.png`,
+  HOME_CAROUSEL: `${process.env.PUBLIC_URL}/assets/images/carousel1.png`,
 }
 export default IMAGES
