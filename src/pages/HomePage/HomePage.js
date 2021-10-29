@@ -7,6 +7,7 @@ import DefaultLayout from '../../layouts/DefaultLayout'
 import { useMagicColor } from '../../hooks/magicColor'
 import { BREADCRUMB_DATA } from '../../utils/constant'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
+import HomeWidgets from '../../components/HomeWidgets'
 
 const HomePage = props => {
   const { commonStore } = props
@@ -14,7 +15,7 @@ const HomePage = props => {
   return (
     <DefaultLayout>
       <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.HOME} />
-
+      <HomeWidgets />
     </DefaultLayout>
   )
 }
