@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { IdentityInfoPageWrapper } from './IdentityInfoPageStyled'
 import DefaultLayout from '../../layouts/DefaultLayout'
 import { Helmet } from 'react-helmet/es/Helmet'
+import EnterpriseInfo from '../../components/EnterpriseInfo/EnterpriseInfo'
 
 const IdentityInfoPage = props => {
 
@@ -12,7 +13,7 @@ const IdentityInfoPage = props => {
         <title>Thông tin định danh</title>
       </Helmet>
       <IdentityInfoPageWrapper>
-        IdentityInfoPage
+        <EnterpriseInfo></EnterpriseInfo>
       </IdentityInfoPageWrapper>
     </DefaultLayout>
   )
