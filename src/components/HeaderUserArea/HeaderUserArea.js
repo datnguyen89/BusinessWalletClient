@@ -4,15 +4,20 @@ import { Dropdown, Menu } from 'antd'
 import UserAvatar from '../UserAvatar'
 import ICONS from '../../icons'
 import { HeaderUserAreaWrapper } from './HeaderUserAreaStyled'
+import { useHistory } from 'react-router-dom'
 
 const HeaderUserArea = props => {
+  const history = useHistory()
+  const handleClickMenu = (path) => {
+    history.push(path)
+  }
   const menu = (
     <Menu>
       <Menu.Item className={'user-menu-item'} key='0'>
         <img className={'user-menu-icon'} src={ICONS.SETTING} alt={''} />
         <span className={'user-menu-label'}>Đổi mật khẩu</span>
       </Menu.Item>
-      <Menu.Item className={'user-menu-item'} key='1'>
+      <Menu.Item className={'user-menu-item'} key='1' onClick={() => handleClickMenu()}>
         <img className={'user-menu-icon'} src={ICONS.LOGOUT} alt={''} />
         <span className={'user-menu-label'}>Đăng xuất</span>
       </Menu.Item>
@@ -34,8 +39,6 @@ const HeaderUserArea = props => {
   )
 }
 
-HeaderUserArea.propTypes = {
-  
-}
+HeaderUserArea.propTypes = {}
 
 export default HeaderUserArea

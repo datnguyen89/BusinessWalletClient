@@ -2,22 +2,28 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
 import AuthLayout from '../../layouts/AuthLayout'
-import { Input, Form, Checkbox, Button, Row, Col } from 'antd'
+import { Input, Form, Checkbox, Button, Row, Col, message } from 'antd'
 import { AuthShadowBox } from '../../components/CommonStyled/CommonStyled'
 import IMAGES from '../../images'
 import { LoginFormTitle, LoginPageWrapper } from './LoginPageStyled'
 import { Link, useHistory } from 'react-router-dom'
+import OtpModal from '../../components/OtpModal'
 
 const LoginPage = props => {
-  const { commonStore } = props
+  const { commonStore, otpStore } = props
   const history = useHistory()
 
   const onFinish = (formCollection) => {
     console.log('Success:', formCollection)
-    history.push('/')
+    otpStore.setVisible(true)
+    // history.push('/')
   }
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
+  }
+
+  const handleSubmitOtp = (otp) => {
+    message.info(otp)
   }
 
   return (
@@ -64,6 +70,7 @@ const LoginPage = props => {
             </Form.Item>
           </Form>
         </AuthShadowBox>
+        <OtpModal phoneNumber={'0379631004'} callbackOtp={handleSubmitOtp} />
       </LoginPageWrapper>
     </AuthLayout>
   )
@@ -71,4 +78,4 @@ const LoginPage = props => {
 
 LoginPage.propTypes = {}
 
-export default inject('commonStore')(observer(LoginPage))
+export default inject('commonStore', 'otpStore')(observer(LoginPage))

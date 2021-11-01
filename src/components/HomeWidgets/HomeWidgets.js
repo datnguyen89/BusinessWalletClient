@@ -9,7 +9,6 @@ import {
 } from './HomeWidgetsStyled'
 import { Col, Row } from 'antd'
 import { HOME_WIDGET_DATA } from '../../utils/constant'
-import ICONS from '../../icons'
 
 const HomeWidgets = props => {
   return (
@@ -17,7 +16,7 @@ const HomeWidgets = props => {
       <Row align={'middle'} gutter={[16, 16]}>
         {
           HOME_WIDGET_DATA.map(item =>
-            <Col xxl={8} xl={8} lg={8} md={8} sm={24} xs={24}>
+            <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24}>
               <WidgetItemBox>
                 <WidgetItemTop>
                   <WidgetItemCount color={item.COLOR}>
