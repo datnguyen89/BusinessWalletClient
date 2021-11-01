@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 
+export const  EnterpriseInfoWrapper = styled.div `
+  display: flex;
+`
 export const AreaInfo = styled.div `
   width: 64.6%;
   float: left;
 `
 export const AreaPanel = styled.div `
   width: 35%;
-  float: right;
   height: auto;
 `
 
@@ -19,7 +21,7 @@ export const AreaEnterpriseInfo = styled.div `
   height: auto;
   left: 273px;
   top: 138px;
-  padding: 20px;
+  padding: 20px 20px 5px;
 `
 
 export const AreaIdentityInfo = styled.div `
@@ -30,7 +32,7 @@ export const AreaIdentityInfo = styled.div `
   margin: 20px 16px;
   left: 273px;
   top: 138px;
-  padding: 20px;
+  padding: 20px 20px 5px;
 `
 
 export const AreaEnterpriseInfoLabel = styled.div `
@@ -65,6 +67,10 @@ export const AreaEnterpriseInfoAreaDetailLineInfo = styled.div `
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &: last-child {
+    border-bottom: none;
+  }
 `
 
 export const AreaEnterpriseInfoAreaDetailLineInfoRight = styled.span `
@@ -73,6 +79,9 @@ export const AreaEnterpriseInfoAreaDetailLineInfoRight = styled.span `
 
 export const AreaEnterpriseInfoAreaDetailLineInfoLeft = styled.span `
   text-align: left;
+  span {
+    color: #B4B4B4;
+  }
 `
 
 export const AreaPanelAdmin = styled.div `
@@ -83,7 +92,7 @@ export const AreaPanelAdmin = styled.div `
   height: auto;
   overflow: hidden;
   margin-bottom: 30px;
-  padding: 20px;
+  padding: 20px 20px 5px;
 `
 
 export const AreaPanelAdminLabel = styled.div `
@@ -107,12 +116,15 @@ export const AreaPanelAdminAvatar = styled.div `
 export const AreaPannelAdminInfo = styled.div ``
 
 export const AreaPanelAdminCard = styled.div `
-  .slick-slide {
+  .slick-slider .slick-dots {
+    display: none !important;
+  }
+  .slick-slider {
     width: 100%;
     padding: 20px;
   }
-  .slick-slide img {
-    width: 80%;
+  .slick-slider img {
+    //width: 80%;
     margin: 0 auto;
   }
   .slick-arrow.slick-prev {
@@ -125,7 +137,7 @@ export const AreaPanelAdminCard = styled.div `
     padding: 0;
   }
   .slick-arrow.slick-prev {
-    left: 2px;
+    left: 0;
     z-index: 10;
   }
 
@@ -138,11 +150,32 @@ export const AreaPanelAdminCard = styled.div `
   }
   .slick-arrow.slick-prev:before {
     content: url(${props => props.arrowPrev});
-    left: 2px;
-    z-index: 10;
   }
 `
 
+export const AreaCard = styled.div `
+  background: #FFFFFF;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin: 0 16px 30px;
+  height: auto;
+  overflow: hidden;
+  padding: 20px 20px 30px;
+`
+
 export const AreaAddCard = styled.div `
-  
+  cursor: pointer;
+  display: flex;
+  margin: 0 auto;
+  width: 80%;
+  border-radius: 5px;
+  padding: 16px;
+  border: 1px solid #4C68EF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4C68EF;
+  span {
+    margin-right: 10px;
+  }
 `

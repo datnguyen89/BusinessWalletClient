@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import {
-  AreaAddCard,
+  AreaAddCard, AreaCard,
   AreaEnterpriseInfo,
   AreaEnterpriseInfoAreaDetail,
   AreaEnterpriseInfoAreaDetailBox,
@@ -18,7 +18,7 @@ import {
   AreaInfo,
   AreaPanel,
   AreaPanelAdmin, AreaPanelAdminAvatar, AreaPanelAdminCard,
-  AreaPanelAdminLabel, AreaPannelAdminInfo,
+  AreaPanelAdminLabel, AreaPannelAdminInfo, EnterpriseInfoWrapper,
   SpanAreaEnterpriseInfoLabel,
 } from './EnterpriseInfoStyled'
 import IMAGES from '../../images'
@@ -96,8 +96,12 @@ const EnterpriseInfo = props => {
     prevArrow: <SamplePrevArrow />
   };
 
+  const handleAddNewCard = () => {
+
+  }
+
   return (
-    <div>
+    <EnterpriseInfoWrapper>
       <AreaInfo>
         <AreaEnterpriseInfo>
           <AreaEnterpriseInfoLabel>
@@ -197,14 +201,13 @@ const EnterpriseInfo = props => {
             {
               dataTemp.map(item =>
                 <AreaEnterpriseInfoAreaDetailLineInfo key={item.id}>
-                  <AreaEnterpriseInfoAreaDetailLineInfoLeft>{item.key}</AreaEnterpriseInfoAreaDetailLineInfoLeft>
+                  <AreaEnterpriseInfoAreaDetailLineInfoLeft><span>{item.key}</span></AreaEnterpriseInfoAreaDetailLineInfoLeft>
                   <AreaEnterpriseInfoAreaDetailLineInfoRight>{item.value}</AreaEnterpriseInfoAreaDetailLineInfoRight>
                 </AreaEnterpriseInfoAreaDetailLineInfo>)
             }
           </AreaPannelAdminInfo>
         </AreaPanelAdmin>
-        <AreaPanelAdmin>
-
+        <AreaCard>
           <AreaPanelAdminCard
             arrowPrev={`${process.env.PUBLIC_URL}/assets/images/prev.png`}
             arrowNext={`${process.env.PUBLIC_URL}/assets/images/next.png`}>
@@ -225,13 +228,13 @@ const EnterpriseInfo = props => {
           </AreaPanelAdminCard>
           <AreaAddCard>
             <div>
-              <img src={`${process.env.PUBLIC_URL}/assets/images/add.png`} />
+              <span class="add-wrapper"><img src={`${process.env.PUBLIC_URL}/assets/images/add.png`} /></span>
+              <span onClick={() => handleAddNewCard()}>Liên kết thẻ mới</span>
             </div>
-            <span>Liên kết thẻ mới</span>
           </AreaAddCard>
-        </AreaPanelAdmin>
+        </AreaCard>
       </AreaPanel>
-    </div>
+    </EnterpriseInfoWrapper>
   )
 }
 
