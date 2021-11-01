@@ -17,7 +17,7 @@ const HeaderUserArea = props => {
         <img className={'user-menu-icon'} src={ICONS.SETTING} alt={''} />
         <span className={'user-menu-label'}>Đổi mật khẩu</span>
       </Menu.Item>
-      <Menu.Item className={'user-menu-item'} key='1' onClick={() => handleClickMenu()}>
+      <Menu.Item className={'user-menu-item'} key='1' onClick={() => handleClickMenu('/login')}>
         <img className={'user-menu-icon'} src={ICONS.LOGOUT} alt={''} />
         <span className={'user-menu-label'}>Đăng xuất</span>
       </Menu.Item>

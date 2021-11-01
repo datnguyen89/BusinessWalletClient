@@ -8,5 +8,6 @@ const IMAGES = {
   BANK_BG: `${process.env.PUBLIC_URL}/assets/images/bank-bg.png`,
   SACOMBANK: `${process.env.PUBLIC_URL}/assets/images/SACOMBANK.png`,
   HOME_CAROUSEL: `${process.env.PUBLIC_URL}/assets/images/carousel1.png`,
+  WIDGET_BACKGROUND: `${process.env.PUBLIC_URL}/assets/images/widget_bg.svg`,
 }
 export default IMAGES

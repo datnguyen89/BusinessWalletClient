@@ -8,13 +8,14 @@ import { createBrowserHistory } from 'history'
 // MobX
 import { Provider } from 'mobx-react'
 import commonStore from './stores/commonStore.js'
-import otpStore from './stores/otpStore.js'
+import modalStore from './stores/modalStore.js'
 // Pages
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import NotPermissionPage from './pages/NotPermissionPage'
 import ProtectedPage from './pages/ProtectedPage'
 import LoginPage from './pages/LoginPage'
+import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import IdentityInfoPage from './pages/IdentityInfoPage'
 import PolicyPage from './pages/PolicyPage'
 import SupportPage from './pages/SupportPage'
@@ -47,7 +48,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
 
 const rootStores = {
   commonStore,
-  otpStore,
+  modalStore,
 }
 
 
@@ -69,6 +70,7 @@ const App = () => {
             <Route exact path={'/policy'} component={PolicyPage} />
             <Route exact path={'/support'} component={SupportPage} />
             <Route exact path={'/login'} component={LoginPage} />
+            <Route exact path={'/forgot-password'} component={ForgotPasswordPage} />
             <Route exact path={'/not-permission'} component={NotPermissionPage} />
             <ProtectedRoute exact path={'/protected'} component={ProtectedPage} />
             <Route component={NotFoundPage} />

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import OtpInput from 'react-otp-input'
 import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { ExpiredLabel, OtpDescription, OtpModalWrapper, ResendOtp, WaitingResendOtp } from './OtpModalStyled'
+import { ExpiredLabel, OtpDescription, OtpModalWrapper, ResendOtp, TimeLeft, WaitingResendOtp } from './OtpModalStyled'
 import { Button, Col, message, Modal, Row } from 'antd'
 
 const _ = require('lodash')
 
 const OtpModal = props => {
-  const { otpStore, callbackOtp, phoneNumber, otpLength } = props
+  const { modalStore, callbackOtp, phoneNumber, otpLength } = props
   const [timeLeft, setTimeLeft] = useState(180)
   const [timeResend, setTimeResend] = useState(0)
   const [otp, setOtp] = useState('')
@@ -39,7 +39,12 @@ const OtpModal = props => {
       message.error(`Vui lòng nhập đủ ${checkOtpLength} ký tự OTP`)
       return
     }
-    callbackOtp(otp)
+    // Check otp
+    if (otp === '123456') {
+      callbackOtp(otp)
+    } else {
+      message.error('Mã OTP không chính xác')
+    }
   }
   const handleInputOtp = (value) => {
     const reg = /^-?\d+\.?\d*$/
@@ -50,7 +55,7 @@ const OtpModal = props => {
     }
   }
   const handleCancel = () => {
-    otpStore.setVisible(false)
+    modalStore.setVisibleOtp(false)
   }
   const handleClickResend = () => {
     setTimeResend(60)
@@ -74,17 +79,17 @@ const OtpModal = props => {
   }, [timeResend])
 
   useEffect(() => {
-    if (otpStore.visible) return
+    if (modalStore.visibleOtp) return
     setTimeLeft(180)
     setTimeResend(0)
     setOtp('')
-  }, [otpStore.visible])
+  }, [modalStore.visibleOtp])
 
   return (
     <OtpModalWrapper
       title='Nhập mã xác thực'
       maskClosable={false}
-      visible={otpStore.visible}
+      visible={modalStore.visibleOtp}
       footer={null}
       onCancel={handleCancel}>
       <Row justify={'center'}>
@@ -94,7 +99,7 @@ const OtpModal = props => {
             <br />
             Nếu không nhận được OTP vui lòng ấn {timeResend === 0 ?
             <ResendOtp onClick={handleClickResend}>Gửi lại</ResendOtp> :
-            <WaitingResendOtp>(Gửi lại sau {timeResend}s)</WaitingResendOtp>}
+            <WaitingResendOtp>(Gửi lại sau {timeResend} giây)</WaitingResendOtp>}
           </OtpDescription>
         </Col>
         <Col span={24}>
@@ -111,7 +116,7 @@ const OtpModal = props => {
         </Col>
         <Col span={24}>
           <ExpiredLabel>
-            Mã OTP sẽ hết hạn sau {timeLeft}s
+            Mã OTP sẽ hết hạn sau <TimeLeft>{timeLeft}</TimeLeft> giây
           </ExpiredLabel>
         </Col>
         <Col span={8}>
@@ -125,7 +130,7 @@ const OtpModal = props => {
 OtpModal.propTypes = {
   otpLength: PropTypes.number,
   phoneNumber: PropTypes.string.isRequired,
-  callbackOtp: PropTypes.string.isRequired,
+  callbackOtp: PropTypes.func.isRequired,
 }
 
-export default inject('otpStore')(observer(OtpModal))
+export default inject('modalStore')(observer(OtpModal))

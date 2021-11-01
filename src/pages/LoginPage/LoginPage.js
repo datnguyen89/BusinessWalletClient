@@ -5,18 +5,17 @@ import AuthLayout from '../../layouts/AuthLayout'
 import { Input, Form, Checkbox, Button, Row, Col, message } from 'antd'
 import { AuthShadowBox } from '../../components/CommonStyled/CommonStyled'
 import IMAGES from '../../images'
-import { LoginFormTitle, LoginPageWrapper } from './LoginPageStyled'
+import { LoginFormTitle, LoginPageWrapper, TitleWrapper } from './LoginPageStyled'
 import { Link, useHistory } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
 
 const LoginPage = props => {
-  const { commonStore, otpStore } = props
+  const { commonStore, modalStore } = props
   const history = useHistory()
 
   const onFinish = (formCollection) => {
     console.log('Success:', formCollection)
-    otpStore.setVisible(true)
-    // history.push('/')
+    modalStore.setVisibleOtp(true)
   }
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
@@ -24,14 +23,17 @@ const LoginPage = props => {
 
   const handleSubmitOtp = (otp) => {
     message.info(otp)
+    history.push('/')
   }
 
   return (
     <AuthLayout>
       <LoginPageWrapper>
         <AuthShadowBox>
-          <img src={IMAGES.AUTH_LOGO} alt={''} />
-          <LoginFormTitle>ĐĂNG NHẬP MOBIFONE PAY DOANH NGHIỆP {commonStore.pageName}</LoginFormTitle>
+          <TitleWrapper>
+            <img src={IMAGES.AUTH_LOGO} alt={''} />
+            <LoginFormTitle>ĐĂNG NHẬP MOBIFONE PAY DOANH NGHIỆP</LoginFormTitle>
+          </TitleWrapper>
           <Form
             name='basic'
             labelCol={{ span: 0 }}
@@ -59,11 +61,11 @@ const LoginPage = props => {
             <Form.Item>
               <Row align={'middle'}>
                 <Col span={12}>
-                  <Link to={'#'}>Quên mật khẩu</Link>
+                  <Link to={'/forgot-password'}>Quên mật khẩu</Link>
                 </Col>
                 <Col span={12}>
                   <Button type='primary' htmlType='submit' size={'large'} block>
-                    Submit
+                    Đăng nhập
                   </Button>
                 </Col>
               </Row>
@@ -78,4 +80,4 @@ const LoginPage = props => {
 
 LoginPage.propTypes = {}
 
-export default inject('commonStore', 'otpStore')(observer(LoginPage))
+export default inject('commonStore', 'modalStore')(observer(LoginPage))

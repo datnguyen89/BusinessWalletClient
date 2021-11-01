@@ -1,5 +1,6 @@
 const ICONS = {
   NOTIFY_BELL: `${process.env.PUBLIC_URL}/assets/icons/notify-bell.png`,
+  CANCEL_LINK: `${process.env.PUBLIC_URL}/assets/icons/modal/cancel-link.png`,
   RECHARGE_ICON: `${process.env.PUBLIC_URL}/assets/icons/naptien.png`,
   TRANSFER_ICON: `${process.env.PUBLIC_URL}/assets/icons/chuyentien.png`,
   LINK_BANK_ICON: `${process.env.PUBLIC_URL}/assets/icons/lienket.png`,
