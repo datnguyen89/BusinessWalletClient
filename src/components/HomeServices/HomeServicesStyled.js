@@ -2,30 +2,18 @@ import styled from 'styled-components'
 
 export const HomeServicesWrapper = styled.div`
   margin: 0 16px;
+  .ant-ribbon-wrapper {
+    height: 100%;
+  }
 `
-export const ServiceBadge = styled.div`
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  height: 36px;
-  width: 36px;
-  border-radius: 50%;
-  background: #FFA50C;
-  color: #fff;
-  font-size: 1.4rem;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.3s;
-`
+
 export const ServiceBox = styled.div`
   cursor: pointer;
   height: 100%;
   position: relative;
   background: #fff;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -39,10 +27,9 @@ export const ServiceBox = styled.div`
   }
 
   &:hover {
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-
-    ${ServiceBadge} {
-      transform: scale(1.1, 1.1);
+    img {
+      transition: all 1s;
+      transform: scale(1.1);
     }
   }
 `

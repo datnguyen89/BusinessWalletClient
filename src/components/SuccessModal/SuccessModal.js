@@ -1,21 +1,19 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { inject, observer } from 'mobx-react'
 import { SuccessModalDescription, SuccessModalTitle, SuccessModalWrapper } from './SuccessModalStyled'
-import { Button, Col, Modal, Row } from 'antd'
+import { Button, Col, Row } from 'antd'
 
 const SuccessModal = props => {
-  const { modalStore, icon, description, title, submitText, callbackSuccess } = props
+  const { visible, icon, description, title, submitText, callbackSuccess } = props
 
   const handleSubmit = () => {
-    callbackSuccess && callbackSuccess()
-    modalStore.setVisibleSuccess(false)
+    callbackSuccess()
   }
 
   return (
     <SuccessModalWrapper
       width={430}
-      visible={modalStore.visibleSuccess}
+      visible={visible}
       closable={false}
       footer={null}
       title={null}>
@@ -47,9 +45,10 @@ const SuccessModal = props => {
 SuccessModal.propTypes = {
   icon: PropTypes.string,
   title: PropTypes.string,
-  description: PropTypes.string,
+  description: PropTypes.node,
   submitText: PropTypes.string,
-  callbackSuccess: PropTypes.func,
+  visible: PropTypes.bool.isRequired,
+  callbackSuccess: PropTypes.func.isRequired,
 }
 
-export default inject('modalStore')(observer(SuccessModal))
+export default SuccessModal

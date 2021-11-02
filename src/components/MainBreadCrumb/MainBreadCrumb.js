@@ -12,7 +12,7 @@ const MainBreadCrumb = props => {
       <Breadcrumb separator={<RightOutlined />}>
         {
           breadcrumbData && breadcrumbData.map(item =>
-            <Breadcrumb.Item>
+            <Breadcrumb.Item key={item.ID}>
               {
                 item.PATH
                   ?

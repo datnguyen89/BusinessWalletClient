@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import OtpInput from 'react-otp-input'
-import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { ExpiredLabel, OtpDescription, OtpModalWrapper, ResendOtp, TimeLeft, WaitingResendOtp } from './OtpModalStyled'
 import { Button, Col, message, Modal, Row } from 'antd'
@@ -8,7 +7,7 @@ import { Button, Col, message, Modal, Row } from 'antd'
 const _ = require('lodash')
 
 const OtpModal = props => {
-  const { modalStore, callbackOtp, phoneNumber, otpLength } = props
+  const { visible, onCancel, callbackOtp, phoneNumber, otpLength } = props
   const [timeLeft, setTimeLeft] = useState(180)
   const [timeResend, setTimeResend] = useState(0)
   const [otp, setOtp] = useState('')
@@ -50,7 +49,7 @@ const OtpModal = props => {
     }
   }
   const handleCancel = () => {
-    modalStore.setVisibleOtp(false)
+    onCancel()
   }
   const handleClickResend = () => {
     setTimeResend(60)
@@ -74,17 +73,16 @@ const OtpModal = props => {
   }, [timeResend])
 
   useEffect(() => {
-    if (modalStore.visibleOtp) return
     setTimeLeft(180)
     setTimeResend(0)
     setOtp('')
-  }, [modalStore.visibleOtp])
+  }, [visible])
 
   return (
     <OtpModalWrapper
       title='Nhập mã xác thực'
       maskClosable={false}
-      visible={modalStore.visibleOtp}
+      visible={visible}
       footer={null}
       onCancel={handleCancel}>
       <Row justify={'center'}>
@@ -123,9 +121,11 @@ const OtpModal = props => {
 }
 
 OtpModal.propTypes = {
-  otpLength: PropTypes.number,
-  phoneNumber: PropTypes.string.isRequired,
+  visible: PropTypes.bool.isRequired,
   callbackOtp: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  phoneNumber: PropTypes.string.isRequired,
+  otpLength: PropTypes.number,
 }
 
-export default inject('modalStore')(observer(OtpModal))
+export default OtpModal

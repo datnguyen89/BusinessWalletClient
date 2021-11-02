@@ -10,8 +10,8 @@ export const MainSideBarWrapper = styled.aside`
   padding-bottom: 84px;
   padding-top: 56px;
   background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
+  border-right: 1px solid #ccc;
 
   .expand-sidebar-icon {
     margin: 16px 0;

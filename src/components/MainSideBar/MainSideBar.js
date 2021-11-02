@@ -29,11 +29,6 @@ const MainSideBar = props => {
     history.push(`/${path}`)
   }
 
-  useEffect(() => {
-    console.log(pageName)
-  }, [pageName])
-
-
   return (
     <MainSideBarWrapper
       display={device === DEVICE.MOBILE ? 'none' : 'block'}

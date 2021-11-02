@@ -1,5 +1,8 @@
 import ICONS from '../icons'
 
+export const MAIN_INFO_COLOR = '#0261AD'
+export const MAIN_WARNING_COLOR = '#ffbb00'
+export const MAIN_ERROR_COLOR = 'red'
 export const SIDEBAR_WIDTH_EXPAND = 240
 export const SIDEBAR_WIDTH_COLLAPSE = 64
 export const DEVICE = {
@@ -50,21 +53,24 @@ export const HOME_WIDGET_DATA = [
     NUMBER: 440,
     ICON: ICONS.SUCCESS,
     LABEL: 'Đã duyệt',
-    COLOR: '#7EBD50',
+    TOP_COLOR: '#28A745',
+    BOTTOM_COLOR: '#228E3B',
   },
   {
     ID: 2,
     NUMBER: 800,
     ICON: ICONS.WAITING,
     LABEL: 'Đang chờ duyệt',
-    COLOR: '#FFA50C',
+    TOP_COLOR: '#FFC107',
+    BOTTOM_COLOR: '#D9A406',
   },
   {
     ID: 3,
     NUMBER: 100,
     ICON: ICONS.REJECT,
     LABEL: 'Từ chối',
-    COLOR: '#CE3939',
+    TOP_COLOR: '#DC3545',
+    BOTTOM_COLOR: '#BB2D3B',
   },
 ]
 export const SERVICES_DATA = [
@@ -77,7 +83,7 @@ export const SERVICES_DATA = [
   },
   {
     ID: 2,
-    BADGE_NUMBER: 20,
+    BADGE_NUMBER: 0,
     ICON: ICONS.SERVICE2,
     SERVICE_NAME: 'Nạp tiền',
     DESCRIPTION: 'Thanh toán di động trả trước',
