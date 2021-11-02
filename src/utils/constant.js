@@ -39,6 +39,10 @@ export const BREADCRUMB_DATA = {
     { ID: '8', LABEL: 'Trang chủ', PATH: '/' },
     { LABEL: 'Trợ giúp', PATH: null },
   ],
+  CONTRACT: [
+    { ID: '8', LABEL: 'Trang chủ', PATH: '/' },
+    { LABEL: 'Liên kết', PATH: null },
+  ],
 }
 export const HOME_WIDGET_DATA = [
   {

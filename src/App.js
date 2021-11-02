@@ -24,6 +24,7 @@ import TransactionManagePage from './pages/TransactionManagePage'
 import TransferMobileMoneyPage from './pages/TransferMobileMoneyPage'
 import TransferMultiplePage from './pages/TransferMultiplePage'
 import LoadingOverLay from './components/LoadingOverLay'
+import ContractPage from './pages/Contract/ContractPage'
 
 
 const history = createBrowserHistory()
@@ -72,6 +73,7 @@ const App = () => {
             <Route exact path={'/login'} component={LoginPage} />
             <Route exact path={'/forgot-password'} component={ForgotPasswordPage} />
             <Route exact path={'/not-permission'} component={NotPermissionPage} />
+            <Route exact path={'/contract'} component={ContractPage} />
             <ProtectedRoute exact path={'/protected'} component={ProtectedPage} />
             <Route component={NotFoundPage} />
           </Switch>

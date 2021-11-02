@@ -20,6 +20,9 @@ const DefaultLayout = props => {
       return
     }
     switch (segment[0]) {
+      case 'contract':
+        commonStore.setPageName('contract')
+        return
       case 'identity-info':
         commonStore.setPageName('identity-info')
         return
