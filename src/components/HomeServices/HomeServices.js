@@ -9,7 +9,7 @@ const HomeServices = props => {
       <Row align={'middle'} gutter={[16, 16]} style={{ alignItems: 'stretch' }}>
         {
           SERVICES_DATA.map(item =>
-            <Col xxl={4} xl={6} lg={6} md={12} sm={12} xs={24} flex={'stretch'} key={item.ID}>
+            <Col xxl={4} xl={6} lg={12} md={12} sm={12} xs={24} flex={'stretch'} key={item.ID}>
               {
                 item.BADGE_NUMBER > 0 ?
                   <Badge.Ribbon text={item.BADGE_NUMBER} color={MAIN_INFO_COLOR}>
