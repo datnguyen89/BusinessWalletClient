@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const LoginPageWrapper = styled.div`
+export const ForgotPasswordPageWrapper = styled.div`
   width: 50%;
   @media only screen and (max-width: 1600px) {
     width: 70%;
@@ -18,7 +18,7 @@ export const LoginPageWrapper = styled.div`
     border-radius: 5px;
   }
 `
-export const LoginFormTitle = styled.h1`
+export const ForgotPasswordFormTitle = styled.h1`
   text-align: center;
   margin: 0 0 0 8px;
 `
@@ -26,4 +26,10 @@ export const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 16px;
+`
+export const InfoLabel = styled.div`
+  color: #4C68EF;
+`
+export const ErrorLabel = styled.div`
+  color: red;
 `
