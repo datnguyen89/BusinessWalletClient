@@ -13,6 +13,7 @@ import {
 } from './ForgotPasswordPageStyled'
 import { Link, useHistory } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
+import SuccessModal from '../../components/SuccessModal'
 
 const ForgotPasswordPage = props => {
   const { commonStore, modalStore } = props
@@ -22,18 +23,34 @@ const ForgotPasswordPage = props => {
 
   const [processStep, setProcessStep] = useState(0)
 
-  const onFinish = (formCollection) => {
+  const onFinishVerify = (formCollection) => {
     console.log('Success:', formCollection)
     setProcessStep(1)
   }
-  const onFinishFailed = (errorInfo) => {
+  const onFinishFailedVerify = (errorInfo) => {
+    console.log('Failed:', errorInfo)
+  }
+  const onFinishResetPassword = (formCollection) => {
+    console.log('Success:', formCollection)
+    modalStore.setVisibleOtp(true)
+  }
+  const onFinishFailedResetPassword = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
 
   const handleSubmitOtp = (otp) => {
-    message.info(otp)
-    history.push('/')
+    if (otp === '123456') {
+      modalStore.setVisibleOtp(false)
+      modalStore.setVisibleSuccess(true)
+    } else {
+      message.error('OTP không chính xác')
+    }
   }
+
+  const handleCloseSuccessModal = () => {
+    history.push('/login')
+  }
+
   const handleClickBackLogin = () => {
     formVerify.resetFields()
     history.push('/login')
@@ -58,8 +75,8 @@ const ForgotPasswordPage = props => {
               name='basic'
               labelCol={{ span: 0 }}
               wrapperCol={{ span: 24 }}
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
+              onFinish={onFinishVerify}
+              onFinishFailed={onFinishFailedVerify}
               autoComplete='off'
             >
               <Form.Item
@@ -120,47 +137,39 @@ const ForgotPasswordPage = props => {
               name='basic'
               labelCol={{ span: 0 }}
               wrapperCol={{ span: 24 }}
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
+              onFinish={onFinishResetPassword}
+              onFinishFailed={onFinishFailedResetPassword}
               autoComplete='off'
             >
               <Form.Item>
-                <ErrorLabel>* Vui lòng đặt mật khẩu gồm cả số và chữ, tối thiểu 8 ký tự và chứa ký tự đặc
-                  biệt</ErrorLabel>
+                <ErrorLabel>
+                  * Vui lòng đặt mật khẩu gồm cả số và chữ, tối thiểu 8 ký tự và chứa ký tự đặc biệt
+                </ErrorLabel>
               </Form.Item>
               <Form.Item
                 label=''
-                name='companyAccount'
-                rules={[{ required: true, message: 'Vui lòng nhập số tài khoản doanh nghiệp' }]}
+                name='password'
+                rules={[{ required: true, message: 'Vui lòng nhập mật khẩu mới' }]}
               >
-                <Input size={'large'} className={'auth-input'} placeholder={'Số tài khoản doanh nghiệp'} />
+                <Input.Password size={'large'} className={'auth-input'} placeholder={'Mật khẩu mới'} />
               </Form.Item>
-
               <Form.Item
                 label=''
-                name='username'
-                rules={[{ required: true, message: 'Vui lòng nhập tên đăng nhập' }]}
+                name='confirmPassword'
+                rules={[
+                  { required: true, message: 'Vui lòng nhập lại mật khẩu mới' },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue('password') === value) {
+                        return Promise.resolve()
+                      }
+                      return Promise.reject(new Error('Mật khẩu xác nhận không trùng khớp'))
+                    },
+                  }),
+                ]}
               >
-                <Input size={'large'} className={'auth-input'} placeholder={'Tên đăng nhập'} />
+                <Input.Password size={'large'} className={'auth-input'} placeholder={'Xác nhận mật khẩu mới'} />
               </Form.Item>
-
-              <Form.Item
-                label=''
-                name='passport'
-                rules={[{ required: true, message: 'Vui lòng nhập số CMND/CCCD/Hộ Chiếu' }]}
-              >
-                <Input size={'large'} className={'auth-input'} placeholder={'Số CMND/CCCD/Hộ Chiếu'} />
-              </Form.Item>
-
-              <Form.Item
-                label=''
-                name='phoneNumber'
-                rules={[{ required: true, message: 'Vui lòng nhập số điện thoại User' }]}
-              >
-                <Input size={'large'} className={'auth-input'} placeholder={'Số điện thoại User'} />
-              </Form.Item>
-
-
               <Form.Item>
                 <Row align={'middle'} justify={'space-between'}>
                   <Col span={11}>
@@ -179,6 +188,7 @@ const ForgotPasswordPage = props => {
           }
         </AuthShadowBox>
         <OtpModal phoneNumber={'0379631004'} callbackOtp={handleSubmitOtp} />
+        <SuccessModal title={'Thông báo'} description={'Quý khách lấy lại mật khẩu thành công. \r\n Vui lòng đăng nhập lại'} callbackSuccess={handleCloseSuccessModal} />
       </ForgotPasswordPageWrapper>
     </AuthLayout>
   )

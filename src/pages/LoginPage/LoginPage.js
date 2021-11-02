@@ -22,6 +22,7 @@ const LoginPage = props => {
   }
 
   const handleSubmitOtp = (otp) => {
+    modalStore.setVisibleOtp(false)
     message.info(otp)
     history.push('/')
   }

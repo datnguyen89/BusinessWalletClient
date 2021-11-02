@@ -39,12 +39,7 @@ const OtpModal = props => {
       message.error(`Vui lòng nhập đủ ${checkOtpLength} ký tự OTP`)
       return
     }
-    // Check otp
-    if (otp === '123456') {
-      callbackOtp(otp)
-    } else {
-      message.error('Mã OTP không chính xác')
-    }
+    callbackOtp(otp)
   }
   const handleInputOtp = (value) => {
     const reg = /^-?\d+\.?\d*$/

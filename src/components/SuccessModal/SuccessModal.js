@@ -5,9 +5,10 @@ import { SuccessModalDescription, SuccessModalTitle, SuccessModalWrapper } from 
 import { Button, Col, Modal, Row } from 'antd'
 
 const SuccessModal = props => {
-  const { modalStore, icon, description, title, submitText } = props
+  const { modalStore, icon, description, title, submitText, callbackSuccess } = props
 
   const handleSubmit = () => {
+    callbackSuccess && callbackSuccess()
     modalStore.setVisibleSuccess(false)
   }
 
@@ -35,7 +36,7 @@ const SuccessModal = props => {
             {description || 'Thành công'}
           </SuccessModalDescription>
         </Col>
-        <Col span={24}>
+        <Col span={8}>
           <Button block type={'primary'} onClick={handleSubmit}>{submitText || 'Đóng'}</Button>
         </Col>
       </Row>
@@ -48,6 +49,7 @@ SuccessModal.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   submitText: PropTypes.string,
+  callbackSuccess: PropTypes.func,
 }
 
 export default inject('modalStore')(observer(SuccessModal))
