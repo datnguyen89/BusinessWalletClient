@@ -74,7 +74,6 @@ const OtpModal = props => {
   }, [timeResend])
 
   useEffect(() => {
-    if (modalStore.visibleOtp) return
     setTimeLeft(180)
     setTimeResend(0)
     setOtp('')

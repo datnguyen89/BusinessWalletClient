@@ -188,7 +188,11 @@ const ForgotPasswordPage = props => {
           }
         </AuthShadowBox>
         <OtpModal phoneNumber={'0379631004'} callbackOtp={handleSubmitOtp} />
-        <SuccessModal title={'Thông báo'} description={'Quý khách lấy lại mật khẩu thành công. \r\n Vui lòng đăng nhập lại'} callbackSuccess={handleCloseSuccessModal} />
+        <SuccessModal title={'Thông báo'}
+                      description={
+                        <span>Quý khách lấy lại mật khẩu thành công.<br /> Vui lòng đăng nhập lại</span>
+                      }
+                      callbackSuccess={handleCloseSuccessModal} />
       </ForgotPasswordPageWrapper>
     </AuthLayout>
   )
