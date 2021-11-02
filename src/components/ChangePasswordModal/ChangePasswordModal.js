@@ -41,6 +41,7 @@ const ChangePasswordModal = props => {
     <>
       <ChangePasswordModalWrapper
         title='Đổi mật khẩu'
+        forceRender={true}
         maskClosable={false}
         visible={visible}
         footer={null}

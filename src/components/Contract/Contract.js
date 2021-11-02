@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import {
-  AreaContractData,
-  ContractWrapper,
-} from './ContractStyled'
+import { AreaContractData, ContractWrapper } from './ContractStyled'
 import { Pagination, Space, Table } from 'antd'
 import ConfirmModal from '../ConfirmModal'
 import OtpModal from '../OtpModal'
+import SuccessModal from '../SuccessModal'
+import { PaginationLabel, RowSpaceBetweenDiv } from '../CommonStyled/CommonStyled'
 
 const { Column } = Table
 
@@ -49,10 +47,12 @@ const Contract = props => {
     {
       title: 'HÀNH ĐỘNG',
       key: 'action',
-      render: (text, record) => (
+      render: (item, row, index) => (
         <Space size='middle'>
-          <span onClick={cancelContract} className='cancel-button'><img
-            src={`${process.env.PUBLIC_URL}/assets/images/cancel.png`} />&nbsp; Hủy liên kết</span>
+          <span onClick={cancelContract} className='cancel-button'>
+            <img src={`${process.env.PUBLIC_URL}/assets/images/cancel.png`} style={{ marginRight: 8 }} />
+            Hủy liên kết
+          </span>
         </Space>
       ),
     },
@@ -60,6 +60,7 @@ const Contract = props => {
 
   const [visibleConfirm, setVisibleConfirm] = useState(false)
   const [visibleOTP, setVisibleOTP] = useState(false)
+  const [visibleSuccess, setVisibleSuccess] = useState(false)
   const handleCancel = () => {
     setVisibleConfirm(false)
   }
@@ -71,27 +72,43 @@ const Contract = props => {
   const cancelContract = () => {
     setVisibleConfirm(true)
   }
-  const getCallbackOTP = (otp) => {
-    console.log(otp);
-    setVisibleOTP(false);
+  const handleCallbackOTP = (otp) => {
+    console.log(otp)
+    setVisibleOTP(false)
+    setVisibleSuccess(true)
   }
 
 
   return (
     <ContractWrapper>
       <AreaContractData>
-        <Table dataSource={dataContract} columns={columns} pagination={false} bordered={false} />
-        <Pagination size='small' total={50} />
+        <Table
+          dataSource={dataContract}
+          columns={columns}
+          pagination={false}
+          bordered={false}
+          rowKey={record => record.id} />
+        <RowSpaceBetweenDiv margin={'16px 0'}>
+          <PaginationLabel>
+            Hiển thị 5 trên tổng số 50 bản ghi
+          </PaginationLabel>
+          <Pagination total={50} />
+        </RowSpaceBetweenDiv>
       </AreaContractData>
-      <ConfirmModal visible={visibleConfirm}
-                    onCancel={handleCancel}
-                    callbackConfirm={handleCancelTrue} description={"Quý khách có chắc chắn muốn hủy liên kết ngân hàng"}
-                    />
+      <ConfirmModal
+        visible={visibleConfirm}
+        onCancel={handleCancel}
+        callbackConfirm={handleCancelTrue}
+        description={'Quý khách có chắc chắn muốn hủy liên kết ngân hàng'} />
       <OtpModal
         visible={visibleOTP}
-        callbackOtp={getCallbackOTP}
+        callbackOtp={handleCallbackOTP}
         onCancel={() => setVisibleOTP((false))}
-        phoneNumber={"123456789"} />
+        phoneNumber={'123456789'} />
+      <SuccessModal
+        visible={visibleSuccess}
+        callbackSuccess={() => setVisibleSuccess(false)}
+        description={'Hủy liên kết thẻ ngân hàng thành công'} />
     </ContractWrapper>
   )
 }

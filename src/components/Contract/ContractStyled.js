@@ -10,19 +10,6 @@ export const ContractWrapper = styled.div `
   .cancel-button {
     cursor: pointer;
   }
-  .ant-pagination {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-  }
-  .ant-pagination-prev {
-    line-height: 0px !important;
-    height: 22px !important;
-  }
-  .ant-pagination-next {
-    line-height: 0px !important;
-    height: 22px !important;
-  }
 `
 
 export const AreaContractData = styled.div `

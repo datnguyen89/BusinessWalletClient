@@ -37,7 +37,7 @@ const AreaCard = props => {
       </AreaPanelAdminCard>
       <AreaAddCard>
         <div>
-          <span class='add-wrapper'><img src={`${process.env.PUBLIC_URL}/assets/images/add.png`} /></span>
+          <span className='add-wrapper'><img src={`${process.env.PUBLIC_URL}/assets/images/add.png`} /></span>
           <span onClick={() => handleAddNewCard()}>Liên kết thẻ mới</span>
         </div>
       </AreaAddCard>

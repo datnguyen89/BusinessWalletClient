@@ -20,7 +20,7 @@ const AreaPanelAdmin = props => {
         <AreaPanelAdminAvatar>
           <img src={IMAGES.AVATAR_ADMIN} alt='Avatar Administrator' />
         </AreaPanelAdminAvatar>
-        <div class='label'>Adminstrator</div>
+        <div className='label'>Adminstrator</div>
       </AreaPanelAdminLabel>
       <AreaPanelAdminInfo>
         {

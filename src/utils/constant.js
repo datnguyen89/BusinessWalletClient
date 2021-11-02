@@ -12,39 +12,39 @@ export const DEVICE = {
 }
 export const BREADCRUMB_DATA = {
   HOME: [
-    { ID: '1', LABEL: 'Trang chủ', PATH: null },
+    { ID: 1, LABEL: 'Trang chủ', PATH: null },
   ],
   IDENTITY: [
-    { ID: '2', LABEL: 'Trang chủ', PATH: '/' },
-    { LABEL: 'Thông tin định danh', PATH: null },
+    { ID: 2, LABEL: 'Trang chủ', PATH: '/' },
+    { ID: 3, LABEL: 'Thông tin định danh', PATH: null },
   ],
   TRANSFER_MULTIPLE: [
-    { ID: '3', LABEL: 'Trang chủ', PATH: '/' },
-    { LABEL: 'Chuyển tiền theo Lô', PATH: null },
+    { ID: 4, LABEL: 'Trang chủ', PATH: '/' },
+    { ID: 5, LABEL: 'Chuyển tiền theo Lô', PATH: null },
   ],
   MOBILE_MONEY: [
-    { ID: '4', LABEL: 'Trang chủ', PATH: '/' },
-    { LABEL: 'Chuyển tiền Mobifone Money', PATH: null },
+    { ID: 6, LABEL: 'Trang chủ', PATH: '/' },
+    { ID: 7, LABEL: 'Chuyển tiền Mobifone Money', PATH: null },
   ],
   TRANSACTION_MANAGE: [
-    { ID: '5', LABEL: 'Trang chủ', PATH: '/' },
-    { LABEL: 'Quản lý giao dịch', PATH: null },
+    { ID: 8, LABEL: 'Trang chủ', PATH: '/' },
+    { ID: 9, LABEL: 'Quản lý giao dịch', PATH: null },
   ],
   TRANSACTION_HISTORY: [
-    { ID: '6', LABEL: 'Trang chủ', PATH: '/' },
-    { LABEL: 'Lịch sử giao dịch', PATH: null },
+    { ID: 10, LABEL: 'Trang chủ', PATH: '/' },
+    { ID: 11, LABEL: 'Lịch sử giao dịch', PATH: null },
   ],
   POLICY: [
-    { ID: '7', LABEL: 'Trang chủ', PATH: '/' },
-    { LABEL: 'Điều khoản sử dụng', PATH: null },
+    { ID: 12, LABEL: 'Trang chủ', PATH: '/' },
+    { ID: 13, LABEL: 'Điều khoản sử dụng', PATH: null },
   ],
   SUPPORT: [
-    { ID: '8', LABEL: 'Trang chủ', PATH: '/' },
-    { LABEL: 'Trợ giúp', PATH: null },
+    { ID: 14, LABEL: 'Trang chủ', PATH: '/' },
+    { ID: 15, LABEL: 'Trợ giúp', PATH: null },
   ],
   CONTRACT: [
-    { ID: '9', LABEL: 'Trang chủ', PATH: '/' },
-    { LABEL: 'Liên kết', PATH: null },
+    { ID: 16, LABEL: 'Trang chủ', PATH: '/' },
+    { ID: 17, LABEL: 'Liên kết', PATH: null },
   ],
 }
 export const HOME_WIDGET_DATA = [
