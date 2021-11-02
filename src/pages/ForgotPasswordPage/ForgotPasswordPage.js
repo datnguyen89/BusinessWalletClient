@@ -16,12 +16,13 @@ import OtpModal from '../../components/OtpModal'
 import SuccessModal from '../../components/SuccessModal'
 
 const ForgotPasswordPage = props => {
-  const { commonStore, modalStore } = props
   const history = useHistory()
   const [formVerify] = Form.useForm()
   const [formResetPassword] = Form.useForm()
 
   const [processStep, setProcessStep] = useState(0)
+  const [visibleOtp, setVisibleOtp] = useState(false)
+  const [visibleSuccess, setVisibleSuccess] = useState(false)
 
   const onFinishVerify = (formCollection) => {
     console.log('Success:', formCollection)
@@ -31,8 +32,8 @@ const ForgotPasswordPage = props => {
     console.log('Failed:', errorInfo)
   }
   const onFinishResetPassword = (formCollection) => {
+    setVisibleOtp(true)
     console.log('Success:', formCollection)
-    modalStore.setVisibleOtp(true)
   }
   const onFinishFailedResetPassword = (errorInfo) => {
     console.log('Failed:', errorInfo)
@@ -40,14 +41,15 @@ const ForgotPasswordPage = props => {
 
   const handleSubmitOtp = (otp) => {
     if (otp === '123456') {
-      modalStore.setVisibleOtp(false)
-      modalStore.setVisibleSuccess(true)
+      setVisibleOtp(false)
+      setVisibleSuccess(true)
     } else {
       message.error('OTP không chính xác')
     }
   }
 
   const handleCloseSuccessModal = () => {
+    setVisibleSuccess(false)
     history.push('/login')
   }
 
@@ -155,6 +157,7 @@ const ForgotPasswordPage = props => {
               </Form.Item>
               <Form.Item
                 label=''
+                dependencies={['password']}
                 name='confirmPassword'
                 rules={[
                   { required: true, message: 'Vui lòng nhập lại mật khẩu mới' },
@@ -187,12 +190,16 @@ const ForgotPasswordPage = props => {
             </Form>
           }
         </AuthShadowBox>
-        <OtpModal phoneNumber={'0379631004'} callbackOtp={handleSubmitOtp} />
-        <SuccessModal title={'Thông báo'}
-                      description={
-                        <span>Quý khách lấy lại mật khẩu thành công.<br /> Vui lòng đăng nhập lại</span>
-                      }
-                      callbackSuccess={handleCloseSuccessModal} />
+        <OtpModal
+          phoneNumber={'0379631004'}
+          callbackOtp={handleSubmitOtp}
+          visible={visibleOtp}
+          onCancel={() => setVisibleOtp(false)} />
+        <SuccessModal
+          title={'Thông báo'}
+          description={<span>Quý khách lấy lại mật khẩu thành công.<br /> Vui lòng đăng nhập lại</span>}
+          visible={visibleSuccess}
+          callbackSuccess={handleCloseSuccessModal} />
       </ForgotPasswordPageWrapper>
     </AuthLayout>
   )
@@ -200,4 +207,4 @@ const ForgotPasswordPage = props => {
 
 ForgotPasswordPage.propTypes = {}
 
-export default inject('commonStore', 'modalStore')(observer(ForgotPasswordPage))
+export default ForgotPasswordPage

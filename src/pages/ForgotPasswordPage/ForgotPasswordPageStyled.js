@@ -32,4 +32,6 @@ export const InfoLabel = styled.div`
 `
 export const ErrorLabel = styled.div`
   color: red;
+  font-size: 1.3rem;
+  text-align: center;
 `

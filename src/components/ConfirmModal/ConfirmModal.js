@@ -5,18 +5,21 @@ import { ConfirmModalDescription, ConfirmModalTitle, ConfirmModalWrapper } from 
 import { Button, Col, Modal, Row } from 'antd'
 
 const ConfirmModal = props => {
-  const { modalStore, icon, description, title, submitText, cancelText, callbackConfirm } = props
+  const { visible, onCancel, icon, description, title, submitText, cancelText, callbackConfirm } = props
 
   const handleSubmit = (isOk) => {
-    callbackConfirm(isOk)
-    modalStore.setVisibleConfirm(false)
+    if (isOk) {
+      callbackConfirm()
+    } else {
+      onCancel()
+    }
   }
 
 
   return (
     <ConfirmModalWrapper
       width={430}
-      visible={modalStore.visibleConfirm}
+      visible={visible}
       closable={false}
       footer={null}
       title={null}>
@@ -54,7 +57,9 @@ ConfirmModal.propTypes = {
   description: PropTypes.node,
   submitText: PropTypes.string,
   cancelText: PropTypes.string,
-  callbackConfirm: PropTypes.func,
+  visible: PropTypes.bool.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  callbackConfirm: PropTypes.func.isRequired,
 }
 
-export default inject('modalStore')(observer(ConfirmModal))
+export default ConfirmModal

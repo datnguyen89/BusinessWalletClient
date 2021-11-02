@@ -1,19 +1,31 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react'
 import { Dropdown, Menu } from 'antd'
 import UserAvatar from '../UserAvatar'
 import ICONS from '../../icons'
 import { HeaderUserAreaWrapper } from './HeaderUserAreaStyled'
 import { useHistory } from 'react-router-dom'
+import ChangePasswordModal from '../ChangePasswordModal'
+import OtpModal from '../OtpModal'
+import SuccessModal from '../SuccessModal'
 
 const HeaderUserArea = props => {
   const history = useHistory()
   const handleClickMenu = (path) => {
     history.push(path)
   }
+
+
+  const [visibleChangePassword, setVisibleChangePassword] = useState(false)
+
+
+
+  const handleSuccessChangePassword = () => {
+
+  }
+
   const menu = (
     <Menu>
-      <Menu.Item className={'user-menu-item'} key='0'>
+      <Menu.Item className={'user-menu-item'} key='0' onClick={() => setVisibleChangePassword(true)}>
         <img className={'user-menu-icon'} src={ICONS.SETTING} alt={''} />
         <span className={'user-menu-label'}>Đổi mật khẩu</span>
       </Menu.Item>
@@ -35,6 +47,11 @@ const HeaderUserArea = props => {
           <img src={ICONS.WHITE_ARROW_DOWN} alt={''} height={8} />
         </div>
       </Dropdown>
+      <ChangePasswordModal
+        visible={visibleChangePassword}
+        onSuccess={handleSuccessChangePassword}
+        onCancel={() => setVisibleChangePassword(false)} />
+
     </HeaderUserAreaWrapper>
   )
 }

@@ -1,8 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { inject, observer } from 'mobx-react'
+import React, { useState } from 'react'
 import AuthLayout from '../../layouts/AuthLayout'
-import { Input, Form, Checkbox, Button, Row, Col, message } from 'antd'
+import { Button, Col, Form, Input, message, Row } from 'antd'
 import { AuthShadowBox } from '../../components/CommonStyled/CommonStyled'
 import IMAGES from '../../images'
 import { LoginFormTitle, LoginPageWrapper, TitleWrapper } from './LoginPageStyled'
@@ -10,21 +8,23 @@ import { Link, useHistory } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
 
 const LoginPage = props => {
-  const { commonStore, modalStore } = props
   const history = useHistory()
+  const [visibleOtp, setVisibleOtp] = useState(false)
 
   const onFinish = (formCollection) => {
+    setVisibleOtp(true)
     console.log('Success:', formCollection)
-    modalStore.setVisibleOtp(true)
   }
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
 
   const handleSubmitOtp = (otp) => {
-    modalStore.setVisibleOtp(false)
-    message.info(otp)
-    history.push('/')
+    if (otp === '123456') {
+      history.push('/')
+    } else {
+      message.error('Mã OTP không đúng')
+    }
   }
 
   return (
@@ -73,7 +73,11 @@ const LoginPage = props => {
             </Form.Item>
           </Form>
         </AuthShadowBox>
-        <OtpModal phoneNumber={'0379631004'} callbackOtp={handleSubmitOtp} />
+        <OtpModal
+          phoneNumber={'0379631004'}
+          visible={visibleOtp}
+          onCancel={() => setVisibleOtp(false)}
+          callbackOtp={handleSubmitOtp} />
       </LoginPageWrapper>
     </AuthLayout>
   )
@@ -81,4 +85,4 @@ const LoginPage = props => {
 
 LoginPage.propTypes = {}
 
-export default inject('commonStore', 'modalStore')(observer(LoginPage))
+export default LoginPage

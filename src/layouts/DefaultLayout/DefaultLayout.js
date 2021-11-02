@@ -13,6 +13,7 @@ const DefaultLayout = props => {
   const { children, commonStore } = props
   const { appTheme } = commonStore
   const location = useLocation()
+
   useEffect(() => {
     const segment = location.pathname.split('/').filter(item => item !== '')
     if (segment.length === 0) {

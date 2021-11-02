@@ -8,7 +8,6 @@ import { createBrowserHistory } from 'history'
 // MobX
 import { Provider } from 'mobx-react'
 import commonStore from './stores/commonStore.js'
-import modalStore from './stores/modalStore.js'
 // Pages
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
@@ -48,7 +47,6 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
 
 const rootStores = {
   commonStore,
-  modalStore,
 }
 
 
