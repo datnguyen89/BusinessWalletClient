@@ -3,9 +3,8 @@ import PropTypes from 'prop-types'
 import {
   AreaAccountInfoAreaDetail,
   AreaAccountInfoAreaDetailLineInfo, AreaAccountInfoAreaDetailLineInfoLeft, AreaAccountInfoAreaDetailLineInfoRight,
-  AreaAccountInfoLabel, AreaAccountInfoWrapper, AreaIdentityInfoAreaDetailBox,
+  AreaAccountInfoLabel, AreaAccountInfoWrapper, AreaIdentityInfoAreaDetailBox, SpanAreaAccountInfoLabel,
 } from './AreaAccountInfoStyled'
-import { SpanAreaAccountInfoLabel } from '../EnterpriseInfo/EnterpriseInfoStyled'
 
 const AreaAccountInfo = props => {
   return (

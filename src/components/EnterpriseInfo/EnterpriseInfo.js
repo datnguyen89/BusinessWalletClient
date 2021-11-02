@@ -78,18 +78,6 @@ function SamplePrevArrow(props) {
   );
 }
 
-function onChange(a, b, c) {
-  console.log(a, b, c);
-}
-
-const contentStyle = {
-  height: '160px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#364d79',
-};
-
 const EnterpriseInfo = props => {
 
   const settings = {
@@ -109,8 +97,8 @@ const EnterpriseInfo = props => {
       </AreaInfo>
       <AreaPanel>
         <AreaPanelAdmin dataAdministratorPanel={dataAdministratorPanel} />
-        <AreaCard settings={settings}/>
-        {/*<AreaAddCard />*/}
+        {/*<AreaCard settings={settings}/>*/}
+        <AreaAddCard />
       </AreaPanel>
     </EnterpriseInfoWrapper>
   )

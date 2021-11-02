@@ -1,11 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { AreaPanelAdminAvatar, AreaPanelAdminLabel, AreaPannelAdminInfo } from '../EnterpriseInfo/EnterpriseInfoStyled'
 import IMAGES from '../../images'
 import {
   AreaEnterpriseInfoAreaDetailLineInfo,
   AreaEnterpriseInfoAreaDetailLineInfoLeft,
-  AreaEnterpriseInfoAreaDetailLineInfoRight, AreaPanelAdminWrapper,
+  AreaEnterpriseInfoAreaDetailLineInfoRight,
+  AreaPanelAdminAvatar,
+  AreaPanelAdminLabel,
+  AreaPanelAdminWrapper,
+  AreaPanelAdminInfo,
 } from './AreaPanelAdminStyled'
 
 const AreaPanelAdmin = props => {
@@ -19,7 +22,7 @@ const AreaPanelAdmin = props => {
         </AreaPanelAdminAvatar>
         <div class='label'>Adminstrator</div>
       </AreaPanelAdminLabel>
-      <AreaPannelAdminInfo>
+      <AreaPanelAdminInfo>
         {
           dataAdministratorPanel.map(item =>
             <AreaEnterpriseInfoAreaDetailLineInfo key={item.id}>
@@ -27,7 +30,7 @@ const AreaPanelAdmin = props => {
               <AreaEnterpriseInfoAreaDetailLineInfoRight>{item.value}</AreaEnterpriseInfoAreaDetailLineInfoRight>
             </AreaEnterpriseInfoAreaDetailLineInfo>)
         }
-      </AreaPannelAdminInfo>
+      </AreaPanelAdminInfo>
     </AreaPanelAdminWrapper>
   )
 }

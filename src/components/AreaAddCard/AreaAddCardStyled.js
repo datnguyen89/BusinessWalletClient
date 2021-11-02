@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const AreaAddCardWrapper = styled.div `
   background: #FFFFFF;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   margin: 0 16px 30px;
   height: auto;

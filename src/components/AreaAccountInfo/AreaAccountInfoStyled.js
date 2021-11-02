@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const AreaAccountInfoWrapper = styled.div `
   background: #FFFFFF;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 18px;
 
   margin: 30px 16px;
@@ -24,11 +24,6 @@ export const AreaAccountInfoAreaDetail = styled.div `
   justify-content: space-between;
 `
 
-export const AreaAccountInfoAreaDetailBox = styled.div `
-  width: 47%;
-  float: left;
-`
-
 export const AreaIdentityInfoAreaDetailBox = styled.div `
   width: 100%;
 `
@@ -42,7 +37,7 @@ export const AreaAccountInfoAreaDetailLineInfo = styled.div `
   justify-content: space-between;
   align-items: center;
 
-  &: last-child {
+  &:last-child {
     border-bottom: none;
   }
 `

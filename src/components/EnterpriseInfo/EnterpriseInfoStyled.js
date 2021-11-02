@@ -40,11 +40,6 @@ export const AreaEnterpriseInfoLabel = styled.div `
   padding: 8px 10px;
 `
 
-export const SpanAreaEnterpriseInfoLabel = styled.span `
-  color: #848788;
-`
-
-
 export const AreaEnterpriseInfoAreaDetail = styled.div `
   display: flex;
   justify-content: space-between;
@@ -68,7 +63,7 @@ export const AreaEnterpriseInfoAreaDetailLineInfo = styled.div `
   justify-content: space-between;
   align-items: center;
 
-  &: last-child {
+  &:last-child {
     border-bottom: none;
   }
 `
@@ -102,7 +97,7 @@ export const AreaPanelAdminLabel = styled.div `
   .label {
     color: white;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 2rem;
   }
   background: url(${props => props.background}) center center no-repeat;
   background-size: cover;
@@ -161,21 +156,4 @@ export const AreaCard = styled.div `
   height: auto;
   overflow: hidden;
   padding: 20px 20px 30px;
-`
-
-export const AreaAddCard = styled.div `
-  cursor: pointer;
-  display: flex;
-  margin: 0 auto;
-  width: 80%;
-  border-radius: 5px;
-  padding: 16px;
-  border: 1px solid #4C68EF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #4C68EF;
-  span {
-    margin-right: 10px;
-  }
 `

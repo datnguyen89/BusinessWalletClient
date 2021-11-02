@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Slider from 'react-slick'
 import {
   AreaAddCard,
+  AreaCardWrapper,
   AreaEnterpriseInfoLabel,
   AreaPanelAdminCard,
   SpanAreaAccountInfoLabel,
-} from '../EnterpriseInfo/EnterpriseInfoStyled'
-import Slider from 'react-slick'
-import { AreaCardWrapper } from './AreaCardStyled'
+} from './AreaCardStyled'
 
 const AreaCard = props => {
 
