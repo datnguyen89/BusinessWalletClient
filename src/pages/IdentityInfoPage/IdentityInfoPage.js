@@ -5,7 +5,7 @@ import DefaultLayout from '../../layouts/DefaultLayout'
 import { Helmet } from 'react-helmet/es/Helmet'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
-import EnterpriseInfo from '../../components/EnterpriseInfo/EnterpriseInfo'
+import EnterpriseInfo from '../../components/EnterpriseInfo'
 
 const IdentityInfoPage = props => {
 

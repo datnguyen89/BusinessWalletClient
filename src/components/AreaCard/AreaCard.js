@@ -1,0 +1,52 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import {
+  AreaAddCard,
+  AreaEnterpriseInfoLabel,
+  AreaPanelAdminCard,
+  SpanAreaAccountInfoLabel,
+} from '../EnterpriseInfo/EnterpriseInfoStyled'
+import Slider from 'react-slick'
+import { AreaCardWrapper } from './AreaCardStyled'
+
+const AreaCard = props => {
+
+  const handleAddNewCard = () => {
+
+  }
+
+  return (
+    <AreaCardWrapper>
+      <AreaPanelAdminCard
+        arrowPrev={`${process.env.PUBLIC_URL}/assets/images/prev.png`}
+        arrowNext={`${process.env.PUBLIC_URL}/assets/images/next.png`}>
+        <AreaEnterpriseInfoLabel>
+          <SpanAreaAccountInfoLabel>Thông tin tài khoản</SpanAreaAccountInfoLabel>
+        </AreaEnterpriseInfoLabel>
+        <Slider {...props.settings}>
+          <div>
+            <img src={`${process.env.PUBLIC_URL}/assets/images/card.png`} />
+          </div>
+          <div>
+            <img src={`${process.env.PUBLIC_URL}/assets/images/card.png`} />
+          </div>
+          <div>
+            <img src={`${process.env.PUBLIC_URL}/assets/images/card.png`} />
+          </div>
+        </Slider>
+      </AreaPanelAdminCard>
+      <AreaAddCard>
+        <div>
+          <span class="add-wrapper"><img src={`${process.env.PUBLIC_URL}/assets/images/add.png`} /></span>
+          <span onClick={() => handleAddNewCard()}>Liên kết thẻ mới</span>
+        </div>
+      </AreaAddCard>
+    </AreaCardWrapper>
+  )
+}
+
+AreaCard.propTypes = {
+  
+}
+
+export default AreaCard

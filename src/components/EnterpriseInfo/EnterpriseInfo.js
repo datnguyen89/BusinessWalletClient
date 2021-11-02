@@ -1,30 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import {
-  AreaAddCard, AreaCard,
-  AreaEnterpriseInfo,
-  AreaEnterpriseInfoAreaDetail,
-  AreaEnterpriseInfoAreaDetailBox,
-  AreaEnterpriseInfoAreaDetailLineInfo,
-  AreaEnterpriseInfoAreaDetailLineInfoLeft,
-  AreaEnterpriseInfoAreaDetailLineInfoRight,
-  AreaEnterpriseInfoLabel,
-  AreaIdentityInfo,
-  AreaIdentityInfoAreaDetailBox,
   AreaInfo,
-  AreaPanel,
-  AreaPanelAdmin, AreaPanelAdminAvatar, AreaPanelAdminCard,
-  AreaPanelAdminLabel, AreaPannelAdminInfo, EnterpriseInfoWrapper,
-  SpanAreaEnterpriseInfoLabel,
+  AreaPanel, EnterpriseInfoWrapper,
 } from './EnterpriseInfoStyled'
-import IMAGES from '../../images'
-import { Carousel } from 'antd'
 
-const dataTemp = [
+import AreaPanelAdmin from '../AreaPanelAdmin/AreaPanelAdmin'
+import AreaCard from '../AreaCard/AreaCard'
+import AreaEnterpriseInfo from '../AreaEnterpriseInfo'
+import AreaAccountInfo from '../AreaAccountInfo'
+import AreaAddCard from '../AreaAddCard'
+
+const dataAdministratorPanel = [
   {
     id: '1', key: 'key', value: 'value',
   },
@@ -49,6 +38,22 @@ const dataTemp = [
   {
     id: '8', key: 'key', value: 'value',
   },
+];
+
+
+const dataAccountInfo = [
+  {
+    id: '1', key: 'key', value: 'value',
+  },
+  {
+    id: '2', key: 'key', value: 'value',
+  },
+  {
+    id: '3', key: 'key', value: 'value',
+  },
+  {
+    id: '4', key: 'key', value: 'value',
+  }
 ];
 
 function SampleNextArrow(props) {
@@ -96,143 +101,16 @@ const EnterpriseInfo = props => {
     prevArrow: <SamplePrevArrow />
   };
 
-  const handleAddNewCard = () => {
-
-  }
-
   return (
     <EnterpriseInfoWrapper>
       <AreaInfo>
-        <AreaEnterpriseInfo>
-          <AreaEnterpriseInfoLabel>
-            <SpanAreaEnterpriseInfoLabel>Thông tin doanh nghiệp</SpanAreaEnterpriseInfoLabel>
-          </AreaEnterpriseInfoLabel>
-          <AreaEnterpriseInfoAreaDetail>
-            <AreaEnterpriseInfoAreaDetailBox>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Tên tổ chức</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>Công Ty Cổ phần thương mại Sài
-                  Gòn</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Tên viết tắt</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>Solution Technologi
-                  Componel</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Địa chỉ ĐKKD</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>Số 123 , Đường Yên Hòa, Cầu Giấy, Hà
-                  Nội</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Địa chỉ giao dịch</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>Số 8 , Trần Duy Hưng, Cầu Giấy, Hà
-                  Nội</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Mã số thuế</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>123456789</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-            </AreaEnterpriseInfoAreaDetailBox>
-            <AreaEnterpriseInfoAreaDetailBox>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Tên tổ chức</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>Công Ty Cổ phần thương mại Sài
-                  Gòn</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Tên viết tắt</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>Solution Technologi
-                  Componel</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Địa chỉ ĐKKD</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>Số 123 , Đường Yên Hòa, Cầu Giấy, Hà
-                  Nội</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Địa chỉ giao dịch</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>Số 8 , Trần Duy Hưng, Cầu Giấy, Hà
-                  Nội</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Mã số thuế</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>123456789</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-            </AreaEnterpriseInfoAreaDetailBox>
-          </AreaEnterpriseInfoAreaDetail>
-        </AreaEnterpriseInfo>
-
-        <AreaIdentityInfo>
-          <AreaEnterpriseInfoLabel>
-            <SpanAreaEnterpriseInfoLabel>Thông tin tài khoản</SpanAreaEnterpriseInfoLabel>
-          </AreaEnterpriseInfoLabel>
-          <AreaEnterpriseInfoAreaDetail>
-            <AreaIdentityInfoAreaDetailBox>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Số tài khoản</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>123456789</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Số dư khả dụng</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>800.000.000đ</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Số dư đóng băng</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>0đ</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-              <AreaEnterpriseInfoAreaDetailLineInfo>
-                <AreaEnterpriseInfoAreaDetailLineInfoLeft>Trạng thái</AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                <AreaEnterpriseInfoAreaDetailLineInfoRight>Đang hoạt động</AreaEnterpriseInfoAreaDetailLineInfoRight>
-              </AreaEnterpriseInfoAreaDetailLineInfo>
-            </AreaIdentityInfoAreaDetailBox>
-          </AreaEnterpriseInfoAreaDetail>
-        </AreaIdentityInfo>
+        <AreaEnterpriseInfo />
+        <AreaAccountInfo dataAccountInfo={dataAccountInfo} />
       </AreaInfo>
       <AreaPanel>
-        <AreaPanelAdmin>
-          <AreaPanelAdminLabel background={IMAGES.ADMIN_BG}>
-            <AreaPanelAdminAvatar>
-              <img src={IMAGES.AVATAR_ADMIN} alt='Avatar Administrator' />
-            </AreaPanelAdminAvatar>
-            <div class='label'>Adminstrator</div>
-          </AreaPanelAdminLabel>
-          <AreaPannelAdminInfo>
-            {
-              dataTemp.map(item =>
-                <AreaEnterpriseInfoAreaDetailLineInfo key={item.id}>
-                  <AreaEnterpriseInfoAreaDetailLineInfoLeft><span>{item.key}</span></AreaEnterpriseInfoAreaDetailLineInfoLeft>
-                  <AreaEnterpriseInfoAreaDetailLineInfoRight>{item.value}</AreaEnterpriseInfoAreaDetailLineInfoRight>
-                </AreaEnterpriseInfoAreaDetailLineInfo>)
-            }
-          </AreaPannelAdminInfo>
-        </AreaPanelAdmin>
-        <AreaCard>
-          <AreaPanelAdminCard
-            arrowPrev={`${process.env.PUBLIC_URL}/assets/images/prev.png`}
-            arrowNext={`${process.env.PUBLIC_URL}/assets/images/next.png`}>
-            <AreaEnterpriseInfoLabel>
-              <SpanAreaEnterpriseInfoLabel>Thông tin tài khoản</SpanAreaEnterpriseInfoLabel>
-            </AreaEnterpriseInfoLabel>
-            <Slider {...settings}>
-              <div>
-                <img src={`${process.env.PUBLIC_URL}/assets/images/card.png`} />
-              </div>
-              <div>
-                <img src={`${process.env.PUBLIC_URL}/assets/images/card.png`} />
-              </div>
-              <div>
-                <img src={`${process.env.PUBLIC_URL}/assets/images/card.png`} />
-              </div>
-            </Slider>
-          </AreaPanelAdminCard>
-          <AreaAddCard>
-            <div>
-              <span class="add-wrapper"><img src={`${process.env.PUBLIC_URL}/assets/images/add.png`} /></span>
-              <span onClick={() => handleAddNewCard()}>Liên kết thẻ mới</span>
-            </div>
-          </AreaAddCard>
-        </AreaCard>
+        <AreaPanelAdmin dataAdministratorPanel={dataAdministratorPanel} />
+        <AreaCard settings={settings}/>
+        {/*<AreaAddCard />*/}
       </AreaPanel>
     </EnterpriseInfoWrapper>
   )
