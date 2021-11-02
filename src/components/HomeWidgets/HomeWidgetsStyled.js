@@ -9,6 +9,7 @@ export const WidgetItemBox = styled.div`
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
+
   &:hover {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
   }
@@ -17,6 +18,7 @@ export const WidgetItemTop = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 16px;
+  background: ${props => props.background || '#fff'};
 `
 export const WidgetItemCount = styled.div`
   color: ${props => props.color || '#333'};
@@ -26,7 +28,7 @@ export const WidgetItemCount = styled.div`
 export const WidgetItemBottom = styled.div`
   background: ${props => props.background || '#fff'};
   color: #fff;
-  padding: 16px;
+  padding: 8px 16px;
   font-size: 2rem;
   font-weight: 700;
 `
