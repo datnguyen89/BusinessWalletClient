@@ -16,14 +16,12 @@ const IdentityInfoPage = props => {
       </Helmet>
       <IdentityInfoPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.IDENTITY} />
-        <EnterpriseInfo></EnterpriseInfo>
+        <EnterpriseInfo />
       </IdentityInfoPageWrapper>
     </DefaultLayout>
   )
 }
 
-IdentityInfoPage.propTypes = {
-
-}
+IdentityInfoPage.propTypes = {}
 
 export default IdentityInfoPage

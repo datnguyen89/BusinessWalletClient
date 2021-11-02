@@ -4,7 +4,6 @@ import { Modal } from 'antd'
 export const OtpModalWrapper = styled(Modal)`
   .ant-modal-close-x {
     width: auto;
-    height: auto;
     line-height: initial;
     margin: 12px;
   }

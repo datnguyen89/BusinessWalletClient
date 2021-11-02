@@ -1,6 +1,6 @@
 import React from 'react'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 import {
   AreaInfo,
@@ -38,7 +38,7 @@ const dataAdministratorPanel = [
   {
     id: '8', key: 'key', value: 'value',
   },
-];
+]
 
 
 const dataAccountInfo = [
@@ -53,29 +53,29 @@ const dataAccountInfo = [
   },
   {
     id: '4', key: 'key', value: 'value',
-  }
-];
+  },
+]
 
 function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
+  const { className, style, onClick } = props
   return (
     <div
       className={className}
-      style={{ ...style, display: "block" }}
+      style={{ ...style, display: 'block' }}
       onClick={onClick}
     />
-  );
+  )
 }
 
 function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
+  const { className, style, onClick } = props
   return (
     <div
       className={className}
-      style={{ ...style, display: "block" }}
+      style={{ ...style, display: 'block' }}
       onClick={onClick}
     />
-  );
+  )
 }
 
 const EnterpriseInfo = props => {
@@ -86,8 +86,8 @@ const EnterpriseInfo = props => {
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
-  };
+    prevArrow: <SamplePrevArrow />,
+  }
 
   return (
     <EnterpriseInfoWrapper>

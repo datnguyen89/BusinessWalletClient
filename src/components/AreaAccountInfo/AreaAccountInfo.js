@@ -19,7 +19,7 @@ const AreaAccountInfo = props => {
               <AreaAccountInfoAreaDetailLineInfo key={item.id}>
                 <AreaAccountInfoAreaDetailLineInfoLeft>{item.key}</AreaAccountInfoAreaDetailLineInfoLeft>
                 <AreaAccountInfoAreaDetailLineInfoRight>{item.value}</AreaAccountInfoAreaDetailLineInfoRight>
-              </AreaAccountInfoAreaDetailLineInfo>
+              </AreaAccountInfoAreaDetailLineInfo>,
             )
           }
         </AreaIdentityInfoAreaDetailBox>
@@ -28,8 +28,6 @@ const AreaAccountInfo = props => {
   )
 }
 
-AreaAccountInfo.propTypes = {
-  
-}
+AreaAccountInfo.propTypes = {}
 
 export default AreaAccountInfo
