@@ -50,8 +50,8 @@ const ConfirmModal = props => {
 
 ConfirmModal.propTypes = {
   icon: PropTypes.string,
-  title: PropTypes.string,
-  description: PropTypes.string,
+  title: PropTypes.node,
+  description: PropTypes.node,
   submitText: PropTypes.string,
   cancelText: PropTypes.string,
   callbackConfirm: PropTypes.func,
