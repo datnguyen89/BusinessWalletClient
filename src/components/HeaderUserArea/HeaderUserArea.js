@@ -14,10 +14,7 @@ const HeaderUserArea = props => {
     history.push(path)
   }
 
-
   const [visibleChangePassword, setVisibleChangePassword] = useState(false)
-
-
 
   const handleSuccessChangePassword = () => {
 

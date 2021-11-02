@@ -5,26 +5,32 @@ import { ChangePasswordModalWrapper } from './ChangePasswordModalStyled'
 import { Button, Col, Form, Input, message, Row } from 'antd'
 import { ErrorLabel } from '../../pages/ForgotPasswordPage/ForgotPasswordPageStyled'
 import OtpModal from '../OtpModal'
+import SuccessModal from '../SuccessModal'
 
 const ChangePasswordModal = props => {
   const { onCancel, onSuccess, visible } = props
   const [formChangePassword] = Form.useForm()
 
   const [visibleOtp, setVisibleOtp] = useState(false)
+  const [visibleSuccess, setVisibleSuccess] = useState(false)
 
   const handleCancel = () => {
     onCancel()
   }
   const onFinishChangePassword = (formCollection) => {
     console.log('Success:', formCollection)
+    // TODO: handle submit new password then close modal change password
     onCancel()
+    // TODO: show modal OTP
     setVisibleOtp(true)
   }
   const onFinishFailedChangePassword = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
   const handleCallbackOtp = (otp) => {
-    message.info(otp)
+    console.log(otp)
+    setVisibleOtp(false)
+    setVisibleSuccess(true)
   }
 
   useEffect(() => {
@@ -99,6 +105,7 @@ const ChangePasswordModal = props => {
         callbackOtp={handleCallbackOtp}
         onCancel={() => setVisibleOtp(false)}
         phoneNumber={'0379631004'} />
+      <SuccessModal visible={visibleSuccess} description={'Đối mật khẩu thành công'} callbackSuccess={() => setVisibleSuccess(false)} />
     </>
 
   )
