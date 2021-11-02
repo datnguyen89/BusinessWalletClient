@@ -6,7 +6,6 @@ export const AreaPanelAdminWrapper = styled.div`
   border-radius: 10px;
   margin: 0 16px 30px;
   overflow: hidden;
-  padding: 20px 20px 5px;
 `
 
 export const AreaEnterpriseInfoAreaDetailLineInfoRight = styled.span`
@@ -50,4 +49,6 @@ export const AreaPanelAdminLabel = styled.div`
 `
 export const AreaPanelAdminAvatar = styled.div``
 
-export const AreaPanelAdminInfo = styled.div``
+export const AreaPanelAdminInfo = styled.div`
+  padding: 5px;
+`
