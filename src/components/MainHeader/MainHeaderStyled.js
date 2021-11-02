@@ -54,7 +54,7 @@ export const HeaderTransactionArea = styled.div`
     }
   }
 `
-export const HeaderTransactionItem = styled.a`
+export const HeaderTransactionItem = styled.span`
   margin: 0 16px;
 `
 export const CustomLink = styled(NavLink) `

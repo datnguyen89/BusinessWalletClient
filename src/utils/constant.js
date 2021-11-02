@@ -43,7 +43,7 @@ export const BREADCRUMB_DATA = {
     { LABEL: 'Trợ giúp', PATH: null },
   ],
   CONTRACT: [
-    { ID: '8', LABEL: 'Trang chủ', PATH: '/' },
+    { ID: '9', LABEL: 'Trang chủ', PATH: '/' },
     { LABEL: 'Liên kết', PATH: null },
   ],
 }
