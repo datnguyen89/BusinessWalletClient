@@ -5,6 +5,7 @@ import DefaultLayout from '../../layouts/DefaultLayout'
 import { Helmet } from 'react-helmet/es/Helmet'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
+import EnterpriseInfo from '../../components/EnterpriseInfo'
 
 const IdentityInfoPage = props => {
 
@@ -15,6 +16,7 @@ const IdentityInfoPage = props => {
       </Helmet>
       <IdentityInfoPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.IDENTITY} />
+        <EnterpriseInfo></EnterpriseInfo>
       </IdentityInfoPageWrapper>
     </DefaultLayout>
   )
