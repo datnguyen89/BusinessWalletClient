@@ -1,15 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { AreaPanelAdminAvatar, AreaPanelAdminLabel, AreaPannelAdminInfo } from '../EnterpriseInfo/EnterpriseInfoStyled'
 import IMAGES from '../../images'
 import {
-  AreaEnterpriseInfoAreaDetailLineInfo,
-  AreaEnterpriseInfoAreaDetailLineInfoLeft,
-  AreaEnterpriseInfoAreaDetailLineInfoRight, AreaPanelAdminWrapper,
+  EnterpriseInfoDetailLine,
+  DetailLineInfoLeft,
+  AreaEnterpriseInfoAreaDetailLineInfoRight,
+  AreaPanelAdminAvatar,
+  AreaPanelAdminLabel,
+  AreaPanelAdminWrapper,
+  AreaPanelAdminInfo,
 } from './AreaPanelAdminStyled'
 
 const AreaPanelAdmin = props => {
-  let dataAdministratorPanel = props.dataAdministratorPanel;
+  let dataAdministratorPanel = props.dataAdministratorPanel
 
   return (
     <AreaPanelAdminWrapper>
@@ -19,21 +22,19 @@ const AreaPanelAdmin = props => {
         </AreaPanelAdminAvatar>
         <div class='label'>Adminstrator</div>
       </AreaPanelAdminLabel>
-      <AreaPannelAdminInfo>
+      <AreaPanelAdminInfo>
         {
           dataAdministratorPanel.map(item =>
-            <AreaEnterpriseInfoAreaDetailLineInfo key={item.id}>
-              <AreaEnterpriseInfoAreaDetailLineInfoLeft><span>{item.key}</span></AreaEnterpriseInfoAreaDetailLineInfoLeft>
+            <EnterpriseInfoDetailLine key={item.id}>
+              <DetailLineInfoLeft><span>{item.key}</span></DetailLineInfoLeft>
               <AreaEnterpriseInfoAreaDetailLineInfoRight>{item.value}</AreaEnterpriseInfoAreaDetailLineInfoRight>
-            </AreaEnterpriseInfoAreaDetailLineInfo>)
+            </EnterpriseInfoDetailLine>)
         }
-      </AreaPannelAdminInfo>
+      </AreaPanelAdminInfo>
     </AreaPanelAdminWrapper>
   )
 }
 
-AreaPanelAdmin.propTypes = {
-  
-}
+AreaPanelAdmin.propTypes = {}
 
 export default AreaPanelAdmin

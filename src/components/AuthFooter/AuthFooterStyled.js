@@ -23,7 +23,6 @@ export const AuthFooterLeft = styled.div`
     width: 100%;
     align-items: center;
     img {
-      height: auto;
       width: 180px;
     }
   }

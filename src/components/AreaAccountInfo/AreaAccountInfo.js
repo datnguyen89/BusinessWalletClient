@@ -3,9 +3,8 @@ import PropTypes from 'prop-types'
 import {
   AreaAccountInfoAreaDetail,
   AreaAccountInfoAreaDetailLineInfo, AreaAccountInfoAreaDetailLineInfoLeft, AreaAccountInfoAreaDetailLineInfoRight,
-  AreaAccountInfoLabel, AreaAccountInfoWrapper, AreaIdentityInfoAreaDetailBox,
+  AreaAccountInfoLabel, AreaAccountInfoWrapper, AreaIdentityInfoAreaDetailBox, SpanAreaAccountInfoLabel,
 } from './AreaAccountInfoStyled'
-import { SpanAreaAccountInfoLabel } from '../EnterpriseInfo/EnterpriseInfoStyled'
 
 const AreaAccountInfo = props => {
   return (
@@ -20,7 +19,7 @@ const AreaAccountInfo = props => {
               <AreaAccountInfoAreaDetailLineInfo key={item.id}>
                 <AreaAccountInfoAreaDetailLineInfoLeft>{item.key}</AreaAccountInfoAreaDetailLineInfoLeft>
                 <AreaAccountInfoAreaDetailLineInfoRight>{item.value}</AreaAccountInfoAreaDetailLineInfoRight>
-              </AreaAccountInfoAreaDetailLineInfo>
+              </AreaAccountInfoAreaDetailLineInfo>,
             )
           }
         </AreaIdentityInfoAreaDetailBox>
@@ -29,8 +28,6 @@ const AreaAccountInfo = props => {
   )
 }
 
-AreaAccountInfo.propTypes = {
-  
-}
+AreaAccountInfo.propTypes = {}
 
 export default AreaAccountInfo

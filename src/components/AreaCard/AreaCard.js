@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Slider from 'react-slick'
 import {
   AreaAddCard,
+  AreaCardWrapper,
   AreaEnterpriseInfoLabel,
   AreaPanelAdminCard,
   SpanAreaAccountInfoLabel,
-} from '../EnterpriseInfo/EnterpriseInfoStyled'
-import Slider from 'react-slick'
-import { AreaCardWrapper } from './AreaCardStyled'
+} from './AreaCardStyled'
 
 const AreaCard = props => {
 
@@ -37,7 +37,7 @@ const AreaCard = props => {
       </AreaPanelAdminCard>
       <AreaAddCard>
         <div>
-          <span class="add-wrapper"><img src={`${process.env.PUBLIC_URL}/assets/images/add.png`} /></span>
+          <span class='add-wrapper'><img src={`${process.env.PUBLIC_URL}/assets/images/add.png`} /></span>
           <span onClick={() => handleAddNewCard()}>Liên kết thẻ mới</span>
         </div>
       </AreaAddCard>
@@ -45,8 +45,6 @@ const AreaCard = props => {
   )
 }
 
-AreaCard.propTypes = {
-  
-}
+AreaCard.propTypes = {}
 
 export default AreaCard
