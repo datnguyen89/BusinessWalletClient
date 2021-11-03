@@ -7,6 +7,12 @@ export const AuthShadowBox = styled.div`
   width: ${props => props.width ? props.width : 'auto'};
   padding: 24px;
 `
+export const PaginationLabel = styled.span`
+  color: #767676;
+`
+export const RowFlexDiv = styled.div`
+  display: flex;
+`
 export const RowFlexEndDiv = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -20,7 +26,4 @@ export const RowSpaceBetweenDiv = styled.div`
   align-items: center;
   margin: ${props => props.margin || 0};
   padding: ${props => props.padding || 0};
-`
-export const PaginationLabel = styled.span`
-  color: #767676;
 `
