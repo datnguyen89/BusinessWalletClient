@@ -27,3 +27,10 @@ export const RowSpaceBetweenDiv = styled.div`
   margin: ${props => props.margin || 0};
   padding: ${props => props.padding || 0};
 `
+export const GrayTitle = styled.h1`
+  padding: 8px;
+  color: ${props => props.color || '#848788'};
+  background: ${props => props.background || '#F6F6F6'};
+  margin-bottom: 16px;
+  margin-top: ${props => props.marginTop};
+`

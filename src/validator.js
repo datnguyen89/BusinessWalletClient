@@ -1,9 +1,7 @@
 /** Use only with Antd Form */
 /** Use only with Antd Form */
 /** Currently validator will no longer working if using regex from outside 'validator' object */
-import utils from './utils/miscUtils'
 import moment from 'moment'
-import profileStore from './stores/profileStore'
 
 const validator = {
 
@@ -51,6 +49,16 @@ const validator = {
     const regex = /^[A-Za-z][A-Za-z0-9-_\.]{1,32}(\+?[0-9]){0,5}@[A-Za-z0-9_-]{2,}(\.[A-Za-z0-9]{2,4}){1,2}$/gm
     if (value && !regex.test(value)) {
       callback('Incorrect email format!')
+    } else {
+      callback()
+    }
+  },
+
+  validateAmountMoney: (rule, value, callback) => {
+    if (value === undefined || value === null || value.length === 0) {
+      callback('Vui lòng nhập số tiền cần chuyển')
+    } else if (value <= 0) {
+      callback('Số tiền chuyển phải lớn hơn 0')
     } else {
       callback()
     }
@@ -126,16 +134,16 @@ const validator = {
   },
   validatePasswordShare: (rule, value, callback) => {
     if (value && (value.trim().length > 40)) {
-      callback(profileStore?.appLanguage === 'en'? 'Password can be up to 40 characters' : 'Mật khẩu có độ dài tối đa 40 ký tự')
+      callback(profileStore?.appLanguage === 'en' ? 'Password can be up to 40 characters' : 'Mật khẩu có độ dài tối đa 40 ký tự')
     } else {
       callback()
     }
   },
   validatePasswordNew: (rule, value, callback) => {
     if (value && value.trim().length === 0) {
-      callback(profileStore?.appLanguage === 'en'? 'Please enter a password' : 'Vui lòng nhập mật khẩu')
+      callback(profileStore?.appLanguage === 'en' ? 'Please enter a password' : 'Vui lòng nhập mật khẩu')
     } else if (value && (value.trim().length > 18 || value.trim().length < 6)) {
-      callback(profileStore?.appLanguage === 'en'? 'Password can be up from 6 to 18 characters' : 'Mật khẩu có độ dài từ 6 đến 18 ký tự')
+      callback(profileStore?.appLanguage === 'en' ? 'Password can be up from 6 to 18 characters' : 'Mật khẩu có độ dài từ 6 đến 18 ký tự')
     } else {
       callback()
     }
