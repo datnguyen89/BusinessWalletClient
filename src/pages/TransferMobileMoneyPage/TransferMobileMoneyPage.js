@@ -10,6 +10,7 @@ import { SearchOutlined } from '@ant-design/icons'
 import IMAGES from '../../images'
 import numberUtils from '../../utils/numberUtils'
 import validator from '../../validator'
+import ConditionRender from '../../components/ConditionRender'
 
 const { Step } = Steps
 
@@ -98,7 +99,7 @@ const TransferMobileMoneyPage = props => {
           </Col>
           <Col xxl={12} xl={12} lg={12} md={12} sm={12} xs={12}>
             <VerifyAccountBox>
-              <div style={{ display: processStep < 2 ? 'block' : 'none' }}>
+              <ConditionRender isVisible={processStep < 2}>
                 <Form
                   colon={false}
                   form={formVerify}
@@ -121,8 +122,7 @@ const TransferMobileMoneyPage = props => {
                     </RowFlexDiv>
                   </Form.Item>
                 </Form>
-                {/*showUserInfo && processStep === 1*/}
-                <div>
+                <ConditionRender isVisible={showUserInfo && processStep === 1}>
                   <GrayTitle>Thông tin User</GrayTitle>
                   {/*<NotFoundAccount>*/}
                   {/*  <img src={IMAGES.NOT_FOUND_ACCOUNT} alt={''} />*/}
@@ -142,8 +142,8 @@ const TransferMobileMoneyPage = props => {
                     <Button onClick={handleClickWalletToMM} type={'primary'}>Ví sang Mobifone Money</Button>
                     <Button onClick={handleClickMMToWallet} type={'primary'}>Mobifone Money sang Ví</Button>
                   </Space>
-                </div>
-              </div>
+                </ConditionRender>
+              </ConditionRender>
               {
                 processStep === 2 &&
                 <>
