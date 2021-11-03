@@ -13,7 +13,10 @@ const TransferMethod = props => {
         <TopTransferMethod>
           <div>
             <img src={`${process.env.PUBLIC_URL}/assets/icons/logo_account_transfer_money.png`}
-                 alt='logo account transfer money' /></div>
+                 height={52}
+                 width={52}
+                 alt='logo account transfer money' />
+          </div>
           <div>
             <h5>1234567890</h5>
             <h2>10.830.536.500 vnd</h2>
