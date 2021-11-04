@@ -7,9 +7,9 @@ export const ContractWrapper = styled.div `
 
   margin: 30px 16px;
   padding: 20px 20px 5px;
-  .cancel-button {
-    cursor: pointer;
-  }
+`
+export const SpanCancelButton = styled.span`
+  cursor: pointer;
 `
 
 export const AreaContractData = styled.div `
