@@ -13,6 +13,7 @@ const DefaultLayout = props => {
   const { children, commonStore } = props
   const { appTheme } = commonStore
   const location = useLocation()
+
   useEffect(() => {
     const segment = location.pathname.split('/').filter(item => item !== '')
     if (segment.length === 0) {
@@ -20,6 +21,9 @@ const DefaultLayout = props => {
       return
     }
     switch (segment[0]) {
+      case 'contract':
+        commonStore.setPageName('contract')
+        return
       case 'identity-info':
         commonStore.setPageName('identity-info')
         return

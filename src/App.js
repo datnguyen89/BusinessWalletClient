@@ -8,13 +8,13 @@ import { createBrowserHistory } from 'history'
 // MobX
 import { Provider } from 'mobx-react'
 import commonStore from './stores/commonStore.js'
-import otpStore from './stores/otpStore.js'
 // Pages
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import NotPermissionPage from './pages/NotPermissionPage'
 import ProtectedPage from './pages/ProtectedPage'
 import LoginPage from './pages/LoginPage'
+import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import IdentityInfoPage from './pages/IdentityInfoPage'
 import PolicyPage from './pages/PolicyPage'
 import SupportPage from './pages/SupportPage'
@@ -23,7 +23,10 @@ import TransactionManagePage from './pages/TransactionManagePage'
 import TransferMobileMoneyPage from './pages/TransferMobileMoneyPage'
 import TransferMultiplePage from './pages/TransferMultiplePage'
 import DepositPage from './pages/DepositPage'
+import TranferPage from './pages/TranferPage'
+import WithDrawPage from './pages/WithDrawPage'
 import LoadingOverLay from './components/LoadingOverLay'
+import ContractPage from './pages/Contract/ContractPage'
 
 
 const history = createBrowserHistory()
@@ -48,7 +51,6 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
 
 const rootStores = {
   commonStore,
-  otpStore,
 }
 
 
@@ -71,7 +73,11 @@ const App = () => {
             <Route exact path={'/support'} component={SupportPage} />
             <Route exact path={'/login'} component={LoginPage} />
             <Route exact path={'/deposit'} component={DepositPage} />
+            <Route exact path={'/trafer'} component={TranferPage} />
+            <Route exact path={'/withdraw'} component={WithdrawPage} />
+            <Route exact path={'/forgot-password'} component={ForgotPasswordPage} />
             <Route exact path={'/not-permission'} component={NotPermissionPage} />
+            <Route exact path={'/contract'} component={ContractPage} />
             <ProtectedRoute exact path={'/protected'} component={ProtectedPage} />
             <Route component={NotFoundPage} />
           </Switch>

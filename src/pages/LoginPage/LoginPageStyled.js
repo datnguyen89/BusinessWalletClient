@@ -20,5 +20,10 @@ export const LoginPageWrapper = styled.div`
 `
 export const LoginFormTitle = styled.h1`
   text-align: center;
-  margin: 16px 0;
+  margin: 0 0 0 8px;
+`
+export const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
 `

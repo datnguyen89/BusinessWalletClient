@@ -330,27 +330,27 @@ export const GlobalStyle = createGlobalStyle`
   }  
   
   /** Steps */
-  .ant-steps-item-process {
-    .ant-steps-item-icon {
-      background: ${props => props.theme.solidColor} !important;
-      border-color: ${props => props.theme.solidColor} !important;
-    }
-  }
-  .ant-steps .ant-steps-item:not(.ant-steps-item-active):not(.ant-steps-item-process) > .ant-steps-item-container[role='button']:hover .ant-steps-item-icon {
-    border-color: ${props => props.theme.solidColor} !important;
-  }
-  .ant-steps-item-finish .ant-steps-item-icon {
-    border-color: ${props => props.theme.solidColor} !important;
-    > .ant-steps-icon {
-      color: ${props => props.theme.solidColor} !important;
-    }
-  } 
-  .ant-steps .ant-steps-item:not(.ant-steps-item-active) > .ant-steps-item-container[role='button']:hover .ant-steps-item-title, .ant-steps .ant-steps-item:not(.ant-steps-item-active) > .ant-steps-item-container[role='button']:hover .ant-steps-item-subtitle, .ant-steps .ant-steps-item:not(.ant-steps-item-active) > .ant-steps-item-container[role='button']:hover .ant-steps-item-description {
-    color: ${props => props.theme.solidColor} !important;
-  }
-  .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
-    background-color: ${props => props.theme.solidColor} !important;
-  }
+  // .ant-steps-item-process {
+  //   .ant-steps-item-icon {
+  //     background: ${props => props.theme.solidColor} !important;
+  //     border-color: ${props => props.theme.solidColor} !important;
+  //   }
+  // }
+  // .ant-steps .ant-steps-item:not(.ant-steps-item-active):not(.ant-steps-item-process) > .ant-steps-item-container[role='button']:hover .ant-steps-item-icon {
+  //   border-color: ${props => props.theme.solidColor} !important;
+  // }
+  // .ant-steps-item-finish .ant-steps-item-icon {
+  //   border-color: ${props => props.theme.solidColor} !important;
+  //   > .ant-steps-icon {
+  //     color: ${props => props.theme.solidColor} !important;
+  //   }
+  // } 
+  // .ant-steps .ant-steps-item:not(.ant-steps-item-active) > .ant-steps-item-container[role='button']:hover .ant-steps-item-title, .ant-steps .ant-steps-item:not(.ant-steps-item-active) > .ant-steps-item-container[role='button']:hover .ant-steps-item-subtitle, .ant-steps .ant-steps-item:not(.ant-steps-item-active) > .ant-steps-item-container[role='button']:hover .ant-steps-item-description {
+  //   color: ${props => props.theme.solidColor} !important;
+  // }
+  // .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
+  //   background-color: ${props => props.theme.solidColor} !important;
+  // }
   
   /** Menu */
   .ant-menu {

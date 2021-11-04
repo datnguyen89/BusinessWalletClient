@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 export const MainHeaderWrapper = styled.header`
   display: flex;
@@ -53,9 +54,31 @@ export const HeaderTransactionArea = styled.div`
     }
   }
 `
-export const HeaderTransactionItem = styled.a`
+export const HeaderTransactionItem = styled.span`
   margin: 0 16px;
 `
+export const CustomLink = styled(NavLink) `
+  color: white;
+  font-size: 1.2rem;
+  &.selected {
+    span {
+      color: #FDCF17 !important;
+    }
+    svg path {
+      fill: #FDCF17 !important;
+    }
+  }
+  svg {
+    display: inline-block;
+    margin-bottom: -5px;
+  }
+  //&:hover, &.selected {
+  //  background: #4C68EF;
+  //  border-radius: 5px;
+  //  color: #FDCF17;
+  //}
+`
+
 export const HeaderNotifyArea = styled.div`
   margin: 0 16px;
   cursor: pointer;

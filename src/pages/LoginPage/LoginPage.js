@@ -1,37 +1,40 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { inject, observer } from 'mobx-react'
+import React, { useState } from 'react'
 import AuthLayout from '../../layouts/AuthLayout'
-import { Input, Form, Checkbox, Button, Row, Col, message } from 'antd'
+import { Button, Col, Form, Input, message, Row } from 'antd'
 import { AuthShadowBox } from '../../components/CommonStyled/CommonStyled'
 import IMAGES from '../../images'
-import { LoginFormTitle, LoginPageWrapper } from './LoginPageStyled'
+import { LoginFormTitle, LoginPageWrapper, TitleWrapper } from './LoginPageStyled'
 import { Link, useHistory } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
 
 const LoginPage = props => {
-  const { commonStore, otpStore } = props
   const history = useHistory()
+  const [visibleOtp, setVisibleOtp] = useState(false)
 
   const onFinish = (formCollection) => {
+    setVisibleOtp(true)
     console.log('Success:', formCollection)
-    otpStore.setVisible(true)
-    // history.push('/')
   }
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
 
   const handleSubmitOtp = (otp) => {
-    message.info(otp)
+    if (otp === '123456') {
+      history.push('/')
+    } else {
+      message.error('Mã OTP không đúng')
+    }
   }
 
   return (
     <AuthLayout>
       <LoginPageWrapper>
         <AuthShadowBox>
-          <img src={IMAGES.AUTH_LOGO} alt={''} />
-          <LoginFormTitle>ĐĂNG NHẬP MOBIFONE PAY DOANH NGHIỆP {commonStore.pageName}</LoginFormTitle>
+          <TitleWrapper>
+            <img src={IMAGES.AUTH_LOGO} alt={''} />
+            <LoginFormTitle>ĐĂNG NHẬP MOBIFONE PAY DOANH NGHIỆP</LoginFormTitle>
+          </TitleWrapper>
           <Form
             name='basic'
             labelCol={{ span: 0 }}
@@ -59,18 +62,22 @@ const LoginPage = props => {
             <Form.Item>
               <Row align={'middle'}>
                 <Col span={12}>
-                  <Link to={'#'}>Quên mật khẩu</Link>
+                  <Link to={'/forgot-password'}>Quên mật khẩu</Link>
                 </Col>
                 <Col span={12}>
                   <Button type='primary' htmlType='submit' size={'large'} block>
-                    Submit
+                    Đăng nhập
                   </Button>
                 </Col>
               </Row>
             </Form.Item>
           </Form>
         </AuthShadowBox>
-        <OtpModal phoneNumber={'0379631004'} callbackOtp={handleSubmitOtp} />
+        <OtpModal
+          phoneNumber={'0379631004'}
+          visible={visibleOtp}
+          onCancel={() => setVisibleOtp(false)}
+          callbackOtp={handleSubmitOtp} />
       </LoginPageWrapper>
     </AuthLayout>
   )
@@ -78,4 +85,4 @@ const LoginPage = props => {
 
 LoginPage.propTypes = {}
 
-export default inject('commonStore', 'otpStore')(observer(LoginPage))
+export default LoginPage
