@@ -10,6 +10,11 @@ export const DEVICE = {
   TABLET: 'TABLET',
   DESKTOP: 'DESKTOP',
 }
+export const TRANSACTION_STATUS = {
+  WAITING: 1,
+  APPROVED: 2,
+  REJECTED: 3,
+}
 export const BREADCRUMB_DATA = {
   HOME: [
     { ID: 1, LABEL: 'Trang chủ', PATH: null },

@@ -1,10 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { TransactionManagePageWrapper } from './TransactionManagePageStyled'
+import { TransactionManagePageWrapper, TransactionManagerBody } from './TransactionManagePageStyled'
 import DefaultLayout from '../../layouts/DefaultLayout'
 import { Helmet } from 'react-helmet/es/Helmet'
-import { BREADCRUMB_DATA } from '../../utils/constant'
+import { BREADCRUMB_DATA, TRANSACTION_STATUS } from '../../utils/constant'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
+import uuid from 'uuid'
+
+const MockupData = [
+  {
+    id: 1,
+    transactionId: uuid(),
+    transactionType: 'Liên kết',
+    status: TRANSACTION_STATUS.APPROVED,
+    
+  },
+]
 
 const TransactionManagePage = props => {
   return (
@@ -14,14 +25,13 @@ const TransactionManagePage = props => {
       </Helmet>
       <TransactionManagePageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TRANSACTION_MANAGE} />
-        TransactionManagePage
+        <TransactionManagerBody>
+        </TransactionManagerBody>
       </TransactionManagePageWrapper>
     </DefaultLayout>
   )
 }
 
-TransactionManagePage.propTypes = {
-
-}
+TransactionManagePage.propTypes = {}
 
 export default TransactionManagePage
