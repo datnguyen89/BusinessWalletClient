@@ -25,7 +25,7 @@ export const BREADCRUMB_DATA = {
   ],
   TRANSFER_MULTIPLE: [
     { ID: 4, LABEL: 'Trang chủ', PATH: '/' },
-    { ID: 5, LABEL: 'Chuyển tiền theo Lô', PATH: null },
+    { ID: 5, LABEL: 'Chuyển tiền', PATH: null },
   ],
   MOBILE_MONEY: [
     { ID: 6, LABEL: 'Trang chủ', PATH: '/' },

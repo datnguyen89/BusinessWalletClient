@@ -6,8 +6,6 @@ export const AreaAccountInfoWrapper = styled.div`
   border-radius: 18px;
 
   margin: 30px 16px;
-  left: 273px;
-  top: 138px;
   padding: 20px 20px 5px;
 `
 export const AreaAccountInfoLabel = styled.div`
