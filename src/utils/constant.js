@@ -39,6 +39,10 @@ export const BREADCRUMB_DATA = {
     { ID: '8', LABEL: 'Trang chủ', PATH: '/' },
     { LABEL: 'Trợ giúp', PATH: null },
   ],
+  DEPOSIT: [
+    { ID: '9', LABEL: 'Trang chủ', PATH: '/' },
+    { LABEL: 'Nạp tiền', PATH: null },
+  ],
 }
 export const HOME_WIDGET_DATA = [
   {

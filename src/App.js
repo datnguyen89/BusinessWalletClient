@@ -22,6 +22,7 @@ import TransactionHistoryPage from './pages/TransactionHistoryPage'
 import TransactionManagePage from './pages/TransactionManagePage'
 import TransferMobileMoneyPage from './pages/TransferMobileMoneyPage'
 import TransferMultiplePage from './pages/TransferMultiplePage'
+import DepositPage from './pages/DepositPage'
 import LoadingOverLay from './components/LoadingOverLay'
 
 
@@ -69,6 +70,7 @@ const App = () => {
             <Route exact path={'/policy'} component={PolicyPage} />
             <Route exact path={'/support'} component={SupportPage} />
             <Route exact path={'/login'} component={LoginPage} />
+            <Route exact path={'/deposit'} component={DepositPage} />
             <Route exact path={'/not-permission'} component={NotPermissionPage} />
             <ProtectedRoute exact path={'/protected'} component={ProtectedPage} />
             <Route component={NotFoundPage} />

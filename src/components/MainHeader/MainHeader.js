@@ -34,7 +34,7 @@ const MainHeader = props => {
   const history = useHistory()
 
   const handleClickDrawerMenu = (e) => {
-    console.log(e)
+    console.log('handleClickDrawerMenu', e)
   }
 
   return (
@@ -65,8 +65,8 @@ const MainHeader = props => {
       </HeaderLogoArea>
       <MainHeaderRight>
         <HeaderTransactionArea>
-          <HeaderTransactionItem href={'#'}>
-            <img src={ICONS.RECHARGE_ICON} alt={''} />
+          <HeaderTransactionItem href={'#'} onClick={() => history.push('/deposit')}>
+            <img src={ICONS.DEPOSIT_ICON} alt={''} />
             <span>Nạp tiền</span>
           </HeaderTransactionItem>
           <HeaderTransactionItem href={'#'}>
