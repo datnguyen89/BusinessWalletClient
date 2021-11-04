@@ -74,7 +74,7 @@ const App = () => {
             <Route exact path={'/forgot-password'} component={ForgotPasswordPage} />
             <Route exact path={'/not-permission'} component={NotPermissionPage} />
             <Route exact path={'/contract'} component={ContractPage} />
-            <ProtectedRoute exact path={'/protected'} component={ProtectedPage} />
+            <Route exact path={'/protected'} component={ProtectedPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </Router>

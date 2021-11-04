@@ -37,15 +37,14 @@ export const AreaPanelAdminLabel = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  .label {
-    color: white;
-    font-weight: bold;
-    font-size: 2rem;
-  }
-
   background: url(${props => props.background}) center center no-repeat;
   background-size: cover;
   padding: 15px;
+`
+export const DivLabel = styled.div`
+  color: white;
+  font-weight: bold;
+  font-size: 2rem;
 `
 export const AreaPanelAdminAvatar = styled.div``
 

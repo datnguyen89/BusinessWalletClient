@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AreaContractData, ContractWrapper } from './ContractStyled'
+import { AreaContractData, ContractWrapper, SpanCancelButton } from './ContractStyled'
 import { Pagination, Space, Table } from 'antd'
 import ConfirmModal from '../ConfirmModal'
 import OtpModal from '../OtpModal'
@@ -49,10 +49,10 @@ const Contract = props => {
       key: 'action',
       render: (item, row, index) => (
         <Space size='middle'>
-          <span onClick={cancelContract} className='cancel-button'>
+          <SpanCancelButton onClick={cancelContract}>
             <img src={`${process.env.PUBLIC_URL}/assets/images/cancel.png`} style={{ marginRight: 8 }} />
             Hủy liên kết
-          </span>
+          </SpanCancelButton>
         </Space>
       ),
     },
