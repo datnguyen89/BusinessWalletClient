@@ -1,18 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ConditionRenderWrapper } from './ConditionRenderStyled'
 
 const ConditionRender = props => {
-  const { isVisible, children } = props
+  const { visible, children } = props
   return (
-    <ConditionRenderWrapper display={isVisible ? 'block' : 'none'}>
+    visible &&
+    <>
       {children}
-    </ConditionRenderWrapper>
+    </>
   )
 }
 
 ConditionRender.propTypes = {
-  isVisible: PropTypes.bool.isRequired,
+  visible: PropTypes.bool.isRequired,
 }
 
 export default ConditionRender

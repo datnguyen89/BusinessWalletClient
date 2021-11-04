@@ -12,5 +12,6 @@ const IMAGES = {
   AVATAR_ADMIN: `${process.env.PUBLIC_URL}/assets/images/avatar.png`,
   WIDGET_BACKGROUND: `${process.env.PUBLIC_URL}/assets/images/widget_bg.svg`,
   NOT_FOUND_ACCOUNT: `${process.env.PUBLIC_URL}/assets/images/not-found-account.png`,
+  SUCCESS_CREATE_TRANSACTION: `${process.env.PUBLIC_URL}/assets/images/success-create-transaction.png`,
 }
 export default IMAGES
