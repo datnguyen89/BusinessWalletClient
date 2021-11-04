@@ -2,10 +2,12 @@ import styled from 'styled-components'
 import { Table } from 'antd'
 
 export const StateTransferMethodWrapper = styled.div`
+`
+
+export const StateTransferMethodContent = styled.div`
   background: #FFFFFF;
   border-radius: 18px;
-
-  margin: 30px 16px;
+  margin: 30px 16px 20px;
   padding: 20px 20px 5px;
 `
 
@@ -46,5 +48,14 @@ export const ImageCustom = styled.img `
 `
 
 export const SpanStatus = styled.span`
-  margin-left: 20px;
+  margin-left: 10px;
+`
+
+export const AreaButton = styled.div`
+  display: flex;
+  justify-content: center;
+  button {
+    margin: 0 10px 20px;
+    padding: 5px 30px;
+  }
 `

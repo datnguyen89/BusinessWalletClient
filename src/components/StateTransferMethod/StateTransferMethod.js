@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import {
+  AreaButton,
   ImageCustom,
   ResultTable, SpanStatus, SpanValue,
   StateInformation,
   StateInformationExport,
-  StateInformationText,
+  StateInformationText, StateTransferMethodContent,
   StateTransferMethodWrapper,
 } from './StateTransferMethodStyled'
-import { Pagination, Space, Table } from 'antd'
+import { Button, Pagination, Space, Table } from 'antd'
 import { PaginationLabel, RowSpaceBetweenDiv } from '../CommonStyled/CommonStyled'
 import { AreaContractData } from '../Contract/ContractStyled'
+import { ButtonConfirm, FilterTransferMethodWrapper } from '../FilterTransferMethod/FilterTransferMethodStyled'
+import ConfirmModal from '../ConfirmModal'
+import OtpModal from '../OtpModal'
+import SuccessModal from '../SuccessModal'
 
 const StateTransferMethod = props => {
 
@@ -112,43 +117,86 @@ const StateTransferMethod = props => {
     },
   ]
   const { Column } = Table
+
+
+  const [visibleConfirm, setVisibleConfirm] = useState(false)
+  const [visibleOTP, setVisibleOTP] = useState(false)
+  const [visibleSuccess, setVisibleSuccess] = useState(false)
+  const handleCancel = () => {
+    setVisibleConfirm(false)
+  }
+  const handleCancelTrue = () => {
+    console.log('bỏ liên kết thành công')
+    setVisibleConfirm(false)
+    setVisibleOTP(true)
+  }
+  const confirm = () => {
+    setVisibleConfirm(true)
+  }
+  const handleCallbackOTP = (otp) => {
+    console.log(otp)
+    setVisibleOTP(false)
+    setVisibleSuccess(true)
+  }
+
   return (
     <StateTransferMethodWrapper>
-      <StateInformation>
-        <StateInformationText>
-          <span>Số lượng: </span><SpanValue>50</SpanValue><span>Tổng tiền: </span><SpanValue>5.000.000.000
-          VND</SpanValue>
-        </StateInformationText>
-        <StateInformationExport>
-          <span>Xuất file</span>
-        </StateInformationExport>
-      </StateInformation>
-      <ResultTable
-        dataSource={dataContract}
-        columns={columns}
-        pagination={false}
-        bordered={false}>
-        {/*<Column*/}
-        {/*  title: 'LỖI'*/}
-        {/*  dataIndex: 'error'*/}
-        {/*  key: 'error'*/}
-        {/*  render={error => (*/}
-        {/*    <>*/}
-        {/*      {tags.map(tag => (*/}
-        {/*        <Tag color="blue" key={tag}>*/}
-        {/*          {tag}*/}
-        {/*        </Tag>*/}
-        {/*      ))}*/}
-        {/*    </>*/}
-        {/*  )}*/}
-        {/*/>*/}
-      </ResultTable>
-      <RowSpaceBetweenDiv margin={'16px 0'}>
-        <PaginationLabel>
-          Hiển thị 5 trên tổng số 50 bản ghi
-        </PaginationLabel>
-        <Pagination total={50} />
-      </RowSpaceBetweenDiv>
+      <StateTransferMethodContent>
+
+        <StateInformation>
+          <StateInformationText>
+            <span>Số lượng: </span><SpanValue>50</SpanValue><span>Tổng tiền: </span><SpanValue>5.000.000.000
+            VND</SpanValue>
+          </StateInformationText>
+          <StateInformationExport>
+            <span>Xuất file</span>
+          </StateInformationExport>
+        </StateInformation>
+        <ResultTable
+          dataSource={dataContract}
+          columns={columns}
+          pagination={false}
+          bordered={false}>
+          {/*<Column*/}
+          {/*  title: 'LỖI'*/}
+          {/*  dataIndex: 'error'*/}
+          {/*  key: 'error'*/}
+          {/*  render={error => (*/}
+          {/*    <>*/}
+          {/*      {tags.map(tag => (*/}
+          {/*        <Tag color="blue" key={tag}>*/}
+          {/*          {tag}*/}
+          {/*        </Tag>*/}
+          {/*      ))}*/}
+          {/*    </>*/}
+          {/*  )}*/}
+          {/*/>*/}
+        </ResultTable>
+        <RowSpaceBetweenDiv margin={'16px 0'}>
+          <PaginationLabel>
+            Hiển thị 5 trên tổng số 50 bản ghi
+          </PaginationLabel>
+          <Pagination total={50} />
+        </RowSpaceBetweenDiv>
+      </StateTransferMethodContent>
+      <AreaButton>
+        <Button type="default">Quay lại</Button>
+        <Button type="primary" onClick={confirm}>Tạo lệnh</Button>
+      </AreaButton>
+      <ConfirmModal
+        visible={visibleConfirm}
+        onCancel={handleCancel}
+        callbackConfirm={handleCancelTrue}
+        description={'Quý khách có chắc chắn muốn lưu lệnh vừa tạo ?'} />
+      <OtpModal
+        visible={visibleOTP}
+        callbackOtp={handleCallbackOTP}
+        onCancel={() => setVisibleOTP((false))}
+        phoneNumber={'123456789'} />
+      <SuccessModal
+        visible={visibleSuccess}
+        callbackSuccess={() => setVisibleSuccess(false)}
+        description={'Bạn đã lập lệnh thành công'} />
     </StateTransferMethodWrapper>
   )
 }

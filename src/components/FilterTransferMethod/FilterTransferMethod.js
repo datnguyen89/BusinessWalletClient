@@ -9,10 +9,6 @@ import {
 } from './FilterTransferMethodStyled'
 import { Button, Select } from 'antd'
 import { Option } from 'antd/lib/mentions'
-import ConfirmModal from '../ConfirmModal'
-import OtpModal from '../OtpModal'
-import SuccessModal from '../SuccessModal'
-import { ContractWrapper } from '../Contract/ContractStyled'
 
 const FilterTransferMethod = props => {
 
@@ -23,26 +19,6 @@ const FilterTransferMethod = props => {
 
   const size = 20
   const handleChange = () => {
-  }
-
-  const [visibleConfirm, setVisibleConfirm] = useState(false)
-  const [visibleOTP, setVisibleOTP] = useState(false)
-  const [visibleSuccess, setVisibleSuccess] = useState(false)
-  const handleCancel = () => {
-    setVisibleConfirm(false)
-  }
-  const handleCancelTrue = () => {
-    console.log('bỏ liên kết thành công')
-    setVisibleConfirm(false)
-    setVisibleOTP(true)
-  }
-  const confirm = () => {
-    setVisibleConfirm(true)
-  }
-  const handleCallbackOTP = (otp) => {
-    console.log(otp)
-    setVisibleOTP(false)
-    setVisibleSuccess(true)
   }
 
   return (
@@ -59,21 +35,7 @@ const FilterTransferMethod = props => {
           {children}
         </Select>
       </FilterByMethod>
-      <ButtonConfirm type='primary' onClick={confirm}>Xác nhận</ButtonConfirm>
-      <ConfirmModal
-        visible={visibleConfirm}
-        onCancel={handleCancel}
-        callbackConfirm={handleCancelTrue}
-        description={'Quý khách có chắc chắn muốn lưu lệnh vừa tạo ?'} />
-      <OtpModal
-        visible={visibleOTP}
-        callbackOtp={handleCallbackOTP}
-        onCancel={() => setVisibleOTP((false))}
-        phoneNumber={'123456789'} />
-      <SuccessModal
-        visible={visibleSuccess}
-        callbackSuccess={() => setVisibleSuccess(false)}
-        description={'Bạn đã lập lệnh thành công'} />
+      <ButtonConfirm type='primary'>Xác nhận</ButtonConfirm>
     </FilterTransferMethodWrapper>
   )
 }
