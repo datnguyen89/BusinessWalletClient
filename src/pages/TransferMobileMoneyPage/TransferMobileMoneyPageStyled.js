@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
 export const TransferMobileMoneyPageWrapper = styled.div`
+  .ant-steps.ant-steps-vertical {
+    min-height: 500px;
+  }
 `
 export const MMProcessBox = styled.div`
   background: #fff;
@@ -13,7 +16,7 @@ export const NotFoundAccount = styled.div`
   text-align: center;
   color: #ccc;
 `
-export const ConfirmWalletToMMSmallWrapper = styled.div`
+export const ConfirmSmallWrapper = styled.div`
   background: #fff;
   padding: 16px;
   border-radius: 8px;

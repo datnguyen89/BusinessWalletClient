@@ -1,5 +1,5 @@
 import styled from 'styled-components'
 
-export const ConditionRenderWrapper = styled.div`
+export const ConditionDisplayWrapper = styled.div`
   display: ${props => props.display};
 `

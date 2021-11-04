@@ -10,12 +10,18 @@ import { Button, Col, Descriptions, Form, Input, InputNumber, Row, Space, Steps 
 import { SearchOutlined } from '@ant-design/icons'
 import numberUtils from '../../utils/numberUtils'
 import validator from '../../validator'
-import ConditionRender from '../../components/ConditionRender'
+import ConditionDisplay from '../../components/ConditionDisplay'
 import IMAGES from '../../images'
-import ProcessWalletToMM from './ProcessWalletToMM'
-import ConfirmWalletToMM from './ConfirmWalletToMM'
-import ConfirmWalletToMMSmall from './ConfirmWalletToMMSmall'
-import ProcessMMToWallet from './ProcessMMToWallet'
+import ProcessWalletToMm from './ProcessWalletToMm'
+import ConfirmWalletToMm from './ConfirmWalletToMm'
+import ConfirmWalletToMmSmall from './ConfirmWalletToMmSmall'
+import ProcessMmToWallet from './ProcessMmToWallet'
+import ConfirmMmToWallet from './ConfirmMmToWallet'
+import ConfirmMmToWalletSmall from './ConfirmMmToWalletSmall'
+import ConfirmModal from '../../components/ConfirmModal'
+import OtpModal from '../../components/OtpModal'
+import SuccessModal from '../../components/SuccessModal'
+import ConditionRender from '../../components/ConditionRender'
 
 const { Step } = Steps
 
@@ -26,8 +32,11 @@ const TransferMobileMoneyPage = props => {
 
   const [processStep, setProcessStep] = useState(0)
 
-  const [showWalletToMM, setShowWalletToMM] = useState(false)
-  const [showMMToWallet, setShowMMToWallet] = useState(false)
+  const [showWalletToMm, setShowWalletToMm] = useState(false)
+  const [showMmToWallet, setShowMmToWallet] = useState(false)
+  const [visibleConfirm, setVisibleConfirm] = useState(false)
+  const [visibleOpt, setVisibleOpt] = useState(false)
+  const [visibleSuccess, setVisibleSuccess] = useState(false)
 
   const [formVerify] = Form.useForm()
 
@@ -56,37 +65,67 @@ const TransferMobileMoneyPage = props => {
         setProcessStep(1)
       })
   }
-  const handleClickWalletToMM = () => {
+  const handleClickWalletToMm = () => {
     setProcessStep(2)
-    setShowWalletToMM(true)
-    setShowMMToWallet(false)
+    setShowWalletToMm(true)
+    setShowMmToWallet(false)
   }
 
-  const handleClickMMToWallet = () => {
+  const handleClickMmToWallet = () => {
     setProcessStep(2)
-    setShowWalletToMM(false)
-    setShowMMToWallet(true)
+    setShowWalletToMm(false)
+    setShowMmToWallet(true)
   }
 
-  const handleCallbackProcessWalletToMM = (formCollection) => {
+  const handleCallbackProcessWalletToMm = (formCollection) => {
     console.log(formCollection)
     setProcessStep(3)
   }
-  const handleCallbackConfirmWalletToMM = () => {
-
+  const handleCallbackConfirmWalletToMm = () => {
+    // Show confirm Modal
+    setVisibleConfirm(true)
   }
-  const handleCancelConfirmWalletToMM = () => {
+  const handleCancelConfirmWalletToMm = () => {
     setProcessStep(2)
   }
-  const handleCallbackProcessMMToWallet = (formCollection) => {
+  const handleCallbackProcessMmToWallet = (formCollection) => {
     console.log(formCollection)
     setProcessStep(3)
   }
-  const handleCallbackConfirmMMToWallet = () => {
-
+  const handleCallbackConfirmMmToWallet = () => {
+    // Show confirm Modal
+    setVisibleConfirm(true)
   }
-  const handleCancelConfirmMMToWallet = () => {
+  const handleCancelConfirmMmToWallet = () => {
     setProcessStep(2)
+  }
+  const handleConfirmCreateTransaction = () => {
+    if (showWalletToMm) {
+      console.log('Xử lý tạo giao dịch chuyển từ ví sang MM, gửi otp')
+      setVisibleConfirm(false)
+      setVisibleOpt(true)
+    }
+    if (showMmToWallet) {
+      console.log('Xử lý tạo giao dịch chuyển từ MM sang ví, gửi otp')
+      setVisibleConfirm(false)
+      setVisibleOpt(true)
+    }
+  }
+  const handleConfirmOtp = (otp) => {
+    if (showWalletToMm) {
+      console.log('Gọi api xác thực otp cho giao dịch chuyển từ ví sang MM', otp)
+      // Thành công
+      setVisibleOpt(false)
+      setVisibleSuccess(true)
+      // Thất bại show message lỗi
+    }
+    if (showMmToWallet) {
+      console.log('Gọi api xác thực otp cho giao dịch chuyển từ MM sang ví', otp)
+      // Thành công
+      setVisibleOpt(false)
+      setVisibleSuccess(true)
+      // Thất bại show message lỗi
+    }
   }
 
   return (
@@ -100,7 +139,6 @@ const TransferMobileMoneyPage = props => {
           <Col xxl={4} xl={4} lg={4} md={4} sm={4} xs={4}>
             <Steps
               direction='vertical'
-              progressDot
               current={processStep}
               onChange={handleClickStep}>
               <Step title='Nhập tài khoản' description={null} />
@@ -111,7 +149,7 @@ const TransferMobileMoneyPage = props => {
           </Col>
           <Col xxl={12} xl={12} lg={12} md={12} sm={12} xs={12}>
             <MMProcessBox>
-              <ConditionRender visible={processStep < 2}>
+              <ConditionDisplay visible={processStep < 2}>
                 <Form
                   colon={false}
                   form={formVerify}
@@ -134,7 +172,7 @@ const TransferMobileMoneyPage = props => {
                     </RowFlexDiv>
                   </Form.Item>
                 </Form>
-                <ConditionRender visible={processStep === 1}>
+                <ConditionDisplay visible={processStep === 1}>
                   <GrayTitle>Thông tin User</GrayTitle>
                   {
                     !MMUserInfo ?
@@ -155,36 +193,56 @@ const TransferMobileMoneyPage = props => {
                         <Space
                           align={'center'}
                           style={{ marginTop: 16, width: '100%', justifyContent: 'center' }}>
-                          <Button onClick={handleClickWalletToMM} type={'default'}>Ví sang Mobifone Money</Button>
-                          <Button onClick={handleClickMMToWallet} type={'primary'}>Mobifone Money sang Ví</Button>
+                          <Button onClick={handleClickWalletToMm} type={'default'}>Ví sang Mobifone Money</Button>
+                          <Button onClick={handleClickMmToWallet} type={'primary'}>Mobifone Money sang Ví</Button>
                         </Space>
                       </>
                   }
-                </ConditionRender>
-              </ConditionRender>
+                </ConditionDisplay>
+              </ConditionDisplay>
               <ConditionRender visible={processStep === 2}>
-                <ProcessWalletToMM
-                  visible={showWalletToMM}
-                  callbackProcessWalletToMM={handleCallbackProcessWalletToMM} />
-                <ProcessMMToWallet
-                  visible={showMMToWallet}
-                  callbackProcessMMToWallet={handleCallbackProcessMMToWallet} />
+                <ProcessWalletToMm
+                  visible={showWalletToMm}
+                  callbackProcessWalletToMm={handleCallbackProcessWalletToMm} />
+                <ProcessMmToWallet
+                  visible={showMmToWallet}
+                  callbackProcessMmToWallet={handleCallbackProcessMmToWallet} />
               </ConditionRender>
               <ConditionRender visible={processStep === 3}>
-                <ConfirmWalletToMM
-                  visible={showWalletToMM}
-                  onCancel={handleCancelConfirmWalletToMM}
-                  callbackConfirmWalletToMM={handleCallbackConfirmWalletToMM} />
+                <ConfirmWalletToMm
+                  visible={showWalletToMm}
+                  onCancel={handleCancelConfirmWalletToMm}
+                  callbackConfirmWalletToMm={handleCallbackConfirmWalletToMm} />
+                <ConfirmMmToWallet
+                  visible={showMmToWallet}
+                  onCancel={handleCancelConfirmMmToWallet}
+                  callbackConfirmMmToWallet={handleCallbackConfirmMmToWallet} />
               </ConditionRender>
             </MMProcessBox>
           </Col>
           <Col xxl={8} xl={8} lg={8} md={8} sm={8} xs={8}>
             <ConditionRender visible={processStep === 3}>
-              <ConfirmWalletToMMSmall visible={showWalletToMM} />
+              <ConfirmWalletToMmSmall visible={showWalletToMm} />
+              <ConfirmMmToWalletSmall visible={showMmToWallet} />
             </ConditionRender>
           </Col>
         </Row>
       </TransferMobileMoneyPageWrapper>
+      <ConfirmModal
+        description={'Bạn có chắc chắn muốn lưu lệnh vừa tạo'}
+        visible={visibleConfirm}
+        onCancel={() => setVisibleConfirm(false)}
+        callbackConfirm={handleConfirmCreateTransaction} />
+      <OtpModal
+        visible={visibleOpt}
+        callbackOtp={handleConfirmOtp}
+        onCancel={() => setVisibleOpt(false)}
+        phoneNumber={'0987654321'} />
+      <SuccessModal
+        icon={IMAGES.SUCCESS_CREATE_TRANSACTION}
+        description={'Bạn đã lập lệnh thành công'}
+        visible={visibleSuccess}
+        callbackSuccess={() => setVisibleSuccess(false)} />
     </DefaultLayout>
   )
 }

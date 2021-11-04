@@ -4,15 +4,15 @@ import { GrayTitle, RowFlexEndDiv } from '../../components/CommonStyled/CommonSt
 import { Button, Descriptions, Form, Input, InputNumber } from 'antd'
 import numberUtils from '../../utils/numberUtils'
 import validator from '../../validator'
-import ConditionRender from '../../components/ConditionRender'
+import ConditionDisplay from '../../components/ConditionDisplay'
 
-const ProcessMMToWallet = props => {
-  const { visible, callbackProcessMMToWallet } = props
-  const [formMMToWallet] = Form.useForm()
+const ProcessMmToWallet = props => {
+  const { visible, callbackProcessMmToWallet } = props
+  const [formMmToWallet] = Form.useForm()
   const currentBalance = 1000000000
   const [balance, setBalance] = useState(currentBalance)
-  const handleSubmitTransferMMToWallet = (formCollection) => {
-    callbackProcessMMToWallet(formCollection)
+  const handleSubmitTransferMmToWallet = (formCollection) => {
+    callbackProcessMmToWallet(formCollection)
   }
   const handleChangeAmount = (amount) => {
     if (!amount) {
@@ -21,7 +21,7 @@ const ProcessMMToWallet = props => {
     }
     if (amount >= currentBalance) {
       console.log(amount)
-      formMMToWallet.setFieldsValue({
+      formMmToWallet.setFieldsValue({
         amount: currentBalance,
       })
       setBalance(0)
@@ -31,7 +31,7 @@ const ProcessMMToWallet = props => {
     setBalance(newBalance)
   }
   return (
-    <ConditionRender visible={visible}>
+    <ConditionDisplay visible={visible}>
       <GrayTitle>Chuyển tiền Mobifone Money</GrayTitle>
       <Descriptions labelStyle={{ width: '50%' }} column={1} size={'small'} bordered>
         <Descriptions.Item label='Tài khoản MobiFone Money'>0912 345 6789</Descriptions.Item>
@@ -45,17 +45,17 @@ const ProcessMMToWallet = props => {
         Chuyển tiền từ Mobifone Money đến ví
       </GrayTitle>
       <Descriptions
-        labelStyle={{ width: '25%' }}
-        contentStyle={{ width: '25%' }}
-        column={2}
+        labelStyle={{ width: '50%' }}
+        contentStyle={{ width: '50%' }}
+        column={1}
         size={'small'} bordered>
-        <Descriptions.Item label='Tài khoản chuyển'>0987654321</Descriptions.Item>
-        <Descriptions.Item label='Số dư'>{numberUtils.thousandSeparator(balance)} đ</Descriptions.Item>
+        <Descriptions.Item label='Tài khoản Mobifone Money chuyển'>0987654321</Descriptions.Item>
+        <Descriptions.Item label='Số dư Mobifone Money'>{numberUtils.thousandSeparator(balance)} đ</Descriptions.Item>
       </Descriptions>
       <Form
-        onFinish={handleSubmitTransferMMToWallet}
+        onFinish={handleSubmitTransferMmToWallet}
         requiredMark={false}
-        form={formMMToWallet}
+        form={formMmToWallet}
         style={{ marginTop: 16 }}
         labelAlign={'left'}
         labelCol={{ span: 4 }}
@@ -81,13 +81,13 @@ const ProcessMMToWallet = props => {
           <Button type={'primary'} htmlType={'submit'}>Tiếp theo</Button>
         </RowFlexEndDiv>
       </Form>
-    </ConditionRender>
+    </ConditionDisplay>
   )
 }
 
-ProcessMMToWallet.propTypes = {
+ProcessMmToWallet.propTypes = {
   visible: PropTypes.bool.isRequired,
-  callbackProcessMMToWallet: PropTypes.func.isRequired,
+  callbackProcessMmToWallet: PropTypes.func.isRequired,
 }
 
-export default ProcessMMToWallet
+export default ProcessMmToWallet
