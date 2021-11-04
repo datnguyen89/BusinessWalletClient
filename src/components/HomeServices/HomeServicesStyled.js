@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const HomeServicesWrapper = styled.div`
-  margin: 0 16px;
+  margin: 16px;
   .ant-ribbon-wrapper {
     height: 100%;
   }

@@ -7,6 +7,12 @@ export const AuthShadowBox = styled.div`
   width: ${props => props.width ? props.width : 'auto'};
   padding: 24px;
 `
+export const PaginationLabel = styled.span`
+  color: #767676;
+`
+export const RowFlexDiv = styled.div`
+  display: flex;
+`
 export const RowFlexEndDiv = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -21,6 +27,10 @@ export const RowSpaceBetweenDiv = styled.div`
   margin: ${props => props.margin || 0};
   padding: ${props => props.padding || 0};
 `
-export const PaginationLabel = styled.span`
-  color: #767676;
+export const GrayTitle = styled.h1`
+  padding: 8px;
+  color: ${props => props.color || '#848788'};
+  background: ${props => props.background || '#F6F6F6'};
+  margin-bottom: 16px;
+  margin-top: ${props => props.marginTop};
 `
