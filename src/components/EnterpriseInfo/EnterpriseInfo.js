@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+
+import {inject, observer} from 'mobx-react'
 
 import {
   AreaInfo,
@@ -13,32 +15,7 @@ import AreaEnterpriseInfo from '../AreaEnterpriseInfo'
 import AreaAccountInfo from '../AreaAccountInfo'
 import AreaAddCard from '../AreaAddCard'
 
-const dataAdministratorPanel = [
-  {
-    id: '1', key: 'key', value: 'value',
-  },
-  {
-    id: '2', key: 'key', value: 'value',
-  },
-  {
-    id: '3', key: 'key', value: 'value',
-  },
-  {
-    id: '4', key: 'key', value: 'value',
-  },
-  {
-    id: '5', key: 'key', value: 'value',
-  },
-  {
-    id: '6', key: 'key', value: 'value',
-  },
-  {
-    id: '7', key: 'key', value: 'value',
-  },
-  {
-    id: '8', key: 'key', value: 'value',
-  },
-]
+const dataAdministratorPanel = []
 
 
 const dataAccountInfo = [
@@ -79,6 +56,7 @@ function SamplePrevArrow(props) {
 }
 
 const EnterpriseInfo = props => {
+  const {infoAccountStore} = props
 
   const settings = {
     dots: true,
@@ -89,11 +67,19 @@ const EnterpriseInfo = props => {
     prevArrow: <SamplePrevArrow />,
   }
 
+  useEffect(()=> {
+    //todo : effect loading
+    infoAccountStore.getInfoAccount()
+      .then(res=>{
+        // extra code
+      })
+  }, []);
+
   return (
     <EnterpriseInfoWrapper>
       <AreaInfo>
         <AreaEnterpriseInfo />
-        <AreaAccountInfo dataAccountInfo={dataAccountInfo} />
+        <AreaAccountInfo dataAccountInfo={infoAccountStore.infoAccount} />
       </AreaInfo>
       <AreaPanel>
         <AreaPanelAdmin dataAdministratorPanel={dataAdministratorPanel} />
@@ -106,4 +92,4 @@ const EnterpriseInfo = props => {
 
 EnterpriseInfo.propTypes = {}
 
-export default EnterpriseInfo
+export default inject('infoAccountStore')(observer(EnterpriseInfo))
