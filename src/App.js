@@ -26,7 +26,8 @@ import TransferMobileMoneyPage from './pages/TransferMobileMoneyPage'
 import TransferMultiplePage from './pages/TransferMultiplePage'
 import LoadingOverLay from './components/LoadingOverLay'
 import ContractPage from './pages/Contract/ContractPage'
-
+import moment from 'moment'
+import 'moment/locale/vi'
 
 const history = createBrowserHistory()
 
@@ -47,6 +48,12 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
     }
   />
 )
+
+moment.locale('vi', {
+  week: {
+    dow: 1,
+  },
+})
 
 const rootStores = {
   commonStore,
