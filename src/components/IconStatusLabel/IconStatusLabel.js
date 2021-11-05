@@ -7,7 +7,7 @@ import ICONS from '../../icons'
 const IconStatusLabel = props => {
   const { label, status, iconHeight, iconWidth, fontSize } = props
 
-  const renderStatusIcon = (status) => {
+  const renderStatusIcon = () => {
     let icon = ''
     switch (status) {
       case TRANSACTION_STATUS.WAITING:
@@ -20,15 +20,33 @@ const IconStatusLabel = props => {
         icon = ICONS.APPROVED_ICON
         break
       default:
+        icon = ICONS.WAITING_ICON
         break
     }
     return icon
   }
-
+  const renderStatusLabel = () => {
+    let label = ''
+    switch (status) {
+      case TRANSACTION_STATUS.WAITING:
+        label = 'Chờ duyệt'
+        break
+      case TRANSACTION_STATUS.REJECTED:
+        label = 'Từ chối'
+        break
+      case TRANSACTION_STATUS.APPROVED:
+        label = 'Đã phê duyệt'
+        break
+      default:
+        label = 'Chờ duyệt'
+        break
+    }
+    return label
+  }
   return (
     <IconStatusLabelWrapper>
-      <img src={renderStatusIcon(status)} alt={''} height={iconHeight || 16} width={iconWidth || 16} />
-      <IconStatusLabelText fontSize={fontSize || 'inherit'}>{label}</IconStatusLabelText>
+      <img src={renderStatusIcon()} alt={''} height={iconHeight || 16} width={iconWidth || 16} />
+      <IconStatusLabelText fontSize={fontSize || 'inherit'}>{label || renderStatusLabel()}</IconStatusLabelText>
     </IconStatusLabelWrapper>
   )
 }
