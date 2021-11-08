@@ -1,29 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { inject, observer } from 'mobx-react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons'
 import {
   BankAvatarWrapper,
   BankInfoArea,
-  DrawerSideBarWrapper, MenuSidebarArea,
+  DrawerSideBarWrapper,
+  MenuSidebarArea,
   MenuSidebarItem,
-  MenuSidebarWrapper, SocialIconWrapper,
+  SocialIconWrapper,
 } from './DrawerSideBarStyled'
-import { DEVICE, SIDEBAR_WIDTH_COLLAPSE, SIDEBAR_WIDTH_EXPAND } from '../../utils/constant'
+import { SIDEBAR_WIDTH_EXPAND } from '../../utils/constant'
 import IMAGES from '../../images'
-import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 import { Link, useHistory } from 'react-router-dom'
 import ICONS from '../../icons'
 
 const DrawerSideBar = props => {
   const { commonStore } = props
-  const { isCollapse, device, pageName } = commonStore
+  const { pageName } = commonStore
 
   const history = useHistory()
-
-  const handleToggleSideBar = (collapse) => {
-    commonStore.setIsCollapse(collapse)
-  }
 
   const handleClickMenu = (path) => {
     history.push(`/${path}`)
@@ -36,8 +30,8 @@ const DrawerSideBar = props => {
 
   return (
     <DrawerSideBarWrapper
-      width={isCollapse ? SIDEBAR_WIDTH_COLLAPSE : SIDEBAR_WIDTH_EXPAND}>
-      <BankInfoArea display={isCollapse ? 'none' : 'flex'}>
+      width={SIDEBAR_WIDTH_EXPAND}>
+      <BankInfoArea display={'flex'}>
         <BankAvatarWrapper>
           <img src={IMAGES.SACOMBANK} alt={''} height={60} />
         </BankAvatarWrapper>
@@ -60,7 +54,7 @@ const DrawerSideBar = props => {
             </defs>
           </svg>
           <span className={'menu-sidebar-label'}
-                style={{ display: isCollapse ? 'none' : 'block' }}>Thông tin định danh</span>
+          >Thông tin định danh</span>
         </MenuSidebarItem>
         <MenuSidebarItem
           onClick={() => handleClickMenu('transfer-multiple')}
@@ -71,7 +65,7 @@ const DrawerSideBar = props => {
               fill='#979797' />
           </svg>
           <span className={'menu-sidebar-label'}
-                style={{ display: isCollapse ? 'none' : 'block' }}>Chuyển tiền theo Lô</span>
+          >Chuyển tiền theo Lô</span>
         </MenuSidebarItem>
         <MenuSidebarItem
           onClick={() => handleClickMenu('transfer-mobile-money')}
@@ -87,7 +81,7 @@ const DrawerSideBar = props => {
               d='M19.0562 0.909927H10.6419C9.38877 0.909927 8.36953 1.92916 8.36953 3.18227V5.53223C5.16783 5.90193 2.67285 8.62771 2.67285 11.9264C2.67285 15.2252 5.16783 17.952 8.36953 18.3207V20.7635C8.36953 22.0167 9.38877 23.0359 10.6419 23.0359H19.0562C20.3093 23.0359 21.3285 22.0167 21.3285 20.7635V3.18227C21.3285 1.92916 20.3093 0.909927 19.0562 0.909927ZM10.6409 2.2672H19.0552C19.5597 2.2672 19.9702 2.67776 19.9702 3.18227V3.81035H9.72681V3.18227C9.72681 2.67776 10.1363 2.2672 10.6409 2.2672ZM14.1469 15.936L14.295 15.7501V8.10278L14.1469 7.91691C14.0049 7.7392 13.8528 7.57069 13.6934 7.40933C13.8221 7.32354 13.9845 7.27146 14.1612 7.27146C14.5769 7.27146 14.9149 7.55435 14.9149 7.90261V16.0442C14.9149 16.3925 14.5769 16.6754 14.1612 16.6754C13.96 16.6754 13.7772 16.609 13.6414 16.4997C13.8191 16.323 13.9876 16.1351 14.1469 15.936ZM12.5466 17.3729C12.9581 17.7232 13.529 17.9418 14.1602 17.9418C15.4092 17.9418 16.4254 17.09 16.4254 16.0432V7.90261C16.4254 6.8558 15.4092 6.00406 14.1602 6.00406C13.5586 6.00406 13.0123 6.20218 12.6058 6.52389C12.3484 6.3564 12.0809 6.20525 11.8031 6.07759C11.1423 5.77223 10.4458 5.58635 9.72579 5.51895V5.16763H19.9702V18.2042H10.5428C11.2557 18.0439 11.9328 17.762 12.5466 17.3729ZM4.03013 11.9264C4.03013 9.12508 6.30962 6.84559 9.11098 6.84559C9.85243 6.84559 10.5673 7.00184 11.2352 7.31027C11.8817 7.60848 12.4659 8.04763 12.9367 8.58584V15.267C11.9695 16.3761 10.5877 17.0073 9.11098 17.0073C6.30962 17.0073 4.03013 14.7278 4.03013 11.9264ZM19.0562 21.6786H10.6419C10.1374 21.6786 9.72681 21.2681 9.72681 20.7635V19.5625H19.9712V20.7635C19.9702 21.2681 19.5597 21.6786 19.0562 21.6786Z'
               fill='#A8A8A8' />
           </svg>
-          <span className={'menu-sidebar-label'} style={{ display: isCollapse ? 'none' : 'block' }}>Nạp/Rút Mobifone Money</span>
+          <span className={'menu-sidebar-label'}>Nạp/Rút Mobifone Money</span>
         </MenuSidebarItem>
         <MenuSidebarItem
           onClick={() => handleClickMenu('transaction-manage')}
@@ -107,7 +101,7 @@ const DrawerSideBar = props => {
               fill='#A8A8A8' />
           </svg>
           <span className={'menu-sidebar-label'}
-                style={{ display: isCollapse ? 'none' : 'block' }}>Quản lý giao dịch</span>
+          >Quản lý giao dịch</span>
         </MenuSidebarItem>
         <MenuSidebarItem
           onClick={() => handleClickMenu('transaction-history')}
@@ -118,7 +112,7 @@ const DrawerSideBar = props => {
               fill='#A8A8A8' />
           </svg>
           <span className={'menu-sidebar-label'}
-                style={{ display: isCollapse ? 'none' : 'block' }}>Lịch sử giao dịch</span>
+          >Lịch sử giao dịch</span>
         </MenuSidebarItem>
         <MenuSidebarItem
           onClick={() => handleClickMenu('policy')}
@@ -129,7 +123,7 @@ const DrawerSideBar = props => {
                   fill='#A8A8A8' />
           </svg>
           <span className={'menu-sidebar-label'}
-                style={{ display: isCollapse ? 'none' : 'block' }}>Điều khoản sử dụng</span>
+          >Điều khoản sử dụng</span>
         </MenuSidebarItem>
         <MenuSidebarItem
           onClick={() => handleClickMenu('support')}
@@ -139,10 +133,10 @@ const DrawerSideBar = props => {
                   d='M13.0638 3.64764V3.2766H10.9362V3.64766C10.9363 3.65607 10.9363 3.66446 10.9362 3.67283V7.22234C11.2787 7.14642 11.6347 7.10638 12 7.10638C12.3653 7.10638 12.7213 7.14642 13.0638 7.22234V3.67284C13.0637 3.66447 13.0637 3.65607 13.0638 3.64764ZM14.3404 7.70128C15.1664 8.15191 15.8481 8.83364 16.2987 9.65957H19.5187C18.7517 7.19426 16.8051 5.24748 14.3404 4.48117V7.70128ZM16.7777 10.9362C16.8536 11.2787 16.8936 11.6347 16.8936 12C16.8936 12.3653 16.8536 12.7213 16.7777 13.0638H20.3272C20.3355 13.0637 20.3439 13.0637 20.3524 13.0638H20.7234V10.9362H20.3524C20.3439 10.9363 20.3355 10.9363 20.3272 10.9362H16.7777ZM16.2987 14.3404C15.8481 15.1664 15.1664 15.8481 14.3404 16.2987V19.5187C16.8057 18.7517 18.7525 16.8051 19.5188 14.3404H16.2987ZM13.0638 16.7777C12.7213 16.8536 12.3653 16.8936 12 16.8936C11.6347 16.8936 11.2787 16.8536 10.9362 16.7777V20.3272C10.9363 20.3355 10.9363 20.3439 10.9362 20.3523V20.7234H13.0638V20.3524C13.0637 20.3439 13.0637 20.3355 13.0638 20.3272V16.7777ZM9.65957 16.2987C8.83364 15.8481 8.15191 15.1664 7.70128 14.3404H4.48134C5.24828 16.8057 7.19489 18.7525 9.65957 19.5188V16.2987ZM7.22234 13.0638C7.14642 12.7213 7.10638 12.3653 7.10638 12C7.10638 11.6347 7.14642 11.2787 7.22234 10.9362H3.67283C3.66446 10.9363 3.65607 10.9363 3.64766 10.9362H3.2766V13.0638H3.64765C3.65607 13.0637 3.66447 13.0637 3.67284 13.0638H7.22234ZM7.70128 9.65957C8.15191 8.83364 8.83364 8.15191 9.65957 7.70128V4.48116C7.19452 5.24754 5.24754 7.19452 4.48116 9.65957H7.70128ZM9.65957 3.15325C6.48735 3.99018 3.99018 6.48735 3.15325 9.65957H2.6383C2.28578 9.65957 2 9.94535 2 10.2979V13.7021C2 14.0547 2.28578 14.3404 2.6383 14.3404H3.15336C3.99098 17.5129 6.48768 20.0099 9.65957 20.8467V21.3617C9.65957 21.7142 9.94535 22 10.2979 22H13.7021C14.0547 22 14.3404 21.7142 14.3404 21.3617V20.8466C17.5129 20.009 20.0099 17.5123 20.8467 14.3404H21.3617C21.7142 14.3404 22 14.0547 22 13.7021V10.2979C22 9.94535 21.7142 9.65957 21.3617 9.65957H20.8466C20.009 6.48708 17.5123 3.99012 14.3404 3.15325V2.6383C14.3404 2.28578 14.0547 2 13.7021 2H10.2979C9.94535 2 9.65957 2.28578 9.65957 2.6383V3.15325ZM12 15.617C10.0024 15.617 8.38298 13.9976 8.38298 12C8.38298 10.0024 10.0024 8.38298 12 8.38298C13.9976 8.38298 15.617 10.0024 15.617 12C15.617 13.9976 13.9976 15.617 12 15.617Z'
                   fill='#A8A8A8' />
           </svg>
-          <span className={'menu-sidebar-label'} style={{ display: isCollapse ? 'none' : 'block' }}>Trợ giúp</span>
+          <span className={'menu-sidebar-label'}>Trợ giúp</span>
         </MenuSidebarItem>
       </MenuSidebarArea>
-      <SocialIconWrapper flexDirection={isCollapse ? 'column' : 'row'}>
+      <SocialIconWrapper flexDirection={'row'}>
         <Link to={'#'}>
           <img src={ICONS.FACEBOOK} alt={''} />
         </Link>

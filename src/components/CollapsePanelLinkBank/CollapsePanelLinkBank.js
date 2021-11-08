@@ -27,20 +27,24 @@ const CollapsePanelLinkBank = props => {
     },
     {
       title: 'Lệnh',
+      responsive: ['xxl', 'xl'],
       render: record => record.transactionType,
     },
     {
       title: 'Trạng thái lệnh',
+      responsive: ['xxl', 'xl'],
       render: record => (
         <IconStatusLabel status={record.transactionStatus} label={null} />
       ),
     },
     {
       title: 'Người tạo',
+      responsive: ['xxl', 'xl', 'md'],
       render: record => record.createdUser,
     },
     {
       title: 'Người duyệt',
+      responsive: ['xxl', 'xl', 'md'],
       render: record => (
         <>
           <IconStatusLabel status={record.approveUser1.processStatus} label={record.approveUser1.name} />
@@ -51,10 +55,12 @@ const CollapsePanelLinkBank = props => {
     },
     {
       title: 'Ngày tạo',
+      responsive: ['xxl', 'xl'],
       render: record => record.createdDate,
     },
     {
       title: 'Trạng thái xử lý',
+      responsive: ['xxl', 'xl'],
       render: record => (
         <IconStatusLabel status={record.processStatus} label={null} />
       ),
@@ -74,7 +80,7 @@ const CollapsePanelLinkBank = props => {
       <ExpandContent>
         <Descriptions
           bordered
-          column={2}
+          column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
           size={'small'}>
           <Descriptions.Item label={<strong>Ngân hàng</strong>} span={2}>{record.bankName}</Descriptions.Item>
           <Descriptions.Item label={<strong>Số tài khoản</strong>}

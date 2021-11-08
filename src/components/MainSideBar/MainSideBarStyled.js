@@ -6,6 +6,8 @@ export const MainSideBarWrapper = styled.aside`
   height: 100vh;
   width: ${props => props.width}px;
   display: ${props => props.display};
+  flex-direction: column;
+  align-items: center;
   overflow-y: auto;
   padding-bottom: 64px;
   padding-top: 56px;
@@ -61,7 +63,8 @@ export const BankAvatarWrapper = styled.div`
 export const MenuSidebarArea = styled.ul`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-grow: 1;
 `
 export const MenuSidebarItem = styled.li`
   cursor: pointer;
@@ -87,11 +90,8 @@ export const MenuSidebarItem = styled.li`
   }
 `
 export const SocialIconWrapper = styled.div`
-  position: absolute;
-  left: 50%;
-  bottom: 64px;
-  transform: translateX(-50%);
   display: flex;
+  justify-content: center;
   flex-direction: ${props => props.flexDirection};
 
   a {
