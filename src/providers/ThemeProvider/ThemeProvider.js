@@ -4,6 +4,8 @@ import { GlobalStyle } from './ThemeProviderStyled'
 import { useTranslation } from 'react-i18next'
 import { useMediaQuery } from 'react-responsive/src'
 import { DEVICE } from '../../utils/constant'
+import viVN from 'antd/es/locale/vi_VN'
+import { ConfigProvider } from 'antd'
 
 const ThemeProvider = props => {
   const { commonStore, children } = props
@@ -32,12 +34,12 @@ const ThemeProvider = props => {
   }, [isMobile])
 
   return (
-    <>
+    <ConfigProvider locale={viVN}>
       <GlobalStyle
         theme={commonStore.appTheme}
       />
       {children}
-    </>
+    </ConfigProvider>
   )
 }
 

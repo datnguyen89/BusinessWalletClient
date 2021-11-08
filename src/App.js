@@ -8,6 +8,7 @@ import { createBrowserHistory } from 'history'
 // MobX
 import { Provider } from 'mobx-react'
 import commonStore from './stores/commonStore.js'
+import mobileMoneyStore from './stores/mobileMoneyStore.js'
 // Pages
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
@@ -27,7 +28,8 @@ import TranferPage from './pages/TranferPage'
 import WithdrawPage from './pages/WithdrawPage'
 import LoadingOverLay from './components/LoadingOverLay'
 import ContractPage from './pages/Contract/ContractPage'
-
+import moment from 'moment'
+import 'moment/locale/vi'
 
 const history = createBrowserHistory()
 
@@ -49,8 +51,15 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
   />
 )
 
+moment.locale('vi', {
+  week: {
+    dow: 1,
+  },
+})
+
 const rootStores = {
   commonStore,
+  mobileMoneyStore,
 }
 
 
@@ -78,7 +87,7 @@ const App = () => {
             <Route exact path={'/forgot-password'} component={ForgotPasswordPage} />
             <Route exact path={'/not-permission'} component={NotPermissionPage} />
             <Route exact path={'/contract'} component={ContractPage} />
-            <ProtectedRoute exact path={'/protected'} component={ProtectedPage} />
+            <Route exact path={'/protected'} component={ProtectedPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </Router>

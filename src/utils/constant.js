@@ -10,6 +10,18 @@ export const DEVICE = {
   TABLET: 'TABLET',
   DESKTOP: 'DESKTOP',
 }
+export const TRANSACTION_STATUS = {
+  WAITING: 1,
+  APPROVED: 2,
+  REJECTED: 3,
+  ALL: 99
+}
+export const PROCESS_STATUS = {
+  WAITING: 1,
+  APPROVED: 2,
+  REJECTED: 3,
+  ALL: 99
+}
 export const BREADCRUMB_DATA = {
   HOME: [
     { ID: 1, LABEL: 'Trang chủ', PATH: null },
@@ -20,7 +32,7 @@ export const BREADCRUMB_DATA = {
   ],
   TRANSFER_MULTIPLE: [
     { ID: 4, LABEL: 'Trang chủ', PATH: '/' },
-    { ID: 5, LABEL: 'Chuyển tiền theo Lô', PATH: null },
+    { ID: 5, LABEL: 'Chuyển tiền', PATH: null },
   ],
   MOBILE_MONEY: [
     { ID: 6, LABEL: 'Trang chủ', PATH: '/' },

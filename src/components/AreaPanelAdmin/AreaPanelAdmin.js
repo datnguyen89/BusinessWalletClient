@@ -8,7 +8,7 @@ import {
   AreaPanelAdminAvatar,
   AreaPanelAdminLabel,
   AreaPanelAdminWrapper,
-  AreaPanelAdminInfo,
+  AreaPanelAdminInfo, DivLabel,
 } from './AreaPanelAdminStyled'
 
 const AreaPanelAdmin = props => {
@@ -20,7 +20,7 @@ const AreaPanelAdmin = props => {
         <AreaPanelAdminAvatar>
           <img src={IMAGES.AVATAR_ADMIN} alt='Avatar Administrator' />
         </AreaPanelAdminAvatar>
-        <div className='label'>Adminstrator</div>
+        <DivLabel>Adminstrator</DivLabel>
       </AreaPanelAdminLabel>
       <AreaPanelAdminInfo>
         {

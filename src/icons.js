@@ -29,6 +29,9 @@ const ICONS = {
   SERVICE10: `${process.env.PUBLIC_URL}/assets/icons/services/s10.png`,
   SERVICE11: `${process.env.PUBLIC_URL}/assets/icons/services/s11.png`,
   SERVICE12: `${process.env.PUBLIC_URL}/assets/icons/services/s12.png`,
+  WAITING_ICON: `${process.env.PUBLIC_URL}/assets/icons/waiting.svg`,
+  REJECTED_ICON: `${process.env.PUBLIC_URL}/assets/icons/rejected.svg`,
+  APPROVED_ICON: `${process.env.PUBLIC_URL}/assets/icons/approved.svg`,
 
   DEPOSIT_ICON: `${process.env.PUBLIC_URL}/assets/icons/deposit.svg`,
   LINK_BANK_ICON: `${process.env.PUBLIC_URL}/assets/icons/linkbank.svg`,
