@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { CollapsePanelLinkBankWrapper } from './CollapsePanelLinkBankStyled'
-import { Descriptions, Form, Table } from 'antd'
+import { Descriptions, Form, Pagination, Table } from 'antd'
 import IconStatusLabel from '../IconStatusLabel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
@@ -9,6 +9,7 @@ import { ExpandContent } from '../../pages/TransactionManagePage/TransactionMana
 import { TRANSACTION_STATUS } from '../../utils/constant'
 import uuid from 'uuid'
 import moment from 'moment'
+import { PaginationLabel, RowSpaceBetweenDiv } from '../CommonStyled/CommonStyled'
 
 const CollapsePanelLinkBank = props => {
   const [mockupData, setMockupData] = useState([])
@@ -123,6 +124,7 @@ const CollapsePanelLinkBank = props => {
     }
     setMockupData(newMockupData)
   }, [])
+
   return (
     <CollapsePanelLinkBankWrapper>
       <Table
@@ -134,6 +136,12 @@ const CollapsePanelLinkBank = props => {
         columns={columns}
         rowKey={record => record.id}
         pagination={false} />
+      <RowSpaceBetweenDiv margin={'16px 0'}>
+        <PaginationLabel>
+          Hiển thị 5 trên tổng số 50 bản ghi
+        </PaginationLabel>
+        <Pagination total={50} />
+      </RowSpaceBetweenDiv>
     </CollapsePanelLinkBankWrapper>
   )
 }
