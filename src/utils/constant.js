@@ -47,8 +47,16 @@ export const BREADCRUMB_DATA = {
     { ID: 17, LABEL: 'Liên kết', PATH: null },
   ],
   DEPOSIT: [
-    { ID: '9', LABEL: 'Trang chủ', PATH: '/' },
-    { LABEL: 'Nạp tiền', PATH: null },
+    { ID: 18, LABEL: 'Trang chủ', PATH: '/' },
+    { ID: 19, LABEL: 'Nạp tiền', PATH: null },
+  ],
+  TRANFER: [
+    { ID: 20, LABEL: 'Trang chủ', PATH: '/' },
+    { ID: 21, LABEL: 'Chuyển tiền', PATH: null },
+  ],
+  WITHDRAW: [
+    { ID: 22, LABEL: 'Trang chủ', PATH: '/' },
+    { ID: 23, LABEL: 'Rút tiền', PATH: null },
   ],
 }
 export const HOME_WIDGET_DATA = [

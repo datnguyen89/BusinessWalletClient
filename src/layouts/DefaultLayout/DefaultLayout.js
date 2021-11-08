@@ -24,6 +24,15 @@ const DefaultLayout = props => {
       case 'contract':
         commonStore.setPageName('contract')
         return
+      case 'deposit':
+        commonStore.setPageName('deposit')
+        return
+      case 'tranfer':
+        commonStore.setPageName('tranfer')
+        return
+      case 'withdraw':
+        commonStore.setPageName('withdraw')
+        return
       case 'identity-info':
         commonStore.setPageName('identity-info')
         return

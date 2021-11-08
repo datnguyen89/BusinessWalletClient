@@ -1,11 +1,6 @@
 const ICONS = {
   NOTIFY_BELL: `${process.env.PUBLIC_URL}/assets/icons/notify-bell.png`,
-  DEPOSIT_ICON: `${process.env.PUBLIC_URL}/assets/icons/naptien.png`,
   CANCEL_LINK: `${process.env.PUBLIC_URL}/assets/icons/modal/cancel-link.png`,
-  RECHARGE_ICON: `${process.env.PUBLIC_URL}/assets/icons/naptien.png`,
-  TRANSFER_ICON: `${process.env.PUBLIC_URL}/assets/icons/chuyentien.png`,
-  LINK_BANK_ICON: `${process.env.PUBLIC_URL}/assets/icons/lienket.svg`,
-  WITHDRAW_ICON: `${process.env.PUBLIC_URL}/assets/icons/ruttien.png`,
   WHITE_ARROW_DOWN: `${process.env.PUBLIC_URL}/assets/icons/white-arrow-down.png`,
   LOGOUT: `${process.env.PUBLIC_URL}/assets/icons/log-out.svg`,
   SETTING: `${process.env.PUBLIC_URL}/assets/icons/setting.svg`,
@@ -35,5 +30,9 @@ const ICONS = {
   SERVICE11: `${process.env.PUBLIC_URL}/assets/icons/services/s11.png`,
   SERVICE12: `${process.env.PUBLIC_URL}/assets/icons/services/s12.png`,
 
+  DEPOSIT_ICON: `${process.env.PUBLIC_URL}/assets/icons/deposit.svg`,
+  LINK_BANK_ICON: `${process.env.PUBLIC_URL}/assets/icons/linkbank.svg`,
+  TRANSFER_ICON: `${process.env.PUBLIC_URL}/assets/icons/tranfer.svg`,
+  WITHDRAW_ICON: `${process.env.PUBLIC_URL}/assets/icons/withdraw.svg`,
 }
 export default ICONS

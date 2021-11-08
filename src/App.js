@@ -24,7 +24,7 @@ import TransferMobileMoneyPage from './pages/TransferMobileMoneyPage'
 import TransferMultiplePage from './pages/TransferMultiplePage'
 import DepositPage from './pages/DepositPage'
 import TranferPage from './pages/TranferPage'
-import WithDrawPage from './pages/WithDrawPage'
+import WithdrawPage from './pages/WithdrawPage'
 import LoadingOverLay from './components/LoadingOverLay'
 import ContractPage from './pages/Contract/ContractPage'
 
@@ -73,7 +73,7 @@ const App = () => {
             <Route exact path={'/support'} component={SupportPage} />
             <Route exact path={'/login'} component={LoginPage} />
             <Route exact path={'/deposit'} component={DepositPage} />
-            <Route exact path={'/trafer'} component={TranferPage} />
+            <Route exact path={'/tranfer'} component={TranferPage} />
             <Route exact path={'/withdraw'} component={WithdrawPage} />
             <Route exact path={'/forgot-password'} component={ForgotPasswordPage} />
             <Route exact path={'/not-permission'} component={NotPermissionPage} />

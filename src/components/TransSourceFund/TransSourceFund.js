@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   Wrapper,
-  SourceItem
+  SourceItem,
+  SourceIcon
 } from './TransSourceFundStyled'
-import { Row, Col, Image } from 'antd'
+import { Row, Col, Image, } from 'antd'
 
 const sources = [{
   avatar: 'Sacombank',
@@ -21,10 +22,24 @@ const TransSourceFund = props => {
     <Wrapper>
       <Row align={'left'} gutter={[16, 16]}>
         {
-          sources.map(item =>
-            <Col>
+          sources.map((item, index) =>
+            <Col key={index}>
               <SourceItem>
-                <Image src={'/assets/images/SACOMBANK.png'} />
+                {/* <Image
+                  alt=''
+                  preview={false}
+
+                  width={50}
+                  height={50}
+                /> */}
+                <img
+                  alt=''
+                  src={'/assets/images/SACOMBANK.png'}
+                  width={50}
+                  height={50}
+                />
+                {/* <SourceIcon src={'/assets/images/SACOMBANK.png'} /> */}
+
                 <span>{item.bankCode} | {item.accountNumber}</span>
               </SourceItem>
             </Col>,
