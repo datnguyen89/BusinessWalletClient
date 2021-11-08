@@ -21,7 +21,7 @@ const MainFooter = props => {
     <MainFooterWrapper fontColor={appTheme.fontColor}>
       <MainFooterLeft>
         <Link to={'#'}>
-          <img src={IMAGES.AUTH_LOGO} alt={''} />
+          <img src={IMAGES.AUTH_LOGO} alt={''} height={48} />
         </Link>
         <MainFooterLeftInfo>
           <CompanyName color={appTheme.fontColor}>Tổng công ty Viễn Thông MobiFone </CompanyName>

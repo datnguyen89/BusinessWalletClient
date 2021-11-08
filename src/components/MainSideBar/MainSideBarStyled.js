@@ -7,7 +7,7 @@ export const MainSideBarWrapper = styled.aside`
   width: ${props => props.width}px;
   display: ${props => props.display};
   overflow-y: auto;
-  padding-bottom: 84px;
+  padding-bottom: 64px;
   padding-top: 56px;
   background: rgba(255, 255, 255, 0.8);
   text-align: center;
@@ -89,7 +89,7 @@ export const MenuSidebarItem = styled.li`
 export const SocialIconWrapper = styled.div`
   position: absolute;
   left: 50%;
-  bottom: 84px;
+  bottom: 64px;
   transform: translateX(-50%);
   display: flex;
   flex-direction: ${props => props.flexDirection};

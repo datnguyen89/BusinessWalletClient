@@ -5,7 +5,7 @@ export const MainFooterWrapper = styled.footer`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 84px;
+  height: 64px;
   z-index: 1;
   border-top: 1px solid #ededed;
   background: #FFF;
@@ -29,7 +29,7 @@ export const MainFooterLeft = styled.div`
 `
 export const MainFooterLeftInfo = styled.div`
   margin-left: 16px;
-
+  font-size: 11px;
 
   p {
     margin: 0;
@@ -51,6 +51,8 @@ export const MainFooterRight = styled.div`
   justify-content: center;
   align-items: end;
   margin-right: 16px;
+  font-size: 12px;
+  
   @media only screen and (max-width: 700px) {
     display: none;
   }
