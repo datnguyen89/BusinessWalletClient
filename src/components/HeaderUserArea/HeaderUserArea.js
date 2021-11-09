@@ -3,9 +3,10 @@ import { inject, observer } from 'mobx-react'
 import { Dropdown, Menu } from 'antd'
 import UserAvatar from '../UserAvatar'
 import ICONS from '../../icons'
-import { HeaderUserAreaWrapper } from './HeaderUserAreaStyled'
+import { HeaderUserAreaWrapper, ThemePickerItem, ThemePickerWrapper } from './HeaderUserAreaStyled'
 import { useHistory } from 'react-router-dom'
 import ChangePasswordModal from '../ChangePasswordModal'
+import { THEME_LIST } from '../../utils/constant'
 
 const HeaderUserArea = props => {
 
@@ -21,6 +22,9 @@ const HeaderUserArea = props => {
   const handleSuccessChangePassword = () => {
 
   }
+  const handleChangeAppTheme = themeName => {
+    commonStore.setTheme(themeName)
+  }
 
   const menu = (
     <Menu>
@@ -31,6 +35,16 @@ const HeaderUserArea = props => {
       <Menu.Item className={'user-menu-item'} key='1' onClick={() => handleClickMenu('/login')}>
         {ICONS.LOGOUT}
         <span className={'user-menu-label'}>Đăng xuất</span>
+      </Menu.Item>
+      <Menu.Item key='2'>
+        <ThemePickerWrapper>
+          {
+            THEME_LIST.map(item =>
+              <ThemePickerItem key={item.name} color={item.solidColor}
+                               onClick={() => handleChangeAppTheme(item.name)} />,
+            )
+          }
+        </ThemePickerWrapper>
       </Menu.Item>
     </Menu>
   )

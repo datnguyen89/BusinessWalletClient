@@ -32,3 +32,14 @@ export const HeaderUserAreaWrapper = styled.a`
     }
   }
 `
+export const ThemePickerWrapper = styled.ul`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`
+export const ThemePickerItem = styled.li`
+  background: ${props => props.color};
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+`

@@ -64,9 +64,7 @@ const rootStores = {
 
 
 const App = () => {
-  useEffect(() => {
-    commonStore.setTheme('blue')
-  }, [])
+
   return (
     <Provider {...rootStores}>
       <ThemeProvider>

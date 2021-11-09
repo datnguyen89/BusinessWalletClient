@@ -20,7 +20,6 @@ const ChangePasswordModal = props => {
   const onFinishChangePassword = (formCollection) => {
     console.log('Success:', formCollection)
     // TODO: handle submit new password then close modal change password
-    onCancel()
     // TODO: show modal OTP
     setVisibleOtp(true)
   }
@@ -54,6 +53,7 @@ const ChangePasswordModal = props => {
           onFinish={onFinishChangePassword}
           onFinishFailed={onFinishFailedChangePassword}
           autoComplete='off'
+          colon={false}
         >
           <Form.Item
             label=''
@@ -106,7 +106,8 @@ const ChangePasswordModal = props => {
         callbackOtp={handleCallbackOtp}
         onCancel={() => setVisibleOtp(false)}
         phoneNumber={'0379631004'} />
-      <SuccessModal visible={visibleSuccess} description={'Đối mật khẩu thành công'} callbackSuccess={() => setVisibleSuccess(false)} />
+      <SuccessModal visible={visibleSuccess} description={'Đối mật khẩu thành công'}
+                    callbackSuccess={() => setVisibleSuccess(false)} />
     </>
 
   )
