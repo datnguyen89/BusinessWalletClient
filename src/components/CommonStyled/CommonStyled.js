@@ -6,6 +6,9 @@ export const AuthShadowBox = styled.div`
   border-radius: 4px;
   width: ${props => props.width ? props.width : 'auto'};
   padding: 24px;
+  a {
+    color: ${props => props.color};
+  }
 `
 export const PaginationLabel = styled.span`
   color: #767676;

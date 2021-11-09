@@ -11,7 +11,6 @@ import { useLocation } from 'react-router-dom'
 
 const DefaultLayout = props => {
   const { children, commonStore } = props
-  const { appTheme } = commonStore
   const location = useLocation()
 
   useEffect(() => {
@@ -59,7 +58,7 @@ const DefaultLayout = props => {
     }
   }, [location.pathname])
   return (
-    <DefaultLayoutWrapper fontColor={appTheme.fontColor}>
+    <DefaultLayoutWrapper color={commonStore.appTheme.solidColor}>
       <MainHeader />
       <MainContent>
         <MainSideBar />

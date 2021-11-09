@@ -1,8 +1,5 @@
 import ICONS from '../icons'
 
-export const MAIN_INFO_COLOR = '#0261AD'
-export const MAIN_WARNING_COLOR = '#ffbb00'
-export const MAIN_ERROR_COLOR = 'red'
 export const SIDEBAR_WIDTH_EXPAND = 240
 export const SIDEBAR_WIDTH_COLLAPSE = 64
 export const DEVICE = {

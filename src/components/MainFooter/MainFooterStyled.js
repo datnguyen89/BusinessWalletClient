@@ -12,7 +12,7 @@ export const MainFooterWrapper = styled.footer`
   display: flex;
   justify-content: space-between;
   a:hover {
-    color: ${props => props.fontColor};
+    color: ${props => props.solidColor};
   }
   @media only screen and (max-width: 768px) {
     font-size: 1.2rem;

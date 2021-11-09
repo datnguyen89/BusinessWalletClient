@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
+import { inject, observer } from 'mobx-react'
 import { Dropdown, Menu } from 'antd'
 import UserAvatar from '../UserAvatar'
 import ICONS from '../../icons'
 import { HeaderUserAreaWrapper } from './HeaderUserAreaStyled'
 import { useHistory } from 'react-router-dom'
 import ChangePasswordModal from '../ChangePasswordModal'
-import OtpModal from '../OtpModal'
-import SuccessModal from '../SuccessModal'
 
 const HeaderUserArea = props => {
+
+  const { commonStore } = props
+
   const history = useHistory()
   const handleClickMenu = (path) => {
     history.push(path)
@@ -23,17 +25,17 @@ const HeaderUserArea = props => {
   const menu = (
     <Menu>
       <Menu.Item className={'user-menu-item'} key='0' onClick={() => setVisibleChangePassword(true)}>
-        <img className={'user-menu-icon'} src={ICONS.SETTING} alt={''} />
+        {ICONS.SETTING}
         <span className={'user-menu-label'}>Đổi mật khẩu</span>
       </Menu.Item>
       <Menu.Item className={'user-menu-item'} key='1' onClick={() => handleClickMenu('/login')}>
-        <img className={'user-menu-icon'} src={ICONS.LOGOUT} alt={''} />
+        {ICONS.LOGOUT}
         <span className={'user-menu-label'}>Đăng xuất</span>
       </Menu.Item>
     </Menu>
   )
   return (
-    <HeaderUserAreaWrapper id={'user-menu-wrapper'}>
+    <HeaderUserAreaWrapper id={'user-menu-wrapper'} color={commonStore.appTheme.solidColor}>
       <Dropdown overlay={menu}
                 placement={'bottomCenter'}
                 trigger={['click']}
@@ -55,4 +57,4 @@ const HeaderUserArea = props => {
 
 HeaderUserArea.propTypes = {}
 
-export default HeaderUserArea
+export default inject('commonStore')(observer(HeaderUserArea))

@@ -1,9 +1,11 @@
 import React from 'react'
+import { inject, observer } from 'mobx-react'
 import { HomeServicesWrapper, ServiceBox, ServiceDescription, ServiceName } from './HomeServicesStyled'
 import { Badge, Col, Row } from 'antd'
-import { MAIN_INFO_COLOR, SERVICES_DATA } from '../../utils/constant'
+import { SERVICES_DATA } from '../../utils/constant'
 
 const HomeServices = props => {
+  const { commonStore } = props
   return (
     <HomeServicesWrapper>
       <Row align={'middle'} gutter={[16, 16]} style={{ alignItems: 'stretch' }}>
@@ -12,7 +14,7 @@ const HomeServices = props => {
             <Col xxl={4} xl={6} lg={12} md={12} sm={12} xs={24} flex={'stretch'} key={item.ID}>
               {
                 item.BADGE_NUMBER > 0 ?
-                  <Badge.Ribbon text={item.BADGE_NUMBER} color={MAIN_INFO_COLOR}>
+                  <Badge.Ribbon text={item.BADGE_NUMBER} color={commonStore.appTheme.solidColor}>
                     <ServiceBox>
                       <img src={item.ICON} alt={''} />
                       <ServiceName>
@@ -45,4 +47,4 @@ const HomeServices = props => {
 
 HomeServices.propTypes = {}
 
-export default HomeServices
+export default inject('commonStore')(observer(HomeServices))

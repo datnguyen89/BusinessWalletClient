@@ -24,8 +24,8 @@ class CommonStore {
   // App theme
   @observable appTheme = {
     name: 'blue',
-    fontColor: '#0261AD',
-    solidColor: '#237BD3',
+    borderRadius: '8px',
+    solidColor: '#0465B0',
     solidLightColor: 'rgb(233, 245, 254)',
     gradientColor: 'linear-gradient(108.88deg, #04BEFE 0%, #4481EB 100%)',
     shadowColor: '0 2px 10px rgba(68, 129, 235, 0.5)',
@@ -36,6 +36,7 @@ class CommonStore {
       case 'pink':
         this.appTheme = {
           name: 'pink',
+          borderRadius: '8px',
           solidColor: 'rgb(244, 67, 54)',
           solidLightColor: 'rgb(254, 237, 235)',
           gradientColor: 'linear-gradient(108.84deg, #F77062 0%, #FE5196 100%)',
@@ -46,6 +47,7 @@ class CommonStore {
       case 'green':
         this.appTheme = {
           name: 'green',
+          borderRadius: '8px',
           solidColor: '#3DBEA3',
           solidLightColor: '#ecf9f6',
           gradientColor: 'linear-gradient(167.51deg, #2ECF94 24.37%, #3DBEA3 78.07%)',
@@ -56,6 +58,7 @@ class CommonStore {
       case 'violet':
         this.appTheme = {
           name: 'violet',
+          borderRadius: '8px',
           solidColor: 'rgb(229,46,113)',
           solidLightColor: 'rgba(229,46,113, .2)',
           gradientColor: 'linear-gradient(to top left,#ff8a00,#e52e71)',
@@ -66,6 +69,7 @@ class CommonStore {
       case 'black':
         this.appTheme = {
           name: 'black',
+          borderRadius: '8px',
           solidColor: 'rgb(70, 70, 70)',
           solidLightColor: 'rgb(200, 200, 200)',
           gradientColor: 'linear-gradient(108.88deg, rgb(121, 121, 121) 0%, rgb(70, 70, 70) 100%)',
@@ -76,8 +80,8 @@ class CommonStore {
       default:
         this.appTheme = {
           name: 'blue',
-          solidColor: '#237BD3',
-          fontColor: '#0261AD',
+          borderRadius: '8px',
+          solidColor: '#0465B0',
           solidLightColor: 'rgb(233, 245, 254)',
           gradientColor: 'linear-gradient(108.88deg, #04BEFE 0%, #4481EB 100%)',
           shadowColor: '0 2px 10px rgba(68, 129, 235, 0.5)',
