@@ -4,7 +4,6 @@ export const HeaderUserAreaWrapper = styled.a`
   color: #fff;
   display: flex;
   align-items: center;
-  margin: 0 16px;
 
   &:hover {
     color: #fff !important;
@@ -12,7 +11,7 @@ export const HeaderUserAreaWrapper = styled.a`
 
   span {
     margin: 0 8px;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   .user-menu-item {
@@ -31,6 +30,12 @@ export const HeaderUserAreaWrapper = styled.a`
       }
     }
   }
+`
+export const DropdownUserSetting = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
 `
 export const ThemePickerWrapper = styled.ul`
   display: flex;

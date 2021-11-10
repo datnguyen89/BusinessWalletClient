@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react'
 import { Dropdown, Menu } from 'antd'
 import UserAvatar from '../UserAvatar'
 import ICONS from '../../icons'
-import { HeaderUserAreaWrapper, ThemePickerItem, ThemePickerWrapper } from './HeaderUserAreaStyled'
+import { DropdownUserSetting, HeaderUserAreaWrapper, ThemePickerItem, ThemePickerWrapper } from './HeaderUserAreaStyled'
 import { useHistory } from 'react-router-dom'
 import ChangePasswordModal from '../ChangePasswordModal'
 import { THEME_LIST } from '../../utils/constant'
@@ -20,7 +20,7 @@ const HeaderUserArea = props => {
   const [visibleChangePassword, setVisibleChangePassword] = useState(false)
 
   const handleSuccessChangePassword = () => {
-
+    console.log('Đổi mật khẩu thành công')
   }
   const handleChangeAppTheme = themeName => {
     commonStore.setTheme(themeName)
@@ -54,16 +54,16 @@ const HeaderUserArea = props => {
                 placement={'bottomCenter'}
                 trigger={['click']}
                 getPopupContainer={() => document.getElementById('user-menu-wrapper')}>
-        <div>
+        <DropdownUserSetting>
           <UserAvatar avatarUrl={null} />
           <span>Administrator</span>
           <img src={ICONS.WHITE_ARROW_DOWN} alt={''} height={8} />
-        </div>
+        </DropdownUserSetting>
       </Dropdown>
       <ChangePasswordModal
         visible={visibleChangePassword}
         onSuccess={handleSuccessChangePassword}
-        onCancel={() => setVisibleChangePassword(false)} />
+        onClose={() => setVisibleChangePassword(false)} />
 
     </HeaderUserAreaWrapper>
   )

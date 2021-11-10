@@ -22,9 +22,15 @@ export const GlobalStyle = createGlobalStyle`
       background-color: ${props => props.theme.solidLightColor} !important;
     }
   }
+  .ant-table-cell {
+    @media only screen and (max-width: 768px) {
+      padding: 8px !important;
+    }
+  }
 
-  /** Button */
+  /** Button */  
   .ant-btn {
+    border-radius: 4px !important;
     &:hover, &:focus {
       color: ${props => props.theme.solidColor} !important;
       border-color: ${props => props.theme.solidColor} !important;
@@ -120,7 +126,12 @@ export const GlobalStyle = createGlobalStyle`
       box-shadow: ${props => props.theme.lightShadowColor} !important;
     }
   }
-
+  //form
+  .ant-form-inline .ant-form-item {
+    @media only screen and (max-width: 1024px) {
+      margin: 8px !important;
+    }
+  }
   .ant-form {
     .ant-input {
       &:hover {
@@ -338,6 +349,11 @@ export const GlobalStyle = createGlobalStyle`
       }
     }
   }
+  .ant-pagination-item-link {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
 
   .ant-pagination-item {
     transition: all ease .3s;
@@ -451,5 +467,9 @@ export const GlobalStyle = createGlobalStyle`
     .ant-menu-item::after {
       border-right: 3px solid ${props => props.theme.solidColor} !important;
     }
+  }
+  //drawer
+  .ant-drawer-body {
+    padding: 0 !important;
   }
 `

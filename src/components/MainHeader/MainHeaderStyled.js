@@ -28,7 +28,8 @@ export const HeaderLogoArea = styled.div`
 `
 export const MainHeaderRight = styled.div`
   display: flex;
-  align-items: center;
+  align-items: stretch;
+  height: 100%;  
   @media only screen and (max-width: 768px) {
     display: none;
   }
@@ -75,4 +76,6 @@ export const CustomLink = styled(NavLink) `
 export const HeaderNotifyArea = styled.div`
   margin: 0 16px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 `
