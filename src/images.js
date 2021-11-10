@@ -13,5 +13,16 @@ const IMAGES = {
   WIDGET_BACKGROUND: require('./media/images/widget_bg.svg'),
   NOT_FOUND_ACCOUNT: require('./media/images/not-found-account.png'),
   SUCCESS_CREATE_TRANSACTION: require('./media/images/success-create-transaction.png'),
+  LOGO_ACCOUNT_TRANSFER_MONEY: require('./media/icons/logo_account_transfer_money.png'),
+  LOGO_ICON_DOWNLOAD_FILE: require('./media/icons/download_file_icon.png'),
+  LOGO_ICON_UPLOAD_FILE: require('./media/icons/upload_file_icon.png'),
+  SUCCESSFUL_ICON_TRANSFER: require('./media/icons/successful_icon_transfer.png'),
+  ERROR_ICON_TRANSFER: require('./media/icons/error_icon_transfer.png'),
+  CANCEL: require('./media/images/cancel.png'),
+  ICON_ADD_CARD: require('./media/images/icon_add_card.png'),
+  ADD: require('./media/images/add.png'),
+  CARD: require('./media/images/card.png'),
+  PREVIEW: require('./media/images/prev.png'),
+  NEXT: require('./media/images/next.png')
 }
 export default IMAGES

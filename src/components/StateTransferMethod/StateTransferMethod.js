@@ -16,6 +16,7 @@ import { ButtonConfirm, FilterTransferMethodWrapper } from '../FilterTransferMet
 import ConfirmModal from '../ConfirmModal'
 import OtpModal from '../OtpModal'
 import SuccessModal from '../SuccessModal'
+import IMAGES from '../../images'
 
 const StateTransferMethod = props => {
 
@@ -109,8 +110,8 @@ const StateTransferMethod = props => {
         <div>
           {
             (row.status) ?
-                <span><ImageCustom src={`${process.env.PUBLIC_URL}/assets/icons/successful_icon_transfer.png`} width="20px" height="20px"/> <SpanStatus>{row.error}</SpanStatus></span>:
-              <span><ImageCustom src={`${process.env.PUBLIC_URL}/assets/icons/error_icon_transfer.png`} /> <SpanStatus>{row.error}</SpanStatus></span>
+                <span><ImageCustom src={IMAGES.SUCCESSFUL_ICON_TRANSFER} width="20px" height="20px"/> <SpanStatus>{row.error}</SpanStatus></span>:
+              <span><ImageCustom src={IMAGES.ERROR_ICON_TRANSFER} /> <SpanStatus>{row.error}</SpanStatus></span>
           }
         </div>
       ),

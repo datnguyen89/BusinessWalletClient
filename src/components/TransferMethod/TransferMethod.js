@@ -6,6 +6,7 @@ import {
   TransferMethodWrapper, UploadCustom, WidgetItemTransferMethod,
 } from './TransferMethodStyled'
 import { message } from 'antd'
+import IMAGES from '../../images'
 
 const TransferMethod = props => {
   const [fileUpload, uploadFile] = useState(null);
@@ -35,7 +36,7 @@ const TransferMethod = props => {
       <WidgetItemTransferMethod>
         <TopTransferMethod>
           <TopTransferMethodLeftArea>
-            <img src={`${process.env.PUBLIC_URL}/assets/icons/logo_account_transfer_money.png`}
+            <img src={IMAGES.LOGO_ACCOUNT_TRANSFER_MONEY}
                  height={52}
                  width={52}
                  alt='logo account transfer money' />
@@ -49,7 +50,7 @@ const TransferMethod = props => {
       </WidgetItemTransferMethod>
       <WidgetItemTransferMethod>
         <TopTransferMethod>
-          <img src={`${process.env.PUBLIC_URL}/assets/icons/download_file_icon.png`}
+          <img src={IMAGES.LOGO_ICON_DOWNLOAD_FILE}
                alt='icon download file' />
         </TopTransferMethod>
         <BottomTransferMethod>Tải file mẫu</BottomTransferMethod>
@@ -57,7 +58,7 @@ const TransferMethod = props => {
       <WidgetItemTransferMethod>
         <TopTransferMethod>
           <UploadCustom beforeUpload={handleBeforeUpload}>
-            <img src={`${process.env.PUBLIC_URL}/assets/icons/upload_file_icon.png`}
+            <img src={IMAGES.LOGO_ICON_UPLOAD_FILE}
                  alt='icon upload file' />
             <span>
                 *Quý khách chuyển tiền theo danh sách bằng cách upload thông tin giao dịch dưới dạng file Excel theo mẫu của MobiFone. Giới hạn tối đa 100 giao dịch/lần chuyển

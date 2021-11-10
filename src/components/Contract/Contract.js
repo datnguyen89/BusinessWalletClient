@@ -5,6 +5,7 @@ import ConfirmModal from '../ConfirmModal'
 import OtpModal from '../OtpModal'
 import SuccessModal from '../SuccessModal'
 import { PaginationLabel, RowSpaceBetweenDiv } from '../CommonStyled/CommonStyled'
+import IMAGES from '../../images'
 
 const { Column } = Table
 
@@ -50,7 +51,8 @@ const Contract = props => {
       render: (item, row, index) => (
         <Space size='middle'>
           <SpanCancelButton onClick={cancelContract}>
-            <img src={`${process.env.PUBLIC_URL}/assets/images/cancel.png`} style={{ marginRight: 8 }} />
+            {/*<img src={`${process.env.PUBLIC_URL}/assets/images/cancel.png`} style={{ marginRight: 8 }} />*/}
+            <img src={IMAGES.CANCEL} style={{ marginRight: 8 }} />
             Hủy liên kết
           </SpanCancelButton>
         </Space>
