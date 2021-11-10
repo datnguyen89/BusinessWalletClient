@@ -23,6 +23,7 @@ const StateTransferMethod = props => {
   const dataContract = [
     {
       id: '1',
+      key: '1',
       receivednumbercard: '970420*******1234',
       owneracc: 'NGUYEN VAN A',
       countmoney: '18.000.000đ',
@@ -33,6 +34,7 @@ const StateTransferMethod = props => {
     },
     {
       id: '2',
+      key: '2',
       receivednumbercard: '970420*******1234',
       owneracc: 'NGUYEN VAN A',
       countmoney: '18.000.000đ',
@@ -43,6 +45,7 @@ const StateTransferMethod = props => {
     },
     {
       id: '3',
+      key: '3',
       receivednumbercard: '970420*******1234',
       owneracc: 'NGUYEN VAN A',
       countmoney: '18.000.000đ',
@@ -53,6 +56,7 @@ const StateTransferMethod = props => {
     },
     {
       id: '4',
+      key: '4',
       receivednumbercard: '970420*******1234',
       owneracc: 'NGUYEN VAN A',
       countmoney: '18.000.000đ',
@@ -63,6 +67,7 @@ const StateTransferMethod = props => {
     },
     {
       id: '5',
+      key: '5',
       receivednumbercard: '970420*******1234',
       owneracc: 'NGUYEN VAN A',
       countmoney: '18.000.000đ',
@@ -158,20 +163,6 @@ const StateTransferMethod = props => {
           columns={columns}
           pagination={false}
           bordered={false}>
-          {/*<Column*/}
-          {/*  title: 'LỖI'*/}
-          {/*  dataIndex: 'error'*/}
-          {/*  key: 'error'*/}
-          {/*  render={error => (*/}
-          {/*    <>*/}
-          {/*      {tags.map(tag => (*/}
-          {/*        <Tag color="blue" key={tag}>*/}
-          {/*          {tag}*/}
-          {/*        </Tag>*/}
-          {/*      ))}*/}
-          {/*    </>*/}
-          {/*  )}*/}
-          {/*/>*/}
         </ResultTable>
         <RowSpaceBetweenDiv margin={'16px 0'}>
           <PaginationLabel>

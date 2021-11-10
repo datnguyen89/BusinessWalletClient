@@ -26,8 +26,8 @@ const TransferMethod = props => {
   }
 
   useEffect(() => {
-    console.log(fileUpload);
-    console.log(nameFileUpload);
+    // console.log(fileUpload);
+    // console.log(nameFileUpload);
     // todo: api for upload file
   }, [fileUpload])
 

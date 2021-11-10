@@ -23,6 +23,6 @@ const IMAGES = {
   ADD: require('./media/images/add.png'),
   CARD: require('./media/images/card.png'),
   PREVIEW: require('./media/images/prev.png'),
-  NEXT: require('./media/images/next.png')
+  NEXT: require('./media/images/next.png'),
 }
 export default IMAGES
