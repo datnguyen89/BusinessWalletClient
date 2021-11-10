@@ -26,13 +26,13 @@ const FilterTransferMethod = props => {
       <FilterByTime>
         <LabelFilter>Tháng chi</LabelFilter>
         <Select size={size} defaultValue='a1' onChange={handleChange} style={{ width: 200 }}>
-          {children}
+          <Select.Option value={{children}}/>
         </Select>
       </FilterByTime>
       <FilterByMethod>
         <LabelFilter>Hình thức</LabelFilter>
         <Select size={size} defaultValue='a1' onChange={handleChange} style={{ width: 200 }}>
-          {children}
+          <Select.Option value={{children}}/>
         </Select>
       </FilterByMethod>
       <ButtonConfirm type='primary'>Xác nhận</ButtonConfirm>

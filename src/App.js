@@ -9,6 +9,7 @@ import { createBrowserHistory } from 'history'
 import { Provider } from 'mobx-react'
 import commonStore from './stores/commonStore.js'
 import mobileMoneyStore from './stores/mobileMoneyStore.js'
+import infoAccountStore from './stores/infoAccountStore.js'
 // Pages
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
@@ -60,6 +61,7 @@ moment.locale('vi', {
 const rootStores = {
   commonStore,
   mobileMoneyStore,
+  infoAccountStore,
 }
 
 

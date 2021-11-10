@@ -68,10 +68,10 @@ const TransactionManagePage = props => {
               <CollapsePanelLinkBank />
             </Panel>
             <Panel header='This is panel header 2' key='2' className='site-collapse-custom-panel'>
-              <p>123123</p>
+              <CollapsePanelLinkBank />
             </Panel>
             <Panel header='This is panel header 3' key='3' className='site-collapse-custom-panel'>
-              <p>123123123</p>
+              <CollapsePanelLinkBank />
             </Panel>
           </Collapse>
         </TransactionManagerBody>

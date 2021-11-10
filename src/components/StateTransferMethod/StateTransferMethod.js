@@ -16,12 +16,14 @@ import { ButtonConfirm, FilterTransferMethodWrapper } from '../FilterTransferMet
 import ConfirmModal from '../ConfirmModal'
 import OtpModal from '../OtpModal'
 import SuccessModal from '../SuccessModal'
+import IMAGES from '../../images'
 
 const StateTransferMethod = props => {
 
   const dataContract = [
     {
       id: '1',
+      key: '1',
       receivednumbercard: '970420*******1234',
       owneracc: 'NGUYEN VAN A',
       countmoney: '18.000.000đ',
@@ -32,6 +34,7 @@ const StateTransferMethod = props => {
     },
     {
       id: '2',
+      key: '2',
       receivednumbercard: '970420*******1234',
       owneracc: 'NGUYEN VAN A',
       countmoney: '18.000.000đ',
@@ -42,6 +45,7 @@ const StateTransferMethod = props => {
     },
     {
       id: '3',
+      key: '3',
       receivednumbercard: '970420*******1234',
       owneracc: 'NGUYEN VAN A',
       countmoney: '18.000.000đ',
@@ -52,6 +56,7 @@ const StateTransferMethod = props => {
     },
     {
       id: '4',
+      key: '4',
       receivednumbercard: '970420*******1234',
       owneracc: 'NGUYEN VAN A',
       countmoney: '18.000.000đ',
@@ -62,6 +67,7 @@ const StateTransferMethod = props => {
     },
     {
       id: '5',
+      key: '5',
       receivednumbercard: '970420*******1234',
       owneracc: 'NGUYEN VAN A',
       countmoney: '18.000.000đ',
@@ -109,8 +115,8 @@ const StateTransferMethod = props => {
         <div>
           {
             (row.status) ?
-                <span><ImageCustom src={`${process.env.PUBLIC_URL}/assets/icons/successful_icon_transfer.png`} width="20px" height="20px"/> <SpanStatus>{row.error}</SpanStatus></span>:
-              <span><ImageCustom src={`${process.env.PUBLIC_URL}/assets/icons/error_icon_transfer.png`} /> <SpanStatus>{row.error}</SpanStatus></span>
+                <span><ImageCustom src={IMAGES.SUCCESSFUL_ICON_TRANSFER} width="20px" height="20px"/> <SpanStatus>{row.error}</SpanStatus></span>:
+              <span><ImageCustom src={IMAGES.ERROR_ICON_TRANSFER} /> <SpanStatus>{row.error}</SpanStatus></span>
           }
         </div>
       ),
@@ -157,20 +163,6 @@ const StateTransferMethod = props => {
           columns={columns}
           pagination={false}
           bordered={false}>
-          {/*<Column*/}
-          {/*  title: 'LỖI'*/}
-          {/*  dataIndex: 'error'*/}
-          {/*  key: 'error'*/}
-          {/*  render={error => (*/}
-          {/*    <>*/}
-          {/*      {tags.map(tag => (*/}
-          {/*        <Tag color="blue" key={tag}>*/}
-          {/*          {tag}*/}
-          {/*        </Tag>*/}
-          {/*      ))}*/}
-          {/*    </>*/}
-          {/*  )}*/}
-          {/*/>*/}
         </ResultTable>
         <RowSpaceBetweenDiv margin={'16px 0'}>
           <PaginationLabel>

@@ -74,19 +74,17 @@ export const MenuSidebarItem = styled.li`
   margin: 12px 12px 0 12px;
 
   &:hover, &.active {
-    background: #4C68EF;
-    border-radius: 5px;
-    color: #fff;
+    background: #ffffff;
+    color: ${props => props.color};
 
     svg path {
-      fill: #fff !important;
+      fill: ${props => props.color} !important;
     }
   }
 
   .menu-sidebar-label {
     margin-left: 12px;
     padding-top: 2px;
-
   }
 `
 export const SocialIconWrapper = styled.div`

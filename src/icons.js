@@ -5,19 +5,27 @@ import { ReactComponent as TransferIcon } from './media/icons/tranfer.svg'
 import { ReactComponent as WithdrawIcon } from './media/icons/withdraw.svg'
 import { ReactComponent as LogoutIcon } from './media/icons/log-out.svg'
 import { ReactComponent as SettingIcon } from './media/icons/setting.svg'
+import { ReactComponent as IdentityIcon } from './media/icons/identity-icon.svg'
+import { ReactComponent as TransferMultiIcon } from './media/icons/transfer-multi.svg'
+import { ReactComponent as MobileMoneyIcon } from './media/icons/mobile-money-icon.svg'
+import { ReactComponent as HistoryIcon } from './media/icons/history-icon.svg'
+import { ReactComponent as TransactionIcon } from './media/icons/transaction-icon.svg'
+import { ReactComponent as PolicyIcon } from './media/icons/policy-icon.svg'
+import { ReactComponent as SupportIcon } from './media/icons/support-icon.svg'
 
 const ICONS = {
   NOTIFY_BELL: require('./media/icons/notify-bell.svg'),
   WHITE_ARROW_DOWN: require('./media/icons/white-arrow-down.svg'),
   LOGOUT: <LogoutIcon />,
   SETTING: <SettingIcon />,
-  IDENTITY_ICON: require('./media/icons/identity-icon.svg'),
-  TRANSFER_MULTI_ICON: require('./media/icons/transfer-multi.svg'),
-  MOBILE_MONEY_ICON: require('./media/icons/mobile-money-icon.svg'),
-  TRANSACTION_ICON: require('./media/icons/transaction-icon.svg'),
-  HISTORY_ICON: require('./media/icons/history-icon.svg'),
-  POLICY_ICON: require('./media/icons/policy-icon.svg'),
-  SUPPORT_ICON: require('./media/icons/support-icon.svg'),
+  IDENTITY_ICON: <IdentityIcon />,
+  TRANSFER_MULTI_ICON: <TransferMultiIcon />,
+  MOBILE_MONEY_ICON: <MobileMoneyIcon />,
+  TRANSACTION_ICON: <TransactionIcon />,
+  HISTORY_ICON: <HistoryIcon />,
+  POLICY_ICON: <PolicyIcon />,
+  SUPPORT_ICON: <SupportIcon />,
+  //
   FACEBOOK: require('./media/icons/facebook.svg'),
   INSTAGRAM: require('./media/icons/instagram.svg'),
   YOUTUBE: require('./media/icons/youtube.svg'),

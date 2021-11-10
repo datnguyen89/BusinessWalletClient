@@ -8,6 +8,7 @@ import {
   AreaPanelAdminCard,
   SpanAreaAccountInfoLabel,
 } from './AreaCardStyled'
+import IMAGES from '../../images'
 
 const AreaCard = props => {
 
@@ -18,26 +19,26 @@ const AreaCard = props => {
   return (
     <AreaCardWrapper>
       <AreaPanelAdminCard
-        arrowPrev={`${process.env.PUBLIC_URL}/assets/images/prev.png`}
-        arrowNext={`${process.env.PUBLIC_URL}/assets/images/next.png`}>
+        arrowPrev={IMAGES.PREVIEW}
+        arrowNext={IMAGES.NEXT}>
         <AreaEnterpriseInfoLabel>
           <SpanAreaAccountInfoLabel>Thông tin tài khoản</SpanAreaAccountInfoLabel>
         </AreaEnterpriseInfoLabel>
         <Slider {...props.settings}>
           <div>
-            <img src={`${process.env.PUBLIC_URL}/assets/images/card.png`} />
+            <img src={IMAGES.CARD} />
           </div>
           <div>
-            <img src={`${process.env.PUBLIC_URL}/assets/images/card.png`} />
+            <img src={IMAGES.CARD} />
           </div>
           <div>
-            <img src={`${process.env.PUBLIC_URL}/assets/images/card.png`} />
+            <img src={IMAGES.CARD} />
           </div>
         </Slider>
       </AreaPanelAdminCard>
       <AreaAddCard>
         <div>
-          <span><img src={`${process.env.PUBLIC_URL}/assets/images/add.png`} /></span>
+          <span><img src={IMAGES.ADD} /></span>
           <span onClick={() => handleAddNewCard()}>Liên kết thẻ mới</span>
         </div>
       </AreaAddCard>
