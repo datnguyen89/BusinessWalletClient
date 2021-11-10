@@ -18,13 +18,13 @@ const MainFooter = props => {
   const { commonStore } = props
   const { appTheme } = commonStore
   return (
-    <MainFooterWrapper fontColor={appTheme.fontColor}>
+    <MainFooterWrapper solidColor={appTheme.solidColor}>
       <MainFooterLeft>
         <Link to={'#'}>
-          <img src={IMAGES.AUTH_LOGO} alt={''} />
+          <img src={IMAGES.AUTH_LOGO} alt={''} height={48} />
         </Link>
         <MainFooterLeftInfo>
-          <CompanyName color={appTheme.fontColor}>Tổng công ty Viễn Thông MobiFone </CompanyName>
+          <CompanyName color={appTheme.solidColor}>Tổng công ty Viễn Thông MobiFone </CompanyName>
           <p>Số 01 phố Phạm Văn Bạch, Yên Hòa, Cầu Giấy, Hà Nội</p>
           <TelsArea>
             <a href={'tel:84243781800'}>

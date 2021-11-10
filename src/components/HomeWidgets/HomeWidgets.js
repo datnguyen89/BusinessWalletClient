@@ -16,7 +16,7 @@ const HomeWidgets = props => {
       <Row align={'middle'} gutter={[16, 16]}>
         {
           HOME_WIDGET_DATA.map(item =>
-            <Col xxl={8} xl={8} lg={12} md={12} sm={24} xs={24} key={item.ID}>
+            <Col xxl={8} xl={8} lg={8} md={8} sm={24} xs={24} key={item.ID}>
               <WidgetItemBox>
                 <WidgetItemTop background={item.TOP_COLOR}>
                   <WidgetItemCount color={'#FFF'}>

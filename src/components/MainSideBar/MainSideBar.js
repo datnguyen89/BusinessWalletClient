@@ -31,7 +31,7 @@ const MainSideBar = props => {
 
   return (
     <MainSideBarWrapper
-      display={device === DEVICE.MOBILE ? 'none' : 'block'}
+      display={device === DEVICE.MOBILE ? 'none' : 'flex'}
       width={isCollapse ? SIDEBAR_WIDTH_COLLAPSE : SIDEBAR_WIDTH_EXPAND}>
       <BankInfoArea display={isCollapse ? 'none' : 'flex'}>
         <BankAvatarWrapper>

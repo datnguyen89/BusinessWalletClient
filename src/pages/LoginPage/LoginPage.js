@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { inject, observer } from 'mobx-react'
 import AuthLayout from '../../layouts/AuthLayout'
 import { Button, Col, Form, Input, message, Row } from 'antd'
 import { AuthShadowBox } from '../../components/CommonStyled/CommonStyled'
@@ -8,6 +9,7 @@ import { Link, useHistory } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
 
 const LoginPage = props => {
+  const { commonStore } = props
   const history = useHistory()
   const [visibleOtp, setVisibleOtp] = useState(false)
 
@@ -30,7 +32,7 @@ const LoginPage = props => {
   return (
     <AuthLayout>
       <LoginPageWrapper>
-        <AuthShadowBox>
+        <AuthShadowBox color={commonStore.appTheme.solidColor}>
           <TitleWrapper>
             <img src={IMAGES.AUTH_LOGO} alt={''} />
             <LoginFormTitle>ĐĂNG NHẬP MOBIFONE PAY DOANH NGHIỆP</LoginFormTitle>
@@ -85,4 +87,4 @@ const LoginPage = props => {
 
 LoginPage.propTypes = {}
 
-export default LoginPage
+export default inject('commonStore')(observer(LoginPage))

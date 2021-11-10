@@ -14,7 +14,7 @@ export const AuthFooterLeft = styled.div`
   flex-direction: column;
 
   span {
-    color: #4C68EF;
+    color: ${props => props.color};
     font-weight: 700;
     font-size: 1.4rem;
   }
@@ -29,6 +29,11 @@ export const AuthFooterLeft = styled.div`
 `
 export const AuthFooterRight = styled.div`
   text-align: right;
+  
+  a {
+    color: ${props => props.color};
+  }
+  
   @media only screen and (max-width: 576px) {
     width: 100%;
     margin-top: 16px;
@@ -36,7 +41,7 @@ export const AuthFooterRight = styled.div`
   }
 `
 export const AuthFooterRightCompany = styled.h1`
-  color: #4C68EF;
+  color: ${props => props.color};
   font-size: 1.4rem;
   font-weight: 700;
 `

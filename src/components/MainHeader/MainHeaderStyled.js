@@ -11,7 +11,7 @@ export const MainHeaderWrapper = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  background: #4C68EF;
+  background: linear-gradient(270deg, #6634E0 -8.83%, #0465B0 74.3%);
   z-index: 1;
 `
 export const HeaderLogoArea = styled.div`
@@ -54,12 +54,8 @@ export const HeaderTransactionArea = styled.div`
     }
   }
 `
-export const HeaderTransactionItem = styled.span`
-  margin: 0 16px;
-`
-export const CustomLink = styled(NavLink) `
-  color: white;
-  font-size: 1.2rem;
+export const HeaderTransactionItem = styled.div`
+  margin: 0 16px; 
   &.selected {
     span {
       color: #FDCF17 !important;
@@ -67,16 +63,13 @@ export const CustomLink = styled(NavLink) `
     svg path {
       fill: #FDCF17 !important;
     }
-  }
-  svg {
-    display: inline-block;
-    margin-bottom: -5px;
-  }
-  //&:hover, &.selected {
-  //  background: #4C68EF;
-  //  border-radius: 5px;
-  //  color: #FDCF17;
-  //}
+  }  
+`
+export const CustomLink = styled(NavLink) `
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
 `
 
 export const HeaderNotifyArea = styled.div`

@@ -7,7 +7,7 @@ export const AuthHeaderWrapper = styled.div`
 `
 export const SubTitleLogo = styled.div`
   margin-left: 16px;
-  color: #015EAC;
+  color: ${props => props.color};
   font-weight: 700;
   font-size: 1.8rem;
 `

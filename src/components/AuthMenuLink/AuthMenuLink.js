@@ -1,11 +1,13 @@
 import React from 'react'
+import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { AuthMenuLinkItem, AuthMenuLinkWrapper } from './AuthMenuLinkStyled'
 import { Link } from 'react-router-dom'
 
 const AuthMenuLink = props => {
+  const { commonStore } = props
   return (
-    <AuthMenuLinkWrapper>
+    <AuthMenuLinkWrapper color={commonStore.appTheme.solidColor}>
       <AuthMenuLinkItem>
         <Link to={'#'}>Giới thiệu</Link>
       </AuthMenuLinkItem>
@@ -25,8 +27,6 @@ const AuthMenuLink = props => {
   )
 }
 
-AuthMenuLink.propTypes = {
-  
-}
+AuthMenuLink.propTypes = {}
 
-export default AuthMenuLink
+export default inject('commonStore')(observer(AuthMenuLink))

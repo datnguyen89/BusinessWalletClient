@@ -11,7 +11,6 @@ import { useLocation } from 'react-router-dom'
 
 const DefaultLayout = props => {
   const { children, commonStore } = props
-  const { appTheme } = commonStore
   const location = useLocation()
 
   useEffect(() => {
@@ -23,6 +22,15 @@ const DefaultLayout = props => {
     switch (segment[0]) {
       case 'contract':
         commonStore.setPageName('contract')
+        return
+      case 'deposit':
+        commonStore.setPageName('deposit')
+        return
+      case 'tranfer':
+        commonStore.setPageName('tranfer')
+        return
+      case 'withdraw':
+        commonStore.setPageName('withdraw')
         return
       case 'identity-info':
         commonStore.setPageName('identity-info')
@@ -50,7 +58,7 @@ const DefaultLayout = props => {
     }
   }, [location.pathname])
   return (
-    <DefaultLayoutWrapper fontColor={appTheme.fontColor}>
+    <DefaultLayoutWrapper color={commonStore.appTheme.solidColor}>
       <MainHeader />
       <MainContent>
         <MainSideBar />

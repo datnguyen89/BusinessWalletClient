@@ -16,8 +16,8 @@ const AuthBodyLeft = props => {
   return (
     <AuthBodyLeftWrapper>
       <AuthBodyLeftContent>
-        <AuthSubSlogan color={appTheme.fontColor}>Thanh toán mọi nơi</AuthSubSlogan>
-        <AuthSlogan color={appTheme.fontColor}>An toàn - Tiện lợi - Dễ dàng</AuthSlogan>
+        <AuthSubSlogan color={appTheme.solidColor}>Thanh toán mọi nơi</AuthSubSlogan>
+        <AuthSlogan color={appTheme.solidColor}>An toàn - Tiện lợi - Dễ dàng</AuthSlogan>
         <AuthImageWrapper>
           <img src={IMAGES.AUTH_LEFT_BACKGROUND} alt={''} />
         </AuthImageWrapper>

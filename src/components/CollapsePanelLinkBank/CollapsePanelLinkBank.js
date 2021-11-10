@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { CollapsePanelLinkBankWrapper } from './CollapsePanelLinkBankStyled'
-import { Descriptions, Form, Table } from 'antd'
+import { Descriptions, Form, Pagination, Table } from 'antd'
 import IconStatusLabel from '../IconStatusLabel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
@@ -9,6 +9,7 @@ import { ExpandContent } from '../../pages/TransactionManagePage/TransactionMana
 import { TRANSACTION_STATUS } from '../../utils/constant'
 import uuid from 'uuid'
 import moment from 'moment'
+import { PaginationLabel, RowSpaceBetweenDiv } from '../CommonStyled/CommonStyled'
 
 const CollapsePanelLinkBank = props => {
   const [mockupData, setMockupData] = useState([])
@@ -26,20 +27,24 @@ const CollapsePanelLinkBank = props => {
     },
     {
       title: 'Lệnh',
+      responsive: ['xxl', 'xl'],
       render: record => record.transactionType,
     },
     {
       title: 'Trạng thái lệnh',
+      responsive: ['xxl', 'xl'],
       render: record => (
         <IconStatusLabel status={record.transactionStatus} label={null} />
       ),
     },
     {
       title: 'Người tạo',
+      responsive: ['xxl', 'xl', 'md'],
       render: record => record.createdUser,
     },
     {
       title: 'Người duyệt',
+      responsive: ['xxl', 'xl', 'md'],
       render: record => (
         <>
           <IconStatusLabel status={record.approveUser1.processStatus} label={record.approveUser1.name} />
@@ -50,10 +55,12 @@ const CollapsePanelLinkBank = props => {
     },
     {
       title: 'Ngày tạo',
+      responsive: ['xxl', 'xl'],
       render: record => record.createdDate,
     },
     {
       title: 'Trạng thái xử lý',
+      responsive: ['xxl', 'xl'],
       render: record => (
         <IconStatusLabel status={record.processStatus} label={null} />
       ),
@@ -73,7 +80,7 @@ const CollapsePanelLinkBank = props => {
       <ExpandContent>
         <Descriptions
           bordered
-          column={2}
+          column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
           size={'small'}>
           <Descriptions.Item label={<strong>Ngân hàng</strong>} span={2}>{record.bankName}</Descriptions.Item>
           <Descriptions.Item label={<strong>Số tài khoản</strong>}
@@ -123,6 +130,7 @@ const CollapsePanelLinkBank = props => {
     }
     setMockupData(newMockupData)
   }, [])
+
   return (
     <CollapsePanelLinkBankWrapper>
       <Table
@@ -134,6 +142,12 @@ const CollapsePanelLinkBank = props => {
         columns={columns}
         rowKey={record => record.id}
         pagination={false} />
+      <RowSpaceBetweenDiv margin={'16px 0'}>
+        <PaginationLabel>
+          Hiển thị 5 trên tổng số 50 bản ghi
+        </PaginationLabel>
+        <Pagination total={50} />
+      </RowSpaceBetweenDiv>
     </CollapsePanelLinkBankWrapper>
   )
 }

@@ -24,6 +24,9 @@ import TransactionHistoryPage from './pages/TransactionHistoryPage'
 import TransactionManagePage from './pages/TransactionManagePage'
 import TransferMobileMoneyPage from './pages/TransferMobileMoneyPage'
 import TransferMultiplePage from './pages/TransferMultiplePage'
+import DepositPage from './pages/DepositPage'
+import TranferPage from './pages/TranferPage'
+import WithdrawPage from './pages/WithdrawPage'
 import LoadingOverLay from './components/LoadingOverLay'
 import ContractPage from './pages/Contract/ContractPage'
 import moment from 'moment'
@@ -63,9 +66,7 @@ const rootStores = {
 
 
 const App = () => {
-  useEffect(() => {
-    commonStore.setTheme('blue')
-  }, [])
+
   return (
     <Provider {...rootStores}>
       <ThemeProvider>
@@ -80,6 +81,9 @@ const App = () => {
             <Route exact path={'/policy'} component={PolicyPage} />
             <Route exact path={'/support'} component={SupportPage} />
             <Route exact path={'/login'} component={LoginPage} />
+            <Route exact path={'/deposit'} component={DepositPage} />
+            <Route exact path={'/tranfer'} component={TranferPage} />
+            <Route exact path={'/withdraw'} component={WithdrawPage} />
             <Route exact path={'/forgot-password'} component={ForgotPasswordPage} />
             <Route exact path={'/not-permission'} component={NotPermissionPage} />
             <Route exact path={'/contract'} component={ContractPage} />
