@@ -3,18 +3,22 @@ import { inject, observer } from 'mobx-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBars,
+  faExchangeAlt,
   faFileInvoiceDollar,
   faHandHoldingUsd,
   faLink,
-  faExchangeAlt,
   faList,
 } from '@fortawesome/free-solid-svg-icons'
 import {
-  CustomLink,
-  HeaderLogoArea, HeaderNotifyArea,
+  CustomLink, HeaderDropdownIconWrapper, HeaderDropdownItem, HeaderDropdownItemText,
+  HeaderDropdownWrapper,
+  HeaderLogoArea,
+  HeaderMenuText,
+  HeaderNotifyArea,
   HeaderTransactionArea,
   HeaderTransactionItem,
-  MainHeaderRight, MainHeaderRightMobile,
+  MainHeaderRight,
+  MainHeaderRightMobile,
   MainHeaderWrapper,
 } from './MainHeaderStyled'
 import IMAGES from '../../images'
@@ -22,9 +26,8 @@ import NotifyBell from '../NotifyBell'
 import ICONS from '../../icons'
 import { Drawer, Dropdown, Menu } from 'antd'
 import HeaderUserArea from '../HeaderUserArea'
-import { Link, NavLink, useHistory } from 'react-router-dom'
-import { DEVICE, SIDEBAR_WIDTH_EXPAND } from '../../utils/constant'
-import MainSideBar from '../MainSideBar'
+import { useHistory } from 'react-router-dom'
+import { DEVICE, SERVICES_DATA, SIDEBAR_WIDTH_EXPAND, TRANSFERS } from '../../utils/constant'
 import DrawerSideBar from '../DrawerSideBar'
 
 const MainHeader = props => {
@@ -39,6 +42,38 @@ const MainHeader = props => {
     console.log('handleClickDrawerMenu', e)
   }
 
+  const paymentOverlay = (
+    <HeaderDropdownWrapper>
+      {
+        SERVICES_DATA.map(item =>
+          <HeaderDropdownItem color={commonStore.appTheme.solidColor}>
+            <HeaderDropdownIconWrapper>
+              <img src={item.ICON_SMALL} alt={''} />
+            </HeaderDropdownIconWrapper>
+            <HeaderDropdownItemText>
+              {item.SERVICE_NAME}
+            </HeaderDropdownItemText>
+          </HeaderDropdownItem>,
+        )
+      }
+    </HeaderDropdownWrapper>
+  )
+  const transferOverlay = (
+    <HeaderDropdownWrapper>
+      {
+        TRANSFERS.map(item =>
+          <HeaderDropdownItem color={commonStore.appTheme.solidColor}>
+            <HeaderDropdownIconWrapper>
+              <img src={item.ICON} alt={''} />
+            </HeaderDropdownIconWrapper>
+            <HeaderDropdownItemText>
+              {item.LABEL}
+            </HeaderDropdownItemText>
+          </HeaderDropdownItem>,
+        )
+      }
+    </HeaderDropdownWrapper>
+  )
   return (
     <MainHeaderWrapper>
       <HeaderLogoArea>
@@ -67,11 +102,28 @@ const MainHeader = props => {
       </HeaderLogoArea>
       <MainHeaderRight>
         <HeaderTransactionArea>
+          <HeaderTransactionItem id={'header-payment-area'}>
+            <Dropdown
+              overlay={paymentOverlay}
+              overlayClassName={'header-payment-area'}
+              trigger={'click'}
+              placement={'bottomCenter'}
+              getPopupContainer={() => document.getElementById('header-payment-area')}>
+              <HeaderMenuText>{ICONS.PAYMENT_ICON}<span>Thanh toán</span></HeaderMenuText>
+            </Dropdown>
+          </HeaderTransactionItem>
           <HeaderTransactionItem className={pageName === 'deposit' ? 'selected' : ''}>
             <CustomLink to='/deposit'>{ICONS.DEPOSIT_ICON}<span>Nạp tiền</span></CustomLink>
           </HeaderTransactionItem>
-          <HeaderTransactionItem className={pageName === 'tranfer' ? 'selected' : ''}>
-            <CustomLink to='/tranfer'>{ICONS.TRANSFER_ICON}<span>Chuyển tiền</span></CustomLink>
+          <HeaderTransactionItem id={'header-transfer-area'}>
+            <Dropdown
+              overlay={transferOverlay}
+              overlayClassName={'header-transfer-area'}
+              trigger={'click'}
+              placement={'bottomCenter'}
+              getPopupContainer={() => document.getElementById('header-transfer-area')}>
+              <HeaderMenuText>{ICONS.TRANSFER_ICON}<span>Chuyển tiền</span></HeaderMenuText>
+            </Dropdown>
           </HeaderTransactionItem>
           <HeaderTransactionItem className={pageName === 'contract' ? 'selected' : ''}>
             <CustomLink to='/contract'>{ICONS.LINK_BANK_ICON}<span>Liên kết</span> </CustomLink>

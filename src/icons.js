@@ -12,6 +12,7 @@ import { ReactComponent as HistoryIcon } from './media/icons/history-icon.svg'
 import { ReactComponent as TransactionIcon } from './media/icons/transaction-icon.svg'
 import { ReactComponent as PolicyIcon } from './media/icons/policy-icon.svg'
 import { ReactComponent as SupportIcon } from './media/icons/support-icon.svg'
+import { ReactComponent as PaymentIcon } from './media/icons/mobile-payment.svg'
 
 const ICONS = {
   NOTIFY_BELL: require('./media/icons/notify-bell.svg'),
@@ -44,12 +45,30 @@ const ICONS = {
   SERVICE10: require('./media/icons/services/s10.png'),
   SERVICE11: require('./media/icons/services/s11.png'),
   SERVICE12: require('./media/icons/services/s12.png'),
+  SERVICE_SMALL1: require('./media/icons/services/sm1.svg'),
+  SERVICE_SMALL2: require('./media/icons/services/sm2.svg'),
+  SERVICE_SMALL3: require('./media/icons/services/sm3.svg'),
+  SERVICE_SMALL4: require('./media/icons/services/sm4.svg'),
+  SERVICE_SMALL5: require('./media/icons/services/sm5.svg'),
+  SERVICE_SMALL6: require('./media/icons/services/sm6.svg'),
+  SERVICE_SMALL7: require('./media/icons/services/sm7.svg'),
+  SERVICE_SMALL8: require('./media/icons/services/sm8.svg'),
+  SERVICE_SMALL9: require('./media/icons/services/sm9.svg'),
+  SERVICE_SMALL10: require('./media/icons/services/sm10.svg'),
+  SERVICE_SMALL11: require('./media/icons/services/sm11.svg'),
+  SERVICE_SMALL12: require('./media/icons/services/sm12.svg'),
+  TRANSFER1: require('./media/icons/transfer/tf1.svg'),
+  TRANSFER2: require('./media/icons/transfer/tf2.svg'),
+  TRANSFER3: require('./media/icons/transfer/tf3.svg'),
+  TRANSFER4: require('./media/icons/transfer/tf4.svg'),
   WAITING_ICON: require('./media/icons/waiting.svg'),
   REJECTED_ICON: require('./media/icons/rejected.svg'),
   APPROVED_ICON: require('./media/icons/approved.svg'),
+  ICON_CARD: require('./media/icons/icon-card.svg'),
   DEPOSIT_ICON: <DepositIcon />,
   LINK_BANK_ICON: <LinkBankIcon />,
   TRANSFER_ICON: <TransferIcon />,
   WITHDRAW_ICON: <WithdrawIcon />,
+  PAYMENT_ICON: <PaymentIcon />,
 }
 export default ICONS

@@ -57,21 +57,21 @@ const MainSideBar = props => {
           <span className={'menu-sidebar-label'}
                 style={{ display: isCollapse ? 'none' : 'block' }}>Thông tin định danh</span>
         </MenuSidebarItem>
-        <MenuSidebarItem
-          onClick={() => handleClickMenu('transfer-multiple')}
-          className={pageName === 'transfer-multiple' ? 'active' : ''}
-          color={commonStore.appTheme.solidColor}>
-          {ICONS.TRANSFER_MULTI_ICON}
-          <span className={'menu-sidebar-label'}
-                style={{ display: isCollapse ? 'none' : 'block' }}>Chuyển tiền theo Lô</span>
-        </MenuSidebarItem>
-        <MenuSidebarItem
-          onClick={() => handleClickMenu('transfer-mobile-money')}
-          className={pageName === 'transfer-mobile-money' ? 'active' : ''}
-          color={commonStore.appTheme.solidColor}>
-          {ICONS.MOBILE_MONEY_ICON}
-          <span className={'menu-sidebar-label'} style={{ display: isCollapse ? 'none' : 'block' }}>Nạp/Rút Mobifone Money</span>
-        </MenuSidebarItem>
+        {/*<MenuSidebarItem*/}
+        {/*  onClick={() => handleClickMenu('transfer-multiple')}*/}
+        {/*  className={pageName === 'transfer-multiple' ? 'active' : ''}*/}
+        {/*  color={commonStore.appTheme.solidColor}>*/}
+        {/*  {ICONS.TRANSFER_MULTI_ICON}*/}
+        {/*  <span className={'menu-sidebar-label'}*/}
+        {/*        style={{ display: isCollapse ? 'none' : 'block' }}>Chuyển tiền theo Lô</span>*/}
+        {/*</MenuSidebarItem>*/}
+        {/*<MenuSidebarItem*/}
+        {/*  onClick={() => handleClickMenu('transfer-mobile-money')}*/}
+        {/*  className={pageName === 'transfer-mobile-money' ? 'active' : ''}*/}
+        {/*  color={commonStore.appTheme.solidColor}>*/}
+        {/*  {ICONS.MOBILE_MONEY_ICON}*/}
+        {/*  <span className={'menu-sidebar-label'} style={{ display: isCollapse ? 'none' : 'block' }}>Nạp/Rút Mobifone Money</span>*/}
+        {/*</MenuSidebarItem>*/}
         <MenuSidebarItem
           onClick={() => handleClickMenu('transaction-manage')}
           className={pageName === 'transaction-manage' ? 'active' : ''}

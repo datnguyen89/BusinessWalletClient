@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ConditionDisplay from '../../components/ConditionDisplay'
-import { GrayTitle } from '../../components/CommonStyled/CommonStyled'
+import { ColorTitle } from '../../components/CommonStyled/CommonStyled'
 import { Button, Descriptions, Space } from 'antd'
 import numberUtils from '../../utils/numberUtils'
 
@@ -17,18 +17,18 @@ const ConfirmWalletToMm = props => {
 
   return (
     <ConditionDisplay visible={visible}>
-      <GrayTitle>Chuyển tiền MobiFone Money</GrayTitle>
+      <ColorTitle>Chuyển tiền MobiFone Money</ColorTitle>
       <Descriptions labelStyle={{ width: '50%' }} column={1} size={'small'} bordered>
         <Descriptions.Item label='Tài khoản MobiFone Money'>0912 345 6789</Descriptions.Item>
       </Descriptions>
-      <GrayTitle marginTop={'16px'}>Thông tin tài khoản Nhận</GrayTitle>
+      <ColorTitle marginTop={'16px'}>Thông tin tài khoản Nhận</ColorTitle>
       <Descriptions labelStyle={{ width: '50%' }} column={1} size={'small'} bordered>
         <Descriptions.Item label='Họ và Tên'>Nguyễn Văn A</Descriptions.Item>
         <Descriptions.Item label='Số giấy tờ tùy thân'>0123456789</Descriptions.Item>
       </Descriptions>
-      <GrayTitle marginTop={'16px'} color={'#4C68EF'} background={'#CCD9FF'}>
+      <ColorTitle marginTop={'16px'} color={'#4C68EF'} background={'#CCD9FF'}>
         Chuyển tiền từ ví đến Mobifone Money
-      </GrayTitle>
+      </ColorTitle>
       <Descriptions
         labelStyle={{ width: '50%' }}
         contentStyle={{ width: '50%' }}

@@ -82,17 +82,17 @@ const CollapsePanelLinkBank = props => {
           bordered
           column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
           size={'small'}>
-          <Descriptions.Item label={<strong>Ngân hàng</strong>} span={2}>{record.bankName}</Descriptions.Item>
-          <Descriptions.Item label={<strong>Số tài khoản</strong>}
+          <Descriptions.Item label={'Ngân hàng'} span={2}>{record.bankName}</Descriptions.Item>
+          <Descriptions.Item label={'Số tài khoản'}
                              span={1}>{record.bankAccountNumber}</Descriptions.Item>
-          <Descriptions.Item label={<strong>Loại liên kết</strong>} span={1}>{record.bankLinkType}</Descriptions.Item>
-          <Descriptions.Item label={<strong>Người kiểm tra</strong>}
+          <Descriptions.Item label={'Loại liên kết'} span={1}>{record.bankLinkType}</Descriptions.Item>
+          <Descriptions.Item label={'Người kiểm tra'}
                              span={1}>{record.approveUser1.name}</Descriptions.Item>
-          <Descriptions.Item label={<strong>Ngày duyệt kiểm tra</strong>}
+          <Descriptions.Item label={'Ngày duyệt kiểm tra'}
                              span={1}>{record.approveUser1.processDate}</Descriptions.Item>
-          <Descriptions.Item label={<strong>Người duyệt</strong>}
+          <Descriptions.Item label={'Người duyệt'}
                              span={1}>{record.approveUser2.name}</Descriptions.Item>
-          <Descriptions.Item label={<strong>Ngày duyệt</strong>}
+          <Descriptions.Item label={'Ngày duyệt'}
                              span={1}>{record.approveUser2.processDate}</Descriptions.Item>
         </Descriptions>
       </ExpandContent>

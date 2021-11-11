@@ -5,7 +5,7 @@ import DefaultLayout from '../../layouts/DefaultLayout'
 import { Helmet } from 'react-helmet/es/Helmet'
 import { BREADCRUMB_DATA } from '../../utils/constant'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
-import { GrayTitle, RowFlexDiv, RowFlexEndDiv } from '../../components/CommonStyled/CommonStyled'
+import { ColorTitle, RowFlexDiv, RowFlexEndDiv } from '../../components/CommonStyled/CommonStyled'
 import { Button, Col, Descriptions, Form, Input, InputNumber, Row, Space, Steps } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import numberUtils from '../../utils/numberUtils'
@@ -155,7 +155,7 @@ const TransferMobileMoneyPage = props => {
                   form={formVerify}
                   requiredMark={false}
                   onFinish={handleClickVerifyAccount}>
-                  <GrayTitle>Chuyển tiền MobiFone Money</GrayTitle>
+                  <ColorTitle>Chuyển tiền MobiFone Money</ColorTitle>
                   <Form.Item
                     rules={[{ required: true, message: 'Vui lòng nhập số tài khoản Mobifone Money' }]}
                     name={'mobileMoneyAccount'}
@@ -173,7 +173,7 @@ const TransferMobileMoneyPage = props => {
                   </Form.Item>
                 </Form>
                 <ConditionDisplay visible={processStep === 1}>
-                  <GrayTitle>Thông tin User</GrayTitle>
+                  <ColorTitle>Thông tin User</ColorTitle>
                   {
                     !MMUserInfo ?
                       <NotFoundAccount>

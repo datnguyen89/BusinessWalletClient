@@ -99,6 +99,7 @@ export const SERVICES_DATA = [
     ID: 1,
     BADGE_NUMBER: 10,
     ICON: ICONS.SERVICE1,
+    ICON_SMALL: ICONS.SERVICE_SMALL1,
     SERVICE_NAME: 'Mã thẻ',
     DESCRIPTION: 'Mua mã thẻ di động',
   },
@@ -106,6 +107,7 @@ export const SERVICES_DATA = [
     ID: 2,
     BADGE_NUMBER: 0,
     ICON: ICONS.SERVICE2,
+    ICON_SMALL: ICONS.SERVICE_SMALL2,
     SERVICE_NAME: 'Nạp tiền',
     DESCRIPTION: 'Thanh toán di động trả trước',
   },
@@ -113,6 +115,7 @@ export const SERVICES_DATA = [
     ID: 3,
     BADGE_NUMBER: 10,
     ICON: ICONS.SERVICE3,
+    ICON_SMALL: ICONS.SERVICE_SMALL3,
     SERVICE_NAME: 'Trả sau',
     DESCRIPTION: 'Thanh toán di động trả sau',
   },
@@ -120,6 +123,7 @@ export const SERVICES_DATA = [
     ID: 4,
     BADGE_NUMBER: null,
     ICON: ICONS.SERVICE4,
+    ICON_SMALL: ICONS.SERVICE_SMALL4,
     SERVICE_NAME: 'Nạp data',
     DESCRIPTION: 'Mua dung lượng data mobile internet',
   },
@@ -127,6 +131,7 @@ export const SERVICES_DATA = [
     ID: 5,
     BADGE_NUMBER: 10,
     ICON: ICONS.SERVICE5,
+    ICON_SMALL: ICONS.SERVICE_SMALL5,
     SERVICE_NAME: 'Mã thẻ data',
     DESCRIPTION: 'Mua mã thẻ gói data 3G/4G',
   },
@@ -134,6 +139,7 @@ export const SERVICES_DATA = [
     ID: 6,
     BADGE_NUMBER: 10,
     ICON: ICONS.SERVICE6,
+    ICON_SMALL: ICONS.SERVICE_SMALL6,
     SERVICE_NAME: 'Điện',
     DESCRIPTION: 'Thanh toán tiền điện',
   },
@@ -141,6 +147,7 @@ export const SERVICES_DATA = [
     ID: 7,
     BADGE_NUMBER: null,
     ICON: ICONS.SERVICE7,
+    ICON_SMALL: ICONS.SERVICE_SMALL7,
     SERVICE_NAME: 'Nước',
     DESCRIPTION: 'Thanh toán tiền nước nhanh chóng',
   },
@@ -148,6 +155,7 @@ export const SERVICES_DATA = [
     ID: 8,
     BADGE_NUMBER: 10,
     ICON: ICONS.SERVICE8,
+    ICON_SMALL: ICONS.SERVICE_SMALL8,
     SERVICE_NAME: 'Internet',
     DESCRIPTION: 'Thanh toán cước Internet',
   },
@@ -155,6 +163,7 @@ export const SERVICES_DATA = [
     ID: 9,
     BADGE_NUMBER: 10,
     ICON: ICONS.SERVICE9,
+    ICON_SMALL: ICONS.SERVICE_SMALL9,
     SERVICE_NAME: 'Truyền hình',
     DESCRIPTION: 'Thanh toán cước truyền hình',
   },
@@ -162,6 +171,7 @@ export const SERVICES_DATA = [
     ID: 10,
     BADGE_NUMBER: 10,
     ICON: ICONS.SERVICE10,
+    ICON_SMALL: ICONS.SERVICE_SMALL10,
     SERVICE_NAME: 'Nạp dịch vụ',
     DESCRIPTION: 'Nạp tiền dịch vụ',
   },
@@ -169,6 +179,7 @@ export const SERVICES_DATA = [
     ID: 11,
     BADGE_NUMBER: null,
     ICON: ICONS.SERVICE11,
+    ICON_SMALL: ICONS.SERVICE_SMALL11,
     SERVICE_NAME: 'Phí chung cư',
     DESCRIPTION: 'Thanh toán phí chung cư',
   },
@@ -177,6 +188,7 @@ export const SERVICES_DATA = [
     ID: 12,
     BADGE_NUMBER: 10,
     ICON: ICONS.SERVICE12,
+    ICON_SMALL: ICONS.SERVICE_SMALL12,
     SERVICE_NAME: 'Học phí',
     DESCRIPTION: 'Thanh toán học phí',
   },
@@ -227,4 +239,49 @@ export const THEME_LIST = [
     shadowColor: '0px 2px 10px rgba(70, 70, 70, 0.5)',
     lightShadowColor: '0 2px 4px rgba(0, 0, 0, 0.22), 0 4px 8px rgba(0, 0, 0, 0.04)',
   }
+]
+export const mockupLinkedCard = [
+  {
+    icon: ICONS.ICON_CARD,
+    cardNumber: '**** **** **** 1234',
+    name: 'Tran Van A',
+    expiredDate: '10/20',
+    background: 'radial-gradient(93.93% 85.34% at 2.97% 8.14%, #355B7A 0%, #243747 100%)'
+  },
+  {
+    icon: ICONS.ICON_CARD,
+    cardNumber: '**** **** **** 4567',
+    name: 'Tran Van B',
+    expiredDate: '09/20',
+    background: 'radial-gradient(93.93% 85.34% at 2.97% 8.14%, #355B7A 0%, #243747 100%)'
+  },
+  {
+    icon: ICONS.ICON_CARD,
+    cardNumber: '**** **** **** 6789',
+    name: 'Tran Van C',
+    expiredDate: '08/20',
+    background: 'radial-gradient(93.93% 85.34% at 2.97% 8.14%, #355B7A 0%, #243747 100%)'
+  },
+]
+export const TRANSFERS = [
+  {
+    ID:1,
+    ICON: ICONS.TRANSFER1,
+    LABEL: 'Chuyển tiền Ví',
+  },
+  {
+    ID:2,
+    ICON: ICONS.TRANSFER2,
+    LABEL: 'Chuyển tiền theo lô',
+  },
+  {
+    ID:3,
+    ICON: ICONS.TRANSFER3,
+    LABEL: 'Nhận chuyển tiền từ MM',
+  },
+  {
+    ID:4,
+    ICON: ICONS.TRANSFER4,
+    LABEL: 'Chuyển tới Mobile Money',
+  },
 ]
