@@ -31,6 +31,7 @@ import LoadingOverLay from './components/LoadingOverLay'
 import ContractPage from './pages/Contract/ContractPage'
 import moment from 'moment'
 import 'moment/locale/vi'
+import authenticationStore from './stores/authenticationStore.js'
 
 const history = createBrowserHistory()
 
@@ -62,6 +63,7 @@ const rootStores = {
   commonStore,
   mobileMoneyStore,
   infoAccountStore,
+  authenticationStore,
 }
 
 

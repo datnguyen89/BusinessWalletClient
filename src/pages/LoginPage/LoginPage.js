@@ -7,14 +7,20 @@ import IMAGES from '../../images'
 import { LoginFormTitle, LoginPageWrapper, TitleWrapper } from './LoginPageStyled'
 import { Link, useHistory } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
+import * as forge from 'node-forge'
+import { PUBLIC_KEY } from '../../utils/constant'
 
 const LoginPage = props => {
-  const { commonStore } = props
+  const { commonStore, authenticationStore } = props
   const history = useHistory()
   const [visibleOtp, setVisibleOtp] = useState(false)
 
   const onFinish = (formCollection) => {
     setVisibleOtp(true)
+    var rsa = forge.pki.publicKeyFromPem(PUBLIC_KEY);
+    formCollection.password = window.btoa(rsa.encrypt(formCollection.password));
+
+    authenticationStore.userLogin(formCollection);
     console.log('Success:', formCollection)
   }
   const onFinishFailed = (errorInfo) => {
@@ -87,4 +93,4 @@ const LoginPage = props => {
 
 LoginPage.propTypes = {}
 
-export default inject('commonStore')(observer(LoginPage))
+export default inject('commonStore', 'authenticationStore')(observer(LoginPage))

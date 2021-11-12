@@ -11,7 +11,7 @@ export const AuthenticationRequest = {
   userLogin: (payload) => {
     return axios({
       method: 'post',
-      url: `${apiUrl}/api/auth/login`,
+      url: `${apiUrl}/api/login`,
       headers: {
         'Content-Type': 'application/json',
       },
