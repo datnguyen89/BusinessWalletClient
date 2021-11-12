@@ -20,18 +20,7 @@ export const ServiceBox = styled.div`
   align-items: center;
   justify-content: center;
   padding: 8px;
-
-  img {
-    height: 96px;
-    width: auto;
-  }
-
-  &:hover {
-    img {
-      transition: all 1s;
-      transform: scale(1.1);
-    }
-  }
+  
 `
 
 export const ServiceName = styled.h1`

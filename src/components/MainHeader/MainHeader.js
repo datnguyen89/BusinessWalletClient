@@ -10,8 +10,7 @@ import {
   faList,
 } from '@fortawesome/free-solid-svg-icons'
 import {
-  CustomLink, HeaderDropdownIconWrapper, HeaderDropdownItem, HeaderDropdownItemText,
-  HeaderDropdownWrapper,
+  CustomLink,
   HeaderLogoArea,
   HeaderMenuText,
   HeaderNotifyArea,
@@ -36,6 +35,12 @@ import {
   TRANSFERS,
 } from '../../utils/constant'
 import DrawerSideBar from '../DrawerSideBar'
+import {
+  HeaderDropdownIconWrapper,
+  HeaderDropdownItem,
+  HeaderDropdownItemText,
+  HeaderDropdownWrapper,
+} from '../CommonStyled/CommonStyled'
 
 const MainHeader = props => {
   const { commonStore } = props

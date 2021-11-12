@@ -5,6 +5,10 @@ export const HeaderUserAreaWrapper = styled.a`
   display: flex;
   align-items: center;
 
+  .header-user-area {
+    width: 320px;
+  }
+
   &:hover {
     color: #fff !important;
   }

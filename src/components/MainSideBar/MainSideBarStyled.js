@@ -21,14 +21,7 @@ export const MainSideBarWrapper = styled.aside`
     color: #4C68EF;
   }
 
-  .collapse-sidebar-icon {
-    color: #fff;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    cursor: pointer;
-    display: ${props => props.display} !important;
-  }
+  
 `
 export const BankInfoArea = styled.div`
   background: url(${IMAGES.BANK_BG}) center center no-repeat;
@@ -42,10 +35,18 @@ export const BankInfoArea = styled.div`
   .bank-name-sidebar {
     margin: 0 8px;
     text-align: center;
-    color: #fff;
+    color: ${props => props.color};
     font-weight: 700;
     font-size: 1.4rem;
     width: 50%;
+  }
+  .collapse-sidebar-icon {
+    color: ${props => props.color};
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    display: ${props => props.display} !important;
   }
 `
 export const BankAvatarWrapper = styled.div`

@@ -6,7 +6,13 @@ import ICONS from '../../icons'
 import { DropdownUserSetting, HeaderUserAreaWrapper, ThemePickerItem, ThemePickerWrapper } from './HeaderUserAreaStyled'
 import { useHistory } from 'react-router-dom'
 import ChangePasswordModal from '../ChangePasswordModal'
-import { THEME_LIST } from '../../utils/constant'
+import { THEME_LIST, TRANSFERS } from '../../utils/constant'
+import {
+  HeaderDropdownIconWrapper,
+  HeaderDropdownItem,
+  HeaderDropdownItemText,
+  HeaderDropdownWrapper,
+} from '../CommonStyled/CommonStyled'
 
 const HeaderUserArea = props => {
 
@@ -27,31 +33,38 @@ const HeaderUserArea = props => {
   }
 
   const menu = (
-    <Menu>
-      <Menu.Item className={'user-menu-item'} key='0' onClick={() => setVisibleChangePassword(true)}>
-        {ICONS.SETTING}
-        <span className={'user-menu-label'}>Đổi mật khẩu</span>
-      </Menu.Item>
-      <Menu.Item className={'user-menu-item'} key='1' onClick={() => handleClickMenu('/login')}>
-        {ICONS.LOGOUT}
-        <span className={'user-menu-label'}>Đăng xuất</span>
-      </Menu.Item>
-      <Menu.Item key='2'>
-        <ThemePickerWrapper>
-          {
-            THEME_LIST.map(item =>
-              <ThemePickerItem key={item.name} color={item.solidColor}
-                               onClick={() => handleChangeAppTheme(item.name)} />,
-            )
-          }
-        </ThemePickerWrapper>
-      </Menu.Item>
-    </Menu>
+    <HeaderDropdownWrapper>
+      <HeaderDropdownItem
+        justifyContent={'center'}
+        columns={2}
+        onClick={() => setVisibleChangePassword(true)}
+        color={commonStore.appTheme.solidColor}>
+        <HeaderDropdownIconWrapper>
+          {ICONS.SETTING}
+        </HeaderDropdownIconWrapper>
+        <HeaderDropdownItemText>
+          Đổi mật khẩu
+        </HeaderDropdownItemText>
+      </HeaderDropdownItem>
+      <HeaderDropdownItem
+        justifyContent={'center'}
+        columns={2}
+        onClick={() => handleClickMenu('/login')}
+        color={commonStore.appTheme.solidColor}>
+        <HeaderDropdownIconWrapper>
+          {ICONS.LOGOUT}
+        </HeaderDropdownIconWrapper>
+        <HeaderDropdownItemText>
+          Đăng xuất
+        </HeaderDropdownItemText>
+      </HeaderDropdownItem>
+    </HeaderDropdownWrapper>
   )
   return (
     <HeaderUserAreaWrapper id={'user-menu-wrapper'} color={commonStore.appTheme.solidColor}>
       <Dropdown overlay={menu}
-                placement={'bottomCenter'}
+                overlayClassName={'header-user-area'}
+                placement={'bottomRight'}
                 trigger={['click']}
                 getPopupContainer={() => document.getElementById('user-menu-wrapper')}>
         <DropdownUserSetting>

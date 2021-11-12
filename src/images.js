@@ -5,7 +5,7 @@ const IMAGES = {
   AUTH_LEFT_BACKGROUND: require('./media/images/auth-body-left-bg.png'),
   LOGO_MOBIFONE: require('./media/images/logo-mobi-mobifone.png'),
   DEFAULT_AVATAR: require('./media/images/default-avatar.png'),
-  BANK_BG: require('./media/images/bank-bg.png'),
+  BANK_BG: require('./media/images/main-sidebar-bg.svg'),
   SACOMBANK: require('./media/images/sacombank.png'),
   HOME_CAROUSEL: require('./media/images/carousel1.png'),
   ADMIN_BG: require('./media/images/mask.png'),

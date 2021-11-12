@@ -3,9 +3,11 @@ import { inject, observer } from 'mobx-react'
 import { HomeServicesWrapper, ServiceBox, ServiceDescription, ServiceName } from './HomeServicesStyled'
 import { Badge, Col, Row } from 'antd'
 import { SERVICES_DATA } from '../../utils/constant'
+import { useHistory } from 'react-router-dom'
 
 const HomeServices = props => {
   const { commonStore } = props
+  const history = useHistory()
   return (
     <HomeServicesWrapper>
       <Row align={'middle'} gutter={[16, 16]} style={{ alignItems: 'stretch' }}>
@@ -15,8 +17,8 @@ const HomeServices = props => {
               {
                 item.BADGE_NUMBER > 0 ?
                   <Badge.Ribbon text={item.BADGE_NUMBER} color={commonStore.appTheme.solidColor}>
-                    <ServiceBox>
-                      <img src={item.ICON} alt={''} />
+                    <ServiceBox onClick={() => history.push(item.PATH)}>
+                      <img src={item.ICON} alt={''} height={90} width={90} />
                       <ServiceName>
                         {item.SERVICE_NAME}
                       </ServiceName>
@@ -26,8 +28,8 @@ const HomeServices = props => {
                     </ServiceBox>
                   </Badge.Ribbon>
                   :
-                  <ServiceBox>
-                    <img src={item.ICON} alt={''} />
+                  <ServiceBox onClick={() => history.push(item.PATH)}>
+                    <img src={item.ICON} alt={''} height={90} width={90} />
                     <ServiceName>
                       {item.SERVICE_NAME}
                     </ServiceName>
