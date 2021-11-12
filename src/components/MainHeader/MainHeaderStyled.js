@@ -85,7 +85,7 @@ export const HeaderTransactionItem = styled.div`
     }
 
     .header-transfer-area {
-      width: 75%;
+      width: 70%;
     }
   }
   @media only screen and (max-width: 1200px) {

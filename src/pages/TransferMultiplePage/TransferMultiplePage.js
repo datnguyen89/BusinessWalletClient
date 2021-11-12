@@ -15,8 +15,8 @@ const TransferMultiplePage = props => {
       <Helmet>
         <title>Chuyển tiền theo Lô</title>
       </Helmet>
+      <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TRANSFER_MULTIPLE} />
       <TransferMultiplePageWrapper>
-        <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TRANSFER_MULTIPLE} />
         <TransferMethod></TransferMethod>
         <FilterTransferMethod></FilterTransferMethod>
         <StateTransferMethod></StateTransferMethod>

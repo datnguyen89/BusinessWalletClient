@@ -14,6 +14,7 @@ import {
   DepositWrapper,
   WrapperDetail,
 } from './DepositPageStyled'
+import { Helmet } from 'react-helmet/es/Helmet'
 
 const DepositPage = () => {
   const [isConfirm, setIsConfirm] = useState(false)
@@ -61,6 +62,9 @@ const DepositPage = () => {
 
   return (
     <DefaultLayout>
+      <Helmet>
+        <title>Nạp tiền</title>
+      </Helmet>
       <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.DEPOSIT} />
       <Wrapper>
         <Form

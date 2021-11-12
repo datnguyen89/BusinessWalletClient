@@ -11,12 +11,16 @@ import HomeWidgets from '../../components/HomeWidgets'
 import HomeServices from '../../components/HomeServices'
 import { CarouselWrapper } from './HomePageStyled'
 import IMAGES from '../../images'
+import { Helmet } from 'react-helmet/es/Helmet'
 
 const HomePage = props => {
   const { commonStore } = props
 
   return (
     <DefaultLayout>
+      <Helmet>
+        <title>Trang chủ</title>
+      </Helmet>
       <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.HOME} />
       <HomeWidgets />
       <HomeServices />

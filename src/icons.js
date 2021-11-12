@@ -1,7 +1,7 @@
 import React from 'react'
 import { ReactComponent as DepositIcon } from './media/icons/deposit.svg'
 import { ReactComponent as LinkBankIcon } from './media/icons/linkbank.svg'
-import { ReactComponent as TransferIcon } from './media/icons/tranfer.svg'
+import { ReactComponent as TransferIcon } from './media/icons/transfer.svg'
 import { ReactComponent as WithdrawIcon } from './media/icons/withdraw.svg'
 import { ReactComponent as LogoutIcon } from './media/icons/log-out.svg'
 import { ReactComponent as SettingIcon } from './media/icons/setting.svg'

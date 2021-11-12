@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const MainFooterWrapper = styled.footer`
   position: fixed;
@@ -11,9 +12,11 @@ export const MainFooterWrapper = styled.footer`
   background: #FFF;
   display: flex;
   justify-content: space-between;
+
   a:hover {
     color: ${props => props.solidColor};
   }
+
   @media only screen and (max-width: 768px) {
     font-size: 1.2rem;
   }
@@ -52,18 +55,23 @@ export const MainFooterRight = styled.div`
   align-items: end;
   margin-right: 16px;
   font-size: 12px;
-  
+
   @media only screen and (max-width: 700px) {
     display: none;
   }
 `
 export const FooterRightMenu = styled.div`
 `
-export const FooterRightMenuItem = styled.a`
+export const FooterRightMenuItem = styled(Link)`
   color: #999999;
+
+  &.active {
+    color: ${props => props.color};
+  }
 `
 export const FooterRightPhone = styled.div`
   margin-top: 8px;
+
   * {
     color: #999999;
   }
