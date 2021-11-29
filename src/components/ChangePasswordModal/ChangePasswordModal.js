@@ -8,18 +8,20 @@ import OtpModal from '../OtpModal'
 import SuccessModal from '../SuccessModal'
 
 const ChangePasswordModal = props => {
-  const { onCancel, onSuccess, visible } = props
+  const { onClose, onSuccess, visible } = props
   const [formChangePassword] = Form.useForm()
 
   const [visibleOtp, setVisibleOtp] = useState(false)
   const [visibleSuccess, setVisibleSuccess] = useState(false)
 
   const handleCancel = () => {
-    onCancel()
+    onClose()
+    formChangePassword.resetFields()
   }
   const onFinishChangePassword = (formCollection) => {
     console.log('Success:', formCollection)
     // TODO: handle submit new password then close modal change password
+    onClose()
     // TODO: show modal OTP
     setVisibleOtp(true)
   }
@@ -30,6 +32,11 @@ const ChangePasswordModal = props => {
     console.log(otp)
     setVisibleOtp(false)
     setVisibleSuccess(true)
+  }
+
+  const handleSuccessChangePassword = () => {
+    setVisibleSuccess(false)
+    onSuccess()
   }
 
   useEffect(() => {
@@ -107,7 +114,7 @@ const ChangePasswordModal = props => {
         onCancel={() => setVisibleOtp(false)}
         phoneNumber={'0379631004'} />
       <SuccessModal visible={visibleSuccess} description={'Đối mật khẩu thành công'}
-                    callbackSuccess={() => setVisibleSuccess(false)} />
+                    callbackSuccess={handleSuccessChangePassword} />
     </>
 
   )
@@ -116,7 +123,7 @@ const ChangePasswordModal = props => {
 ChangePasswordModal.propTypes = {
   visible: PropTypes.bool.isRequired,
   onSuccess: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 }
 
 export default ChangePasswordModal

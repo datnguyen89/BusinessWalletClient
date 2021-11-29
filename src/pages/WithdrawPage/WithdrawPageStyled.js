@@ -8,7 +8,7 @@ export const CarouselWrapper = styled.div`
   }
 `
 
-export const Wrapper = styled.div`
+export const WithdrawPageWrapper = styled.div`
   margin: 0 16px;
 `
 

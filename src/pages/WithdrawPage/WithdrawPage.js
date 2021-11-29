@@ -11,14 +11,15 @@ import TransSourceFund from '../../components/TransSourceFund'
 import TransActionFooter from '../../components/TransActionFooter'
 
 import {
-  Wrapper,
   DepositWrapper,
   WrapperDetail,
+  WithdrawPageWrapper,
 } from './WithdrawPageStyled'
+import { Helmet } from 'react-helmet/es/Helmet'
 
 const DepositPage = () => {
   const [isConfirm, setIsConfirm] = useState(false)
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
 
   const handleBtnBackClick = (e) => {
     setIsConfirm(false)
@@ -29,13 +30,13 @@ const DepositPage = () => {
   }
 
   const checkAmount = (_, value) => {
-    console.log('amount:', value);
+    console.log('amount:', value)
     if (value > 0) {
-      return Promise.resolve();
+      return Promise.resolve()
     }
 
-    return Promise.reject(new Error('Số tiền phải lớn hơn 0!'));
-  };
+    return Promise.reject(new Error('Số tiền phải lớn hơn 0!'))
+  }
 
   let transInfoData = [{
     label: 'Tài khoản chuyển',
@@ -65,12 +66,15 @@ const DepositPage = () => {
   // Get deposit data
   useEffect(() => {
 
-  });
+  })
 
   return (
     <DefaultLayout>
-      <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TRANFER} />
-      <Wrapper>
+      <Helmet>
+        <title>Rút tiền</title>
+      </Helmet>
+      <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.WITHDRAW} />
+      <WithdrawPageWrapper>
         <Form
           name='basic'
           labelCol={{ span: 6 }}
@@ -89,7 +93,8 @@ const DepositPage = () => {
                     label='Tài khoản chuyển'
                   >
                     <Row>
-                      <Col span={12}>452834901233
+                      <Col span={12}>
+                        452834901233
                       </Col>
                       <Col span={12} style={{ fontWeight: 600, textAlign: 'right' }}>
                         Số dư: 100.500.000 đ
@@ -133,7 +138,7 @@ const DepositPage = () => {
             backClickCallback={handleBtnBackClick}
           />
         </Form>
-      </Wrapper >
+      </WithdrawPageWrapper>
     </DefaultLayout>
   )
 }

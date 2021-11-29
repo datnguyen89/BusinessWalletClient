@@ -29,7 +29,7 @@ const LoginPage = props => {
 
   const handleSubmitOtp = (otp) => {
     if (otp === '123456') {
-      history.push('/')
+      history.push(PAGES.HOME.PATH)
     } else {
       message.error('Mã OTP không đúng')
     }

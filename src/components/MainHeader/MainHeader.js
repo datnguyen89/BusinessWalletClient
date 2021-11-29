@@ -1,20 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { inject, observer } from 'mobx-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBars,
+  faExchangeAlt,
   faFileInvoiceDollar,
   faHandHoldingUsd,
   faLink,
-  faExchangeAlt,
   faList,
 } from '@fortawesome/free-solid-svg-icons'
 import {
-  CustomLink,
-  HeaderLogoArea, HeaderNotifyArea,
+  CustomLink, HeaderDropdownIconWrapper, HeaderDropdownItem, HeaderDropdownItemText,
+  HeaderDropdownWrapper,
+  HeaderLogoArea,
+  HeaderMenuText,
+  HeaderNotifyArea,
   HeaderTransactionArea,
   HeaderTransactionItem,
-  MainHeaderRight, MainHeaderRightMobile,
+  MainHeaderRight,
+  MainHeaderRightMobile,
   MainHeaderWrapper,
 } from './MainHeaderStyled'
 import IMAGES from '../../images'
@@ -22,9 +26,15 @@ import NotifyBell from '../NotifyBell'
 import ICONS from '../../icons'
 import { Drawer, Dropdown, Menu } from 'antd'
 import HeaderUserArea from '../HeaderUserArea'
-import { Link, NavLink, useHistory } from 'react-router-dom'
-import { DEVICE, SIDEBAR_WIDTH_EXPAND } from '../../utils/constant'
-import MainSideBar from '../MainSideBar'
+import { useHistory } from 'react-router-dom'
+import {
+  DEVICE,
+  PAGES,
+  PAYMENT_GROUP_PAGES,
+  SERVICES_DATA,
+  SIDEBAR_WIDTH_EXPAND, TRANSFER_GROUP_PAGES,
+  TRANSFERS,
+} from '../../utils/constant'
 import DrawerSideBar from '../DrawerSideBar'
 
 const MainHeader = props => {
@@ -39,10 +49,49 @@ const MainHeader = props => {
     console.log('handleClickDrawerMenu', e)
   }
 
+  const paymentOverlay = (
+    <HeaderDropdownWrapper>
+      {
+        SERVICES_DATA.map(item =>
+          <HeaderDropdownItem
+            key={item.ID}
+            onClick={() => history.push(item.PATH)}
+            color={commonStore.appTheme.solidColor}>
+            <HeaderDropdownIconWrapper>
+              <img src={item.ICON_SMALL} alt={''} />
+            </HeaderDropdownIconWrapper>
+            <HeaderDropdownItemText>
+              {item.SERVICE_NAME}
+            </HeaderDropdownItemText>
+          </HeaderDropdownItem>,
+        )
+      }
+    </HeaderDropdownWrapper>
+  )
+  const transferOverlay = (
+    <HeaderDropdownWrapper>
+      {
+        TRANSFERS.map(item =>
+          <HeaderDropdownItem
+            onClick={() => history.push(item.PATH)}
+            key={item.ID}
+            color={commonStore.appTheme.solidColor}>
+            <HeaderDropdownIconWrapper>
+              <img src={item.ICON} alt={''} />
+            </HeaderDropdownIconWrapper>
+            <HeaderDropdownItemText>
+              {item.LABEL}
+            </HeaderDropdownItemText>
+          </HeaderDropdownItem>,
+        )
+      }
+    </HeaderDropdownWrapper>
+  )
   return (
     <MainHeaderWrapper>
       <HeaderLogoArea>
-        <img src={IMAGES.MAIN_LOGO} alt={''} style={{ cursor: 'pointer' }} onClick={() => history.push('/')} />
+        <img src={IMAGES.MAIN_LOGO} alt={''} style={{ cursor: 'pointer' }}
+             onClick={() => history.push(PAGES.HOME.PATH)} />
         <span>Doanh Nghiệp</span>
         <FontAwesomeIcon
           onClick={() => setVisibleMobileDrawerLeft(true)}
@@ -67,17 +116,38 @@ const MainHeader = props => {
       </HeaderLogoArea>
       <MainHeaderRight>
         <HeaderTransactionArea>
-          <HeaderTransactionItem className={pageName === 'deposit' ? 'selected' : ''}>
-            <CustomLink to='/deposit'>{ICONS.DEPOSIT_ICON}<span>Nạp tiền</span></CustomLink>
+          <HeaderTransactionItem
+            className={PAYMENT_GROUP_PAGES.includes(pageName) ? 'selected' : ''}
+            id={'header-payment-area'}>
+            <Dropdown
+              overlay={paymentOverlay}
+              overlayClassName={'header-payment-area'}
+              trigger={'click'}
+              placement={'bottomCenter'}
+              getPopupContainer={() => document.getElementById('header-payment-area')}>
+              <HeaderMenuText>{ICONS.PAYMENT_ICON}<span>Thanh toán</span></HeaderMenuText>
+            </Dropdown>
           </HeaderTransactionItem>
-          <HeaderTransactionItem className={pageName === 'tranfer' ? 'selected' : ''}>
-            <CustomLink to='/tranfer'>{ICONS.TRANSFER_ICON}<span>Chuyển tiền</span></CustomLink>
+          <HeaderTransactionItem className={pageName === PAGES.DEPOSIT.NAME ? 'selected' : ''}>
+            <CustomLink to={PAGES.DEPOSIT.PATH}>{ICONS.DEPOSIT_ICON}<span>Nạp tiền</span></CustomLink>
           </HeaderTransactionItem>
-          <HeaderTransactionItem className={pageName === 'contract' ? 'selected' : ''}>
-            <CustomLink to='/contract'>{ICONS.LINK_BANK_ICON}<span>Liên kết</span> </CustomLink>
+          <HeaderTransactionItem
+            className={TRANSFER_GROUP_PAGES.includes(pageName) ? 'selected' : ''}
+            id={'header-transfer-area'}>
+            <Dropdown
+              overlay={transferOverlay}
+              overlayClassName={'header-transfer-area'}
+              trigger={'click'}
+              placement={'bottomCenter'}
+              getPopupContainer={() => document.getElementById('header-transfer-area')}>
+              <HeaderMenuText>{ICONS.TRANSFER_ICON}<span>Chuyển tiền</span></HeaderMenuText>
+            </Dropdown>
           </HeaderTransactionItem>
-          <HeaderTransactionItem className={pageName === 'withdraw' ? 'selected' : ''}>
-            <CustomLink to='/withdraw'>{ICONS.WITHDRAW_ICON}<span>Rút tiền</span></CustomLink>
+          <HeaderTransactionItem className={pageName === PAGES.LINK_BANK.NAME ? 'selected' : ''}>
+            <CustomLink to={PAGES.LINK_BANK.PATH}>{ICONS.LINK_BANK_ICON}<span>Liên kết</span> </CustomLink>
+          </HeaderTransactionItem>
+          <HeaderTransactionItem className={pageName === PAGES.WITHDRAW.NAME ? 'selected' : ''}>
+            <CustomLink to={PAGES.WITHDRAW.PATH}>{ICONS.WITHDRAW_ICON}<span>Rút tiền</span></CustomLink>
           </HeaderTransactionItem>
         </HeaderTransactionArea>
         <HeaderNotifyArea>

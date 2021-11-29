@@ -10,7 +10,7 @@ const PolicyPage = props => {
   return (
     <DefaultLayout>
       <Helmet>
-        <title>Điều khoản sử dụng</title>
+        <title>Chính sách</title>
       </Helmet>
       <PolicyPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.POLICY} />

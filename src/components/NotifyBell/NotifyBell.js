@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ICONS from '../../icons'
 import { Badge, Dropdown, Menu } from 'antd'
+import { NotifyBellDropdown, NotifyBellWrapper } from './NotifyBellStyled'
 
 const NotifyBell = props => {
   const menu = (
@@ -17,16 +18,19 @@ const NotifyBell = props => {
     </Menu>
   )
   return (
-    <div id={'notify-bell-wrapper'}>
-      <Dropdown overlay={menu}
-                placement={'bottomCenter'}
-                trigger={['click']}
-                getPopupContainer={() => document.getElementById('notify-bell-wrapper')}>
-        <Badge count={9} size={'small'}>
-          <img src={ICONS.NOTIFY_BELL} alt={''} />
-        </Badge>
+    <NotifyBellWrapper id={'notify-bell-wrapper'}>
+      <Dropdown
+        overlay={menu}
+        placement={'bottomCenter'}
+        trigger={['click']}
+        getPopupContainer={() => document.getElementById('notify-bell-wrapper')}>
+        <NotifyBellDropdown>
+          <Badge count={9} size={'small'}>
+            <img src={ICONS.NOTIFY_BELL} alt={''} />
+          </Badge>
+        </NotifyBellDropdown>
       </Dropdown>
-    </div>
+    </NotifyBellWrapper>
   )
 }
 

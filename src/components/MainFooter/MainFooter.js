@@ -13,6 +13,7 @@ import {
 } from './MainFooterStyled'
 import IMAGES from '../../images'
 import { Link } from 'react-router-dom'
+import { PAGES } from '../../utils/constant'
 
 const MainFooter = props => {
   const { commonStore } = props
@@ -39,13 +40,33 @@ const MainFooter = props => {
       </MainFooterLeft>
       <MainFooterRight>
         <FooterRightMenu>
-          <FooterRightMenuItem href={'#'}>Giới thiệu</FooterRightMenuItem>
+          <FooterRightMenuItem
+            className={commonStore.pageName === PAGES.ABOUT_US.NAME ? 'active' : ''}
+            color={commonStore.appTheme.solidColor}
+            to={PAGES.ABOUT_US.PATH}>
+            Giới thiệu
+          </FooterRightMenuItem>
           <span style={{ margin: '0 8px' }}>-</span>
-          <FooterRightMenuItem href={'#'}>Liên hệ</FooterRightMenuItem>
+          <FooterRightMenuItem
+            className={commonStore.pageName === PAGES.CONTACT.NAME ? 'active' : ''}
+            color={commonStore.appTheme.solidColor}
+            to={PAGES.CONTACT.PATH}>
+            Liên hệ
+          </FooterRightMenuItem>
           <span style={{ margin: '0 8px' }}>-</span>
-          <FooterRightMenuItem href={'#'}>Chính sách</FooterRightMenuItem>
+          <FooterRightMenuItem
+            className={commonStore.pageName === PAGES.POLICY.NAME ? 'active' : ''}
+            color={commonStore.appTheme.solidColor}
+            to={PAGES.POLICY.PATH}>
+            Chính sách
+          </FooterRightMenuItem>
           <span style={{ margin: '0 8px' }}>-</span>
-          <FooterRightMenuItem href={'#'}>Điều khoản</FooterRightMenuItem>
+          <FooterRightMenuItem
+            className={commonStore.pageName === PAGES.TERM_OF_USE.NAME ? 'active' : ''}
+            color={commonStore.appTheme.solidColor}
+            to={PAGES.TERM_OF_USE.PATH}>
+            Điều khoản
+          </FooterRightMenuItem>
         </FooterRightMenu>
         <FooterRightPhone>
           <a href={'tel:18001090'}>
