@@ -57,7 +57,7 @@ export const HeaderTransactionArea = styled.div`
 `
 export const HeaderTransactionItem = styled.div`
   margin: 0 16px;
-  height: 85%;
+  height: 100%;
   display: flex;
   align-items: center;
 
@@ -78,14 +78,31 @@ export const HeaderTransactionItem = styled.div`
       fill: #FDCF17 !important;
     }
   }
+    @media only screen and (min-width: 1920px) {
+        .header-payment-area {
+            width: 600px;
+        }
 
-  @media only screen and (max-width: 1600px) {
+        .header-transfer-area {
+            width: 860px;
+        }
+    }
+  @media only screen and (max-width: 1920px) {
     .header-payment-area {
-      width: 45%;
+      width: 600px;
     }
 
     .header-transfer-area {
-      width: 70%;
+      width: 860px;
+    }
+  }
+  @media only screen and (max-width: 1600px) {
+    .header-payment-area {
+      width: 600px;
+    }
+
+    .header-transfer-area {
+      width: 860px;
     }
   }
   @media only screen and (max-width: 1200px) {
@@ -94,11 +111,11 @@ export const HeaderTransactionItem = styled.div`
     }
 
     .header-payment-area {
-      width: 60%;
+      width: 600px;
     }
 
     .header-transfer-area {
-      width: 90%;
+      width: 860px;
     }
   }
   @media only screen and (max-width: 992px) {
@@ -131,39 +148,6 @@ export const HeaderNotifyArea = styled.div`
   display: flex;
   align-items: center;
 `
-export const HeaderDropdownWrapper = styled.div`
-  background: #fff;
-  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
-  padding: 16px;
-  display: flex;
-  flex-wrap: wrap;
-`
-export const HeaderDropdownIconWrapper = styled.div`
-  width: 24px;
-  height: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-export const HeaderDropdownItemText = styled.div`
-  color: #333;
-  margin-left: 8px;
-  @media only screen and (max-width: 992px) {
-    font-size: 12px;      
-  }
-`
-export const HeaderDropdownItem = styled.div`
-  width: calc(100% / 4);
-  display: flex;
-  align-items: center;
-  padding: 8px;
-  cursor: pointer;
 
-  &:hover {
-    ${HeaderDropdownItemText} {
-      color: ${props => props.color};
-    }
-  }
-`
 
 

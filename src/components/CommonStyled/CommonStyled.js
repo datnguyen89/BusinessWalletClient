@@ -60,3 +60,39 @@ export const ColorText = styled.span`
   margin: ${props => props.margin || '0'};
   font-size: ${props => props.fontSize || '1.4rem'};
 `
+export const HeaderDropdownWrapper = styled.div`
+  background: #fff;
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+  border-radius: 2px;
+  padding: 8px;
+  display: flex;
+  flex-wrap: wrap;
+`
+export const HeaderDropdownIconWrapper = styled.div`
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+export const HeaderDropdownItemText = styled.div`
+  color: #333;
+  margin-left: 8px;
+  @media only screen and (max-width: 992px) {
+    font-size: 12px;
+  }
+`
+export const HeaderDropdownItem = styled.div`
+  width: calc(100% / ${props => props.columns || 4});
+  display: flex;
+  align-items: center;
+  justify-content: ${props => props.justifyContent || 'flex-start'};
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+    ${HeaderDropdownItemText} {
+      color: ${props => props.color};
+    }
+  }
+`
