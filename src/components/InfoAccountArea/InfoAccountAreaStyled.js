@@ -40,14 +40,19 @@ export const InfoAccountMoney = styled.h3 `
   color: #333333;
   font-size: 3.6rem;
 `
-
-export const DropdownCustom = styled(Dropdown) `
-  display: flex;
-  justify-content: right;
-  span {
-    margin: 5px 10px;
-  }
-  .dropdown-style-info-acount-class {
-    min-width: 500px !important;
+export const InfoAccountOverLayWrapper = styled.div`
+  background: #F8F8F8;
+  padding: 16px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  max-height: 280px;
+  overflow-y: auto;
+`
+export const InfoAccountOverLayItem = styled.div`
+  cursor: pointer;
+  background: #fff;
+  margin-bottom: 16px;
+  &:last-child {
+    margin-bottom: 0;
   }
 `

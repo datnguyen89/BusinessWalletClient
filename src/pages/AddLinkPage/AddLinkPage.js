@@ -18,12 +18,12 @@ import InfoAccountArea from '../../components/InfoAccountArea'
 import { toJS } from 'mobx'
 
 const AddLinkPage = props => {
-
-
   const { commonStore, accountWalletStore } = props
+  const [selectedAccountWallet, setSelectedAccountWallet] = useState(null)
   const handlerCallbackBankAccount = (valueChange) => {
+    // selectedAccountWallet dùng khi submit form
+    setSelectedAccountWallet(valueChange)
     let newArr = [...accountWalletStore.accountWallets];
-
     newArr = newArr.map(item => {
       if (valueChange.id === item.id) {
         item.default = true
@@ -59,7 +59,7 @@ const AddLinkPage = props => {
               <Col span={6}></Col>
               <Col span={12}>
                 <WhiteRoundedInfoLink margin={'0 16px 16px 0'}>
-                  <InfoAccountArea callbackBankAccount={handlerCallbackBankAccount} data={accountWalletStore.accountWallets}></InfoAccountArea>
+                  <InfoAccountArea callbackBankAccount={handlerCallbackBankAccount} data={accountWalletStore.accountWallets} />
                 </WhiteRoundedInfoLink>
               </Col>
               <Col span={6}></Col>
@@ -82,6 +82,17 @@ const AddLinkPage = props => {
           <AreaChooseBank>
           </AreaChooseBank>
         </WhiteRoundedBox>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </AddLinkPageWrapper>
     </DefaultLayout>
   )

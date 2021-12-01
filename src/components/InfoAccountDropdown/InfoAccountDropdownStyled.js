@@ -6,6 +6,7 @@ export const InfoAccountDropdownWrapper = styled.div`
   border-radius: 4px;
   //margin: 5px;
   padding: 10px;
+  
   .slick-arrow.slick-prev {
     &:before {
       color: #ccc;
