@@ -5,7 +5,7 @@ class InfoAccountStore {
 
   @observable infoAccount = [];
 
-  constructor(  ) {
+  constructor() {
   }
   @action getInfoAccount = () => {
     return new Promise((resolve, reject) => {

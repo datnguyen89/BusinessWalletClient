@@ -10,17 +10,24 @@ import {
 import DefaultLayout from '../../layouts/DefaultLayout'
 import { Helmet } from 'react-helmet/es/Helmet'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
-import { BREADCRUMB_DATA, mockupLinkedCard } from '../../utils/constant'
+import { BREADCRUMB_DATA, mockupLinkedCard, PAGES } from '../../utils/constant'
 import { Avatar, Button, Carousel, Col, Descriptions, Row } from 'antd'
 import { ColorText, ColorTitle, WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
 import { LeftOutlined, RightOutlined, UserOutlined } from '@ant-design/icons'
 import IMAGES from '../../images'
 import LinkedCardCarousel from '../../components/LinkedCardCarousel'
+import { useHistory } from 'react-router-dom'
 
 
 
 const IdentityInfoPage = props => {
   const { commonStore } = props
+  const history = useHistory()
+
+  const handleClickAddLink = (path) => {
+    history.push(path)
+  }
+
   return (
     <DefaultLayout>
       <Helmet>
@@ -104,7 +111,9 @@ const IdentityInfoPage = props => {
                     Ví PayMobi
                   </ColorText>
                 </div>
-                <Button type={'primary'}>Liên kết thẻ mới</Button>
+                <Button type={'primary'}
+                        onClick={() => handleClickAddLink(PAGES.ADD_LINK.PATH)}
+                >Liên kết thẻ mới</Button>
               </NotLinkedCardBox>
             </WhiteRoundedBox>
             <WhiteRoundedBox margin={'0 16px 16px 0'}>

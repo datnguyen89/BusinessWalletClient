@@ -21,6 +21,10 @@ export const PAGES = {
     NAME: 'term-of-use',
     PATH: '/term-of-use',
   },
+  ADD_LINK: {
+    NAME: 'add-link',
+    PATH: '/add-link',
+  },
   SUPPORT: {
     NAME: 'support',
     PATH: '/support',
@@ -297,6 +301,10 @@ export const BREADCRUMB_DATA = {
   POLICY: [
     { ID: 62, LABEL: 'Trang chủ', PATH: PAGES.HOME.PATH },
     { ID: 63, LABEL: 'Chính sách', PATH: null },
+  ],
+  ADD_LINK: [
+    { ID: 64,  LABEL: 'Trang chủ', PATH: PAGES.HOME.PATH },
+    { ID: 65, LABEL: 'Thêm liên kết', PATH: null },
   ],
 }
 export const HOME_WIDGET_DATA = [

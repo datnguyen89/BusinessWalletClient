@@ -56,6 +56,8 @@ import LoadingOverLay from './components/LoadingOverLay'
 import { PAGES } from './utils/constant'
 import { deviceDetect } from 'react-device-detect'
 import authenticationStore from './stores/authenticationStore.js'
+import AddLinkPage from './pages/AddLinkPage'
+import accountWalletStore from './stores/accountWalletStore'
 
 const history = createBrowserHistory()
 
@@ -88,6 +90,7 @@ const rootStores = {
   mobileMoneyStore,
   infoAccountStore,
   authenticationStore,
+  accountWalletStore
 }
 
 // axios.defaults.timeout = 20000
@@ -182,6 +185,8 @@ const App = () => {
                    component={TransferToMmPage} /> {/*Chuyển tiền tới MM*/}
             <Route exact path={PAGES.LINK_BANK.PATH}
                    component={LinkBankPage} /> {/*Liên kết*/}
+            <Route exact path={PAGES.ADD_LINK.PATH}
+                   component={AddLinkPage} /> {/*Thêm liên kết*/}
             <Route exact path={PAGES.WITHDRAW.PATH}
                    component={WithdrawPage} /> {/*Rút tiền*/}
             <Route exact path={PAGES.LOGIN.PATH}
