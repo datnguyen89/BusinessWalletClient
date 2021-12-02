@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import {inject, observer} from 'mobx-react'
 import { toJS } from 'mobx'
 import {
   InfoAccountDropdownContent, InfoAccountDropdownMoney, InfoAccountDropdownPhone,
@@ -8,17 +9,14 @@ import {
 } from './InfoAccountDropdownStyled'
 
 const InfoAccountDropdownDropdown = props => {
-  const { data, enableBorder } = props
+  const { data, enableBorder, commonStore } = props
   return (
-
-      data ? <InfoAccountDropdownWrapper border={enableBorder} borderColor={data.default ? '#0465B0' : '#E0E0E0'}>
+      data ? <InfoAccountDropdownWrapper border={enableBorder} borderColor={data.default ? commonStore.appTheme.solidColor : '#E0E0E0'}>
       <InfoAccountDropdownTitle>Tài khoản ví</InfoAccountDropdownTitle>
       <InfoAccountDropdownContent>{data.bankname}</InfoAccountDropdownContent>
       <InfoAccountDropdownPhone>{data.phoneNumber}</InfoAccountDropdownPhone>
       <InfoAccountDropdownMoney>{data.accountBalance}<span>đ</span></InfoAccountDropdownMoney>
-    </InfoAccountDropdownWrapper> : <div></div>
-
-
+    </InfoAccountDropdownWrapper> : <></>
   )
 }
 
@@ -27,4 +25,4 @@ InfoAccountDropdownDropdown.propTypes = {
   enableBorder: PropTypes.bool.isRequired
 }
 
-export default InfoAccountDropdownDropdown
+export default inject('commonStore')(observer(InfoAccountDropdownDropdown))
