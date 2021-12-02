@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { CollapsePanelLinkBankWrapper } from './CollapsePanelLinkBankStyled'
-import { Descriptions, Form, Pagination, Table } from 'antd'
+import { CollapsePanelTopupWrapper } from './CollapsePanelTopupStyled'
+import { Descriptions, Form, Pagination, Space, Table } from 'antd'
 import IconStatusLabel from '../IconStatusLabel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
@@ -12,7 +12,7 @@ import moment from 'moment'
 import { PaginationLabel, RowSpaceBetweenDiv } from '../CommonStyled/CommonStyled'
 import ICONS from '../../icons'
 
-const CollapsePanelLinkBank = props => {
+const CollapsePanelTopup = props => {
   const [mockupData, setMockupData] = useState([])
 
   const renderTransactionStatusIcon = (status) => {
@@ -169,9 +169,10 @@ const CollapsePanelLinkBank = props => {
       title: 'Hành động',
       align: 'center',
       render: record => (
-        <>
+        <Space>
+          <img src={ICONS.EDIT_BLUE} alt={''}/>
           <img src={ICONS.TRASH_RED} alt={''}/>
-        </>
+        </Space>
       ),
     },
   ]
@@ -232,7 +233,7 @@ const CollapsePanelLinkBank = props => {
   }, [])
 
   return (
-    <CollapsePanelLinkBankWrapper>
+    <CollapsePanelTopupWrapper>
       <Table
         bordered={false}
         expandable={{
@@ -248,10 +249,10 @@ const CollapsePanelLinkBank = props => {
         </PaginationLabel>
         <Pagination total={50} />
       </RowSpaceBetweenDiv>
-    </CollapsePanelLinkBankWrapper>
+    </CollapsePanelTopupWrapper>
   )
 }
 
-CollapsePanelLinkBank.propTypes = {}
+CollapsePanelTopup.propTypes = {}
 
-export default CollapsePanelLinkBank
+export default CollapsePanelTopup

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { CollapsePanelLinkBankWrapper } from './CollapsePanelLinkBankStyled'
+import { CollapsePanelMobileMoneyWrapper } from './CollapsePanelMobileMoneyStyled'
 import { Descriptions, Form, Pagination, Table } from 'antd'
 import IconStatusLabel from '../IconStatusLabel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,7 +12,7 @@ import moment from 'moment'
 import { PaginationLabel, RowSpaceBetweenDiv } from '../CommonStyled/CommonStyled'
 import ICONS from '../../icons'
 
-const CollapsePanelLinkBank = props => {
+const CollapsePanelMobileMoney = props => {
   const [mockupData, setMockupData] = useState([])
 
   const renderTransactionStatusIcon = (status) => {
@@ -182,7 +182,7 @@ const CollapsePanelLinkBank = props => {
           bordered
           column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
           size={'small'}>
-          <Descriptions.Item label={'Ngân hàng'} span={2}>{record.bankName}</Descriptions.Item>
+          <Descriptions.Item label={'Ngân hàng'} span={2}><a href={'javascript:;'}>{record.bankName}</a></Descriptions.Item>
           <Descriptions.Item label={'Số tài khoản'}
                              span={1}>{record.bankAccountNumber}</Descriptions.Item>
           <Descriptions.Item label={'Loại liên kết'} span={1}>{record.bankLinkType}</Descriptions.Item>
@@ -232,7 +232,7 @@ const CollapsePanelLinkBank = props => {
   }, [])
 
   return (
-    <CollapsePanelLinkBankWrapper>
+    <CollapsePanelMobileMoneyWrapper>
       <Table
         bordered={false}
         expandable={{
@@ -248,10 +248,10 @@ const CollapsePanelLinkBank = props => {
         </PaginationLabel>
         <Pagination total={50} />
       </RowSpaceBetweenDiv>
-    </CollapsePanelLinkBankWrapper>
+    </CollapsePanelMobileMoneyWrapper>
   )
 }
 
-CollapsePanelLinkBank.propTypes = {}
+CollapsePanelMobileMoney.propTypes = {}
 
-export default CollapsePanelLinkBank
+export default CollapsePanelMobileMoney

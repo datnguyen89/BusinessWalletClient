@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { CollapsePanelLinkBankWrapper } from './CollapsePanelLinkBankStyled'
+import { CollapsePanelTransferSingleWrapper } from './CollapsePanelTransferSingleStyled'
 import { Descriptions, Form, Pagination, Table } from 'antd'
 import IconStatusLabel from '../IconStatusLabel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,7 +12,7 @@ import moment from 'moment'
 import { PaginationLabel, RowSpaceBetweenDiv } from '../CommonStyled/CommonStyled'
 import ICONS from '../../icons'
 
-const CollapsePanelLinkBank = props => {
+const CollapsePanelTransferSingle = props => {
   const [mockupData, setMockupData] = useState([])
 
   const renderTransactionStatusIcon = (status) => {
@@ -232,7 +232,7 @@ const CollapsePanelLinkBank = props => {
   }, [])
 
   return (
-    <CollapsePanelLinkBankWrapper>
+    <CollapsePanelTransferSingleWrapper>
       <Table
         bordered={false}
         expandable={{
@@ -248,10 +248,10 @@ const CollapsePanelLinkBank = props => {
         </PaginationLabel>
         <Pagination total={50} />
       </RowSpaceBetweenDiv>
-    </CollapsePanelLinkBankWrapper>
+    </CollapsePanelTransferSingleWrapper>
   )
 }
 
-CollapsePanelLinkBank.propTypes = {}
+CollapsePanelTransferSingle.propTypes = {}
 
-export default CollapsePanelLinkBank
+export default CollapsePanelTransferSingle

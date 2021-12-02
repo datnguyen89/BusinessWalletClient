@@ -174,6 +174,13 @@ export const TRANSACTION_STATUS = {
   WAITING: 1,
   APPROVED: 2,
   REJECTED: 3,
+  CONFIRMED:4,
+  ALL: 99,
+}
+export const USER_PROCESS_STATUS = {
+  WAITING: 1,
+  APPROVED: 2,
+  REJECTED: 3,
   ALL: 99,
 }
 export const PROCESS_STATUS = {
