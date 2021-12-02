@@ -1,47 +1,33 @@
-import React from 'react'
-import { AreaBoundInternalBank, LinkInternalBankTitle, LinkInternalBankWrapper } from './LinkInternalBankStyled'
+import React, { useEffect } from 'react'
+import {
+  AreaBoundInternalBank,
+  ImgBank,
+  LinkInternalBankTitle,
+  LinkInternalBankWrapper, WrapperImage,
+} from './LinkInternalBankStyled'
+import { Col } from 'antd'
+import { inject, observer } from 'mobx-react'
+import PropTypes from 'prop-types'
 
 const LinkInternalBank = props => {
-  const listBank = [
-    {id: 1, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 2, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 3, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 4, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 5, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 6, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 7, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 8, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 9, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 10, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 11, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 12, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 13, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 14, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 15, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 16, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 17, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 18, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 19, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 20, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 21, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 22, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 23, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 24, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 25, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 26, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 27, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 28, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 29, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 30, imageUrl: require('../../media/images/sacombank_icon.png')},
-  ];
+
+  const { commonStore , selectedItem, callbackHitBank, accountWalletStore } = props;
+
+  useEffect(() => {
+    accountWalletStore.getListBankInternal();
+  }, []);
 
   return (
     <LinkInternalBankWrapper>
       <LinkInternalBankTitle>Ngân hàng nội địa</LinkInternalBankTitle>
       <AreaBoundInternalBank>
         {
-          listBank.map(item => (
-            <span key={item.id}><img src={item.imageUrl} alt={item.imageUrl} /></span>
+          accountWalletStore.listBankInternal.map(item => (
+            <Col key={item.id} span={3}>
+              <WrapperImage>
+                <ImgBank src={item.imageUrl} alt={item.imageUrl} color={commonStore.appTheme.solidColor} active={selectedItem?.id === item.id}  onClick={() => callbackHitBank(item)}/>
+              </WrapperImage>
+            </Col>
           ))
         }
       </AreaBoundInternalBank>
@@ -50,6 +36,8 @@ const LinkInternalBank = props => {
 }
 
 LinkInternalBank.propTypes = {
+  selectedItem: PropTypes.object,
+  callbackHitBank: PropTypes.func
 }
 
-export default LinkInternalBank
+export default inject('commonStore', 'accountWalletStore')(observer(LinkInternalBank))

@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Dropdown } from 'antd'
 
 export const InfoAccountWrapper = styled.div`
   .slick-arrow.slick-prev {
@@ -21,19 +20,9 @@ export const InfoAccountWrapper = styled.div`
   }
 `
 
-export const InfoAccountTitle = styled.p `
-  color: #979797;
-  font-size: 1.6rem;
-`
-
 export const InfoAccountContent = styled.h4 `
   color: #333333;
   font-size: 1.8rem;
-`
-
-export const InfoAccountPhone = styled.p `
-  color: #333333;
-  font-size: 1.4rem;
 `
 
 export const InfoAccountMoney = styled.h3 `

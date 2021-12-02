@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Button, Row } from 'antd'
 
 export const AddLinkPageWrapper = styled.div`
   .ant-descriptions-view {
@@ -34,4 +35,14 @@ export const WhiteRoundedInfoLink = styled.div `
   padding: ${props => props.padding || '16px'};
   margin: ${props => props.margin || '0'};
   border: ${props => props.border || '1px solid #E0E0E0'};
+`
+
+export const AreaCreateCommand = styled(Row) `
+  display: flex;
+  justify-content: center;
+  margin: 22px 0px 15px;
+`
+
+export const CreateCommandButton = styled(Button)`
+  padding: 0 40px;
 `

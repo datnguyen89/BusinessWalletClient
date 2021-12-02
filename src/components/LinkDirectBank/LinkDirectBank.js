@@ -1,19 +1,28 @@
-import React from 'react'
-import { AreaBoundDirectBank, LinkDirectBankTitle, LinkDirectBankWrapper } from './LinkDirectBankStyled'
+import React, { useEffect, useState } from 'react'
+import { AreaBoundDirectBank, ImgBank, LinkDirectBankTitle, LinkDirectBankWrapper } from './LinkDirectBankStyled'
+import { Col } from 'antd'
+import { inject, observer } from 'mobx-react'
+import PropTypes from 'prop-types'
+import { WrapperImage } from '../LinkInternalBank/LinkInternalBankStyled'
 
 const LinkDirectBank = props => {
-  const listBank = [
-    {id: 1, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 2, imageUrl: require('../../media/images/sacombank_icon.png')},
-    {id: 3, imageUrl: require('../../media/images/sacombank_icon.png')}
-  ];
+  const { commonStore , selectedItem, callbackHitBank, accountWalletStore } = props;
+
+  useEffect(() => {
+    accountWalletStore.getListBankDirect();
+  }, []);
+
   return (
     <LinkDirectBankWrapper>
       <LinkDirectBankTitle>Ngân hàng liên kết trực tiếp</LinkDirectBankTitle>
       <AreaBoundDirectBank>
         {
-          listBank.map(item => (
-            <span key={item.id}><img src={item.imageUrl} alt={item.imageUrl} /></span>
+          accountWalletStore.listBankDirect.map(item => (
+            <Col key={item.id} span={8}>
+              <WrapperImage>
+                <ImgBank src={item.imageUrl} alt={item.imageUrl} color={commonStore.appTheme.solidColor} active={selectedItem?.id === item.id}  onClick={() => callbackHitBank(item)}/>
+              </WrapperImage>
+            </Col>
           ))
         }
       </AreaBoundDirectBank>
@@ -23,6 +32,9 @@ const LinkDirectBank = props => {
 }
 
 LinkDirectBank.propTypes = {
+  selectedItem: PropTypes.object,
+  callbackHitBank: PropTypes.func
 }
 
-export default LinkDirectBank
+
+export default inject('commonStore', 'accountWalletStore')(observer(LinkDirectBank))

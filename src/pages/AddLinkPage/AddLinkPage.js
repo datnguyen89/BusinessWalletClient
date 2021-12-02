@@ -5,7 +5,7 @@ import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
 import {
   AddLinkPageWrapper,
-  AreaChooseBank,
+  AreaChooseBank, AreaCreateCommand, CreateCommandButton,
   TitleInfoLink,
   WhiteRoundedInfoLink,
 } from './AddLinkPageStyled'
@@ -15,34 +15,28 @@ import { Col, Row } from 'antd'
 import { inject, observer } from 'mobx-react'
 import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
 import InfoAccountArea from '../../components/InfoAccountArea'
-import { toJS } from 'mobx'
 
 const AddLinkPage = props => {
 
+  const { accountWalletStore } = props
 
-  const { commonStore, accountWalletStore } = props
+  const [selectedItem, setSelectedItem] = useState(null)
+  const [selectedAccount, setSelectedAccount] = useState(null);
+
+  const handlerCallbackHitBank = (item) => {
+    setSelectedItem(item);
+  }
   const handlerCallbackBankAccount = (valueChange) => {
-    let newArr = [...accountWalletStore.accountWallets];
-
-    newArr = newArr.map(item => {
-      if (valueChange.id === item.id) {
-        item.default = true
-      } else  {
-        item.default = false
-      }
-      return item
-    })
-    console.log(toJS(accountWalletStore.accountWallets))
-    accountWalletStore.setAccountWallets(newArr)
+    console.log("sad")
+    setSelectedAccount(valueChange);
   }
 
   useEffect(() => {
-    accountWalletStore.getAccountWallets();
-  }, []);
-
-  useEffect(()=>{
-    // console.log(toJS(accountWalletStore.accountWallets));
-  }, [accountWalletStore.accountWallets])
+    accountWalletStore.getAccountWallets()
+      .then(res => {
+        setSelectedAccount(res.find(item => item.default));
+      })
+  }, [])
 
   return (
     <DefaultLayout>
@@ -52,33 +46,38 @@ const AddLinkPage = props => {
       <AddLinkPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.ADD_LINK} />
         <WhiteRoundedBox margin={'0 16px 16px 16px'}>
-            <Row>
-              <Col span={24}>
-                <TitleInfoLink>Thông tin liên kết</TitleInfoLink>
-              </Col>
-              <Col span={6}></Col>
-              <Col span={12}>
-                <WhiteRoundedInfoLink margin={'0 16px 16px 0'}>
-                  <InfoAccountArea callbackBankAccount={handlerCallbackBankAccount} data={accountWalletStore.accountWallets}></InfoAccountArea>
-                </WhiteRoundedInfoLink>
-              </Col>
-              <Col span={6}></Col>
-            </Row>
+          <Row>
+            <Col span={24}>
+              <TitleInfoLink>Thông tin liên kết</TitleInfoLink>
+            </Col>
+            <Col span={6}></Col>
+            <Col span={12}>
+              <WhiteRoundedInfoLink margin={'0 16px 16px 0'}>
+                <InfoAccountArea
+                  callbackBankAccount={handlerCallbackBankAccount}
+                  selectedAccount={selectedAccount}></InfoAccountArea>
+              </WhiteRoundedInfoLink>
+            </Col>
+            <Col span={6}></Col>
+          </Row>
           <Row>
             <Col span={24}>
               <TitleInfoLink>Chọn ngân hàng liên kết</TitleInfoLink>
             </Col>
             <Col span={6}>
               <WhiteRoundedBox margin={'0 16px 0 0'}>
-                <LinkDirectBank></LinkDirectBank>
+                <LinkDirectBank callbackHitBank={handlerCallbackHitBank} selectedItem={selectedItem}></LinkDirectBank>
               </WhiteRoundedBox>
             </Col>
             <Col span={18}>
               <WhiteRoundedBox padding={'16px 0'}>
-                <LinkInternalBank></LinkInternalBank>
+                <LinkInternalBank callbackHitBank={handlerCallbackHitBank} selectedItem={selectedItem}></LinkInternalBank>
               </WhiteRoundedBox>
             </Col>
           </Row>
+          <AreaCreateCommand>
+            <CreateCommandButton type='primary'>Tạo lệnh</CreateCommandButton>
+          </AreaCreateCommand>
           <AreaChooseBank>
           </AreaChooseBank>
         </WhiteRoundedBox>

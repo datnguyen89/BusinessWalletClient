@@ -9,9 +9,9 @@ import {
 } from './InfoAccountDropdownStyled'
 
 const InfoAccountDropdownDropdown = props => {
-  const { data, enableBorder, commonStore } = props
+  const { data, enableBorder, commonStore, selectedItem } = props
   return (
-      data ? <InfoAccountDropdownWrapper border={enableBorder} borderColor={data.default ? commonStore.appTheme.solidColor : '#E0E0E0'}>
+      data ? <InfoAccountDropdownWrapper border={enableBorder} borderColor={(data.id === selectedItem?.id) ? commonStore.appTheme.solidColor : '#E0E0E0'}>
       <InfoAccountDropdownTitle>Tài khoản ví</InfoAccountDropdownTitle>
       <InfoAccountDropdownContent>{data.bankname}</InfoAccountDropdownContent>
       <InfoAccountDropdownPhone>{data.phoneNumber}</InfoAccountDropdownPhone>
