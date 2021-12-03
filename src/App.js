@@ -58,6 +58,7 @@ import { deviceDetect } from 'react-device-detect'
 import authenticationStore from './stores/authenticationStore.js'
 import AddLinkPage from './pages/AddLinkPage'
 import accountWalletStore from './stores/accountWalletStore'
+import providerStore from './stores/providerStore'
 
 const history = createBrowserHistory()
 
@@ -90,7 +91,8 @@ const rootStores = {
   mobileMoneyStore,
   infoAccountStore,
   authenticationStore,
-  accountWalletStore
+  accountWalletStore,
+  providerStore
 }
 
 // axios.defaults.timeout = 20000

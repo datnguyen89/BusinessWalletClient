@@ -1,20 +1,83 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { WaterBillPageWrapper } from './WaterBillPageStyled'
+import {
+  AreaCreateCommand, CreateCommandButton,
+  TitleFunds,
+  TitleInfoPayment,
+  WaterBillPageWrapper,
+  WhiteRoundedInfoPayment,
+} from './WaterBillPageStyled'
 import DefaultLayout from '../../layouts/DefaultLayout'
 import { Helmet } from 'react-helmet/es/Helmet'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
+import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
+import { Col, Row } from 'antd'
+import Providers from '../../components/Providers'
+import SearchCustomer from '../../components/SearchCustomer/SearchCustomer'
+import DigitalWallet from '../../components/DigitalWallet'
+import LinkDirectedBank from '../../components/LinkDirectedBank'
+import LinkInternalBank from '../../components/LinkInternalBank'
 
 const WaterBillPage = props => {
+
   return (
     <DefaultLayout>
       <Helmet>
         <title>Hóa đơn tiền nước</title>
       </Helmet>
-      <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.WATER_BILL} />
       <WaterBillPageWrapper>
-        WaterBillPage
+        <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.WATER_BILL} />
+        <WhiteRoundedBox margin={'0 16px 16px 16px'}>
+          <Row>
+            <Col span={24}>
+              <TitleInfoPayment>Thông tin thanh toán</TitleInfoPayment>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={6}></Col>
+            <Col span={12}>
+              <WhiteRoundedInfoPayment margin={'0 0 16px 0'}>
+                <Providers></Providers>
+              </WhiteRoundedInfoPayment>
+            </Col>
+            <Col span={6}></Col>
+          </Row>
+          <Row>
+            <Col span={6}></Col>
+            <Col span={12}>
+              <SearchCustomer></SearchCustomer>
+            </Col>
+            <Col span={6}></Col>
+          </Row>
+          <Row>
+            <Col span={24}>
+              <TitleFunds>Nguồn tiền</TitleFunds>
+            </Col>
+            <Col span={6}>
+              <Row>
+                <Col span={24}>
+                  <WhiteRoundedBox margin={'0 16px 0 0'}>
+                    <DigitalWallet></DigitalWallet>
+                  </WhiteRoundedBox>
+                </Col>
+                <Col span={24}>
+                  <WhiteRoundedBox margin={'16px 16px 0 0'}>
+                    <LinkDirectedBank></LinkDirectedBank>
+                  </WhiteRoundedBox>
+                </Col>
+              </Row>
+            </Col>
+            <Col span={18}>
+              <WhiteRoundedBox padding={'16px 0'}>
+                <LinkInternalBank></LinkInternalBank>
+              </WhiteRoundedBox>
+            </Col>
+          </Row>
+          <AreaCreateCommand>
+            <CreateCommandButton type='primary'>Tạo lệnh</CreateCommandButton>
+          </AreaCreateCommand>
+        </WhiteRoundedBox>
       </WaterBillPageWrapper>
     </DefaultLayout>
 

@@ -6,6 +6,7 @@ class AccountWalletStore {
   @observable accountWallets = [];
   @observable listBankInternal = [];
   @observable listBankDirect = [];
+  @observable listBankDirected = [];
 
   constructor(  ) {
   }
@@ -69,6 +70,16 @@ class AccountWalletStore {
         { id: 31, imageUrl: require('../media/images/HD_Bank.png') },
         { id: 32, imageUrl: require('../media/images/HD_Bank.png') },
         { id: 33, imageUrl: require('../media/images/HD_Bank.png') },
+      ];
+    })
+  }
+
+  @action getListBankDirected = () => {
+    return new Promise((resolve, reject) => {
+      this.listBankDirected = [
+        { id: 34, imageUrl: require('../media/images/vcbank.png') },
+        { id: 35, imageUrl: require('../media/images/vcbank.png') },
+        { id: 36, imageUrl: require('../media/images/vcbank.png') },
       ];
     })
   }
