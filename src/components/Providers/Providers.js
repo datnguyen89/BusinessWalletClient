@@ -18,6 +18,8 @@ const Providers = props => {
   const { providerStore } = props
   const onSearch = value => console.log(value);
 
+  const [selectedProvider, setSelectedProvider] = useState(null);
+
   useEffect(() => {
     providerStore.getProviderAreas()
   }, []);
@@ -25,6 +27,10 @@ const Providers = props => {
   useEffect(() => {
     providerStore.getProviders()
   }, []);
+
+  const handlerSetSelectProvider = (value) => {
+    setSelectedProvider(value);
+  }
 
   return (
     <ProviderWrapper>
@@ -39,7 +45,7 @@ const Providers = props => {
       <TagProvider>
         {
           providerStore.areas.map(item =>
-            <ButtonProviderArea>{item.area}</ButtonProviderArea>
+            <ButtonProviderArea key={item.id}>{item.area}</ButtonProviderArea>
           )
         }
       </TagProvider>
@@ -49,7 +55,7 @@ const Providers = props => {
             providerStore.providers.map(item =>
               (
                   <Col span={12} key={item.id}>
-                    <TagAreaProvider>
+                    <TagAreaProvider borderColor={item.id === selectedProvider?.id ? '#0465B0' : '#E0E0E0'} onClick={() => handlerSetSelectProvider(item)}>
                       <ImgIconProvider>
                         <img src={require('../../media/icons/icon_provider.svg')} alt={'icon_provider.svg'} />
                       </ImgIconProvider>

@@ -6,7 +6,7 @@ import {
   ResultSearchForm,
   SearchCustomerForm,
   SearchCustomerInput,
-  SearchCustomerWrapper,
+  SearchCustomerWrapper, SearchImg,
 } from './SearchCustomerStyled'
 
 const SearchCustomer = props => {
@@ -22,7 +22,7 @@ const SearchCustomer = props => {
             <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)', fontSize: '20px' }} />
           }
         />
-        <img src={require('../../media/icons/search_cus.png')} alt={"search_cus"}/>
+        <SearchImg src={require('../../media/icons/search_cus.png')} alt={"search_cus"}/>
       </SearchCustomerForm>
       <ResultSearchForm>
         <Descriptions bordered column={1}>

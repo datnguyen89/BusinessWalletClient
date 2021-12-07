@@ -12,11 +12,15 @@ import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 
 const LinkDirectedBank = props => {
-  const { commonStore , selectedItem, callbackHitBank, accountWalletStore } = props;
+  const { commonStore , selectedItem, setClickFunds, accountWalletStore } = props;
 
   useEffect(() => {
     accountWalletStore.getListBankDirected();
   }, []);
+
+  const handleClickFunds = (value) => {
+    setClickFunds(value);
+  }
 
   return (
     <LinkDirectedBankWrapper>
@@ -25,8 +29,8 @@ const LinkDirectedBank = props => {
         {
           accountWalletStore.listBankDirected.map(item => (
             <Col key={item.id} span={24}>
-              <WrapperDirectedBank>
-                <ImgBank src={item.imageUrl} alt={item.imageUrl} color={commonStore.appTheme.solidColor} active={selectedItem?.id === item.id}  onClick={() => callbackHitBank(item)}/>
+              <WrapperDirectedBank onClick={() => handleClickFunds(item)} borderColor={selectedItem?.id === item.id ? '#0465B0' : '#E0E0E0'}>
+                <ImgBank src={item.imageUrl} alt={item.imageUrl} color={commonStore.appTheme.solidColor} active={selectedItem?.id === item.id}/>
                 <ContentInfoDigitalWallet>
                   <CardNumberWallet>Vietcombank</CardNumberWallet>
                   <AccountBalance>0071******* 1234</AccountBalance>

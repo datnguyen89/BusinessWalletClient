@@ -36,6 +36,7 @@ export const ButtonProviderArea = styled.div`
   white-space: nowrap;
   padding: 10px 20px;
   border-radius: 25px;
+  cursor: pointer;
 `
 
 export const AreaProvider = styled.div`
@@ -48,11 +49,12 @@ export const AreaProvider = styled.div`
 
 export const TagAreaProvider = styled.div`
   display: flex;
-  border: 1px solid #ccc;
+  border: ${props => `1px solid ${props.borderColor}`};
   margin: 16px 8px 16px 16px;
   border-radius: 10px;
   align-items: center;
   padding: 15px;
+  cursor: pointer;
 `
 
 export const ImgIconProvider = styled.div `

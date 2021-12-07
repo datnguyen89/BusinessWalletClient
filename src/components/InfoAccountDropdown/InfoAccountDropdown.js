@@ -8,7 +8,7 @@ import {
   InfoAccountDropdownWrapper,
 } from './InfoAccountDropdownStyled'
 
-const InfoAccountDropdownDropdown = props => {
+const InfoAccountDropdown = props => {
   const { data, enableBorder, commonStore, selectedItem } = props
   return (
       data ? <InfoAccountDropdownWrapper border={enableBorder} borderColor={(data.id === selectedItem?.id) ? commonStore.appTheme.solidColor : '#E0E0E0'}>
@@ -20,9 +20,9 @@ const InfoAccountDropdownDropdown = props => {
   )
 }
 
-InfoAccountDropdownDropdown.propTypes = {
+InfoAccountDropdown.propTypes = {
   callbackBankAccount: PropTypes.func,
   enableBorder: PropTypes.bool.isRequired
 }
 
-export default inject('commonStore')(observer(InfoAccountDropdownDropdown))
+export default inject('commonStore')(observer(InfoAccountDropdown))

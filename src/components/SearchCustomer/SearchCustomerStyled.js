@@ -14,6 +14,10 @@ export const SearchCustomerForm = styled.div`
   margin-top: 10px;
 `
 
+export const SearchImg = styled.img `
+  cursor: pointer;
+`
+
 export const SearchCustomerInput = styled(Input)`
   width: 100%;
   border-radius: 6px;

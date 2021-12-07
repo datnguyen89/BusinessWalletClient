@@ -9,7 +9,7 @@ export const LabelDigitalWallet = styled.div`
 
 export const AreaInfoDigitalWallet = styled.div`
   display: flex;
-  border: 1px solid #ccc;
+  border: ${props => `1px solid ${props.borderColor}`};
   border-radius: 8px;
   justify-content: space-between;
   cursor: pointer;

@@ -17,6 +17,10 @@ const LinkInternalBank = props => {
     accountWalletStore.getListBankInternal();
   }, []);
 
+  const handleCallbackHitBank = (value) => {
+    callbackHitBank(value);
+  }
+
   return (
     <LinkInternalBankWrapper>
       <LinkInternalBankTitle>Ngân hàng nội địa</LinkInternalBankTitle>
@@ -25,7 +29,7 @@ const LinkInternalBank = props => {
           accountWalletStore.listBankInternal.map(item => (
             <Col key={item.id} span={3}>
               <WrapperImage>
-                <ImgBank src={item.imageUrl} alt={item.imageUrl} color={commonStore.appTheme.solidColor} active={selectedItem?.id === item.id}  onClick={() => callbackHitBank(item)}/>
+                <ImgBank src={item.imageUrl} alt={item.imageUrl} color={commonStore.appTheme.solidColor} active={selectedItem?.id === item.id}  onClick={() => handleCallbackHitBank(item)}/>
               </WrapperImage>
             </Col>
           ))

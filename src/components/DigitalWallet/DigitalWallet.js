@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   AccountBalance,
   AreaInfoDigitalWallet, CardNumberWallet,
@@ -8,11 +8,16 @@ import {
 } from './DigitalWalletStyled'
 
 const DigitalWallet = props => {
+  const {selectedItem, setClickFunds} = props;
+
+  const handleClickFunds = (value) => {
+    setClickFunds(value);
+  }
 
   return (
     <DigitalWalletWrapper>
       <LabelDigitalWallet>Ví điện tử</LabelDigitalWallet>
-       <AreaInfoDigitalWallet>
+       <AreaInfoDigitalWallet onClick={() => handleClickFunds({ id: -1 })} borderColor={ selectedItem?.id === -1 ? '#0465B0' : '#E0E0E0' }>
          <ImgLogoDigitalWallet src={require('../../media/images/logo-mobipay.png')} alt={'logo-mobipay'} />
          <ContentInfoDigitalWallet>
            <CardNumberWallet>09123456789</CardNumberWallet>

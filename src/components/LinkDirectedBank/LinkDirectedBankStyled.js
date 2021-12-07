@@ -19,7 +19,7 @@ export const ImgBank = styled.img`
 `
 
 export const WrapperDirectedBank = styled.div`
-  border: ${props => props.active ? `1px solid ${props.color}` : "1px solid #E0E0E0"};
+  border: ${props => `1px solid ${props.borderColor}`};
   border-radius: 8px;
   width: 100%;
   padding: 0 10px 3px 0;
@@ -27,6 +27,7 @@ export const WrapperDirectedBank = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 5px 0;
+  cursor: pointer;
 `
 
 export const LinkDirectedBankTitle = styled.div`

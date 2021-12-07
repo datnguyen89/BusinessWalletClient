@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import {
   AreaCreateCommand, CreateCommandButton,
@@ -18,8 +18,18 @@ import SearchCustomer from '../../components/SearchCustomer/SearchCustomer'
 import DigitalWallet from '../../components/DigitalWallet'
 import LinkDirectedBank from '../../components/LinkDirectedBank'
 import LinkInternalBank from '../../components/LinkInternalBank'
+import { toJS } from 'mobx'
 
 const WaterBillPage = props => {
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleClickFunds = (value) => {
+    setSelectedItem(value);
+  }
+
+  const handleCallbackHitBank = (value) => {
+    setSelectedItem(value);
+  }
 
   return (
     <DefaultLayout>
@@ -58,19 +68,19 @@ const WaterBillPage = props => {
               <Row>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'0 16px 0 0'}>
-                    <DigitalWallet></DigitalWallet>
+                    <DigitalWallet selectedItem={selectedItem} setClickFunds={handleClickFunds}></DigitalWallet>
                   </WhiteRoundedBox>
                 </Col>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'16px 16px 0 0'}>
-                    <LinkDirectedBank></LinkDirectedBank>
+                    <LinkDirectedBank selectedItem={selectedItem} setClickFunds={handleClickFunds}></LinkDirectedBank>
                   </WhiteRoundedBox>
                 </Col>
               </Row>
             </Col>
             <Col span={18}>
               <WhiteRoundedBox padding={'16px 0'}>
-                <LinkInternalBank></LinkInternalBank>
+                <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds} callbackHitBank={handleCallbackHitBank}></LinkInternalBank>
               </WhiteRoundedBox>
             </Col>
           </Row>
