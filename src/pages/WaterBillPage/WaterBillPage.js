@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import {
-  AreaCreateCommand, CreateCommandButton,
+  AreaCreateCommand, CreateCommandButton, ModalCustom, ResultSearchForm,
   TitleFunds,
   TitleInfoPayment,
   WaterBillPageWrapper,
@@ -12,16 +12,21 @@ import { Helmet } from 'react-helmet/es/Helmet'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
 import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
-import { Col, Row } from 'antd'
+import { Col, Descriptions, Row } from 'antd'
 import Providers from '../../components/Providers'
 import SearchCustomer from '../../components/SearchCustomer/SearchCustomer'
 import DigitalWallet from '../../components/DigitalWallet'
 import LinkDirectedBank from '../../components/LinkDirectedBank'
 import LinkInternalBank from '../../components/LinkInternalBank'
-import { toJS } from 'mobx'
+import { inject, observer } from 'mobx-react'
 
 const WaterBillPage = props => {
+
+  const { providerStore } = props
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedProvider, setSelectedProvider] = useState(null);
 
   const handleClickFunds = (value) => {
     setSelectedItem(value);
@@ -30,6 +35,28 @@ const WaterBillPage = props => {
   const handleCallbackHitBank = (value) => {
     setSelectedItem(value);
   }
+
+  const handleSelectedProvider = (value) => {
+    setSelectedProvider(value);
+  }
+
+  const showModalConfirmDeal = () => {
+    setIsModalVisible(true);
+  }
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  useEffect(() => {
+    providerStore.getProviderDetail(selectedProvider?.id)
+      .then(res => {
+      })
+  }, [selectedProvider]);
 
   return (
     <DefaultLayout>
@@ -48,7 +75,7 @@ const WaterBillPage = props => {
             <Col span={6}></Col>
             <Col span={12}>
               <WhiteRoundedInfoPayment margin={'0 0 16px 0'}>
-                <Providers></Providers>
+                <Providers selectedProvider={selectedProvider} handleSelectedProvider={handleSelectedProvider}></Providers>
               </WhiteRoundedInfoPayment>
             </Col>
             <Col span={6}></Col>
@@ -56,7 +83,7 @@ const WaterBillPage = props => {
           <Row>
             <Col span={6}></Col>
             <Col span={12}>
-              <SearchCustomer></SearchCustomer>
+              <SearchCustomer resultSearchCustomer={selectedProvider}></SearchCustomer>
             </Col>
             <Col span={6}></Col>
           </Row>
@@ -85,12 +112,26 @@ const WaterBillPage = props => {
             </Col>
           </Row>
           <AreaCreateCommand>
-            <CreateCommandButton type='primary'>Tạo lệnh</CreateCommandButton>
+            <CreateCommandButton type='primary' onClick={showModalConfirmDeal}>Tạo lệnh</CreateCommandButton>
           </AreaCreateCommand>
         </WhiteRoundedBox>
       </WaterBillPageWrapper>
+      <ModalCustom title="Xác nhận giao dịch" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} width={1000} okText={"Xác nhận"} maskClosable={"true"} closable={true}>
+        <ResultSearchForm>
+          <Descriptions bordered column={1}>
+            <Descriptions.Item label="Nguồn tiền" labelStyle={{width: "30%"}}>{selectedItem?.accountNumber}</Descriptions.Item>
+            <Descriptions.Item label="Nhà cung cấp" labelStyle={{width: "30%"}}>{selectedProvider?.providerName}</Descriptions.Item>
+            <Descriptions.Item label="Mã khách hàng">{selectedProvider?.customerCode}</Descriptions.Item>
+            <Descriptions.Item label="Tên khách hàng">{selectedProvider?.customerName}</Descriptions.Item>
+            <Descriptions.Item label="Địa chỉ" >{selectedProvider?.customerAddress}</Descriptions.Item>
+            <Descriptions.Item label="Số tiền" >{selectedProvider?.taxPaid}</Descriptions.Item>
+            <Descriptions.Item label="Giá bán" >{selectedProvider?.taxPaid}</Descriptions.Item>
+            <Descriptions.Item label="Phí giao dịch" >{selectedProvider?.taxPaid}</Descriptions.Item>
+            <Descriptions.Item label="Tổng tiền" >{selectedProvider?.taxPaid}</Descriptions.Item>
+          </Descriptions>
+        </ResultSearchForm>
+      </ModalCustom>
     </DefaultLayout>
-
   )
 }
 
@@ -98,4 +139,4 @@ WaterBillPage.propTypes = {
 
 }
 
-export default WaterBillPage
+export default inject('providerStore')(observer(WaterBillPage))

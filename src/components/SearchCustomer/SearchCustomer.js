@@ -10,8 +10,7 @@ import {
 } from './SearchCustomerStyled'
 
 const SearchCustomer = props => {
-  const onSearch = value => console.log(value);
-
+  const { resultSearchCustomer } = props
 
   return (
     <SearchCustomerWrapper>
@@ -26,10 +25,12 @@ const SearchCustomer = props => {
       </SearchCustomerForm>
       <ResultSearchForm>
         <Descriptions bordered column={1}>
-          <Descriptions.Item label="Tên khách hàng" labelStyle={{width: "30%"}}></Descriptions.Item>
-          <Descriptions.Item label="Địa chỉ" ></Descriptions.Item>
-          <Descriptions.Item label="Kỳ thanh toán" ></Descriptions.Item>
-          <Descriptions.Item label="Số tiền" ></Descriptions.Item>
+          <Descriptions.Item label="Nhà cung cấp" labelStyle={{width: "30%"}}>{resultSearchCustomer?.providerName}</Descriptions.Item>
+          <Descriptions.Item label="Mã khách hàng">{resultSearchCustomer?.customerCode}</Descriptions.Item>
+          <Descriptions.Item label="Tên khách hàng">{resultSearchCustomer?.customerName}</Descriptions.Item>
+          <Descriptions.Item label="Địa chỉ" >{resultSearchCustomer?.customerAddress}</Descriptions.Item>
+          <Descriptions.Item label="Kỳ thanh toán" >{resultSearchCustomer?.paymentTerm}</Descriptions.Item>
+          <Descriptions.Item label="Số tiền" >{resultSearchCustomer?.taxPaid}</Descriptions.Item>
         </Descriptions>
       </ResultSearchForm>
     </SearchCustomerWrapper>

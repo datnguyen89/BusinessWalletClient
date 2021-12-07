@@ -15,10 +15,8 @@ import { Button, Col, Row } from 'antd'
 const _ = require('lodash')
 
 const Providers = props => {
-  const { providerStore } = props
+  const { providerStore, selectedProvider, handleSelectedProvider } = props
   const onSearch = value => console.log(value);
-
-  const [selectedProvider, setSelectedProvider] = useState(null);
 
   useEffect(() => {
     providerStore.getProviderAreas()
@@ -29,7 +27,7 @@ const Providers = props => {
   }, []);
 
   const handlerSetSelectProvider = (value) => {
-    setSelectedProvider(value);
+    handleSelectedProvider(value);
   }
 
   return (

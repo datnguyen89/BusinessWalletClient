@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button, Row } from 'antd'
+import { Button, Modal, Row } from 'antd'
 
 export const WaterBillPageWrapper = styled.div`
 `
@@ -38,4 +38,26 @@ export const AreaCreateCommand = styled(Row) `
 
 export const CreateCommandButton = styled(Button)`
   padding: 0 40px;
+`
+
+export const ResultSearchForm = styled.div`
+  margin: 20px 0 20px;
+`
+
+export const ModalCustom = styled(Modal)`
+  .ant-modal-header {
+    background: #EBF0FF;
+  }
+  .ant-btn:first-child {
+    display: none;
+  }
+  .ant-modal-body {
+    padding-bottom: 0px;
+  }
+  .ant-modal-footer {
+    display: flex;
+    justify-content: center;
+    border: none;
+    padding-bottom: 30px;
+  }
 `

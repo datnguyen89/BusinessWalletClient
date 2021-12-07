@@ -17,7 +17,7 @@ const DigitalWallet = props => {
   return (
     <DigitalWalletWrapper>
       <LabelDigitalWallet>Ví điện tử</LabelDigitalWallet>
-       <AreaInfoDigitalWallet onClick={() => handleClickFunds({ id: -1 })} borderColor={ selectedItem?.id === -1 ? '#0465B0' : '#E0E0E0' }>
+       <AreaInfoDigitalWallet onClick={() => handleClickFunds({ id: -1, accountNumber: '09123456789' })} borderColor={ selectedItem?.id === -1 ? '#0465B0' : '#E0E0E0' }>
          <ImgLogoDigitalWallet src={require('../../media/images/logo-mobipay.png')} alt={'logo-mobipay'} />
          <ContentInfoDigitalWallet>
            <CardNumberWallet>09123456789</CardNumberWallet>

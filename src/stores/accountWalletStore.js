@@ -77,9 +77,9 @@ class AccountWalletStore {
   @action getListBankDirected = () => {
     return new Promise((resolve, reject) => {
       this.listBankDirected = [
-        { id: 34, imageUrl: require('../media/images/vcbank.png') },
-        { id: 35, imageUrl: require('../media/images/vcbank.png') },
-        { id: 36, imageUrl: require('../media/images/vcbank.png') },
+        { id: 34, imageUrl: require('../media/images/vcbank.png'), accountNumber: '09123456789' },
+        { id: 35, imageUrl: require('../media/images/vcbank.png'), accountNumber: '09123456789' },
+        { id: 36, imageUrl: require('../media/images/vcbank.png'), accountNumber: '09123456789' },
       ];
     })
   }
