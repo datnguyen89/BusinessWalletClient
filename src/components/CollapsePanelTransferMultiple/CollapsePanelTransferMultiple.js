@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { CollapsePanelLinkBankWrapper } from './CollapsePanelLinkBankStyled'
-import { Descriptions, Form, Pagination, Table } from 'antd'
+import { CollapsePanelTransferMultipleWrapper } from './CollapsePanelTransferMultipleStyled'
+import { Descriptions, Form, Modal, Pagination, Table } from 'antd'
 import IconStatusLabel from '../IconStatusLabel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
@@ -11,8 +11,10 @@ import uuid from 'uuid'
 import moment from 'moment'
 import { PaginationLabel, RowSpaceBetweenDiv } from '../CommonStyled/CommonStyled'
 import ICONS from '../../icons'
+import StateTransferMethod from '../StateTransferMethod'
 
-const CollapsePanelLinkBank = props => {
+const CollapsePanelTransferMultiple = props => {
+  const [visibleModalPreviewFile, setVisibleModalPreviewFile] = useState(false)
   const [mockupData, setMockupData] = useState([])
 
   const renderTransactionStatusIcon = (status) => {
@@ -175,6 +177,11 @@ const CollapsePanelLinkBank = props => {
       ),
     },
   ]
+
+  const handleClickPreview = (record) => {
+    setVisibleModalPreviewFile(true)
+  }
+
   const renderExpandRow = (record) => {
     return (
       <ExpandContent>
@@ -182,7 +189,7 @@ const CollapsePanelLinkBank = props => {
           bordered
           column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
           size={'small'}>
-          <Descriptions.Item label={'Ngân hàng'} span={2}>{record.bankName}</Descriptions.Item>
+          <Descriptions.Item label={'File chuyển tiền'} span={2}><a onClick={() => handleClickPreview(record)} href={'javascript:;'}>LuongT9.xlsx</a></Descriptions.Item>
           <Descriptions.Item label={'Số tài khoản'}
                              span={1}>{record.bankAccountNumber}</Descriptions.Item>
           <Descriptions.Item label={'Loại liên kết'} span={1}>{record.bankLinkType}</Descriptions.Item>
@@ -232,7 +239,7 @@ const CollapsePanelLinkBank = props => {
   }, [])
 
   return (
-    <CollapsePanelLinkBankWrapper>
+    <CollapsePanelTransferMultipleWrapper>
       <Table
         bordered={false}
         expandable={{
@@ -248,10 +255,19 @@ const CollapsePanelLinkBank = props => {
         </PaginationLabel>
         <Pagination total={50} />
       </RowSpaceBetweenDiv>
-    </CollapsePanelLinkBankWrapper>
+      <Modal
+        title="Chi tiết File chuyển tiền"
+        width={'90%'}
+        footer={null}
+        visible={visibleModalPreviewFile}
+        onCancel={() => setVisibleModalPreviewFile(false)}>
+        <StateTransferMethod />
+      </Modal>
+
+    </CollapsePanelTransferMultipleWrapper>
   )
 }
 
-CollapsePanelLinkBank.propTypes = {}
+CollapsePanelTransferMultiple.propTypes = {}
 
-export default CollapsePanelLinkBank
+export default CollapsePanelTransferMultiple

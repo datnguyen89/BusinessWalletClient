@@ -148,7 +148,6 @@ const StateTransferMethod = props => {
   return (
     <StateTransferMethodWrapper>
       <StateTransferMethodContent>
-
         <StateInformation>
           <StateInformationText>
             <span>Số lượng: </span><SpanValue>50</SpanValue><span>Tổng tiền: </span><SpanValue>5.000.000.000

@@ -7,8 +7,8 @@ export const StateTransferMethodWrapper = styled.div`
 export const StateTransferMethodContent = styled.div`
   background: #FFFFFF;
   border-radius: 18px;
-  margin: 30px 16px 20px;
-  padding: 20px 20px 5px;
+  padding: 16px;
+  margin: 16px;
 `
 
 export const StateInformation = styled.div`
