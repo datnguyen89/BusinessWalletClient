@@ -12,13 +12,15 @@ import { Helmet } from 'react-helmet/es/Helmet'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
 import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
-import { Col, Descriptions, Row } from 'antd'
+import { Col, Descriptions, message, Row } from 'antd'
 import Providers from '../../components/Providers'
 import SearchCustomer from '../../components/SearchCustomer/SearchCustomer'
 import DigitalWallet from '../../components/DigitalWallet'
 import LinkDirectedBank from '../../components/LinkDirectedBank'
 import LinkInternalBank from '../../components/LinkInternalBank'
 import { inject, observer } from 'mobx-react'
+import OtpModal from '../../components/OtpModal'
+import SuccessModal from '../../components/SuccessModal'
 
 const WaterBillPage = props => {
 
@@ -27,6 +29,8 @@ const WaterBillPage = props => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedProvider, setSelectedProvider] = useState(null);
+  const [visibleOtp, setVisibleOtp] = useState(false);
+  const [visibleSuccess, setVisibleSuccess] = useState(false);
 
   const handleClickFunds = (value) => {
     setSelectedItem(value);
@@ -46,17 +50,31 @@ const WaterBillPage = props => {
 
   const handleOk = () => {
     setIsModalVisible(false);
+    setVisibleOtp(true);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
   };
 
+  const handleSuccessActiveCommand = () => {
+    setVisibleSuccess(false)
+  }
+
   useEffect(() => {
     providerStore.getProviderDetail(selectedProvider?.id)
       .then(res => {
       })
   }, [selectedProvider]);
+
+  const handleSubmitOtp = (otp) => {
+    if (otp === '123456') {
+      setVisibleOtp(false)
+      setVisibleSuccess(true)
+    } else {
+      message.error('OTP không chính xác')
+    }
+  }
 
   return (
     <DefaultLayout>
@@ -131,6 +149,13 @@ const WaterBillPage = props => {
           </Descriptions>
         </ResultSearchForm>
       </ModalCustom>
+      <OtpModal
+        phoneNumber={'0379631004'}
+        callbackOtp={handleSubmitOtp}
+        visible={visibleOtp}
+        onCancel={() => setVisibleOtp(false)} />
+      <SuccessModal visible={visibleSuccess} description={'Bạn đã lập lệnh thành công'}
+                    callbackSuccess={handleSuccessActiveCommand} />
     </DefaultLayout>
   )
 }
