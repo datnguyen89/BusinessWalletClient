@@ -4,10 +4,6 @@ import { Row } from 'antd'
 export const LinkDirectedBankWrapper = styled.span`
 
 `
-export const IconStatusLabelText = styled.span`
-  font-size: ${props => props.fontSize};     
-  margin-left: 4px;
-`
 export const AreaBoundDirectBank = styled(Row) `
   img:hover {
     cursor: pointer;
@@ -39,6 +35,9 @@ export const LinkDirectedBankTitle = styled.div`
 
 export const ContentInfoDigitalWallet = styled.div`
   padding: 15px 20px;
+  p {
+    color: ${ props => props.colorText };
+  }
 `
 
 export const CardNumberWallet = styled.p `

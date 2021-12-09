@@ -22,6 +22,9 @@ export const ImgLogoDigitalWallet = styled.img`
 
 export const ContentInfoDigitalWallet = styled.div`
   padding: 15px 20px;
+  p {
+    color: ${ props => props.colorText };
+  }
 `
 
 export const CardNumberWallet = styled.p `

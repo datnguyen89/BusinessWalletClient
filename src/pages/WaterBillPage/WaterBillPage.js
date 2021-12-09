@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
 import {
   AreaCreateCommand, CreateCommandButton, ModalCustom, ResultSearchForm,
   TitleFunds,
@@ -31,6 +30,7 @@ const WaterBillPage = props => {
   const [selectedProvider, setSelectedProvider] = useState(null);
   const [visibleOtp, setVisibleOtp] = useState(false);
   const [visibleSuccess, setVisibleSuccess] = useState(false);
+  const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true);
 
   const handleClickFunds = (value) => {
     setSelectedItem(value);
@@ -66,6 +66,14 @@ const WaterBillPage = props => {
       .then(res => {
       })
   }, [selectedProvider]);
+
+  useEffect(() => {
+    if (selectedProvider && selectedItem)
+      setDisabledConfirmDeal(false);
+    else
+      setDisabledConfirmDeal(true);
+
+  }, [selectedItem, selectedProvider]);
 
   const handleSubmitOtp = (otp) => {
     if (otp === '123456') {
@@ -130,7 +138,7 @@ const WaterBillPage = props => {
             </Col>
           </Row>
           <AreaCreateCommand>
-            <CreateCommandButton type='primary' onClick={showModalConfirmDeal}>Tạo lệnh</CreateCommandButton>
+            <CreateCommandButton type={disabledConfirmDeal ? 'default' : 'primary'} onClick={showModalConfirmDeal} disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
           </AreaCreateCommand>
         </WhiteRoundedBox>
       </WaterBillPageWrapper>

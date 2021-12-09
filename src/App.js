@@ -59,6 +59,7 @@ import authenticationStore from './stores/authenticationStore.js'
 import AddLinkPage from './pages/AddLinkPage'
 import accountWalletStore from './stores/accountWalletStore'
 import providerStore from './stores/providerStore'
+import mobileNetworkOperatorStore from './stores/mobileNetworkOperatorStore'
 
 const history = createBrowserHistory()
 
@@ -92,7 +93,8 @@ const rootStores = {
   infoAccountStore,
   authenticationStore,
   accountWalletStore,
-  providerStore
+  providerStore,
+  mobileNetworkOperatorStore
 }
 
 // axios.defaults.timeout = 20000

@@ -31,7 +31,7 @@ const LinkDirectedBank = props => {
             <Col key={item.id} span={24}>
               <WrapperDirectedBank onClick={() => handleClickFunds(item)} borderColor={selectedItem?.id === item.id ? '#0465B0' : '#E0E0E0'}>
                 <ImgBank src={item.imageUrl} alt={item.imageUrl} color={commonStore.appTheme.solidColor} active={selectedItem?.id === item.id}/>
-                <ContentInfoDigitalWallet>
+                <ContentInfoDigitalWallet colorText={selectedItem?.id === item.id ? '#0465B0' : '#333333'}>
                   <CardNumberWallet>Vietcombank</CardNumberWallet>
                   <AccountBalance>0071******* 1234</AccountBalance>
                 </ContentInfoDigitalWallet>
