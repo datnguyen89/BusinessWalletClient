@@ -54,6 +54,9 @@ export const ModalCustom = styled(Modal)`
   .ant-modal-body {
     padding-bottom: 0px;
   }
+  .ant-modal-body>div {
+    margin-top: 0 !important;
+  }
   .ant-modal-footer {
     display: flex;
     justify-content: center;

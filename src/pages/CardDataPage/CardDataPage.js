@@ -17,9 +17,7 @@ import LinkDirectedBank from '../../components/LinkDirectedBank'
 import LinkInternalBank from '../../components/LinkInternalBank'
 import { inject, observer } from 'mobx-react'
 import ServicePlanMobile from '../../components/ServicePlanMobile'
-import { ModalCustom, ResultSearchForm } from '../WaterBillPage/WaterBillPageStyled'
-import OtpModal from '../../components/OtpModal'
-import SuccessModal from '../../components/SuccessModal'
+import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/ModalCustomCommandForm'
 
 const CardDataPage = props => {
   const { providerStore } = props
@@ -28,10 +26,10 @@ const CardDataPage = props => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedProvider, setSelectedProvider] = useState(null);
   const [selectedTopupVoucher, setSelectedTopupVoucher ] = useState(null);
-  const [visibleOtp, setVisibleOtp] = useState(false);
-  const [visibleSuccess, setVisibleSuccess] = useState(false);
   const [countTopupVoucher, setCountTopupVoucher] = useState(0);
   const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true);
+
+  const [fields, setFields] = useState(null);
 
   const handleClickFunds = (value) => {
     setSelectedItem(value);
@@ -51,6 +49,18 @@ const CardDataPage = props => {
   }
 
   const showModalConfirmDeal = () => {
+    let arrField = {
+      "Nguồn tiền": selectedItem?.accountNumber,
+      "Nhà cung cấp": selectedProvider?.name,
+      "Sản phẩm": selectedTopupVoucher?.name,
+      "Mệnh giá": selectedTopupVoucher?.denominations,
+      "Giá bán": selectedTopupVoucher?.discount,
+      "Số lượng": countTopupVoucher,
+      "Tổng tiền": countTopupVoucher*selectedTopupVoucher?.discount + 'đ',
+      "Phí giao dịch": '0đ',
+      "Thành tiền": countTopupVoucher*selectedTopupVoucher?.discount + 'đ'
+    };
+    setFields(arrField);
     setIsModalVisible(true);
   }
 
@@ -59,17 +69,8 @@ const CardDataPage = props => {
     setCountTopupVoucher(value);
   }
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-    setVisibleOtp(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleSuccessActiveCommand = () => {
-    setVisibleSuccess(false)
+  const handleSetIsModalVisible = (value) => {
+    setIsModalVisible(value);
   }
 
   useEffect(() => {
@@ -79,21 +80,12 @@ const CardDataPage = props => {
   }, [selectedProvider]);
 
   useEffect(() => {
-    if (selectedProvider && selectedItem && selectedTopupVoucher && countTopupVoucher > 0)
+    if (selectedProvider && selectedItem && selectedTopupVoucher && countTopupVoucher > 0 && !isNaN(countTopupVoucher))
       setDisabledConfirmDeal(false);
      else
       setDisabledConfirmDeal(true);
 
   }, [selectedItem, selectedProvider, selectedTopupVoucher, countTopupVoucher]);
-
-  const handleSubmitOtp = (otp) => {
-    if (otp === '123456') {
-      setVisibleOtp(false)
-      setVisibleSuccess(true)
-    } else {
-      message.error('OTP không chính xác')
-    }
-  }
 
   return (
     <DefaultLayout>
@@ -118,7 +110,10 @@ const CardDataPage = props => {
                 <ServicePlanMobile selectedTopupVoucher={selectedTopupVoucher} handleSelectedTopupVoucher={handleSelectedTopupVoucher}></ServicePlanMobile>
               </WhiteRoundedInfoService>
 
-              <InputCount min={1} defaultValue={"Nhập số lượng"} onChange={onChangeCountTopupVouchers}/>
+              <InputCount
+                min={1}
+                defaultValue={"Nhập số lượng"}
+                onChange={onChangeCountTopupVouchers} />
             </Col>
             <Col span={6}></Col>
           </Row>
@@ -151,28 +146,11 @@ const CardDataPage = props => {
           </AreaCreateCommand>
         </WhiteRoundedBox>
       </CardDataPageWrapper>
-      <ModalCustom title="Xác nhận giao dịch" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} width={1000} okText={"Xác nhận"} maskClosable={"true"} closable={true}>
-        <ResultSearchForm>
-          <Descriptions bordered column={1}>
-            <Descriptions.Item label="Nguồn tiền" labelStyle={{width: "30%"}}>{selectedItem?.accountNumber}</Descriptions.Item>
-            <Descriptions.Item label="Nhà cung cấp" labelStyle={{width: "30%"}}>{selectedProvider?.name}</Descriptions.Item>
-            <Descriptions.Item label="Sản phẩm">{selectedTopupVoucher?.name}</Descriptions.Item>
-            <Descriptions.Item label="Mệnh giá">{selectedTopupVoucher?.denominations}</Descriptions.Item>
-            <Descriptions.Item label="Giá bán" >{selectedTopupVoucher?.discount}</Descriptions.Item>
-            <Descriptions.Item label="Số lượng" >{countTopupVoucher}</Descriptions.Item>
-            <Descriptions.Item label="Tổng tiền" >{countTopupVoucher*selectedTopupVoucher?.discount}đ</Descriptions.Item>
-            <Descriptions.Item label="Phí giao dịch" >0đ</Descriptions.Item>
-            <Descriptions.Item label="Thành tiền" >{countTopupVoucher*selectedTopupVoucher?.discount}đ</Descriptions.Item>
-          </Descriptions>
-        </ResultSearchForm>
-      </ModalCustom>
-      <OtpModal
-        phoneNumber={'0379631004'}
-        callbackOtp={handleSubmitOtp}
-        visible={visibleOtp}
-        onCancel={() => setVisibleOtp(false)} />
-      <SuccessModal visible={visibleSuccess} description={'Bạn đã lập lệnh thành công'}
-                    callbackSuccess={handleSuccessActiveCommand} />
+      <ModalCustomCommandForm
+        title={"Xác nhận giao dịch"}
+        fields={fields}
+        visible={isModalVisible}
+        setIsModalVisible={handleSetIsModalVisible}></ModalCustomCommandForm>
     </DefaultLayout>
 
   )

@@ -44,9 +44,6 @@ class ProviderStore {
           area: 'Cấp nước miền trung',
           areaId: 1,
           providerName: 'Công ty cổ phần Nước Sạch Hà Nội',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -55,9 +52,6 @@ class ProviderStore {
           area: 'Cấp nước miền nam',
           areaId: 1,
           providerName: 'Công ty cổ phần cấp nước Phú Hòa Tan',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -66,9 +60,6 @@ class ProviderStore {
           area: 'Cấp nước miền bắc',
           areaId: 2,
           providerName: 'Công ty cấp thoát nước Bình Dương',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -77,9 +68,6 @@ class ProviderStore {
           area: 'Cấp nước Hà Nội',
           areaId: 2,
           providerName: 'Công ty cổ phần Nước Sạch VTS',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -88,9 +76,6 @@ class ProviderStore {
           area: 'Cấp nước TP.HCM',
           areaId: 4,
           providerName: 'Công ty cổ phần cấp nước Hoa Phượng',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -99,9 +84,6 @@ class ProviderStore {
           area: 'Cấp nước miền trung',
           areaId: 1,
           providerName: 'Công ty cổ phần Nước Sạch Hà Nội',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -110,9 +92,6 @@ class ProviderStore {
           area: 'Cấp nước miền nam',
           areaId: 1,
           providerName: 'Công ty cổ phần cấp nước Phú Hòa Tan',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -121,9 +100,6 @@ class ProviderStore {
           area: 'Cấp nước miền bắc',
           areaId: 2,
           providerName: 'Công ty cấp thoát nước Bình Dương',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -132,9 +108,6 @@ class ProviderStore {
           area: 'Cấp nước Hà Nội',
           areaId: 2,
           providerName: 'Công ty cổ phần Nước Sạch VTS',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -143,9 +116,6 @@ class ProviderStore {
           area: 'Cấp nước TP.HCM',
           areaId: 4,
           providerName: 'Công ty cổ phần cấp nước Hoa Phượng',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -154,9 +124,6 @@ class ProviderStore {
           area: 'Cấp nước miền trung',
           areaId: 1,
           providerName: 'Công ty cổ phần Nước Sạch Hà Nội',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -165,9 +132,6 @@ class ProviderStore {
           area: 'Cấp nước miền nam',
           areaId: 1,
           providerName: 'Công ty cổ phần cấp nước Phú Hòa Tan',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -176,9 +140,6 @@ class ProviderStore {
           area: 'Cấp nước miền bắc',
           areaId: 2,
           providerName: 'Công ty cấp thoát nước Bình Dương',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -187,9 +148,6 @@ class ProviderStore {
           area: 'Cấp nước Hà Nội',
           areaId: 2,
           providerName: 'Công ty cổ phần Nước Sạch VTS',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -198,9 +156,6 @@ class ProviderStore {
           area: 'Cấp nước TP.HCM',
           areaId: 4,
           providerName: 'Công ty cổ phần cấp nước Hoa Phượng',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -209,9 +164,6 @@ class ProviderStore {
           area: 'Cấp nước miền trung',
           areaId: 1,
           providerName: 'Công ty cổ phần Nước Sạch Hà Nội',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -220,9 +172,6 @@ class ProviderStore {
           area: 'Cấp nước miền nam',
           areaId: 1,
           providerName: 'Công ty cổ phần cấp nước Phú Hòa Tan',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -231,9 +180,6 @@ class ProviderStore {
           area: 'Cấp nước miền bắc',
           areaId: 2,
           providerName: 'Công ty cấp thoát nước Bình Dương',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -242,9 +188,6 @@ class ProviderStore {
           area: 'Cấp nước Hà Nội',
           areaId: 2,
           providerName: 'Công ty cổ phần Nước Sạch VTS',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },
@@ -253,9 +196,6 @@ class ProviderStore {
           area: 'Cấp nước TP.HCM',
           areaId: 4,
           providerName: 'Công ty cổ phần cấp nước Hoa Phượng',
-          customerCode: '00000123456',
-          customerName: 'Nguyen Van A',
-          customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
           paymentTerm: 'Tiền điện tháng 9',
           taxPaid: '1000000'
         },

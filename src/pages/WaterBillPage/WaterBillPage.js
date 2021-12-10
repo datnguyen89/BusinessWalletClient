@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  AreaCreateCommand, CreateCommandButton, ModalCustom, ResultSearchForm,
+  AreaCreateCommand, CreateCommandButton,
   TitleFunds,
   TitleInfoPayment,
   WaterBillPageWrapper,
@@ -11,15 +11,14 @@ import { Helmet } from 'react-helmet/es/Helmet'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
 import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
-import { Col, Descriptions, message, Row } from 'antd'
+import { Col, Row } from 'antd'
 import Providers from '../../components/Providers'
 import SearchCustomer from '../../components/SearchCustomer/SearchCustomer'
 import DigitalWallet from '../../components/DigitalWallet'
 import LinkDirectedBank from '../../components/LinkDirectedBank'
 import LinkInternalBank from '../../components/LinkInternalBank'
 import { inject, observer } from 'mobx-react'
-import OtpModal from '../../components/OtpModal'
-import SuccessModal from '../../components/SuccessModal'
+import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/ModalCustomCommandForm'
 
 const WaterBillPage = props => {
 
@@ -28,9 +27,9 @@ const WaterBillPage = props => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedProvider, setSelectedProvider] = useState(null);
-  const [visibleOtp, setVisibleOtp] = useState(false);
-  const [visibleSuccess, setVisibleSuccess] = useState(false);
+  const [customerBySearch, setCustomerBySearch] = useState(null);
   const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true);
+  const [fields, setFields] = useState(null);
 
   const handleClickFunds = (value) => {
     setSelectedItem(value);
@@ -45,22 +44,28 @@ const WaterBillPage = props => {
   }
 
   const showModalConfirmDeal = () => {
+    let arrField = {
+      "Nguồn tiền": selectedItem?.accountNumber,
+      "Nhà cung cấp": selectedProvider?.providerName,
+      "Mã khách hàng": customerBySearch?.customerCode,
+      "Tên khách hàng": customerBySearch?.customerName,
+      "Địa chỉ": customerBySearch?.customerAddress,
+      "Số tiền": selectedProvider?.taxPaid + 'đ',
+      "Giá bán": selectedProvider?.taxPaid + 'đ',
+      "Phí giao dịch": '0đ',
+      "Thành tiền": selectedProvider?.taxPaid + 'đ'
+    };
+    setFields(arrField);
     setIsModalVisible(true);
   }
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-    setVisibleOtp(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleSuccessActiveCommand = () => {
-    setVisibleSuccess(false)
+  const handleSetIsModalVisible = (value) => {
+    setIsModalVisible(value);
   }
 
+  const handleSetCustomerBySearch = (value) => {
+    setCustomerBySearch(value);
+  }
   useEffect(() => {
     providerStore.getProviderDetail(selectedProvider?.id)
       .then(res => {
@@ -74,15 +79,6 @@ const WaterBillPage = props => {
       setDisabledConfirmDeal(true);
 
   }, [selectedItem, selectedProvider]);
-
-  const handleSubmitOtp = (otp) => {
-    if (otp === '123456') {
-      setVisibleOtp(false)
-      setVisibleSuccess(true)
-    } else {
-      message.error('OTP không chính xác')
-    }
-  }
 
   return (
     <DefaultLayout>
@@ -109,7 +105,7 @@ const WaterBillPage = props => {
           <Row>
             <Col span={6}></Col>
             <Col span={12}>
-              <SearchCustomer resultSearchCustomer={selectedProvider}></SearchCustomer>
+              <SearchCustomer resultSearchCustomer={selectedProvider} setCustomerBySearch={handleSetCustomerBySearch}></SearchCustomer>
             </Col>
             <Col span={6}></Col>
           </Row>
@@ -142,28 +138,11 @@ const WaterBillPage = props => {
           </AreaCreateCommand>
         </WhiteRoundedBox>
       </WaterBillPageWrapper>
-      <ModalCustom title="Xác nhận giao dịch" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} width={1000} okText={"Xác nhận"} maskClosable={"true"} closable={true}>
-        <ResultSearchForm>
-          <Descriptions bordered column={1}>
-            <Descriptions.Item label="Nguồn tiền" labelStyle={{width: "30%"}}>{selectedItem?.accountNumber}</Descriptions.Item>
-            <Descriptions.Item label="Nhà cung cấp" labelStyle={{width: "30%"}}>{selectedProvider?.providerName}</Descriptions.Item>
-            <Descriptions.Item label="Mã khách hàng">{selectedProvider?.customerCode}</Descriptions.Item>
-            <Descriptions.Item label="Tên khách hàng">{selectedProvider?.customerName}</Descriptions.Item>
-            <Descriptions.Item label="Địa chỉ" >{selectedProvider?.customerAddress}</Descriptions.Item>
-            <Descriptions.Item label="Số tiền" >{selectedProvider?.taxPaid}</Descriptions.Item>
-            <Descriptions.Item label="Giá bán" >{selectedProvider?.taxPaid}</Descriptions.Item>
-            <Descriptions.Item label="Phí giao dịch" >{selectedProvider?.taxPaid}</Descriptions.Item>
-            <Descriptions.Item label="Tổng tiền" >{selectedProvider?.taxPaid}</Descriptions.Item>
-          </Descriptions>
-        </ResultSearchForm>
-      </ModalCustom>
-      <OtpModal
-        phoneNumber={'0379631004'}
-        callbackOtp={handleSubmitOtp}
-        visible={visibleOtp}
-        onCancel={() => setVisibleOtp(false)} />
-      <SuccessModal visible={visibleSuccess} description={'Bạn đã lập lệnh thành công'}
-                    callbackSuccess={handleSuccessActiveCommand} />
+      <ModalCustomCommandForm
+        title={"Xác nhận giao dịch"}
+        fields={fields}
+        visible={isModalVisible}
+        setIsModalVisible={handleSetIsModalVisible}></ModalCustomCommandForm>
     </DefaultLayout>
   )
 }

@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet/es/Helmet'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
 import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
-import { Col, Descriptions, message, Row } from 'antd'
+import { Col, Row } from 'antd'
 import {
   AreaCreateCommand, CreateCommandButton, ModalCustom, ResultSearchForm,
   TitleFunds
@@ -13,13 +13,12 @@ import {
 import DigitalWallet from '../../components/DigitalWallet'
 import LinkDirectedBank from '../../components/LinkDirectedBank/LinkDirectedBank'
 import LinkInternalBank from '../../components/LinkInternalBank/LinkInternalBank'
-import OtpModal from '../../components/OtpModal'
-import SuccessModal from '../../components/SuccessModal'
 import { inject, observer } from 'mobx-react'
-import { InputCount, TitleInfoService, WhiteRoundedInfoService } from '../CardDataPage/CardDataPageStyled'
+import { TitleInfoService, WhiteRoundedInfoService } from '../CardDataPage/CardDataPageStyled'
 import SearchMobileNetworkOperator from '../../components/SearchMobileNetworkOperator'
 import ServicePlanMobileData from '../../components/ServicePlanMobileData'
 import { toJS } from 'mobx'
+import ModalCustomCommandForm from '../../components/ModalCustomCommandForm'
 
 const PhoneDataPage = props => {
 
@@ -30,9 +29,9 @@ const PhoneDataPage = props => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedProvider, setSelectedProvider] = useState(null);
   const [selectedTopupVoucher, setSelectedTopupVoucher ] = useState(null);
-  const [visibleOtp, setVisibleOtp] = useState(false);
-  const [visibleSuccess, setVisibleSuccess] = useState(false);
   const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true);
+
+  const [fields, setFields] = useState(null);
 
   const handleClickFunds = (value) => {
     setSelectedItem(value);
@@ -53,25 +52,24 @@ const PhoneDataPage = props => {
   }
 
   const showModalConfirmDeal = () => {
+    let arrField = {
+      "Nguồn tiền": selectedItem?.accountNumber,
+      "Nhà cung cấp": selectedProvider?.name,
+      "Dịch vụ": selectedProvider?.name,
+      "Sản phẩm": selectedTopupVoucher?.name,
+      "Mệnh giá": selectedTopupVoucher?.denominations,
+      "Giá bán": selectedTopupVoucher?.discount,
+      "Số điện thoại": phoneNumber,
+      "Tổng tiền": selectedTopupVoucher?.discount + 'đ',
+      "Phí giao dịch": '0đ',
+      "Thành tiền": selectedTopupVoucher?.discount + 'đ'
+    };
+    setFields(arrField);
     setIsModalVisible(true);
   }
 
   const handleSetPhoneNumber = (value) => {
-    console.log(value);
     setPhoneNumber(value);
-  }
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-    setVisibleOtp(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleSuccessActiveCommand = () => {
-    setVisibleSuccess(false)
   }
 
   useEffect(() => {
@@ -88,13 +86,8 @@ const PhoneDataPage = props => {
 
   }, [selectedItem, selectedProvider, selectedTopupVoucher, phoneNumber]);
 
-  const handleSubmitOtp = (otp) => {
-    if (otp === '123456') {
-      setVisibleOtp(false)
-      setVisibleSuccess(true)
-    } else {
-      message.error('OTP không chính xác')
-    }
+  const handleSetIsModalVisible = (value) => {
+    setIsModalVisible(value);
   }
 
   return (
@@ -151,29 +144,11 @@ const PhoneDataPage = props => {
           </AreaCreateCommand>
         </WhiteRoundedBox>
       </PhoneDataPageWrapper>
-      <ModalCustom title="Xác nhận giao dịch" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} width={1000} okText={"Xác nhận"} maskClosable={"true"} closable={true}>
-        <ResultSearchForm>
-          <Descriptions bordered column={1}>
-            <Descriptions.Item label="Nguồn tiền" labelStyle={{width: "30%"}}>{selectedItem?.accountNumber}</Descriptions.Item>
-            <Descriptions.Item label="Nhà cung cấp" labelStyle={{width: "30%"}}>{selectedProvider?.name}</Descriptions.Item>
-            <Descriptions.Item label="Dịch vụ" labelStyle={{width: "30%"}}>Nạp Data {selectedProvider?.name}</Descriptions.Item>
-            <Descriptions.Item label="Sản phẩm">{selectedTopupVoucher?.name}</Descriptions.Item>
-            <Descriptions.Item label="Mệnh giá">{selectedTopupVoucher?.denominations}</Descriptions.Item>
-            <Descriptions.Item label="Giá bán" >{selectedTopupVoucher?.discount}</Descriptions.Item>
-            <Descriptions.Item label="Số điện thoại" >{phoneNumber}</Descriptions.Item>
-            <Descriptions.Item label="Tổng tiền" >{selectedTopupVoucher?.discount}đ</Descriptions.Item>
-            <Descriptions.Item label="Phí giao dịch" >0đ</Descriptions.Item>
-            <Descriptions.Item label="Thành tiền" >{selectedTopupVoucher?.discount}đ</Descriptions.Item>
-          </Descriptions>
-        </ResultSearchForm>
-      </ModalCustom>
-      <OtpModal
-        phoneNumber={'0379631004'}
-        callbackOtp={handleSubmitOtp}
-        visible={visibleOtp}
-        onCancel={() => setVisibleOtp(false)} />
-      <SuccessModal visible={visibleSuccess} description={'Bạn đã lập lệnh thành công'}
-                    callbackSuccess={handleSuccessActiveCommand} />
+      <ModalCustomCommandForm
+        title={"Xác nhận giao dịch"}
+        fields={fields}
+        visible={isModalVisible}
+        setIsModalVisible={handleSetIsModalVisible}></ModalCustomCommandForm>
     </DefaultLayout>
 
   )
