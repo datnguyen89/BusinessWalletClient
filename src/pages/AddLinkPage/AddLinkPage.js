@@ -5,7 +5,7 @@ import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
 import {
   AddLinkPageWrapper,
-  AreaChooseBank, AreaCreateCommand, CreateCommandButton,
+  AreaCreateCommand, CreateCommandButton,
   TitleInfoLink,
   WhiteRoundedInfoLink,
 } from './AddLinkPageStyled'
@@ -15,20 +15,36 @@ import { Col, Row } from 'antd'
 import { inject, observer } from 'mobx-react'
 import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
 import InfoAccountArea from '../../components/InfoAccountArea'
+import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/ModalCustomCommandForm'
 
 const AddLinkPage = props => {
 
   const { accountWalletStore } = props
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null)
   const [selectedAccount, setSelectedAccount] = useState(null);
+  const [fields, setFields] = useState(null);
+  const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true);
 
   const handlerCallbackHitBank = (item) => {
     setSelectedItem(item);
   }
   const handlerCallbackBankAccount = (valueChange) => {
-    console.log("sad")
     setSelectedAccount(valueChange);
+  }
+  const showModalConfirmDeal = () => {
+    let arrField = {
+      "Ngân hàng": selectedItem?.name,
+      "Tên doanh nghiệp": selectedAccount?.bankname,
+      "Số DKKD": selectedAccount?.enterpriseIdNumber,
+      "Số tài khoản ví": selectedAccount?.phoneNumber,
+    };
+    setFields(arrField);
+    setIsModalVisible(true);
+  }
+  const handleSetIsModalVisible = (value) => {
+    setIsModalVisible(value);
   }
 
   useEffect(() => {
@@ -37,6 +53,14 @@ const AddLinkPage = props => {
         setSelectedAccount(res.find(item => item.default));
       })
   }, [])
+
+  useEffect(() => {
+    if (selectedItem && selectedAccount)
+      setDisabledConfirmDeal(false);
+    else
+      setDisabledConfirmDeal(true);
+
+  }, [selectedItem, selectedAccount]);
 
   return (
     <DefaultLayout>
@@ -76,10 +100,13 @@ const AddLinkPage = props => {
             </Col>
           </Row>
           <AreaCreateCommand>
-            <CreateCommandButton type='primary'>Tạo lệnh</CreateCommandButton>
+            <CreateCommandButton type={disabledConfirmDeal ? 'default' : 'primary'} onClick={showModalConfirmDeal} disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
           </AreaCreateCommand>
-          <AreaChooseBank>
-          </AreaChooseBank>
+          <ModalCustomCommandForm
+            title={"Xác nhận giao dịch"}
+            fields={fields}
+            visible={isModalVisible}
+            setIsModalVisible={handleSetIsModalVisible}></ModalCustomCommandForm>
         </WhiteRoundedBox>
       </AddLinkPageWrapper>
     </DefaultLayout>
