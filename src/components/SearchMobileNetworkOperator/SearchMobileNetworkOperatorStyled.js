@@ -14,8 +14,8 @@ export const TitlePickProviders = styled.h5`
 
 export const SearchInputPhoneNumber = styled(Input) `
   border-radius: 10px;
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
 `
 
 export const TagProvider = styled.div `
@@ -23,8 +23,22 @@ export const TagProvider = styled.div `
   overflow: hidden;
   overflow-x: auto;
 `
-
-export const ImageProviderArea = styled.div`
+export const ImgWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  border-radius: 10px;
+  padding: 8px 16px;
+  margin: 16px 16px 0 0;
+  width: 100%;
+  border: ${props => `1px solid ${props.borderColor}`};
+  img {
+    width: 200px;
+    object-fit: contain;
+  }
+  
+`
+export const ImageProviderArea = styled.div`  
   display: flex;
   justify-content: center;
   flex-grow: 0;     /* do not grow   - initial value: 0 */
