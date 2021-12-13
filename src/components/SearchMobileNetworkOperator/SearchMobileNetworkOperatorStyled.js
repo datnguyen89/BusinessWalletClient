@@ -3,10 +3,10 @@ import { Input } from 'antd'
 
 export const ProviderWrapper = styled.div`
   // background: #fff;
-  // border-radius: ${props => props.borderRadius || '10px'};
+    // border-radius: ${props => props.borderRadius || '10px'};
   padding: ${props => props.padding || '16px 20px'};
-  // margin: ${props => props.margin || '0'};
-  // border: ${props => props.border || '1px solid #ccc'};
+    // margin: ${props => props.margin || '0'};
+    // border: ${props => props.border || '1px solid #ccc'};
 `
 export const TitlePickProviders = styled.h5`
   color: #979797;
@@ -14,7 +14,7 @@ export const TitlePickProviders = styled.h5`
 
 export const SearchInputPhoneNumber = styled(Input) `
   border-radius: 10px;
-  height: 40px;
+  height: 64px;
   line-height: 40px;
 `
 
@@ -36,26 +36,22 @@ export const ImgWrapper = styled.div`
     width: 200px;
     object-fit: contain;
   }
-  
+
 `
-export const ImageProviderArea = styled.div`  
+export const ImageProviderArea = styled.div`
   display: flex;
   justify-content: center;
   flex-grow: 0;     /* do not grow   - initial value: 0 */
   flex-shrink: 0;   /* do not shrink - initial value: 1 */
   flex-basis: 150px; /* width/height  - initial value: auto */
-  border: ${props => `1px solid ${props.borderColor}`};
-  padding: 10px 20px;
-  margin: 20px 15px 10px 0;
   color: white;
-  border-radius: 10px;
   cursor: pointer;
-  img {
-    max-width: 200px;
-    object-fit: contain;
+  &:last-child {
+    ${ImgWrapper} {
+      margin-right: 1px;
+    }
   }
 `
-
 export const ImgIconProvider = styled.div `
   margin-right: 15px;
   border: 1px solid #ccc;
