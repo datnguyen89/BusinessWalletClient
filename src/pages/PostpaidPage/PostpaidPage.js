@@ -18,6 +18,7 @@ import LinkInternalBank from '../../components/LinkInternalBank/LinkInternalBank
 import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/ModalCustomCommandForm'
 import { inject, observer } from 'mobx-react'
 import SearchMobileNetworkOperatorPostPaid from '../../components/SearchMobileNetworkOperatorPostPaid'
+import { toJS } from 'mobx'
 
 const PostpaidPage = props => {
 
@@ -28,13 +29,18 @@ const PostpaidPage = props => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedProvider, setSelectedProvider] = useState(null);
   const [selectedTopupVoucher, setSelectedTopupVoucher ] = useState(null);
-  const [countTopUpVoucher, setCountTopUpVoucher] = useState(0);
   const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true);
+  const [customer, setCustomer] = useState(null);
+  const [ tax, setTax ] = useState(0);
 
   const [fields, setFields] = useState(null);
 
   const handleSetPhoneNumber = (value) => {
     setPhoneNumber(value);
+  }
+
+  const handleSetCustomer = (value) => {
+    setCustomer(value);
   }
 
   const handleClickFunds = (value) => {
@@ -46,33 +52,29 @@ const PostpaidPage = props => {
   }
 
   const handleSelectedProvider = (value) => {
+    console.log(toJS(value));
     setSelectedProvider(value);
     setSelectedTopupVoucher(null);
   }
 
   const handleEnterTax = (value) => {
-    console.log(value);
+    setTax(value.target.value);
   }
 
   const showModalConfirmDeal = () => {
     let arrField = {
       "Nguồn tiền": selectedItem?.accountNumber,
       "Nhà cung cấp": selectedProvider?.name,
-      "Sản phẩm": selectedTopupVoucher?.name,
-      "Mệnh giá": selectedTopupVoucher?.denominations,
-      "Giá bán": selectedTopupVoucher?.discount,
-      "Số lượng": countTopUpVoucher,
-      "Tổng tiền": countTopUpVoucher*selectedTopupVoucher?.discount + 'đ',
+      "Mã khách hàng": selectedProvider?.name,
+      "Tên khách hàng": selectedProvider?.name,
+      "Kỳ thanh toán": customer?.payTerms,
+      "Dư nợ cước": customer?.debitBalance,
+      "Số tiền": tax,
       "Phí giao dịch": '0đ',
-      "Thành tiền": countTopUpVoucher*selectedTopupVoucher?.discount + 'đ'
+      "Tổng tiền": tax,
     };
     setFields(arrField);
     setIsModalVisible(true);
-  }
-
-  const onChangeCountTopUpVouchers = (value) => {
-    console.log(value);
-    setCountTopUpVoucher(value);
   }
 
   const handleSetIsModalVisible = (value) => {
@@ -86,12 +88,12 @@ const PostpaidPage = props => {
   }, [selectedProvider]);
 
   useEffect(() => {
-    if (selectedProvider && selectedItem && selectedTopupVoucher && countTopUpVoucher > 0 && !isNaN(countTopUpVoucher))
+    if (selectedProvider && selectedItem)
       setDisabledConfirmDeal(false);
     else
       setDisabledConfirmDeal(true);
 
-  }, [selectedItem, selectedProvider, selectedTopupVoucher, countTopUpVoucher]);
+  }, [selectedItem, selectedProvider]);
 
   return (
     <DefaultLayout>
@@ -110,18 +112,23 @@ const PostpaidPage = props => {
             <Col span={6}></Col>
             <Col span={12}>
               <WhiteRoundedInfoService margin={'0 0 16px 0'}>
-                <SearchMobileNetworkOperatorPostPaid phoneNumber={phoneNumber} setPhoneNumber={handleSetPhoneNumber} selectedProvider={selectedProvider} handleSelectedProvider={handleSelectedProvider}></SearchMobileNetworkOperatorPostPaid>
+                <SearchMobileNetworkOperatorPostPaid
+                  phoneNumber={phoneNumber}
+                  setPhoneNumber={handleSetPhoneNumber}
+                  setCustomer={handleSetCustomer}
+                  selectedProvider={selectedProvider}
+                  handleSelectedProvider={handleSelectedProvider} />
               </WhiteRoundedInfoService>
-              <WhiteRoundedInfoService margin={'0 0 16px 0'} padding={'16px 20px'}>
+              <WhiteRoundedInfoService margin={'0 0 16px 0'} padding={'16px'}>
                 <ResultSearchForm>
                   <Descriptions bordered column={1}>
-                    <Descriptions.Item label="Nhà cung cấp" labelStyle={{width: "30%"}}>{}</Descriptions.Item>
+                    <Descriptions.Item label="Nhà cung cấp" labelStyle={{width: "30%"}}>{selectedProvider?.name}</Descriptions.Item>
                     <Descriptions.Item label="Tên khách hàng">{customerStore.customer?.customerName}</Descriptions.Item>
-                    <Descriptions.Item label="Kỳ thanh toán" >{}</Descriptions.Item>
-                    <Descriptions.Item label="Số dư nợ cước" >{}</Descriptions.Item>
+                    <Descriptions.Item label="Kỳ thanh toán" >{customer?.payTerms}</Descriptions.Item>
+                    <Descriptions.Item label="Số dư nợ cước" >{customer?.debitBalance}</Descriptions.Item>
                   </Descriptions>
                 </ResultSearchForm>
-                <InputEnterTax placeholder={"Nhập số tiền"} onChange={() => handleEnterTax() } />
+                <InputEnterTax placeholder={"Nhập số tiền"} onChange={handleEnterTax} />
               </WhiteRoundedInfoService>
             </Col>
             <Col span={6}></Col>

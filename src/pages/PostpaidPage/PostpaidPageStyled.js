@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button, Input, InputNumber, Modal, Row } from 'antd'
+import { Button, Input, Modal, Row } from 'antd'
 
 export const PostpaidPageWrapper = styled.div`
 `

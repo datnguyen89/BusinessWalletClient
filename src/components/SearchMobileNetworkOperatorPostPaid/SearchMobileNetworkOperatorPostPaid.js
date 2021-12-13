@@ -1,56 +1,51 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  ImageProviderArea, ProviderWrapper, SearchImg, SearchInputPhoneNumber,
-  TagProvider,
+  ImageProviderArea, ImgWrapper, ProviderWrapper, SearchImg, SearchInputPhoneNumber,
 } from './SearchMobileNetworkOperatorPostPaidStyled'
 import { inject, observer } from 'mobx-react'
+import HorizontalScroll from 'react-scroll-horizontal'
+import { toJS } from 'mobx'
 
 const _ = require('lodash')
 
 const SearchMobileNetworkOperatorPostPaid = props => {
-  const { selectedProvider, handleSelectedProvider, setPhoneNumber, customerStore, mobileNetworkOperatorStore } = props
+  const { selectedProvider, handleSelectedProvider, phoneNumber, setPhoneNumber, customerStore, mobileNetworkOperatorStore, setCustomer } = props
 
 
   useEffect(() => {
     mobileNetworkOperatorStore.getServicePlanMobile();
   }, []);
 
-  // const handlerSetSelectProvider = (value) => {
-  //   handleSelectedProvider(value);
-  // }
-
   const handleOnChange = (value) => {
     setPhoneNumber(value.target.value);
-    customerStore.getCustomerByPhoneNumber(value)
-      .then(res => {
-        var itemMatched = mobileNetworkOperatorStore.mobileNetworkOperators.filter(item => item.id === res.customerNetworkMobileId);
-        if (itemMatched) {
-          handleSelectedProvider(itemMatched);
-        }
-      })
   }
 
-  const handleSearchCustomer = (value) => {
-    console.log(value.target);
-    customerStore.getCustomerByCode(value)
+  const handleSearchCustomer = () => {
+    customerStore.getCustomerByPhoneNumber(phoneNumber)
       .then(res => {
-        customerStore.setCustomerByCode(res);
-      });
+        let itemMatched = toJS(mobileNetworkOperatorStore.mobileNetworkOperators).find(item => item.id === toJS(res).customerNetworkMobileId);
+        if (itemMatched) {
+          handleSelectedProvider(itemMatched);
+          setCustomer(res);
+        }
+      })
   }
                          
   return (
     <ProviderWrapper>
       <SearchInputPhoneNumber placeholder={"Nhập số điện thoại"} onChange={(value) => handleOnChange(value)} />
       <SearchImg src={require('../../media/icons/search_cus.png')} alt={"search_cus"} onClick={handleSearchCustomer}/>
-      <TagProvider>
+      <HorizontalScroll pageLock={true} reverseScroll={true} style={{ width: '100%', height: 76 }}>
         {
           mobileNetworkOperatorStore.mobileNetworkOperators.map(item =>
-            <ImageProviderArea key={item.id} borderColor={item.id === selectedProvider?.id ? '#0465B0' : '#E0E0E0'}>
-              <img src={item.imageUrl} alt={item.name} />
-            </ImageProviderArea>
+            <ImageProviderArea key={item.id}>
+              <ImgWrapper borderColor={item.id === selectedProvider?.id ? '#0465B0' : '#E0E0E0'}>
+                <img src={item.imageUrl} alt={item.name} />
+              </ImgWrapper>
+            </ImageProviderArea>,
           )
         }
-      </TagProvider>
+      </HorizontalScroll>
     </ProviderWrapper>
   )
 }

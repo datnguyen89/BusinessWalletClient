@@ -14,7 +14,7 @@ class CustomerStore {
         customerCode: '00000123456',
         customerName: 'Nguyen Van A',
         customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
-        customerNetworkMobileId: '1'
+        customerNetworkMobileId: 1
       };
 
       this.customer = data
@@ -28,8 +28,23 @@ class CustomerStore {
         id: 1,
         customerCode: '00000123456',
         customerName: 'Nguyen Van A',
-        customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
-        customerNetworkMobileId: '1'
+        payTerms: 'Cước trả sau tháng 9',
+        debitBalance: '300000',
+        customerNetworkMobileId: 1
+      };
+
+      this.customer = data
+      resolve(data)
+    })
+  }
+
+  @action getCustomerByCodeOrContract = (id) => {
+    return new Promise((resolve, reject) => {
+      let data =  {
+        id: 1,
+        customerCode: '00000123456',
+        customerName: 'Nguyen Van A',
+        providerBy: 'VETC'
       };
 
       this.customer = data

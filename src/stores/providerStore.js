@@ -5,6 +5,7 @@ class ProviderStore {
   @observable areas = [];
   @observable providers = [];
   @observable providerDetail = null;
+  @observable televisions = [];
 
   constructor() {
   }
@@ -217,6 +218,57 @@ class ProviderStore {
         taxPaid: '1000000'
       };
       this.providerDetail = data
+      resolve(data)
+    })
+  }
+
+  @action getTelevisions = () => {
+    return new Promise((resolve, reject) => {
+      let data = [
+        {
+          id: 1,
+          name: 'K+',
+          description: 'Truyền hình K+',
+          imageUrl: require('../media/images/k_plus.png')
+        },
+        {
+          id: 2,
+          name: 'K+',
+          description: 'Truyền hình K+',
+          imageUrl: require('../media/images/k_plus.png')
+        },
+        {
+          id: 3,
+          name: 'K+',
+          description: 'Truyền hình K+',
+          imageUrl: require('../media/images/k_plus.png')
+        },
+        {
+          id: 4,
+          name: 'K+',
+          description: 'Truyền hình K+',
+          imageUrl: require('../media/images/k_plus.png')
+        },
+        {
+          id: 5,
+          name: 'K+',
+          description: 'Truyền hình K+',
+          imageUrl: require('../media/images/k_plus.png')
+        },
+        {
+          id: 6,
+          name: 'K+',
+          description: 'Truyền hình K+',
+          imageUrl: require('../media/images/k_plus.png')
+        },
+        {
+          id: 7,
+          name: 'K+',
+          description: 'Truyền hình K+',
+          imageUrl: require('../media/images/k_plus.png')
+        },
+      ];
+      this.televisions = data
       resolve(data)
     })
   }

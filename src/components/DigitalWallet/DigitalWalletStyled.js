@@ -5,6 +5,7 @@ export const DigitalWalletWrapper = styled.div `
 
 export const LabelDigitalWallet = styled.div`
   color: #979797;
+  margin-bottom: 15px;
 `
 
 export const AreaInfoDigitalWallet = styled.div`
