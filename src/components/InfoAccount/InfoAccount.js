@@ -13,7 +13,7 @@ const InfoAccount = props => {
   const { data, enableBorder } = props
   return (
 
-      data ? <InfoAccountWrapper border={enableBorder} borderColor={data.default ? 'blue' : '#E0E0E0'}>
+      data ? <InfoAccountWrapper border={enableBorder} borderColor={(data.default) ? 'blue' : '#E0E0E0'}>
       <InfoAccountTitle>Tài khoản ví</InfoAccountTitle>
       <InfoAccountContent>{data.bankname}</InfoAccountContent>
       <InfoAccountPhone>{data.phoneNumber}</InfoAccountPhone>

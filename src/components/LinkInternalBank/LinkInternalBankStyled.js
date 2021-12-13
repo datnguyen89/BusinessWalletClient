@@ -1,8 +1,9 @@
 import styled from 'styled-components'
+import { Row } from 'antd'
 
 export const LinkInternalBankWrapper = styled.div`
-  text-align: center;
-
+  text-align: left;
+  padding: 0 16px;
   .slick-arrow.slick-prev {
     &:before {
       color: #ccc;
@@ -21,14 +22,28 @@ export const LinkedCardNumber = styled.div`
   text-align: left;
 `
 
-export const AreaBoundInternalBank = styled.div `
+export const AreaBoundInternalBank = styled(Row) `
   img {
-    margin: 4px;
+    width: 100%;
   }
+  img:hover {
+    cursor: pointer;
+  }
+`
+export const ImgBank = styled.img`
+  border: ${props => props.active ? `1px solid ${props.color}` : `1px solid #E0E0E0`};
+  border-radius: 8px;
+`
+
+export const WrapperImage = styled.div`
+  padding: 10px 10px 3px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 export const LinkInternalBankTitle = styled.div `
   text-align: left;
   color: #979797;
   font-weight: 400;
-  margin: 0 16px 5px;
+  margin: 0 0 5px;
 `

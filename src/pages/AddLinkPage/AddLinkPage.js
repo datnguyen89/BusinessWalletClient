@@ -5,7 +5,7 @@ import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
 import {
   AddLinkPageWrapper,
-  AreaChooseBank,
+  AreaCreateCommand, CreateCommandButton,
   TitleInfoLink,
   WhiteRoundedInfoLink,
 } from './AddLinkPageStyled'
@@ -15,34 +15,52 @@ import { Col, Row } from 'antd'
 import { inject, observer } from 'mobx-react'
 import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
 import InfoAccountArea from '../../components/InfoAccountArea'
-import { toJS } from 'mobx'
+import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/ModalCustomCommandForm'
 
 const AddLinkPage = props => {
-  const { commonStore, accountWalletStore } = props
-  const [selectedAccountWallet, setSelectedAccountWallet] = useState(null)
+
+  const { accountWalletStore } = props
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null)
+  const [selectedAccount, setSelectedAccount] = useState(null);
+  const [fields, setFields] = useState(null);
+  const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true);
+
+  const handlerCallbackHitBank = (item) => {
+    setSelectedItem(item);
+  }
   const handlerCallbackBankAccount = (valueChange) => {
-    // selectedAccountWallet dùng khi submit form
-    setSelectedAccountWallet(valueChange)
-    let newArr = [...accountWalletStore.accountWallets];
-    newArr = newArr.map(item => {
-      if (valueChange.id === item.id) {
-        item.default = true
-      } else  {
-        item.default = false
-      }
-      return item
-    })
-    console.log(toJS(accountWalletStore.accountWallets))
-    accountWalletStore.setAccountWallets(newArr)
+    setSelectedAccount(valueChange);
+  }
+  const showModalConfirmDeal = () => {
+    let arrField = {
+      "Ngân hàng": selectedItem?.name,
+      "Tên doanh nghiệp": selectedAccount?.bankname,
+      "Số DKKD": selectedAccount?.enterpriseIdNumber,
+      "Số tài khoản ví": selectedAccount?.phoneNumber,
+    };
+    setFields(arrField);
+    setIsModalVisible(true);
+  }
+  const handleSetIsModalVisible = (value) => {
+    setIsModalVisible(value);
   }
 
   useEffect(() => {
-    accountWalletStore.getAccountWallets();
-  }, []);
+    accountWalletStore.getAccountWallets()
+      .then(res => {
+        setSelectedAccount(res.find(item => item.default));
+      })
+  }, [])
 
-  useEffect(()=>{
-    // console.log(toJS(accountWalletStore.accountWallets));
-  }, [accountWalletStore.accountWallets])
+  useEffect(() => {
+    if (selectedItem && selectedAccount)
+      setDisabledConfirmDeal(false);
+    else
+      setDisabledConfirmDeal(true);
+
+  }, [selectedItem, selectedAccount]);
 
   return (
     <DefaultLayout>
@@ -52,47 +70,44 @@ const AddLinkPage = props => {
       <AddLinkPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.ADD_LINK} />
         <WhiteRoundedBox margin={'0 16px 16px 16px'}>
-            <Row>
-              <Col span={24}>
-                <TitleInfoLink>Thông tin liên kết</TitleInfoLink>
-              </Col>
-              <Col span={6}></Col>
-              <Col span={12}>
-                <WhiteRoundedInfoLink margin={'0 16px 16px 0'}>
-                  <InfoAccountArea callbackBankAccount={handlerCallbackBankAccount} data={accountWalletStore.accountWallets} />
-                </WhiteRoundedInfoLink>
-              </Col>
-              <Col span={6}></Col>
-            </Row>
+          <Row>
+            <Col span={24}>
+              <TitleInfoLink>Thông tin liên kết</TitleInfoLink>
+            </Col>
+            <Col span={6}></Col>
+            <Col span={12}>
+              <WhiteRoundedInfoLink margin={'0 16px 16px 0'}>
+                <InfoAccountArea
+                  callbackBankAccount={handlerCallbackBankAccount}
+                  selectedAccount={selectedAccount}></InfoAccountArea>
+              </WhiteRoundedInfoLink>
+            </Col>
+            <Col span={6}></Col>
+          </Row>
           <Row>
             <Col span={24}>
               <TitleInfoLink>Chọn ngân hàng liên kết</TitleInfoLink>
             </Col>
             <Col span={6}>
               <WhiteRoundedBox margin={'0 16px 0 0'}>
-                <LinkDirectBank></LinkDirectBank>
+                <LinkDirectBank callbackHitBank={handlerCallbackHitBank} selectedItem={selectedItem}></LinkDirectBank>
               </WhiteRoundedBox>
             </Col>
             <Col span={18}>
               <WhiteRoundedBox padding={'16px 0'}>
-                <LinkInternalBank></LinkInternalBank>
+                <LinkInternalBank callbackHitBank={handlerCallbackHitBank} selectedItem={selectedItem}></LinkInternalBank>
               </WhiteRoundedBox>
             </Col>
           </Row>
-          <AreaChooseBank>
-          </AreaChooseBank>
+          <AreaCreateCommand>
+            <CreateCommandButton type={disabledConfirmDeal ? 'default' : 'primary'} onClick={showModalConfirmDeal} disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
+          </AreaCreateCommand>
+          <ModalCustomCommandForm
+            title={"Xác nhận giao dịch"}
+            fields={fields}
+            visible={isModalVisible}
+            setIsModalVisible={handleSetIsModalVisible}></ModalCustomCommandForm>
         </WhiteRoundedBox>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
       </AddLinkPageWrapper>
     </DefaultLayout>
   )

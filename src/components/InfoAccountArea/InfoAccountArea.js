@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { DownOutlined } from '@ant-design/icons'
-import { Dropdown, Menu } from 'antd'
+import { Dropdown } from 'antd'
 import {
-  DropdownCustom,
   InfoAccountOverLayItem,
   InfoAccountOverLayWrapper,
   InfoAccountWrapper,
@@ -11,19 +10,19 @@ import {
 import InfoAccount from '../InfoAccount'
 import InfoAccountDropdown from '../InfoAccountDropdown'
 import { RowFlexEndDiv } from '../CommonStyled/CommonStyled'
+import { inject, observer } from 'mobx-react'
 
 const InfoAccountArea = props => {
-  const { callbackBankAccount, data } = props
-  useEffect(() => {
-    // console.log(data)
-  }, [data])
+  const { callbackBankAccount, selectedAccount, accountWalletStore } = props
+
   const menu = (
     <InfoAccountOverLayWrapper>
       {
-        data.map(item => (
+        accountWalletStore.accountWallets.map(item => (
           <InfoAccountOverLayItem key={item.id} onClick={() => callbackBankAccount(item)}>
-            <InfoAccountDropdown data={item} enableBorder={true} />
+            <InfoAccountDropdown selectedItem={selectedAccount} data={item} enableBorder={true} />
           </InfoAccountOverLayItem>
+
         ))
       }
     </InfoAccountOverLayWrapper>
@@ -31,7 +30,7 @@ const InfoAccountArea = props => {
 
   return (
     <InfoAccountWrapper>
-      <InfoAccount data={data.find(item => item.default)} enableBorder={false}></InfoAccount>
+      <InfoAccount data={selectedAccount ? selectedAccount : accountWalletStore.accountWallets.find(item => item.default)} enableBorder={false}></InfoAccount>
       <RowFlexEndDiv>
         <Dropdown
           overlay={menu}
@@ -53,4 +52,4 @@ InfoAccountArea.propTypes = {
   callbackBankAccount: PropTypes.func,
 }
 
-export default InfoAccountArea
+export default inject('accountWalletStore')(observer(InfoAccountArea))
