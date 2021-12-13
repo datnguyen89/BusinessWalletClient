@@ -13,15 +13,22 @@ export const TitlePickProviders = styled.h5`
 `
 
 export const SearchInputPhoneNumber = styled(Input) `
+  width: 88%;
+  margin-right: 20px;
   border-radius: 10px;
-  height: 50px;
-  line-height: 50px;
+  height: 60px;
+  line-height: 60px;
 `
 
 export const TagProvider = styled.div `
   display: flex;
   overflow: hidden;
   overflow-x: auto;
+`
+
+export const SearchImg = styled.img `
+  cursor: pointer;
+  height: 60px;
 `
 
 export const ImageProviderArea = styled.div`

@@ -13,7 +13,23 @@ class CustomerStore {
         id: 1,
         customerCode: '00000123456',
         customerName: 'Nguyen Van A',
-        customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội'
+        customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
+        customerNetworkMobileId: '1'
+      };
+
+      this.customer = data
+      resolve(data)
+    })
+  }
+
+  @action getCustomerByPhoneNumber = (phone) => {
+    return new Promise((resolve, reject) => {
+      let data =  {
+        id: 1,
+        customerCode: '00000123456',
+        customerName: 'Nguyen Van A',
+        customerAddress: '123 Liễu Giai, Ba Đình, Hà Nội',
+        customerNetworkMobileId: '1'
       };
 
       this.customer = data

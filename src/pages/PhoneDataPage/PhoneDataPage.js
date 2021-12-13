@@ -107,7 +107,7 @@ const PhoneDataPage = props => {
             <Col span={6}></Col>
             <Col span={12}>
               <WhiteRoundedInfoService margin={'0 0 16px 0'}>
-                <SearchMobileNetworkOperator phoneNumber={phoneNumber} setPhoneNumber={handleSetPhoneNumber} selectedProvider={selectedProvider} handleSelectedProvider={handleSelectedProvider}></SearchMobileNetworkOperator>
+                <SearchMobileNetworkOperator phoneNumber={phoneNumber} setPhoneNumber={handleSetPhoneNumber} selectedProvider={selectedProvider} handleSelectedProvider={handleSelectedProvider} />
               </WhiteRoundedInfoService>
               <WhiteRoundedInfoService margin={'0 0 16px 0'}>
                 <ServicePlanMobileData selectedTopupVoucher={selectedTopupVoucher} handleSelectedTopupVoucher={handleSelectedTopupVoucher}></ServicePlanMobileData>

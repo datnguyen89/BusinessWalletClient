@@ -235,7 +235,7 @@ export const BREADCRUMB_DATA = {
   ],
   POSTPAID: [
     { ID: 28, LABEL: 'Trang chủ', PATH: PAGES.HOME.PATH },
-    { ID: 29, LABEL: 'Nạp tiền điện thoại trả sau', PATH: null },
+    { ID: 29, LABEL: 'Nạp trả sau', PATH: null },
   ],
   PHONE_DATA: [
     { ID: 30, LABEL: 'Trang chủ', PATH: PAGES.HOME.PATH },
