@@ -125,12 +125,12 @@ axios.interceptors.response.use(
 
 const App = () => {
 
-  (async () => {
-    console.log(await publicIp.v4())
-  })()
-  useEffect(() => {
-    console.log(deviceDetect())
-  }, [])
+  // (async () => {
+  //   console.log(await publicIp.v4())
+  // })()
+  // useEffect(() => {
+  //   console.log(deviceDetect())
+  // }, [])
 
   return (
     <Provider {...rootStores}>
