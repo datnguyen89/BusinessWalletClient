@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {
   ImageProviderArea, ProviderWrapper, ScrollbarsCustom,
-  TitlePickProviders,
+  TagProvider, TitlePickProviders,
 } from './MobileNetworkOperatorStyled'
 import { inject, observer } from 'mobx-react'
 
@@ -22,7 +22,9 @@ const MobileNetworkOperator = props => {
   return (
     <ProviderWrapper>
       <TitlePickProviders>Chọn nhà cung cấp</TitlePickProviders>
-      <ScrollbarsCustom style={{ width: '100%', height: 89 }}>
+      <ScrollbarsCustom
+        renderView={props => <div {...props} className='view' />}
+        style={{ width: '100%', height: 105 }}>
         {
           mobileNetworkOperatorStore.mobileNetworkOperators.map(item =>
             <ImageProviderArea
