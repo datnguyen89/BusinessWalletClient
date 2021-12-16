@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {
   ImageProviderArea, ProviderWrapper, ScrollbarsCustom,
-  TagProvider, TitlePickProviders,
+  TitlePickProviders,
 } from './MobileNetworkOperatorStyled'
 import { inject, observer } from 'mobx-react'
 
@@ -12,35 +12,32 @@ const MobileNetworkOperator = props => {
 
 
   useEffect(() => {
-    mobileNetworkOperatorStore.getMobileNetworkOperators();
-  }, []);
+    mobileNetworkOperatorStore.getMobileNetworkOperators()
+  }, [])
 
   const handlerSetSelectProvider = (value) => {
-    handleSelectedProvider(value);
+    handleSelectedProvider(value)
   }
 
   return (
     <ProviderWrapper>
       <TitlePickProviders>Chọn nhà cung cấp</TitlePickProviders>
-      <TagProvider>
-        <ScrollbarsCustom style={{ width: '100%', height: 89 }}>
-          {
-            mobileNetworkOperatorStore.mobileNetworkOperators.map(item =>
-              <ImageProviderArea
-                onClick={() => handlerSetSelectProvider(item)}
-                key={item.id}
-                src={item.imageUrl}
-                alt={item.name}
-                borderColor={item.id === selectedProvider?.id ? '#0465B0' : '#E0E0E0'} />
-            )
-          }
-        </ScrollbarsCustom>
-      </TagProvider>
+      <ScrollbarsCustom style={{ width: '100%', height: 89 }}>
+        {
+          mobileNetworkOperatorStore.mobileNetworkOperators.map(item =>
+            <ImageProviderArea
+              onClick={() => handlerSetSelectProvider(item)}
+              key={item.id}
+              src={item.imageUrl}
+              alt={item.name}
+              borderColor={item.id === selectedProvider?.id ? '#0465B0' : '#E0E0E0'} />,
+          )
+        }
+      </ScrollbarsCustom>
     </ProviderWrapper>
   )
 }
 
-MobileNetworkOperator.propTypes = {
-}
+MobileNetworkOperator.propTypes = {}
 
 export default inject('mobileNetworkOperatorStore')(observer(MobileNetworkOperator))

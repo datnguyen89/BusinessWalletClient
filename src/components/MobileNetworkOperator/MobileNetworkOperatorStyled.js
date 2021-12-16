@@ -12,12 +12,6 @@ export const TitlePickProviders = styled.h5`
   color: #979797;
 `
 
-export const TagProvider = styled.div `
-  display: flex;
-  overflow: hidden;
-  overflow-x: auto;
-`
-
 export const ScrollbarsCustom = styled(Scrollbars) `
   >div {
     display: flex;

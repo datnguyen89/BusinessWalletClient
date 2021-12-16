@@ -34,12 +34,12 @@ export const InputCount = styled(InputNumber) `
   margin-bottom: 20px;
   &.ant-input-number {
     width: 100%;
-    height: 40px;
+    height: 50px;
     border-radius: 5px;
   }
   .ant-input-number-input-wrap {
-    height: 40px;
-    line-height: 40px;
+    height: 50px;
+    line-height: 50px;
   }
 `
 

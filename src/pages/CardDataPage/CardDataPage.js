@@ -112,7 +112,7 @@ const CardDataPage = props => {
 
               <InputCount
                 min={1}
-                defaultValue={"Nhập số lượng"}
+                placeholder={"Nhập số lượng"}
                 onChange={onChangeCountTopupVouchers} />
             </Col>
             <Col span={6}></Col>
