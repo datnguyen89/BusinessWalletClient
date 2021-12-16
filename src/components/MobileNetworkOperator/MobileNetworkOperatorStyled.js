@@ -19,12 +19,13 @@ export const TagProvider = styled.div `
 `
 
 export const ScrollbarsCustom = styled(Scrollbars) `
-  >div {
+  .view {
     display: flex;
   }
-  div:nth-child(2) {
-    bottom: 0 !important;
-  }
+  .
+  //div:nth-child(2) {
+  //  bottom: 0 !important;
+  //}
 `
 
 export const ImageProviderArea = styled.img`
@@ -35,6 +36,10 @@ export const ImageProviderArea = styled.img`
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  height: 72px;
+  width: auto;
+  object-fit: cover;
+  object-position: center;
 `
 
 export const ImgIconProvider = styled.div `
