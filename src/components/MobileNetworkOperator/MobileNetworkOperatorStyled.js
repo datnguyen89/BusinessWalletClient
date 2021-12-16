@@ -40,6 +40,7 @@ export const ImageProviderArea = styled.img`
   width: auto;
   object-fit: cover;
   object-position: center;
+  user-select: none;
 `
 
 export const ImgIconProvider = styled.div `
