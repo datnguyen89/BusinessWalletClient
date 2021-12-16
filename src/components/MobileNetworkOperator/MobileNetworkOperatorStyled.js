@@ -16,7 +16,6 @@ export const ScrollbarsCustom = styled(Scrollbars) `
   .view {
     display: flex;
   }
-  .
   //div:nth-child(2) {
   //  bottom: 0 !important;
   //}
