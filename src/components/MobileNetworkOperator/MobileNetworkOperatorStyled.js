@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button, Input } from 'antd'
+import { Scrollbars } from 'react-custom-scrollbars'
 
 export const ProviderWrapper = styled.div`
   // background: #fff;
@@ -16,6 +16,15 @@ export const TagProvider = styled.div `
   display: flex;
   overflow: hidden;
   overflow-x: auto;
+`
+
+export const ScrollbarsCustom = styled(Scrollbars) `
+  >div {
+    display: flex;
+  }
+  div:nth-child(2) {
+    bottom: 0 !important;
+  }
 `
 
 export const ImageProviderArea = styled.img`

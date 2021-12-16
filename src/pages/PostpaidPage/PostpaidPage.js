@@ -125,7 +125,7 @@ const PostpaidPage = props => {
                     <Descriptions.Item label="Nhà cung cấp" labelStyle={{width: "30%"}}>{selectedProvider?.name}</Descriptions.Item>
                     <Descriptions.Item label="Tên khách hàng">{customerStore.customer?.customerName}</Descriptions.Item>
                     <Descriptions.Item label="Kỳ thanh toán" >{customer?.payTerms}</Descriptions.Item>
-                    <Descriptions.Item label="Số dư nợ cước" >{customer?.debitBalance}</Descriptions.Item>
+                    <Descriptions.Item label="Số dư nợ cước" >{customer?.debitBalance}đ</Descriptions.Item>
                   </Descriptions>
                 </ResultSearchForm>
                 <InputEnterTax placeholder={"Nhập số tiền"} onChange={handleEnterTax} />

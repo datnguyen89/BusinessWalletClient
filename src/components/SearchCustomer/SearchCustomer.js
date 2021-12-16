@@ -8,38 +8,56 @@ import {
   SearchCustomerInput,
   SearchCustomerWrapper, SearchImg,
 } from './SearchCustomerStyled'
+import { toJS } from 'mobx'
 
 const SearchCustomer = props => {
 
-  const { resultSearchCustomer, setCustomerBySearch, customerStore } = props
+  const { resultSearchCustomer, setCustomerBySearch, customerStore, placeholder } = props
+
+  const [ searchText, setSearchText ] = useState("");
+  const [ customerSearch, setCustomerSearch ] = useState(null);
 
   const handleSearchCustomer = (value) => {
-    customerStore.getCustomerByCode(value)
-      .then(res => {
-        customerStore.setCustomerByCode(res);
-        setCustomerBySearch(res);
-      });
+    if (searchText === "") {
+      setCustomerBySearch(null);
+      setCustomerSearch(null);
+    } else {
+      customerStore.getCustomerByCode(value)
+        .then(res => {
+          setCustomerSearch(res);
+          console.log(toJS(customerStore.customer));
+          setCustomerBySearch(res);
+        });
+    }
   }
+  const handleOnChange = (e) => {
+    setSearchText(e.target.value);
+  }
+
+  useEffect(() => {
+    console.log(searchText);
+  }, [searchText]);
 
   return (
     <SearchCustomerWrapper>
       <SearchCustomerForm>
         <SearchCustomerInput
-          placeholder="Nhập mã khách hàng"
+          placeholder={placeholder}
           suffix={
             <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)', fontSize: '20px' }} />
           }
+          onChange={handleOnChange}
         />
         <SearchImg src={require('../../media/icons/search_cus.png')} alt={"search_cus"} onClick={handleSearchCustomer}/>
       </SearchCustomerForm>
       <ResultSearchForm>
         <Descriptions bordered column={1}>
           <Descriptions.Item label="Nhà cung cấp" labelStyle={{width: "30%"}}>{resultSearchCustomer?.providerName}</Descriptions.Item>
-          <Descriptions.Item label="Mã khách hàng">{customerStore.customer?.customerCode}</Descriptions.Item>
-          <Descriptions.Item label="Tên khách hàng">{customerStore.customer?.customerName}</Descriptions.Item>
-          <Descriptions.Item label="Địa chỉ" >{customerStore.customer?.customerAddress}</Descriptions.Item>
-          <Descriptions.Item label="Kỳ thanh toán" >{resultSearchCustomer?.paymentTerm}</Descriptions.Item>
-          <Descriptions.Item label="Số tiền" >{resultSearchCustomer?.taxPaid}</Descriptions.Item>
+          <Descriptions.Item label="Mã khách hàng">{customerSearch?.customerCode}</Descriptions.Item>
+          <Descriptions.Item label="Tên khách hàng">{customerSearch?.customerName}</Descriptions.Item>
+          <Descriptions.Item label="Địa chỉ" >{customerSearch?.customerAddress}</Descriptions.Item>
+          <Descriptions.Item label="Kỳ thanh toán" >{customerSearch?.payTerms}</Descriptions.Item>
+          <Descriptions.Item label="Số tiền" >{customerSearch?.tax}</Descriptions.Item>
         </Descriptions>
       </ResultSearchForm>
     </SearchCustomerWrapper>

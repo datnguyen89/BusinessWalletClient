@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import {
-  AreaCreateCommand, CreateCommandButton, InputEnterTax,
+  AreaCreateCommand, AreaSearchCustomer, CreateCommandButton, InputEnterTax,
   ResultSearchForm, SearchImg, SearchInputPhoneNumber,
   ServiceRechargePageWrapper,
   TitleFunds, TitleInfoService,
@@ -102,8 +102,10 @@ const ServiceRechargePage = props => {
             <Col span={6}></Col>
             <Col span={12}>
               <WhiteRoundedInfoService margin={'0 0 16px 0'} padding={'16px'}>
-                <SearchInputPhoneNumber placeholder={"Nhập mã khách hàng/hợp đồng"} onChange={(value) => handleOnChange(value)} />
-                <SearchImg src={require('../../media/icons/search_cus.png')} alt={"search_cus"} onClick={handleSearchCustomer}/>
+                <AreaSearchCustomer>
+                  <SearchInputPhoneNumber placeholder={"Nhập mã khách hàng/hợp đồng"} onChange={(value) => handleOnChange(value)} />
+                  <SearchImg src={require('../../media/icons/search_cus.png')} alt={"search_cus"} onClick={handleSearchCustomer}/>
+                </AreaSearchCustomer>
                 <ResultSearchForm>
                   <Descriptions bordered column={1}>
                     <Descriptions.Item label="Nhà cung cấp" labelStyle={{width: "30%"}}>{customer?.providerBy}</Descriptions.Item>

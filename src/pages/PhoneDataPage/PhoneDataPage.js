@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { PhoneDataPageWrapper } from './PhoneDataPageStyled'
+import {
+  AreaCreateCommand,
+  CreateCommandButton,
+  PhoneDataPageWrapper, TitleFunds, TitleInfoService,
+  WhiteRoundedInfoService,
+} from './PhoneDataPageStyled'
 import DefaultLayout from '../../layouts/DefaultLayout'
 import { Helmet } from 'react-helmet/es/Helmet'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
 import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
 import { Col, Row } from 'antd'
-import {
-  AreaCreateCommand, CreateCommandButton, ModalCustom, ResultSearchForm,
-  TitleFunds
-} from '../WaterBillPage/WaterBillPageStyled'
 import DigitalWallet from '../../components/DigitalWallet'
 import LinkDirectedBank from '../../components/LinkDirectedBank/LinkDirectedBank'
 import LinkInternalBank from '../../components/LinkInternalBank/LinkInternalBank'
 import { inject, observer } from 'mobx-react'
-import { TitleInfoService, WhiteRoundedInfoService } from '../CardDataPage/CardDataPageStyled'
 import SearchMobileNetworkOperator from '../../components/SearchMobileNetworkOperator'
 import ServicePlanMobileData from '../../components/ServicePlanMobileData'
 import { toJS } from 'mobx'

@@ -50,10 +50,10 @@ const WaterBillPage = props => {
       "Mã khách hàng": customerBySearch?.customerCode,
       "Tên khách hàng": customerBySearch?.customerName,
       "Địa chỉ": customerBySearch?.customerAddress,
-      "Số tiền": selectedProvider?.taxPaid + 'đ',
-      "Giá bán": selectedProvider?.taxPaid + 'đ',
+      "Số tiền": customerBySearch?.tax + 'đ',
+      "Giá bán": customerBySearch?.tax + 'đ',
       "Phí giao dịch": '0đ',
-      "Thành tiền": selectedProvider?.taxPaid + 'đ'
+      "Thành tiền": customerBySearch?.tax + 'đ'
     };
     setFields(arrField);
     setIsModalVisible(true);
@@ -97,7 +97,7 @@ const WaterBillPage = props => {
             <Col span={6}></Col>
             <Col span={12}>
               <WhiteRoundedInfoPayment margin={'0 0 16px 0'}>
-                <Providers selectedProvider={selectedProvider} handleSelectedProvider={handleSelectedProvider}></Providers>
+                <Providers placeholder={"Tìm kiếm nhà cung cấp"} selectedProvider={selectedProvider} handleSelectedProvider={handleSelectedProvider}></Providers>
               </WhiteRoundedInfoPayment>
             </Col>
             <Col span={6}></Col>
@@ -105,7 +105,7 @@ const WaterBillPage = props => {
           <Row>
             <Col span={6}></Col>
             <Col span={12}>
-              <SearchCustomer resultSearchCustomer={selectedProvider} setCustomerBySearch={handleSetCustomerBySearch}></SearchCustomer>
+              <SearchCustomer placeholder={"Nhập mã khách hàng"} resultSearchCustomer={selectedProvider} setCustomerBySearch={handleSetCustomerBySearch}></SearchCustomer>
             </Col>
             <Col span={6}></Col>
           </Row>

@@ -41,20 +41,18 @@ export const ButtonProviderArea = styled.div`
 `
 
 export const AreaProvider = styled(Scrollbars)`
-  //.ant-row {
-  //  max-height: 220px;
-  //  overflow: hidden;
-  //  overflow-y: auto;
-  //}
+  .ant-row {
+    padding-right: 8px;
+  }
 `
 
 export const TagAreaProvider = styled.div`
   display: flex;
   border: ${props => `1px solid ${props.borderColor}`};
-  margin: 16px 8px 16px 16px;
+  margin: 12px 8px 12px 16px;
   border-radius: 10px;
   align-items: center;
-  padding: 15px;
+  padding: 12px;
   cursor: pointer;
 `
 

@@ -36,9 +36,14 @@ export const AreaCreateCommand = styled(Row) `
   margin: 22px 0px 15px;
 `
 
+export const AreaSearchCustomer = styled.div `
+  display: flex;
+  justify-content: space-around;
+`
+
 export const SearchInputPhoneNumber = styled(Input) `
-  width: 88%;
-  margin-right: 20px;
+  width: 89%;
+  margin-right: 10px;
   border-radius: 10px;
   height: 60px;
   line-height: 60px;

@@ -107,7 +107,7 @@ const CardDataPage = props => {
                 <MobileNetworkOperator selectedProvider={selectedProvider} handleSelectedProvider={handleSelectedProvider}></MobileNetworkOperator>
               </WhiteRoundedInfoService>
               <WhiteRoundedInfoService margin={'0 0 16px 0'}>
-                <ServicePlanMobile selectedTopupVoucher={selectedTopupVoucher} handleSelectedTopupVoucher={handleSelectedTopupVoucher}></ServicePlanMobile>
+                <ServicePlanMobile title={"Chọn gói/mệnh giá"} selectedTopupVoucher={selectedTopupVoucher} handleSelectedTopupVoucher={handleSelectedTopupVoucher}></ServicePlanMobile>
               </WhiteRoundedInfoService>
 
               <InputCount

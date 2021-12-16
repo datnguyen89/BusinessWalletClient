@@ -9,7 +9,7 @@ import { inject, observer } from 'mobx-react'
 const _ = require('lodash')
 
 const ServicePlanMobile = props => {
-  const { mobileNetworkOperatorStore, selectedTopupVoucher, handleSelectedTopupVoucher } = props
+  const { mobileNetworkOperatorStore, selectedTopupVoucher, handleSelectedTopupVoucher, title } = props
 
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const ServicePlanMobile = props => {
 
   return (
     <ProviderWrapper>
-      <TitlePickProviders>Chọn gói/mệnh giá</TitlePickProviders>
+      <TitlePickProviders>{title}</TitlePickProviders>
       <TagProvider>
         {
           mobileNetworkOperatorStore.topUpVouchers.map(item =>
