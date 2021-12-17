@@ -22,14 +22,6 @@ export const SearchProvider = styled(Input)`
   height: 50px;
 `
 
-export const TagProvider = styled.div `
-  padding: 20px;
-  background: #F9F9F9;
-  display: flex;
-  overflow: hidden;
-  overflow-x: auto;
-`
-
 export const ButtonProviderArea = styled.div`
   margin: 10px;
   background: #9CA2C0;
@@ -49,7 +41,7 @@ export const AreaProvider = styled(Scrollbars)`
 export const TagAreaProvider = styled.div`
   display: flex;
   border: ${props => `1px solid ${props.borderColor}`};
-  margin: 12px 8px 12px 16px;
+  margin: 12px 8px 6px 16px;
   border-radius: 10px;
   align-items: center;
   padding: 12px;

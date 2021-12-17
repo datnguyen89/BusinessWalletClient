@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Input } from 'antd'
+import { Scrollbars } from 'react-custom-scrollbars'
 
 export const ProviderWrapper = styled.div`
     // background: #fff;
@@ -14,7 +15,7 @@ export const TitlePickProviders = styled.h5`
 
 export const SearchInputPhoneNumber = styled(Input) `
     border-radius: 10px;
-    height: 64px;
+    height: 55px;
     line-height: 40px;
 `
 
@@ -36,7 +37,11 @@ export const ImgWrapper = styled.div`
         width: 200px;
         object-fit: contain;
     }
-
+`
+export const ScrollbarsCustom = styled(Scrollbars) `
+  .view {
+    display: flex;
+  }
 `
 export const ImageProviderArea = styled.div`
     display: flex;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import {
-  ApartmentFeePageWrapper, AreaCreateCommand, CreateCommandButton, DescriptionsCustom,
+  ApartmentFeePageWrapper, AreaCreateCommand, CreateCommandButton,
   FormSearch, ResultSearchForm,
   SearchImg,
   SearchInputPhoneNumber, TitleFunds, TitleInfoService,
@@ -12,7 +12,7 @@ import { Helmet } from 'react-helmet/es/Helmet'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
 import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
-import { Col, Descriptions, Row } from 'antd'
+import { Col, Row } from 'antd'
 import TaxProviders from '../../components/TaxProviders/TaxProviders'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import DigitalWallet from '../../components/DigitalWallet'
@@ -20,6 +20,8 @@ import LinkDirectedBank from '../../components/LinkDirectedBank/LinkDirectedBank
 import LinkInternalBank from '../../components/LinkInternalBank/LinkInternalBank'
 import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/ModalCustomCommandForm'
 import { inject, observer } from 'mobx-react'
+import numberUtils from '../../utils/numberUtils'
+import DescriptionsCustom from '../../components/DescriptionsCustom'
 
 const ApartmentFeePage = props => {
 
@@ -33,7 +35,8 @@ const ApartmentFeePage = props => {
   const [valueSearch, setValueSearch] = useState('')
   const [listData, setListData] = useState(null)
 
-  const [fields, setFields] = useState(null)
+  const [fieldsModal, setFieldsModal] = useState(null)
+  const [fieldsDescription, setFieldsDescription] = useState(null)
 
   const handleClickFunds = (value) => {
     setSelectedItem(value)
@@ -55,13 +58,28 @@ const ApartmentFeePage = props => {
       'Tên khách hàng':  customer?.customerName,
       'Địa chỉ':  customer?.customerAddress,
       'Kỳ thanh toán': customer.payTerms,
-      'Số tiền': customer.tax,
+      'Số tiền': numberUtils.thousandSeparator(customer.tax) + 'đ',
       'Phí giao dịch': '0đ',
-      'Tổng tiền': customer.tax,
+      'Tổng tiền': numberUtils.thousandSeparator(customer.tax) + 'đ',
     }
-    setFields(arrField)
+    setFieldsModal(arrField)
     setIsModalVisible(true)
   }
+
+  const showDescriptions = () => {
+    let arrField = {
+      'Nhà cung cấp': selectedProvider?.name,
+      'Mã khách hàng':  customer?.customerCode,
+      'Tên khách hàng':  customer?.customerName,
+      'Địa chỉ':  customer?.customerAddress,
+      'Kỳ thanh toán': customer?.payTerms,
+      'Số tiền': customer?.tax && `${numberUtils.thousandSeparator(customer?.tax) + 'đ'}`,
+    }
+    setFieldsDescription(arrField)
+  }
+  useEffect(() => {
+    showDescriptions();
+  }, [customer, selectedProvider])
 
   const handleSetIsModalVisible = (value) => {
     setIsModalVisible(value)
@@ -86,7 +104,7 @@ const ApartmentFeePage = props => {
 
   const handleSearchProvider = (value) => {
     if (value !== "") {
-      providerStore.getAppartmentByName()
+      providerStore.getApartmentByName()
         .then(res => {
           setSelectedProvider(res);
         });
@@ -105,18 +123,16 @@ const ApartmentFeePage = props => {
   }, [])
 
   useEffect(() => {
-    providerStore.getProviderDetail(selectedProvider?.id)
-      .then(res => {
-      })
+    setCustomer(null);
   }, [selectedProvider])
 
   useEffect(() => {
-    if (selectedProvider && selectedItem)
+    if (selectedProvider && selectedItem && customer)
       setDisabledConfirmDeal(false)
     else
       setDisabledConfirmDeal(true)
 
-  }, [selectedItem, selectedProvider])
+  }, [selectedItem, selectedProvider, customer])
 
   return (
     <DefaultLayout>
@@ -132,14 +148,14 @@ const ApartmentFeePage = props => {
             </Col>
           </Row>
           <Row>
-            <Col span={6}></Col>
+            <Col span={6} />
             <Col span={12}>
               <WhiteRoundedInfoService margin={'0 0 16px 0'}>
                 <TaxProviders selectedProvider={selectedProvider}
                               handleSelectedProvider={handleSelectedProvider}
                               placeholder={'Tìm kiếm nhà cung cấp'}
                               data={listData}
-                              handleSearchProvider={handleSearchProvider}></TaxProviders>
+                              handleSearchProvider={handleSearchProvider} />
               </WhiteRoundedInfoService>
               <FormSearch>
                 <SearchInputPhoneNumber placeholder={'Nhập mã khách hàng'}
@@ -151,19 +167,12 @@ const ApartmentFeePage = props => {
 
               <WhiteRoundedInfoSearchCustomer margin={'20px 0 16px 0'}>
                 <ResultSearchForm>
-                  <DescriptionsCustom bordered column={1}>
-                    <Descriptions.Item label='Nhà cung cấp'
-                                       labelStyle={{ width: '30%' }}>{selectedProvider?.name}</Descriptions.Item>
-                    <Descriptions.Item label='Mã khách hàng'>{customer?.customerCode}</Descriptions.Item>
-                    <Descriptions.Item label='Tên khách hàng'>{customer?.customerName}</Descriptions.Item>
-                    <Descriptions.Item label='Địa chỉ'>{customer?.customerAddress}</Descriptions.Item>
-                    <Descriptions.Item label='Kỳ thanh toán  '>{customer?.payTerms}</Descriptions.Item>
-                    <Descriptions.Item label='Số tiền'>{customer?.tax}đ</Descriptions.Item>
-                  </DescriptionsCustom>
+                  <DescriptionsCustom
+                    fields={fieldsDescription}/>
                 </ResultSearchForm>
               </WhiteRoundedInfoSearchCustomer>
             </Col>
-            <Col span={6}></Col>
+            <Col span={6} />
           </Row>
           <Row>
             <Col span={24}>
@@ -173,12 +182,12 @@ const ApartmentFeePage = props => {
               <Row>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'0 16px 0 0'}>
-                    <DigitalWallet selectedItem={selectedItem} setClickFunds={handleClickFunds}></DigitalWallet>
+                    <DigitalWallet selectedItem={selectedItem} setClickFunds={handleClickFunds} />
                   </WhiteRoundedBox>
                 </Col>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'16px 16px 0 0'}>
-                    <LinkDirectedBank selectedItem={selectedItem} setClickFunds={handleClickFunds}></LinkDirectedBank>
+                    <LinkDirectedBank selectedItem={selectedItem} setClickFunds={handleClickFunds} />
                   </WhiteRoundedBox>
                 </Col>
               </Row>
@@ -186,7 +195,7 @@ const ApartmentFeePage = props => {
             <Col span={18}>
               <WhiteRoundedBox padding={'16px 0'}>
                 <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds}
-                                  callbackHitBank={handleCallbackHitBank}></LinkInternalBank>
+                                  callbackHitBank={handleCallbackHitBank} />
               </WhiteRoundedBox>
             </Col>
           </Row>
@@ -198,9 +207,9 @@ const ApartmentFeePage = props => {
       </ApartmentFeePageWrapper>
       <ModalCustomCommandForm
         title={'Xác nhận giao dịch'}
-        fields={fields}
+        fields={fieldsModal}
         visible={isModalVisible}
-        setIsModalVisible={handleSetIsModalVisible}></ModalCustomCommandForm>
+        setIsModalVisible={handleSetIsModalVisible} />
     </DefaultLayout>
   )
 }

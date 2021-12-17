@@ -19,6 +19,7 @@ import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/Moda
 import { inject, observer } from 'mobx-react'
 import SearchMobileNetworkOperatorPostPaid from '../../components/SearchMobileNetworkOperatorPostPaid'
 import { toJS } from 'mobx'
+import numberUtils from '../../utils/numberUtils'
 
 const PostpaidPage = props => {
 
@@ -31,7 +32,7 @@ const PostpaidPage = props => {
   const [selectedTopupVoucher, setSelectedTopupVoucher ] = useState(null);
   const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true);
   const [customer, setCustomer] = useState(null);
-  const [ tax, setTax ] = useState(0);
+  const [ tax, setTax ] = useState("");
 
   const [fields, setFields] = useState(null);
 
@@ -65,13 +66,13 @@ const PostpaidPage = props => {
     let arrField = {
       "Nguồn tiền": selectedItem?.accountNumber,
       "Nhà cung cấp": selectedProvider?.name,
-      "Mã khách hàng": selectedProvider?.name,
-      "Tên khách hàng": selectedProvider?.name,
+      "Mã khách hàng": customer?.customerCode,
+      "Tên khách hàng": customer?.customerName,
       "Kỳ thanh toán": customer?.payTerms,
-      "Dư nợ cước": customer?.debitBalance,
-      "Số tiền": tax,
+      "Dư nợ cước": numberUtils.thousandSeparator(customer?.debitBalance) + 'đ',
+      "Số tiền":  numberUtils.thousandSeparator(tax) + 'đ',
       "Phí giao dịch": '0đ',
-      "Tổng tiền": tax,
+      "Tổng tiền": numberUtils.thousandSeparator(tax) + 'đ',
     };
     setFields(arrField);
     setIsModalVisible(true);
@@ -88,12 +89,12 @@ const PostpaidPage = props => {
   }, [selectedProvider]);
 
   useEffect(() => {
-    if (selectedProvider && selectedItem)
+    if (selectedProvider && selectedItem && tax !== "" && !isNaN(+tax))
       setDisabledConfirmDeal(false);
     else
       setDisabledConfirmDeal(true);
 
-  }, [selectedItem, selectedProvider]);
+  }, [selectedItem, selectedProvider, tax]);
 
   return (
     <DefaultLayout>
@@ -125,7 +126,7 @@ const PostpaidPage = props => {
                     <Descriptions.Item label="Nhà cung cấp" labelStyle={{width: "30%"}}>{selectedProvider?.name}</Descriptions.Item>
                     <Descriptions.Item label="Tên khách hàng">{customerStore.customer?.customerName}</Descriptions.Item>
                     <Descriptions.Item label="Kỳ thanh toán" >{customer?.payTerms}</Descriptions.Item>
-                    <Descriptions.Item label="Số dư nợ cước" >{customer?.debitBalance}đ</Descriptions.Item>
+                    <Descriptions.Item label="Số dư nợ cước" >{customer?.debitBalance && `${numberUtils.thousandSeparator(customer?.debitBalance)} đ`}</Descriptions.Item>
                   </Descriptions>
                 </ResultSearchForm>
                 <InputEnterTax placeholder={"Nhập số tiền"} onChange={handleEnterTax} />

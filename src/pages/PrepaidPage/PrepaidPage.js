@@ -22,6 +22,7 @@ import {
 } from './PrepaidPageStyled'
 import { inject, observer } from 'mobx-react'
 import ServicePlanMobile from '../../components/ServicePlanMobile'
+import numberUtils from '../../utils/numberUtils'
 
 const PrepaidPage = props => {
   const { providerStore } = props
@@ -30,7 +31,7 @@ const PrepaidPage = props => {
   const [phoneNumber, setPhoneNumber] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedProvider, setSelectedProvider] = useState(null);
-  const [selectedTopupVoucher, setSelectedTopupVoucher ] = useState(null);
+  const [selectedTopUpVoucher, setSelectedTopUpVoucher ] = useState(null);
   const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true);
 
   const [fields, setFields] = useState(null);
@@ -46,25 +47,25 @@ const PrepaidPage = props => {
 
   const handleSelectedProvider = (value) => {
     setSelectedProvider(value);
-    setSelectedTopupVoucher(null);
+    setSelectedTopUpVoucher(null);
   }
 
-  const handleSelectedTopupVoucher = (value) => {
-    setSelectedTopupVoucher(value);
+  const handleSelectedTopUpVoucher = (value) => {
+    setSelectedTopUpVoucher(value);
   }
 
   const showModalConfirmDeal = () => {
     let arrField = {
       "Nguồn tiền": selectedItem?.accountNumber,
       "Nhà cung cấp": selectedProvider?.name,
-      "Dịch vụ": selectedProvider?.name,
-      "Sản phẩm": selectedTopupVoucher?.name,
-      "Mệnh giá": selectedTopupVoucher?.denominations,
-      "Giá bán": selectedTopupVoucher?.discount,
+      "Dịch vụ": "Nạp tiền điện thoại",
+      "Sản phẩm": selectedTopUpVoucher?.name,
+      "Mệnh giá": numberUtils.thousandSeparator(selectedTopUpVoucher?.denominations) + 'đ',
+      "Giá bán": numberUtils.thousandSeparator(selectedTopUpVoucher?.discount) + 'đ',
       "Số điện thoại": phoneNumber,
-      "Tổng tiền": selectedTopupVoucher?.discount + 'đ',
+      "Tổng tiền": numberUtils.thousandSeparator(selectedTopUpVoucher?.discount) + 'đ',
       "Phí giao dịch": '0đ',
-      "Thành tiền": selectedTopupVoucher?.discount + 'đ'
+      "Thành tiền": numberUtils.thousandSeparator(selectedTopUpVoucher?.discount) + 'đ'
     };
     setFields(arrField);
     setIsModalVisible(true);
@@ -81,12 +82,12 @@ const PrepaidPage = props => {
   }, [selectedProvider]);
 
   useEffect(() => {
-    if (selectedProvider && selectedItem && selectedTopupVoucher && !isNaN(phoneNumber))
+    if (selectedProvider && selectedItem && selectedTopUpVoucher && !isNaN(phoneNumber))
       setDisabledConfirmDeal(false);
     else
       setDisabledConfirmDeal(true);
 
-  }, [selectedItem, selectedProvider, selectedTopupVoucher, phoneNumber]);
+  }, [selectedItem, selectedProvider, selectedTopUpVoucher, phoneNumber]);
 
   const handleSetIsModalVisible = (value) => {
     setIsModalVisible(value);
@@ -106,16 +107,16 @@ const PrepaidPage = props => {
             </Col>
           </Row>
           <Row>
-            <Col span={6}></Col>
+            <Col span={6} />
             <Col span={12}>
               <WhiteRoundedInfoService margin={'0 0 16px 0'}>
                 <SearchMobileNetworkOperator phoneNumber={phoneNumber} setPhoneNumber={handleSetPhoneNumber} selectedProvider={selectedProvider} handleSelectedProvider={handleSelectedProvider} />
               </WhiteRoundedInfoService>
               <WhiteRoundedInfoService margin={'0 0 16px 0'}>
-                <ServicePlanMobile title={"Chọn mệnh giá"} selectedTopupVoucher={selectedTopupVoucher} handleSelectedTopupVoucher={handleSelectedTopupVoucher}></ServicePlanMobile>
+                <ServicePlanMobile title={"Chọn mệnh giá"} selectedTopUpVoucher={selectedTopUpVoucher} handleSelectedTopUpVoucher={handleSelectedTopUpVoucher} />
               </WhiteRoundedInfoService>
             </Col>
-            <Col span={6}></Col>
+            <Col span={6} />
           </Row>
           <Row>
             <Col span={24}>
@@ -125,19 +126,19 @@ const PrepaidPage = props => {
               <Row>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'0 16px 0 0'}>
-                    <DigitalWallet selectedItem={selectedItem} setClickFunds={handleClickFunds}></DigitalWallet>
+                    <DigitalWallet selectedItem={selectedItem} setClickFunds={handleClickFunds} />
                   </WhiteRoundedBox>
                 </Col>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'16px 16px 0 0'}>
-                    <LinkDirectedBank selectedItem={selectedItem} setClickFunds={handleClickFunds}></LinkDirectedBank>
+                    <LinkDirectedBank selectedItem={selectedItem} setClickFunds={handleClickFunds} />
                   </WhiteRoundedBox>
                 </Col>
               </Row>
             </Col>
             <Col span={18}>
               <WhiteRoundedBox padding={'16px 0'}>
-                <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds} callbackHitBank={handleCallbackHitBank}></LinkInternalBank>
+                <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds} callbackHitBank={handleCallbackHitBank} />
               </WhiteRoundedBox>
             </Col>
           </Row>
@@ -150,7 +151,7 @@ const PrepaidPage = props => {
         title={"Xác nhận giao dịch"}
         fields={fields}
         visible={isModalVisible}
-        setIsModalVisible={handleSetIsModalVisible}></ModalCustomCommandForm>
+        setIsModalVisible={handleSetIsModalVisible} />
     </DefaultLayout>
 
   )

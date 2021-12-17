@@ -7,6 +7,12 @@ class ProviderStore {
   @observable providerDetail = null;
   @observable televisions = [];
   @observable television = null;
+  @observable electrics = [];
+  @observable electric = null;
+  @observable internets = [];
+  @observable internet = null;
+  @observable schools = [];
+  @observable school = null;
 
   constructor() {
   }
@@ -240,7 +246,7 @@ class ProviderStore {
     })
   }
 
-  @action getAppartmentByName = (name) => {
+  @action getApartmentByName = (name) => {
     return new Promise((resolve, reject) => {
       let data =
         {
@@ -268,6 +274,48 @@ class ProviderStore {
     })
   }
 
+  @action getSchoolsByName = (name) => {
+    return new Promise((resolve, reject) => {
+      let data =
+        {
+          id: 1,
+          name: 'HBU',
+          description: 'Trường Đại học Quốc tế Hồng Bàng',
+          imageUrl: require('../media/images/HBU.png')
+        };
+      this.school = data
+      resolve(data)
+    })
+  }
+
+  @action getInternetProviderByName = (name) => {
+    return new Promise((resolve, reject) => {
+      let data =
+        {
+          id: 1,
+          name: 'SPT',
+          description: 'Viễn thông SPT',
+          imageUrl: require('../media/images/SPT.png')
+        };
+      this.internet = data
+      resolve(data)
+    })
+  }
+
+  @action getElectricProviderByName = (name) => {
+    return new Promise((resolve, reject) => {
+      let data =
+        {
+          id: 1,
+          name: 'EVN Miền Bắc',
+          description: 'Tập đoàn Điện lực Việt Nam - CN Miền Bắc',
+          imageUrl: require('../media/images/electric.png')
+        };
+      this.electric = data
+      resolve(data)
+    })
+  }
+
   @action getInternetProviders = () => {
     return new Promise((resolve, reject) => {
       let data = [
@@ -279,20 +327,20 @@ class ProviderStore {
         },
         {
           id: 2,
-          name: 'SPT',
-          description: 'Viễn thông SPT',
+          name: 'FPT',
+          description: 'Viễn thông FPT',
           imageUrl: require('../media/images/SPT1.png')
         },
         {
           id: 3,
-          name: 'SPT',
-          description: 'Viễn thông SPT',
+          name: 'VNPT',
+          description: 'Viễn thông VNPT',
           imageUrl: require('../media/images/SPT1.png')
         },
         {
           id: 4,
-          name: 'SPT',
-          description: 'Viễn thông SPT',
+          name: 'Viettel',
+          description: 'Viễn thông Viettel',
           imageUrl: require('../media/images/SPT1.png')
         },
         {
@@ -314,7 +362,7 @@ class ProviderStore {
           imageUrl: require('../media/images/SPT1.png')
         },
       ];
-      this.televisions = data
+      this.internets = data
       resolve(data)
     })
   }
@@ -365,7 +413,7 @@ class ProviderStore {
           imageUrl: require('../media/images/electric.png')
         },
       ];
-      this.televisions = data
+      this.electrics = data
       resolve(data)
     })
   }
@@ -416,7 +464,7 @@ class ProviderStore {
           imageUrl: require('../media/images/NEU.png')
         },
       ];
-      this.televisions = data
+      this.schools = data
       resolve(data)
     })
   }

@@ -10,15 +10,15 @@ import numberUtils from '../../utils/numberUtils'
 const _ = require('lodash')
 
 const ServicePlanMobile = props => {
-  const { mobileNetworkOperatorStore, selectedTopupVoucher, handleSelectedTopupVoucher, title } = props
+  const { mobileNetworkOperatorStore, selectedTopUpVoucher, handleSelectedTopUpVoucher, title } = props
 
 
   useEffect(() => {
     mobileNetworkOperatorStore.getTopupVoucher();
   }, []);
 
-  const handlerSetSelectTopuVoucher = (value) => {
-    handleSelectedTopupVoucher(value);
+  const handlerSetSelectTopupVoucher = (value) => {
+    handleSelectedTopUpVoucher(value);
   }
 
   return (
@@ -27,11 +27,11 @@ const ServicePlanMobile = props => {
       <TagProvider>
         {
           mobileNetworkOperatorStore.topUpVouchers.map(item =>
-            <TopupVouchersArea span={6} onClick={() => handlerSetSelectTopuVoucher(item)} key={item.id}>
-                <TopupVoucherContent borderColor={item.id === selectedTopupVoucher?.id ? '#0465B0' : '#E0E0E0'}
-                                     color={item.id === selectedTopupVoucher?.id ? '#0465B0' : '#333333'}>
+            <TopupVouchersArea span={6} onClick={() => handlerSetSelectTopupVoucher(item)} key={item.id}>
+                <TopupVoucherContent borderColor={item.id === selectedTopUpVoucher?.id ? '#0465B0' : '#E0E0E0'}
+                                     color={item.id === selectedTopUpVoucher?.id ? '#0465B0' : '#333333'}>
                   <h4>{numberUtils.thousandSeparator(item.denominations)}<span>đ</span></h4>
-                  <DiscountText colorText={item.id === selectedTopupVoucher?.id ? '#0465B0' : '#B4B4B4'}>{numberUtils.thousandSeparator(item.discount)}<span>đ</span></DiscountText>
+                  <DiscountText colorText={item.id === selectedTopUpVoucher?.id ? '#0465B0' : '#B4B4B4'}>{numberUtils.thousandSeparator(item.discount)}<span>đ</span></DiscountText>
                 </TopupVoucherContent>
             </TopupVouchersArea>
           )

@@ -42,7 +42,7 @@ const TaxProviders = props => {
           onChange={handleOnChange}
         />
       </SearchProviderWrapper>
-      <AreaProvider style={{ width: '100%', height: 300 }}>
+      <AreaProvider style={{ width: '100%', height: 195 }}>
         <Row>
           {
             data?.map(item =>

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import {
-  ImageProviderArea, ImgWrapper, ProviderWrapper, SearchInputPhoneNumber,
-  TagProvider,
+  ImageProviderArea, ImgWrapper, ProviderWrapper, ScrollbarsCustom, SearchInputPhoneNumber,
 } from './SearchMobileNetworkOperatorStyled'
 import { inject, observer } from 'mobx-react'
-import HorizontalScroll from 'react-scroll-horizontal'
+import { Scrollbars } from 'react-custom-scrollbars'
+import ScrollbarCustomProviders from '../ScrollbarCustomProviders'
 
 const _ = require('lodash')
 
@@ -27,17 +27,7 @@ const SearchMobileNetworkOperator = props => {
   return (
     <ProviderWrapper>
       <SearchInputPhoneNumber placeholder={'Nhập số điện thoại'} onChange={(value) => handleOnChange(value)} />
-      <HorizontalScroll pageLock={true} reverseScroll={true} style={{ width: '100%', height: 76 }}>
-        {
-          mobileNetworkOperatorStore.mobileNetworkOperators.map(item =>
-            <ImageProviderArea onClick={() => handlerSetSelectProvider(item)} key={item.id}>
-              <ImgWrapper borderColor={item.id === selectedProvider?.id ? '#0465B0' : '#E0E0E0'}>
-                <img src={item.imageUrl} alt={item.name} />
-              </ImgWrapper>
-            </ImageProviderArea>,
-          )
-        }
-      </HorizontalScroll>
+      <ScrollbarCustomProviders selectedProvider={selectedProvider} handlerSetSelectProvider={handlerSetSelectProvider} data={mobileNetworkOperatorStore.mobileNetworkOperators}/>
     </ProviderWrapper>
   )
 }

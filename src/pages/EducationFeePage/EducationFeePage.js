@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import {
   AreaCreateCommand,
   CreateCommandButton,
-  DescriptionsCustom,
   EducationFeePageWrapper,
   FormSearch, ResultSearchForm,
   SearchImg,
@@ -23,6 +22,8 @@ import LinkDirectedBank from '../../components/LinkDirectedBank/LinkDirectedBank
 import LinkInternalBank from '../../components/LinkInternalBank/LinkInternalBank'
 import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/ModalCustomCommandForm'
 import { inject, observer } from 'mobx-react'
+import numberUtils from '../../utils/numberUtils'
+import DescriptionsCustom from '../../components/DescriptionsCustom'
 
 const EducationFeePage = props => {
 
@@ -36,7 +37,8 @@ const EducationFeePage = props => {
   const [valueSearch, setValueSearch] = useState('')
   const [listData, setListData] = useState(null)
 
-  const [fields, setFields] = useState(null)
+  const [fieldsModal, setFieldsModal] = useState(null)
+  const [fieldsDescription, setFieldsDescription] = useState(null)
 
   const handleClickFunds = (value) => {
     setSelectedItem(value)
@@ -58,9 +60,9 @@ const EducationFeePage = props => {
       'Tên khách hàng':  customer?.customerName,
       'Địa chỉ':  customer?.customerAddress,
       'Kỳ thanh toán': customer.payTerms,
-      'Học phí': customer.tax,
+      'Học phí': numberUtils.thousandSeparator(customer.tax) + 'đ',
     }
-    setFields(arrField)
+    setFieldsModal(arrField)
     setIsModalVisible(true)
   }
 
@@ -79,7 +81,6 @@ const EducationFeePage = props => {
     }
     customerStore.getCustomerByCodeForEducationFee(valueSearch)
       .then(res => {
-        console.log(res)
         setCustomer(res)
       })
 
@@ -87,7 +88,7 @@ const EducationFeePage = props => {
 
   const handleSearchProvider = (value) => {
     if (value !== "") {
-      providerStore.getTelevisionByName()
+      providerStore.getSchoolsByName(value)
         .then(res => {
           setSelectedProvider(res);
         });
@@ -97,27 +98,40 @@ const EducationFeePage = props => {
     }
   }
 
+  const showDescriptions = () => {
+    let arrField = {
+      'Tên trường': selectedProvider?.name,
+      'Mã khách hàng':  customer?.customerCode,
+      'Tên khách hàng':  customer?.customerName,
+      'Địa chỉ':  customer?.customerAddress,
+      'Học phí kỳ học': customer?.payTerms,
+      'Số tiền': customer?.tax && `${numberUtils.thousandSeparator(customer?.tax) + 'đ'}`,
+    }
+    setFieldsDescription(arrField)
+  }
   useEffect(() => {
+    showDescriptions();
+  }, [customer, selectedProvider])
+
+  useEffect(() => {
+    showDescriptions();
     providerStore.getSchoolProviders()
       .then(res => {
-        console.log(res)
         setListData(res)
       })
   }, [])
 
   useEffect(() => {
-    providerStore.getProviderDetail(selectedProvider?.id)
-      .then(res => {
-      })
+    setCustomer(null);
   }, [selectedProvider])
 
   useEffect(() => {
-    if (selectedProvider && selectedItem)
+    if (selectedProvider && selectedItem && customer)
       setDisabledConfirmDeal(false)
     else
       setDisabledConfirmDeal(true)
 
-  }, [selectedItem, selectedProvider])
+  }, [selectedItem, selectedProvider, customer])
 
   return (
     <DefaultLayout>
@@ -133,14 +147,14 @@ const EducationFeePage = props => {
             </Col>
           </Row>
           <Row>
-            <Col span={6}></Col>
+            <Col span={6} />
             <Col span={12}>
               <WhiteRoundedInfoService margin={'0 0 16px 0'}>
                 <TaxProviders selectedProvider={selectedProvider}
                               handleSelectedProvider={handleSelectedProvider}
                               placeholder={'Tìm kiếm nhà cung cấp'}
                               data={listData}
-                              handleSearchProvider={handleSearchProvider}></TaxProviders>
+                              handleSearchProvider={handleSearchProvider} />
               </WhiteRoundedInfoService>
               <FormSearch>
                 <SearchInputPhoneNumber placeholder={'Nhập mã khách hàng'}
@@ -152,19 +166,12 @@ const EducationFeePage = props => {
 
               <WhiteRoundedInfoSearchCustomer margin={'20px 0 16px 0'}>
                 <ResultSearchForm>
-                  <DescriptionsCustom bordered column={1}>
-                    <Descriptions.Item label='Tên trường'
-                                       labelStyle={{ width: '30%' }}>{selectedProvider?.name}</Descriptions.Item>
-                    <Descriptions.Item label='Mã khách hàng'>{customer?.customerCode}</Descriptions.Item>
-                    <Descriptions.Item label='Tên khách hàng'>{customer?.customerName}</Descriptions.Item>
-                    <Descriptions.Item label='Địa chỉ'>{customer?.customerAddress}</Descriptions.Item>
-                    <Descriptions.Item label='Học phí kỳ học'>{customer?.payTerms}</Descriptions.Item>
-                    <Descriptions.Item label='Số tiền'>{customer?.tax}đ</Descriptions.Item>
-                  </DescriptionsCustom>
+                  <DescriptionsCustom
+                    fields={fieldsDescription}/>
                 </ResultSearchForm>
               </WhiteRoundedInfoSearchCustomer>
             </Col>
-            <Col span={6}></Col>
+            <Col span={6} />
           </Row>
           <Row>
             <Col span={24}>
@@ -174,12 +181,12 @@ const EducationFeePage = props => {
               <Row>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'0 16px 0 0'}>
-                    <DigitalWallet selectedItem={selectedItem} setClickFunds={handleClickFunds}></DigitalWallet>
+                    <DigitalWallet selectedItem={selectedItem} setClickFunds={handleClickFunds} />
                   </WhiteRoundedBox>
                 </Col>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'16px 16px 0 0'}>
-                    <LinkDirectedBank selectedItem={selectedItem} setClickFunds={handleClickFunds}></LinkDirectedBank>
+                    <LinkDirectedBank selectedItem={selectedItem} setClickFunds={handleClickFunds} />
                   </WhiteRoundedBox>
                 </Col>
               </Row>
@@ -187,7 +194,7 @@ const EducationFeePage = props => {
             <Col span={18}>
               <WhiteRoundedBox padding={'16px 0'}>
                 <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds}
-                                  callbackHitBank={handleCallbackHitBank}></LinkInternalBank>
+                                  callbackHitBank={handleCallbackHitBank} />
               </WhiteRoundedBox>
             </Col>
           </Row>
@@ -199,9 +206,9 @@ const EducationFeePage = props => {
       </EducationFeePageWrapper>
       <ModalCustomCommandForm
         title={'Xác nhận giao dịch'}
-        fields={fields}
+        fields={fieldsModal}
         visible={isModalVisible}
-        setIsModalVisible={handleSetIsModalVisible}></ModalCustomCommandForm>
+        setIsModalVisible={handleSetIsModalVisible} />
     </DefaultLayout>
   )
 }

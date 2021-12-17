@@ -100,5 +100,3 @@ export const WhiteRoundedInfoSearchCustomer = styled.div`
   margin: ${props => props.margin || '0'};
   display: ${props => props.display};
 `
-export const DescriptionsCustom = styled(Descriptions) `
-`

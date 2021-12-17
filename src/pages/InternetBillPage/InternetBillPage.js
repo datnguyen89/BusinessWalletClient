@@ -16,12 +16,13 @@ import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/Moda
 import { inject, observer } from 'mobx-react'
 import {
   AreaCreateCommand, CreateCommandButton,
-  DescriptionsCustom,
   FormSearch,
   InternetBillPageWrapper, ResultSearchForm, SearchImg, SearchInputPhoneNumber, TitleFunds,
   TitleInfoService, WhiteRoundedInfoSearchCustomer,
   WhiteRoundedInfoService,
 } from './InternetBillPageStyled'
+import numberUtils from '../../utils/numberUtils'
+import DescriptionsCustom from '../../components/DescriptionsCustom'
 
 const InternetBillPage = props => {
 
@@ -35,7 +36,8 @@ const InternetBillPage = props => {
   const [valueSearch, setValueSearch] = useState('')
   const [listData, setListData] = useState(null)
 
-  const [fields, setFields] = useState(null)
+  const [fieldsModal, setFieldsModal] = useState(null)
+  const [fieldsDescription, setFieldsDescription] = useState(null)
 
   const handleClickFunds = (value) => {
     setSelectedItem(value)
@@ -55,13 +57,13 @@ const InternetBillPage = props => {
       'Nguồn tiền': selectedItem?.accountNumber,
       'Nhà cung cấp': selectedProvider?.name,
       'Mã khách hàng':  customer?.customerCode,
-      'Tên gói cước': customer.packageName,
-      'Số tiền': customer.tax,
-      'Giá bán': customer.tax,
+      'Tên gói cước': customer?.packageName,
+      'Số tiền': numberUtils.thousandSeparator(customer?.tax) + 'đ',
+      'Giá bán': numberUtils.thousandSeparator(customer?.tax) + 'đ',
       'Phí giao dịch': '0đ',
-      'Tổng tiền': customer.tax,
+      'Tổng tiền': numberUtils.thousandSeparator(customer?.tax) + 'đ',
     }
-    setFields(arrField)
+    setFieldsModal(arrField)
     setIsModalVisible(true)
   }
 
@@ -82,7 +84,7 @@ const InternetBillPage = props => {
 
   const handleSearchProvider = (value) => {
     if (value !== "") {
-      providerStore.getTelevisionByName()
+      providerStore.getInternetProviderByName(value)
         .then(res => {
           setSelectedProvider(res);
         });
@@ -92,27 +94,40 @@ const InternetBillPage = props => {
     }
   }
 
+  const showDescriptions = () => {
+    let arrField = {
+      'Nhà cung cấp': selectedProvider?.name,
+      'Tên khách hàng':  customer?.customerName,
+      'Địa chỉ':  customer?.customerAddress,
+      'Kỳ thanh toán': customer?.payTerms,
+      'Số tiền': customer?.tax && `${numberUtils.thousandSeparator(customer?.tax) + 'đ'}`,
+    }
+    setFieldsDescription(arrField)
+  }
+
+  useEffect(() => {
+    showDescriptions();
+  }, [customer, selectedProvider])
+
+  useEffect(() => {
+    setCustomer(null);
+  }, [selectedProvider])
+
+
   useEffect(() => {
     providerStore.getInternetProviders()
       .then(res => {
-        console.log(res)
         setListData(res)
       })
   }, [])
 
   useEffect(() => {
-    providerStore.getProviderDetail(selectedProvider?.id)
-      .then(res => {
-      })
-  }, [selectedProvider])
-
-  useEffect(() => {
-    if (selectedProvider && selectedItem)
+    if (selectedProvider && selectedItem && customer)
       setDisabledConfirmDeal(false)
     else
       setDisabledConfirmDeal(true)
 
-  }, [selectedItem, selectedProvider])
+  }, [selectedItem, selectedProvider, customer])
 
   return (
     <DefaultLayout>
@@ -128,14 +143,14 @@ const InternetBillPage = props => {
             </Col>
           </Row>
           <Row>
-            <Col span={6}></Col>
+            <Col span={6} />
             <Col span={12}>
               <WhiteRoundedInfoService margin={'0 0 16px 0'}>
                 <TaxProviders selectedProvider={selectedProvider}
                               handleSelectedProvider={handleSelectedProvider}
                               placeholder={'Tìm kiếm nhà cung cấp'}
                               data={listData}
-                              handleSearchProvider={handleSearchProvider}></TaxProviders>
+                              handleSearchProvider={handleSearchProvider} />
               </WhiteRoundedInfoService>
               <FormSearch>
                 <SearchInputPhoneNumber placeholder={'Nhập mã khách hàng/hợp đồng'}
@@ -147,18 +162,12 @@ const InternetBillPage = props => {
 
               <WhiteRoundedInfoSearchCustomer margin={'20px 0 16px 0'}>
                 <ResultSearchForm>
-                  <DescriptionsCustom bordered column={1}>
-                    <Descriptions.Item label='Nhà cung cấp'
-                                       labelStyle={{ width: '30%' }}>{selectedProvider?.name}</Descriptions.Item>
-                    <Descriptions.Item label='Tên khách hàng'>{customerStore.customer?.customerName}</Descriptions.Item>
-                    <Descriptions.Item label='Địa chỉ'>{customerStore.customer?.customerName}</Descriptions.Item>
-                    <Descriptions.Item label='Kỳ thanh toán'>{customer?.payTerms}</Descriptions.Item>
-                    <Descriptions.Item label='Số tiền'>{customer?.tax}đ</Descriptions.Item>
-                  </DescriptionsCustom>
+                  <DescriptionsCustom
+                    fields={fieldsDescription}/>
                 </ResultSearchForm>
               </WhiteRoundedInfoSearchCustomer>
             </Col>
-            <Col span={6}></Col>
+            <Col span={6} />
           </Row>
           <Row>
             <Col span={24}>
@@ -168,12 +177,12 @@ const InternetBillPage = props => {
               <Row>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'0 16px 0 0'}>
-                    <DigitalWallet selectedItem={selectedItem} setClickFunds={handleClickFunds}></DigitalWallet>
+                    <DigitalWallet selectedItem={selectedItem} setClickFunds={handleClickFunds} />
                   </WhiteRoundedBox>
                 </Col>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'16px 16px 0 0'}>
-                    <LinkDirectedBank selectedItem={selectedItem} setClickFunds={handleClickFunds}></LinkDirectedBank>
+                    <LinkDirectedBank selectedItem={selectedItem} setClickFunds={handleClickFunds} />
                   </WhiteRoundedBox>
                 </Col>
               </Row>
@@ -181,7 +190,7 @@ const InternetBillPage = props => {
             <Col span={18}>
               <WhiteRoundedBox padding={'16px 0'}>
                 <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds}
-                                  callbackHitBank={handleCallbackHitBank}></LinkInternalBank>
+                                  callbackHitBank={handleCallbackHitBank} />
               </WhiteRoundedBox>
             </Col>
           </Row>
@@ -193,9 +202,9 @@ const InternetBillPage = props => {
       </InternetBillPageWrapper>
       <ModalCustomCommandForm
         title={'Xác nhận giao dịch'}
-        fields={fields}
+        fields={fieldsModal}
         visible={isModalVisible}
-        setIsModalVisible={handleSetIsModalVisible}></ModalCustomCommandForm>
+        setIsModalVisible={handleSetIsModalVisible} />
     </DefaultLayout>
   )
 }

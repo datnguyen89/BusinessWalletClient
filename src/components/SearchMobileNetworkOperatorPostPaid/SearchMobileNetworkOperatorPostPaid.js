@@ -5,6 +5,7 @@ import {
 import { inject, observer } from 'mobx-react'
 import HorizontalScroll from 'react-scroll-horizontal'
 import { toJS } from 'mobx'
+import ScrollbarCustomProviders from '../ScrollbarCustomProviders'
 
 const _ = require('lodash')
 
@@ -30,22 +31,16 @@ const SearchMobileNetworkOperatorPostPaid = props => {
         }
       })
   }
+  const handlerSetSelectProvider = (value) => {
+    console.log(value);
+    handleSelectedProvider(value);
+  }
                          
   return (
     <ProviderWrapper>
       <SearchInputPhoneNumber placeholder={"Nhập số điện thoại"} onChange={(value) => handleOnChange(value)} />
       <SearchImg src={require('../../media/icons/search_cus.png')} alt={"search_cus"} onClick={handleSearchCustomer}/>
-      <HorizontalScroll pageLock={true} reverseScroll={true} style={{ width: '100%', height: 76 }}>
-        {
-          mobileNetworkOperatorStore.mobileNetworkOperators.map(item =>
-            <ImageProviderArea key={item.id}>
-              <ImgWrapper borderColor={item.id === selectedProvider?.id ? '#0465B0' : '#E0E0E0'}>
-                <img src={item.imageUrl} alt={item.name} />
-              </ImgWrapper>
-            </ImageProviderArea>,
-          )
-        }
-      </HorizontalScroll>
+      <ScrollbarCustomProviders selectedProvider={selectedProvider} handlerSetSelectProvider={handlerSetSelectProvider} data={mobileNetworkOperatorStore.mobileNetworkOperators}/>
     </ProviderWrapper>
   )
 }

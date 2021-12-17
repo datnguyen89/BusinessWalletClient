@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import {
   ImageProviderArea, ProviderWrapper, ScrollbarsCustom,
-  TagProvider, TitlePickProviders,
+  TitlePickProviders,
 } from './MobileNetworkOperatorStyled'
 import { inject, observer } from 'mobx-react'
+import ScrollbarCustomProviders from '../ScrollbarCustomProviders'
 
 const _ = require('lodash')
 
@@ -22,20 +23,7 @@ const MobileNetworkOperator = props => {
   return (
     <ProviderWrapper>
       <TitlePickProviders>Chọn nhà cung cấp</TitlePickProviders>
-      <ScrollbarsCustom
-        renderView={props => <div {...props} className='view' />}
-        style={{ width: '100%', height: 105 }}>
-        {
-          mobileNetworkOperatorStore.mobileNetworkOperators.map(item =>
-            <ImageProviderArea
-              onClick={() => handlerSetSelectProvider(item)}
-              key={item.id}
-              src={item.imageUrl}
-              alt={item.name}
-              borderColor={item.id === selectedProvider?.id ? '#0465B0' : '#E0E0E0'} />,
-          )
-        }
-      </ScrollbarsCustom>
+      <ScrollbarCustomProviders selectedProvider={selectedProvider} handlerSetSelectProvider={handlerSetSelectProvider} data={mobileNetworkOperatorStore.mobileNetworkOperators}/>
     </ProviderWrapper>
   )
 }
