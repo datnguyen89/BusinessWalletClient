@@ -33,12 +33,12 @@ const TelevisionBillPage = props => {
   const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true)
   const [customer, setCustomer] = useState(null)
   const [listData, setListData] = useState(null)
-  const [tax, setTax] = useState("")
+  const [tax, setTax] = useState('')
   const [valueSearch, setValueSearch] = useState('')
   const [typeKPlusTelevision, setTypeKPlusTelevision] = useState(false)
   const [typeNotKPlusTelevision, setTypeNotKPlusTelevision] = useState(false)
-  const [packages, setPackages] = useState(null);
-  const [ stateRadio, setStateRadio ] = useState(1);
+  const [packages, setPackages] = useState(null)
+  const [stateRadio, setStateRadio] = useState(1)
 
   const [fieldsModal, setFieldsModal] = useState(null)
   const [fieldsDescription, setFieldsDescription] = useState(null)
@@ -52,7 +52,6 @@ const TelevisionBillPage = props => {
   }
 
   const handleSelectedProvider = (value) => {
-    console.log(toJS(value))
     setSelectedProvider(value)
   }
 
@@ -60,7 +59,7 @@ const TelevisionBillPage = props => {
     let arrField = {
       'Nguồn tiền': selectedItem?.accountNumber,
       'Nhà cung cấp': selectedProvider?.name,
-      'Mã khách hàng':  customer?.customerCode,
+      'Mã khách hàng': customer?.customerCode,
       'Tên gói cước': stateRadio.packageName ?? selectedProvider.name,
       'Số tiền': numberUtils.thousandSeparator(tax) + 'đ',
       'Giá bán': numberUtils.thousandSeparator(tax) + 'đ',
@@ -82,22 +81,21 @@ const TelevisionBillPage = props => {
   const handleSearchCustomer = () => {
     customerStore.getCustomerByCodeForTelevisions(valueSearch)
       .then(res => {
-        setCustomer(res);
-        if (selectedProvider?.name !== "K+") {
-          setTax(res.debitBalance);
+        setCustomer(res)
+        if (selectedProvider?.name !== 'K+') {
+          setTax(res.debitBalance)
         }
       })
   }
 
   const handleSearchProvider = (value) => {
-    if (value !== "") {
+    if (value !== '') {
       providerStore.getTelevisionByName()
         .then(res => {
-          setSelectedProvider(res);
-        });
-    }
-    else {
-      setSelectedProvider(null);
+          setSelectedProvider(res)
+        })
+    } else {
+      setSelectedProvider(null)
     }
   }
 
@@ -112,8 +110,8 @@ const TelevisionBillPage = props => {
   }
 
   const handleOnChangeChoosePackage = (value) => {
-    setStateRadio(value.target.value);
-    setTax(value.target.value.packagePrice);
+    setStateRadio(value.target.value)
+    setTax(value.target.value.packagePrice)
   }
 
   useEffect(() => {
@@ -127,41 +125,37 @@ const TelevisionBillPage = props => {
   useEffect(() => {
     providerStore.getPackagesByCustomerCodeOrContract(valueSearch)
       .then(res => {
-        setPackages(res);
+        setPackages(res)
       })
-  }, [typeKPlusTelevision]);
+  }, [typeKPlusTelevision])
 
   useEffect(() => {
     if (selectedProvider == null) {
-      setTypeKPlusTelevision(false);
-      setTypeNotKPlusTelevision(false);
+      setTypeKPlusTelevision(false)
+      setTypeNotKPlusTelevision(false)
+    } else if (selectedProvider?.name === 'K+') {
+      setTypeKPlusTelevision(true)
+      setTypeNotKPlusTelevision(false)
+    } else if (selectedProvider?.name !== 'K+') {
+      setCustomer(null)
+      setTax('')
+      setTypeNotKPlusTelevision(true)
+      setTypeKPlusTelevision(false)
+      setDescriptions()
     }
-    else if (selectedProvider?.name === "K+")
-    {
-      setTypeKPlusTelevision(true);
-      setTypeNotKPlusTelevision(false);
-    }
-    else if (selectedProvider?.name !== "K+")
-    {
-      setCustomer(null);
-      setTax("");
-      setTypeNotKPlusTelevision(true);
-      setTypeKPlusTelevision(false);
-      setDescriptions();
-    }
-    setCustomer(null);
-    setTax("");
+    setCustomer(null)
+    setTax('')
   }, [selectedProvider])
 
   useEffect(() => {
     debugger;
-    if (customer && selectedProvider?.name === "K+") {
-      return;
-    } else if (selectedProvider?.name !== "K+")
-      setDescriptions();
+    if (customer && selectedProvider?.name === 'K+') {
+      return
+    } else if (selectedProvider?.name !== 'K+')
+      setDescriptions()
   }, [customer])
   useEffect(() => {
-    if (selectedProvider && selectedItem && tax !== "" && customer)
+    if (selectedProvider && selectedItem && tax !== '' && customer)
       setDisabledConfirmDeal(false)
     else
       setDisabledConfirmDeal(true)
@@ -194,35 +188,41 @@ const TelevisionBillPage = props => {
               <FormSearch>
                 <SearchInputPhoneNumber placeholder={'Nhập mã khách hàng/hợp đồng'}
                                         onChange={(value) => handleOnChange(value)}
-                                        suffix={<InfoCircleOutlined />}/>
+                                        suffix={<InfoCircleOutlined />} />
                 <SearchImg src={require('../../media/icons/search_cus.png')} alt={'search_cus'}
                            onClick={handleSearchCustomer} />
               </FormSearch>
 
-              <WhiteRoundedInfoSearchCustomer margin={'20px 0 16px 0'} display={typeNotKPlusTelevision ? 'visible': 'none'}>
+              <WhiteRoundedInfoSearchCustomer margin={'20px 0 16px 0'}
+                                              display={typeNotKPlusTelevision ? 'visible' : 'none'}>
                 <ResultSearchForm>
                   <DescriptionsCustom
-                    fields={fieldsDescription}/>
+                    fields={fieldsDescription} />
                 </ResultSearchForm>
               </WhiteRoundedInfoSearchCustomer>
-              <WhiteRoundedInfoSearchCustomer margin={'20px 0 16px 0'} display={typeKPlusTelevision ? 'visible': 'none'}>
+              <WhiteRoundedInfoSearchCustomer margin={'20px 0 16px 0'}
+                                              display={typeKPlusTelevision ? 'visible' : 'none'}>
                 <ResultSearchForm>
-                  <Radio.Group onChange={handleOnChangeChoosePackage} value={stateRadio} >
+                  <Radio.Group onChange={handleOnChangeChoosePackage} value={stateRadio}>
                     <DescriptionsCustomForKPlus bordered column={1}>
-                        {
-                            packages?.map((item, index) => (
-                              <Descriptions.Item
-                                key={index}
-                                label={<Radio value={item}>{item.packageName}</Radio>}
-                                contentStyle={{'display': 'flex', 'justifyContent': 'flex-end'}}>
-                                  {item.packagePrice && `${numberUtils.thousandSeparator(item.packagePrice)}đ`}</Descriptions.Item>
-                            ))
-                        }
+                      {
+                        packages?.map((item, index) => (
+                          <Descriptions.Item
+                            key={index}
+                            label={<Radio value={item}>{item.packageName}</Radio>}
+                            contentStyle={{ 'display': 'flex', 'justifyContent': 'flex-end' }}>
+                            {item.packagePrice && `${numberUtils.thousandSeparator(item.packagePrice)}đ`}</Descriptions.Item>
+                        ))
+                      }
                       <Descriptions.Item label='Số tiền'
-                                         labelStyle={{'fontWeight': 'bold', width: '40%'}}
-                                         contentStyle={{'display': 'flex', 'justifyContent': 'flex-end', 'fontWeight': 'bold'}}>
-                                  {tax && `${numberUtils.thousandSeparator(tax)}đ`}</Descriptions.Item>
-                  </DescriptionsCustomForKPlus>
+                                         labelStyle={{ 'fontWeight': 'bold', width: '40%' }}
+                                         contentStyle={{
+                                           'display': 'flex',
+                                           'justifyContent': 'flex-end',
+                                           'fontWeight': 'bold',
+                                         }}>
+                        {tax && `${numberUtils.thousandSeparator(tax)}đ`}</Descriptions.Item>
+                    </DescriptionsCustomForKPlus>
                   </Radio.Group>
                 </ResultSearchForm>
               </WhiteRoundedInfoSearchCustomer>

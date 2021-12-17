@@ -14,11 +14,11 @@ const ServicePlanMobile = props => {
 
 
   useEffect(() => {
-    mobileNetworkOperatorStore.getTopupVoucher();
-  }, []);
+    mobileNetworkOperatorStore.getTopUpVoucher()
+  }, [])
 
-  const handlerSetSelectTopupVoucher = (value) => {
-    handleSelectedTopUpVoucher(value);
+  const handlerSetSelectTopUpVoucher = (value) => {
+    handleSelectedTopUpVoucher(value)
   }
 
   return (
@@ -27,13 +27,14 @@ const ServicePlanMobile = props => {
       <TagProvider>
         {
           mobileNetworkOperatorStore.topUpVouchers.map(item =>
-            <TopupVouchersArea span={6} onClick={() => handlerSetSelectTopupVoucher(item)} key={item.id}>
-                <TopupVoucherContent borderColor={item.id === selectedTopUpVoucher?.id ? '#0465B0' : '#E0E0E0'}
-                                     color={item.id === selectedTopUpVoucher?.id ? '#0465B0' : '#333333'}>
-                  <h4>{numberUtils.thousandSeparator(item.denominations)}<span>đ</span></h4>
-                  <DiscountText colorText={item.id === selectedTopUpVoucher?.id ? '#0465B0' : '#B4B4B4'}>{numberUtils.thousandSeparator(item.discount)}<span>đ</span></DiscountText>
-                </TopupVoucherContent>
-            </TopupVouchersArea>
+            <TopupVouchersArea span={6} onClick={() => handlerSetSelectTopUpVoucher(item)} key={item.id}>
+              <TopupVoucherContent borderColor={item.id === selectedTopUpVoucher?.id ? '#0465B0' : '#E0E0E0'}
+                                   color={item.id === selectedTopUpVoucher?.id ? '#0465B0' : '#333333'}>
+                <h4>{numberUtils.thousandSeparator(item.denominations)}<span>đ</span></h4>
+                <DiscountText
+                  colorText={item.id === selectedTopUpVoucher?.id ? '#0465B0' : '#B4B4B4'}>{numberUtils.thousandSeparator(item.discount)}<span>đ</span></DiscountText>
+              </TopupVoucherContent>
+            </TopupVouchersArea>,
           )
         }
       </TagProvider>
@@ -41,7 +42,6 @@ const ServicePlanMobile = props => {
   )
 }
 
-ServicePlanMobile.propTypes = {
-}
+ServicePlanMobile.propTypes = {}
 
 export default inject('mobileNetworkOperatorStore')(observer(ServicePlanMobile))

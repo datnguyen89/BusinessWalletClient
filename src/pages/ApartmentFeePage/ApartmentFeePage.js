@@ -54,9 +54,9 @@ const ApartmentFeePage = props => {
     let arrField = {
       'Nguồn tiền': selectedItem?.accountNumber,
       'Nhà cung cấp': selectedProvider?.name,
-      'Mã khách hàng':  customer?.customerCode,
-      'Tên khách hàng':  customer?.customerName,
-      'Địa chỉ':  customer?.customerAddress,
+      'Mã khách hàng': customer?.customerCode,
+      'Tên khách hàng': customer?.customerName,
+      'Địa chỉ': customer?.customerAddress,
       'Kỳ thanh toán': customer.payTerms,
       'Số tiền': numberUtils.thousandSeparator(customer.tax) + 'đ',
       'Phí giao dịch': '0đ',
@@ -69,16 +69,16 @@ const ApartmentFeePage = props => {
   const showDescriptions = () => {
     let arrField = {
       'Nhà cung cấp': selectedProvider?.name,
-      'Mã khách hàng':  customer?.customerCode,
-      'Tên khách hàng':  customer?.customerName,
-      'Địa chỉ':  customer?.customerAddress,
+      'Mã khách hàng': customer?.customerCode,
+      'Tên khách hàng': customer?.customerName,
+      'Địa chỉ': customer?.customerAddress,
       'Kỳ thanh toán': customer?.payTerms,
       'Số tiền': customer?.tax && `${numberUtils.thousandSeparator(customer?.tax) + 'đ'}`,
     }
     setFieldsDescription(arrField)
   }
   useEffect(() => {
-    showDescriptions();
+    showDescriptions()
   }, [customer, selectedProvider])
 
   const handleSetIsModalVisible = (value) => {
@@ -90,40 +90,37 @@ const ApartmentFeePage = props => {
   }
 
   const handleSearchCustomer = () => {
-    if (valueSearch === "") {
-      setCustomer(null);
-      return;
+    if (valueSearch === '') {
+      setCustomer(null)
+      return
     }
     customerStore.getCustomerByCodeForAppartmentFee(valueSearch)
       .then(res => {
-        console.log(res)
         setCustomer(res)
       })
 
   }
 
   const handleSearchProvider = (value) => {
-    if (value !== "") {
+    if (value !== '') {
       providerStore.getApartmentByName()
         .then(res => {
-          setSelectedProvider(res);
-        });
-    }
-    else {
-      setSelectedProvider(null);
+          setSelectedProvider(res)
+        })
+    } else {
+      setSelectedProvider(null)
     }
   }
 
   useEffect(() => {
     providerStore.getApartmentProviders()
       .then(res => {
-        console.log(res)
         setListData(res)
       })
   }, [])
 
   useEffect(() => {
-    setCustomer(null);
+    setCustomer(null)
   }, [selectedProvider])
 
   useEffect(() => {
@@ -160,7 +157,7 @@ const ApartmentFeePage = props => {
               <FormSearch>
                 <SearchInputPhoneNumber placeholder={'Nhập mã khách hàng'}
                                         onChange={(value) => handleOnChange(value)}
-                                        suffix={<InfoCircleOutlined />}/>
+                                        suffix={<InfoCircleOutlined />} />
                 <SearchImg src={require('../../media/icons/search_cus.png')} alt={'search_cus'}
                            onClick={handleSearchCustomer} />
               </FormSearch>
@@ -168,7 +165,7 @@ const ApartmentFeePage = props => {
               <WhiteRoundedInfoSearchCustomer margin={'20px 0 16px 0'}>
                 <ResultSearchForm>
                   <DescriptionsCustom
-                    fields={fieldsDescription}/>
+                    fields={fieldsDescription} />
                 </ResultSearchForm>
               </WhiteRoundedInfoSearchCustomer>
             </Col>
@@ -214,8 +211,6 @@ const ApartmentFeePage = props => {
   )
 }
 
-ApartmentFeePage.propTypes = {
-
-}
+ApartmentFeePage.propTypes = {}
 
 export default inject('providerStore', 'customerStore')(observer(ApartmentFeePage))

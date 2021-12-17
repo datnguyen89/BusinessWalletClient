@@ -26,68 +26,68 @@ const ServiceRechargePage = props => {
 
   const { customerStore } = props
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true);
-  const [customerCode, setCustomerCode] = useState("");
-  const [customer, setCustomer] = useState(null);
-  const [tax, setTax] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [selectedItem, setSelectedItem] = useState(null)
+  const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true)
+  const [customerCode, setCustomerCode] = useState('')
+  const [customer, setCustomer] = useState(null)
+  const [tax, setTax] = useState('')
 
   const [fieldsModal, setFieldsModal] = useState(null)
   const [fieldsDescription, setFieldsDescription] = useState(null)
 
 
   const handleOnChange = (value) => {
-    setCustomerCode(value.target.value);
+    setCustomerCode(value.target.value)
   }
 
   const handleSearchCustomer = () => {
-    if (customerCode === "") {
-      setCustomer(null);
+    if (customerCode === '') {
+      setCustomer(null)
     } else {
       customerStore.getCustomerByCodeOrContract(customerCode)
         .then(res => {
-          console.log(res);
-          setCustomer(res);
+          console.log(res)
+          setCustomer(res)
         })
     }
   }
 
   const handleClickFunds = (value) => {
-    setSelectedItem(value);
+    setSelectedItem(value)
   }
 
   const handleCallbackHitBank = (value) => {
-    setSelectedItem(value);
+    setSelectedItem(value)
   }
 
   const handleEnterTax = (value) => {
-    setTax(value.target.value);
+    setTax(value.target.value)
   }
 
   const showModalConfirmDeal = () => {
     let arrField = {
-      "Nguồn tiền": selectedItem?.accountNumber,
-      "Nhà cung cấp": 'VETC',
-      "Mã khách hàng": customer?.customerCode,
-      "Tên khách hàng": customer?.customerName,
-      "Số tiền": numberUtils.thousandSeparator(tax) + 'đ',
-      "Phí giao dịch": '0đ',
-      "Tổng tiền": numberUtils.thousandSeparator(tax) + 'đ',
-    };
-    setFieldsModal(arrField);
-    setIsModalVisible(true);
+      'Nguồn tiền': selectedItem?.accountNumber,
+      'Nhà cung cấp': 'VETC',
+      'Mã khách hàng': customer?.customerCode,
+      'Tên khách hàng': customer?.customerName,
+      'Số tiền': numberUtils.thousandSeparator(tax) + 'đ',
+      'Phí giao dịch': '0đ',
+      'Tổng tiền': numberUtils.thousandSeparator(tax) + 'đ',
+    }
+    setFieldsModal(arrField)
+    setIsModalVisible(true)
   }
 
   const handleSetIsModalVisible = (value) => {
-    setIsModalVisible(value);
+    setIsModalVisible(value)
   }
 
   const showDescriptions = () => {
-    
+
     let arrField = {
       'Nhà cung cấp': customer?.providerBy,
-      'Tên khách hàng':  customer?.customerName,
+      'Tên khách hàng': customer?.customerName,
     }
     setFieldsDescription(arrField)
   }
@@ -96,16 +96,16 @@ const ServiceRechargePage = props => {
   }, [fieldsDescription])
 
   useEffect(() => {
-    showDescriptions();
+    showDescriptions()
   }, [customer])
 
   useEffect(() => {
-    if (selectedItem && tax !== "" && !isNaN(+tax) && customer)
-      setDisabledConfirmDeal(false);
+    if (selectedItem && tax !== '' && !isNaN(+tax) && customer)
+      setDisabledConfirmDeal(false)
     else
-      setDisabledConfirmDeal(true);
+      setDisabledConfirmDeal(true)
 
-  }, [selectedItem, tax, customer]);
+  }, [selectedItem, tax, customer])
 
   return (
     <DefaultLayout>
@@ -125,14 +125,16 @@ const ServiceRechargePage = props => {
             <Col span={12}>
               <WhiteRoundedInfoService margin={'0 0 16px 0'} padding={'16px'}>
                 <AreaSearchCustomer>
-                  <SearchInputPhoneNumber placeholder={"Nhập mã khách hàng/hợp đồng"} onChange={(value) => handleOnChange(value)} />
-                  <SearchImg src={require('../../media/icons/search_cus.png')} alt={"search_cus"} onClick={handleSearchCustomer}/>
+                  <SearchInputPhoneNumber placeholder={'Nhập mã khách hàng/hợp đồng'}
+                                          onChange={(value) => handleOnChange(value)} />
+                  <SearchImg src={require('../../media/icons/search_cus.png')} alt={'search_cus'}
+                             onClick={handleSearchCustomer} />
                 </AreaSearchCustomer>
                 <ResultSearchForm>
                   <DescriptionsCustom
                     fields={fieldsDescription} />
                 </ResultSearchForm>
-                <InputEnterTax placeholder={"Nhập số tiền"} onChange={handleEnterTax} />
+                <InputEnterTax placeholder={'Nhập số tiền'} onChange={handleEnterTax} />
               </WhiteRoundedInfoService>
             </Col>
             <Col span={6} />
@@ -157,17 +159,19 @@ const ServiceRechargePage = props => {
             </Col>
             <Col span={18}>
               <WhiteRoundedBox padding={'16px 0'}>
-                <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds} callbackHitBank={handleCallbackHitBank} />
+                <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds}
+                                  callbackHitBank={handleCallbackHitBank} />
               </WhiteRoundedBox>
             </Col>
           </Row>
           <AreaCreateCommand>
-            <CreateCommandButton type={disabledConfirmDeal ? 'default' : 'primary'} onClick={showModalConfirmDeal} disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
+            <CreateCommandButton type={disabledConfirmDeal ? 'default' : 'primary'} onClick={showModalConfirmDeal}
+                                 disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
           </AreaCreateCommand>
         </WhiteRoundedBox>
       </ServiceRechargePageWrapper>
       <ModalCustomCommandForm
-        title={"Xác nhận giao dịch"}
+        title={'Xác nhận giao dịch'}
         fields={fieldsModal}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
@@ -176,8 +180,6 @@ const ServiceRechargePage = props => {
   )
 }
 
-ServiceRechargePage.propTypes = {
-
-}
+ServiceRechargePage.propTypes = {}
 
 export default inject('customerStore')(observer(ServiceRechargePage))

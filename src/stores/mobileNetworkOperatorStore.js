@@ -39,7 +39,7 @@ class MobileNetworkOperatorStore {
     })
   }
 
-  @action getTopupVoucher = () => {
+  @action getTopUpVoucher = () => {
     return new Promise((resolve, reject) => {
       this.topUpVouchers = [
         { id: 1, denominations: '10000', discount: '9500', name: 'Mã thẻ Mobifone 10k', data: '500MB', rangeTimeValid: '1 Ngày' },

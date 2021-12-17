@@ -4,9 +4,8 @@ import DefaultLayout from '../../layouts/DefaultLayout'
 import { Helmet } from 'react-helmet/es/Helmet'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
-import { toJS } from 'mobx'
 import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
-import { Col, Descriptions, Radio, Row } from 'antd'
+import { Col, Row } from 'antd'
 import TaxProviders from '../../components/TaxProviders/TaxProviders'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import DigitalWallet from '../../components/DigitalWallet'
@@ -48,7 +47,6 @@ const InternetBillPage = props => {
   }
 
   const handleSelectedProvider = (value) => {
-    console.log(toJS(value))
     setSelectedProvider(value)
   }
 
@@ -56,7 +54,7 @@ const InternetBillPage = props => {
     let arrField = {
       'Nguồn tiền': selectedItem?.accountNumber,
       'Nhà cung cấp': selectedProvider?.name,
-      'Mã khách hàng':  customer?.customerCode,
+      'Mã khách hàng': customer?.customerCode,
       'Tên gói cước': customer?.packageName,
       'Số tiền': numberUtils.thousandSeparator(customer?.tax) + 'đ',
       'Giá bán': numberUtils.thousandSeparator(customer?.tax) + 'đ',
@@ -78,27 +76,26 @@ const InternetBillPage = props => {
   const handleSearchCustomer = () => {
     customerStore.getCustomerByCodeForInternetTax(valueSearch)
       .then(res => {
-        setCustomer(res);
+        setCustomer(res)
       })
   }
 
   const handleSearchProvider = (value) => {
-    if (value !== "") {
+    if (value !== '') {
       providerStore.getInternetProviderByName(value)
         .then(res => {
-          setSelectedProvider(res);
-        });
-    }
-    else {
-      setSelectedProvider(null);
+          setSelectedProvider(res)
+        })
+    } else {
+      setSelectedProvider(null)
     }
   }
 
   const showDescriptions = () => {
     let arrField = {
       'Nhà cung cấp': selectedProvider?.name,
-      'Tên khách hàng':  customer?.customerName,
-      'Địa chỉ':  customer?.customerAddress,
+      'Tên khách hàng': customer?.customerName,
+      'Địa chỉ': customer?.customerAddress,
       'Kỳ thanh toán': customer?.payTerms,
       'Số tiền': customer?.tax && `${numberUtils.thousandSeparator(customer?.tax) + 'đ'}`,
     }
@@ -106,11 +103,11 @@ const InternetBillPage = props => {
   }
 
   useEffect(() => {
-    showDescriptions();
+    showDescriptions()
   }, [customer, selectedProvider])
 
   useEffect(() => {
-    setCustomer(null);
+    setCustomer(null)
   }, [selectedProvider])
 
 
@@ -155,7 +152,7 @@ const InternetBillPage = props => {
               <FormSearch>
                 <SearchInputPhoneNumber placeholder={'Nhập mã khách hàng/hợp đồng'}
                                         onChange={(value) => handleOnChange(value)}
-                                        suffix={<InfoCircleOutlined />}/>
+                                        suffix={<InfoCircleOutlined />} />
                 <SearchImg src={require('../../media/icons/search_cus.png')} alt={'search_cus'}
                            onClick={handleSearchCustomer} />
               </FormSearch>
@@ -163,7 +160,7 @@ const InternetBillPage = props => {
               <WhiteRoundedInfoSearchCustomer margin={'20px 0 16px 0'}>
                 <ResultSearchForm>
                   <DescriptionsCustom
-                    fields={fieldsDescription}/>
+                    fields={fieldsDescription} />
                 </ResultSearchForm>
               </WhiteRoundedInfoSearchCustomer>
             </Col>
@@ -209,8 +206,6 @@ const InternetBillPage = props => {
   )
 }
 
-InternetBillPage.propTypes = {
-
-}
+InternetBillPage.propTypes = {}
 
 export default inject('customerStore', 'providerStore')(observer(InternetBillPage))

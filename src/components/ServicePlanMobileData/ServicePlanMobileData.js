@@ -10,15 +10,15 @@ import numberUtils from '../../utils/numberUtils'
 const _ = require('lodash')
 
 const ServicePlanMobileData = props => {
-  const { mobileNetworkOperatorStore, selectedTopupVoucher, handleSelectedTopupVoucher } = props
+  const { mobileNetworkOperatorStore, selectedTopUpVoucher, handleSelectedTopUpVoucher } = props
 
 
   useEffect(() => {
-    mobileNetworkOperatorStore.getTopupVoucher();
+    mobileNetworkOperatorStore.getTopUpVoucher();
   }, []);
 
-  const handlerSetSelectTopuVoucher = (value) => {
-    handleSelectedTopupVoucher(value);
+  const handlerSetSelectTopUpVoucher = (value) => {
+    handleSelectedTopUpVoucher(value);
   }
 
   return (
@@ -27,13 +27,13 @@ const ServicePlanMobileData = props => {
       <TagProvider>
         {
           mobileNetworkOperatorStore.topUpVouchers.map(item =>
-            <TopupVouchersArea span={6} onClick={() => handlerSetSelectTopuVoucher(item)} key={item.id}>
+            <TopupVouchersArea span={6} onClick={() => handlerSetSelectTopUpVoucher(item)} key={item.id}>
                 <TopupVoucherContent
-                  borderColor={item.id === selectedTopupVoucher?.id ? '#0465B0' : '#E0E0E0'}
-                  color={item.id === selectedTopupVoucher?.id ? '#0465B0' : '#333333'}>
+                  borderColor={item.id === selectedTopUpVoucher?.id ? '#0465B0' : '#E0E0E0'}
+                  color={item.id === selectedTopUpVoucher?.id ? '#0465B0' : '#333333'}>
                   <TopupVoucherPrice>
                     <h4>{numberUtils.thousandSeparator(item.denominations)}<span>đ</span></h4>
-                    <DiscountText colorText={item.id === selectedTopupVoucher?.id ? '#0465B0' : '#B4B4B4'}>{numberUtils.thousandSeparator(item.discount)}<span>đ</span></DiscountText>
+                    <DiscountText colorText={item.id === selectedTopUpVoucher?.id ? '#0465B0' : '#B4B4B4'}>{numberUtils.thousandSeparator(item.discount)}<span>đ</span></DiscountText>
                   </TopupVoucherPrice>
                   <TopupVoucherData>
                     <h5>{item.data}/</h5>

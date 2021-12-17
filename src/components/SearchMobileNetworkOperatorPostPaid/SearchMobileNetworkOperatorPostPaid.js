@@ -22,17 +22,20 @@ const SearchMobileNetworkOperatorPostPaid = props => {
   }
 
   const handleSearchCustomer = () => {
-    customerStore.getCustomerByPhoneNumber(phoneNumber)
-      .then(res => {
-        let itemMatched = toJS(mobileNetworkOperatorStore.mobileNetworkOperators).find(item => item.id === toJS(res).customerNetworkMobileId);
-        if (itemMatched) {
-          handleSelectedProvider(itemMatched);
-          setCustomer(res);
-        }
-      })
+    if (phoneNumber !== "") {
+      customerStore.getCustomerByPhoneNumber(phoneNumber)
+        .then(res => {
+          let itemMatched = toJS(mobileNetworkOperatorStore.mobileNetworkOperators).find(item => item.id === toJS(res).customerNetworkMobileId);
+          if (itemMatched) {
+            handleSelectedProvider(itemMatched);
+            setCustomer(res);
+          }
+        })
+    } else {
+      setCustomer(null);
+    }
   }
   const handlerSetSelectProvider = (value) => {
-    console.log(value);
     handleSelectedProvider(value);
   }
                          

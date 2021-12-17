@@ -115,7 +115,7 @@ const Providers = props => {
                       </ImgIconProvider>
                       <ContentProvider>
                         <AliasProvider>{item.area}</AliasProvider>
-                        <NameProvider>{item.providerName}</NameProvider>
+                        <NameProvider>{item.name}</NameProvider>
                       </ContentProvider>
                     </TagAreaProvider>
                   </Col>

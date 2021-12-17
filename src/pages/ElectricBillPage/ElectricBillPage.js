@@ -48,7 +48,6 @@ const ElectricBillPage = props => {
   }
 
   const handleSelectedProvider = (value) => {
-    console.log(toJS(value))
     setSelectedProvider(value)
   }
 
@@ -56,9 +55,9 @@ const ElectricBillPage = props => {
     let arrField = {
       'Nguồn tiền': selectedItem?.accountNumber,
       'Nhà cung cấp': selectedProvider?.name,
-      'Mã khách hàng':  customer?.customerCode,
-      'Tên khách hàng':  customer?.customerName,
-      'Địa chỉ':  customer?.customerAddress,
+      'Mã khách hàng': customer?.customerCode,
+      'Tên khách hàng': customer?.customerName,
+      'Địa chỉ': customer?.customerAddress,
       'Số tiền': numberUtils.thousandSeparator(customer.tax) + 'đ',
       'Giá bán': numberUtils.thousandSeparator(customer.tax) + 'đ',
       'Phí giao dịch': '0đ',
@@ -71,9 +70,9 @@ const ElectricBillPage = props => {
   const setDescriptions = () => {
     let arrField = {
       'Nhà cung cấp': selectedProvider?.name,
-      'Mã khách hàng':  customer?.customerCode,
-      'Tên khách hàng':  customer?.customerName,
-      'Địa chỉ':  customer?.customerAddress,
+      'Mã khách hàng': customer?.customerCode,
+      'Tên khách hàng': customer?.customerName,
+      'Địa chỉ': customer?.customerAddress,
       'Kỳ thanh toán': customer?.payTerms,
       'Số tiền': customer?.tax && `${numberUtils.thousandSeparator(customer?.tax) + 'đ'}`,
     }
@@ -89,9 +88,9 @@ const ElectricBillPage = props => {
   }
 
   const handleSearchCustomer = () => {
-    if (valueSearch === "") {
-      setCustomer(null);
-      return;
+    if (valueSearch === '') {
+      setCustomer(null)
+      return
     }
     customerStore.getCustomerByCodeForElectricTax(valueSearch)
       .then(res => {
@@ -100,27 +99,22 @@ const ElectricBillPage = props => {
   }
 
   const handleSearchProvider = (value) => {
-    if (value !== "") {
+    if (value !== '') {
       providerStore.getElectricProviderByName(value)
         .then(res => {
-          setSelectedProvider(res);
-        });
-    }
-    else {
-      setSelectedProvider(null);
+          setSelectedProvider(res)
+        })
+    } else {
+      setSelectedProvider(null)
     }
   }
 
   useEffect(() => {
-    setDescriptions();
+    setDescriptions()
   }, [customer, selectedProvider])
 
   useEffect(() => {
-    console.log(fieldsDescription);
-  }, [fieldsDescription]);
-
-  useEffect(() => {
-    setDescriptions();
+    setDescriptions()
     providerStore.getElectricProviders()
       .then(res => {
         console.log(res)
@@ -129,7 +123,7 @@ const ElectricBillPage = props => {
   }, [])
 
   useEffect(() => {
-    setCustomer(null);
+    setCustomer(null)
   }, [selectedProvider])
 
   useEffect(() => {
@@ -166,7 +160,7 @@ const ElectricBillPage = props => {
               <FormSearch>
                 <SearchInputPhoneNumber placeholder={'Nhập mã khách hàng/hợp đồng'}
                                         onChange={(value) => handleOnChange(value)}
-                                        suffix={<InfoCircleOutlined />}/>
+                                        suffix={<InfoCircleOutlined />} />
                 <SearchImg src={require('../../media/icons/search_cus.png')} alt={'search_cus'}
                            onClick={handleSearchCustomer} />
               </FormSearch>
@@ -174,7 +168,7 @@ const ElectricBillPage = props => {
               <WhiteRoundedInfoSearchCustomer margin={'20px 0 16px 0'}>
                 <ResultSearchForm>
                   <DescriptionsCustom
-                    fields={fieldsDescription}/>
+                    fields={fieldsDescription} />
                 </ResultSearchForm>
               </WhiteRoundedInfoSearchCustomer>
             </Col>
@@ -220,8 +214,6 @@ const ElectricBillPage = props => {
   )
 }
 
-ElectricBillPage.propTypes = {
-
-}
+ElectricBillPage.propTypes = {}
 
 export default inject('customerStore', 'providerStore')(observer(ElectricBillPage))

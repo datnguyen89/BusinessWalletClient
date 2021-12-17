@@ -27,70 +27,69 @@ import numberUtils from '../../utils/numberUtils'
 const PrepaidPage = props => {
   const { providerStore } = props
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState(null);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [selectedProvider, setSelectedProvider] = useState(null);
-  const [selectedTopUpVoucher, setSelectedTopUpVoucher ] = useState(null);
-  const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true);
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [phoneNumber, setPhoneNumber] = useState(null)
+  const [selectedItem, setSelectedItem] = useState(null)
+  const [selectedProvider, setSelectedProvider] = useState(null)
+  const [selectedTopUpVoucher, setSelectedTopUpVoucher] = useState(null)
+  const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true)
 
-  const [fields, setFields] = useState(null);
+  const [fields, setFields] = useState(null)
 
   const handleClickFunds = (value) => {
-    setSelectedItem(value);
+    setSelectedItem(value)
   }
 
   const handleCallbackHitBank = (value) => {
-    console.log(toJS(value));
-    setSelectedItem(value);
+    setSelectedItem(value)
   }
 
   const handleSelectedProvider = (value) => {
-    setSelectedProvider(value);
-    setSelectedTopUpVoucher(null);
+    setSelectedProvider(value)
+    setSelectedTopUpVoucher(null)
   }
 
   const handleSelectedTopUpVoucher = (value) => {
-    setSelectedTopUpVoucher(value);
+    setSelectedTopUpVoucher(value)
   }
 
   const showModalConfirmDeal = () => {
     let arrField = {
-      "Nguồn tiền": selectedItem?.accountNumber,
-      "Nhà cung cấp": selectedProvider?.name,
-      "Dịch vụ": "Nạp tiền điện thoại",
-      "Sản phẩm": selectedTopUpVoucher?.name,
-      "Mệnh giá": numberUtils.thousandSeparator(selectedTopUpVoucher?.denominations) + 'đ',
-      "Giá bán": numberUtils.thousandSeparator(selectedTopUpVoucher?.discount) + 'đ',
-      "Số điện thoại": phoneNumber,
-      "Tổng tiền": numberUtils.thousandSeparator(selectedTopUpVoucher?.discount) + 'đ',
-      "Phí giao dịch": '0đ',
-      "Thành tiền": numberUtils.thousandSeparator(selectedTopUpVoucher?.discount) + 'đ'
-    };
-    setFields(arrField);
-    setIsModalVisible(true);
+      'Nguồn tiền': selectedItem?.accountNumber,
+      'Nhà cung cấp': selectedProvider?.name,
+      'Dịch vụ': 'Nạp tiền điện thoại',
+      'Sản phẩm': selectedTopUpVoucher?.name,
+      'Mệnh giá': numberUtils.thousandSeparator(selectedTopUpVoucher?.denominations) + 'đ',
+      'Giá bán': numberUtils.thousandSeparator(selectedTopUpVoucher?.discount) + 'đ',
+      'Số điện thoại': phoneNumber,
+      'Tổng tiền': numberUtils.thousandSeparator(selectedTopUpVoucher?.discount) + 'đ',
+      'Phí giao dịch': '0đ',
+      'Thành tiền': numberUtils.thousandSeparator(selectedTopUpVoucher?.discount) + 'đ',
+    }
+    setFields(arrField)
+    setIsModalVisible(true)
   }
 
   const handleSetPhoneNumber = (value) => {
-    setPhoneNumber(value);
+    setPhoneNumber(value)
   }
 
   useEffect(() => {
     providerStore.getProviderDetail(selectedProvider?.id)
       .then(res => {
       })
-  }, [selectedProvider]);
+  }, [selectedProvider])
 
   useEffect(() => {
     if (selectedProvider && selectedItem && selectedTopUpVoucher && !isNaN(phoneNumber))
-      setDisabledConfirmDeal(false);
+      setDisabledConfirmDeal(false)
     else
-      setDisabledConfirmDeal(true);
+      setDisabledConfirmDeal(true)
 
-  }, [selectedItem, selectedProvider, selectedTopUpVoucher, phoneNumber]);
+  }, [selectedItem, selectedProvider, selectedTopUpVoucher, phoneNumber])
 
   const handleSetIsModalVisible = (value) => {
-    setIsModalVisible(value);
+    setIsModalVisible(value)
   }
 
   return (
@@ -110,10 +109,13 @@ const PrepaidPage = props => {
             <Col span={6} />
             <Col span={12}>
               <WhiteRoundedInfoService margin={'0 0 16px 0'}>
-                <SearchMobileNetworkOperator phoneNumber={phoneNumber} setPhoneNumber={handleSetPhoneNumber} selectedProvider={selectedProvider} handleSelectedProvider={handleSelectedProvider} />
+                <SearchMobileNetworkOperator phoneNumber={phoneNumber} setPhoneNumber={handleSetPhoneNumber}
+                                             selectedProvider={selectedProvider}
+                                             handleSelectedProvider={handleSelectedProvider} />
               </WhiteRoundedInfoService>
               <WhiteRoundedInfoService margin={'0 0 16px 0'}>
-                <ServicePlanMobile title={"Chọn mệnh giá"} selectedTopUpVoucher={selectedTopUpVoucher} handleSelectedTopUpVoucher={handleSelectedTopUpVoucher} />
+                <ServicePlanMobile title={'Chọn mệnh giá'} selectedTopUpVoucher={selectedTopUpVoucher}
+                                   handleSelectedTopUpVoucher={handleSelectedTopUpVoucher} />
               </WhiteRoundedInfoService>
             </Col>
             <Col span={6} />
@@ -138,17 +140,19 @@ const PrepaidPage = props => {
             </Col>
             <Col span={18}>
               <WhiteRoundedBox padding={'16px 0'}>
-                <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds} callbackHitBank={handleCallbackHitBank} />
+                <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds}
+                                  callbackHitBank={handleCallbackHitBank} />
               </WhiteRoundedBox>
             </Col>
           </Row>
           <AreaCreateCommand>
-            <CreateCommandButton type={disabledConfirmDeal ? 'default' : 'primary'} onClick={showModalConfirmDeal} disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
+            <CreateCommandButton type={disabledConfirmDeal ? 'default' : 'primary'} onClick={showModalConfirmDeal}
+                                 disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
           </AreaCreateCommand>
         </WhiteRoundedBox>
       </PrepaidPageWrapper>
       <ModalCustomCommandForm
-        title={"Xác nhận giao dịch"}
+        title={'Xác nhận giao dịch'}
         fields={fields}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
@@ -157,8 +161,6 @@ const PrepaidPage = props => {
   )
 }
 
-PrepaidPage.propTypes = {
-
-}
+PrepaidPage.propTypes = {}
 
 export default inject('providerStore')(observer(PrepaidPage))
