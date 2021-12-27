@@ -13,10 +13,21 @@ import { inject, observer } from 'mobx-react'
 const _ = require('lodash')
 
 const TaxProviders = props => {
-  const { selectedProvider, handleSelectedProvider, placeholder, data } = props
+  const { selectedProvider, handleSelectedProvider, placeholder, data, handleSearchProvider } = props
+  const [ searchProvider, setSearchProvider ] = useState("");
 
   const handlerSetSelectProvider = (value) => {
     handleSelectedProvider(value)
+  }
+
+  const handleOnChange = (value) => {
+    setSearchProvider(value.target.value);
+  }
+
+  const handleOnKeyUp = (value) => {
+    if (value.keyCode === 13) {
+      handleSearchProvider(searchProvider);
+    }
   }
 
   return (
@@ -25,11 +36,13 @@ const TaxProviders = props => {
         <SearchProvider
           placeholder={placeholder}
           suffix={
-            <SearchOutlined style={{ color: 'rgba(0,0,0,.45)', fontSize: '20px' }} />
+            <SearchOutlined style={{ color: 'rgba(0,0,0,.45)', fontSize: '20px', cursor: 'pointer' }}  onClick={() => handleSearchProvider(searchProvider)}/>
           }
+          onKeyUp={handleOnKeyUp}
+          onChange={handleOnChange}
         />
       </SearchProviderWrapper>
-      <AreaProvider style={{ width: '100%', height: 300 }}>
+      <AreaProvider style={{ width: '100%', height: 195 }}>
         <Row>
           {
             data?.map(item =>
@@ -38,7 +51,7 @@ const TaxProviders = props => {
                   <TagAreaProvider borderColor={item.id === selectedProvider?.id ? '#0465B0' : '#E0E0E0'}
                                    onClick={() => handlerSetSelectProvider(item)}>
                     <ImgIconProvider>
-                      <img src={item.imageUrl} alt={'icon_provider.svg'} />
+                      <img src={item.imageUrl} alt={'icon_provider.svg'} width={30}/>
                     </ImgIconProvider>
                     <ContentProvider>
                       <AliasProvider>{item.name}</AliasProvider>

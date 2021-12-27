@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button, Modal, Row } from 'antd'
+import { Button, Input, Modal, Row } from 'antd'
 
 export const WaterBillPageWrapper = styled.div`
 `
@@ -36,6 +36,23 @@ export const AreaCreateCommand = styled(Row) `
   margin: 22px 0px 15px;
 `
 
+export const FormSearch = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+export const SearchInputPhoneNumber = styled(Input) `
+  width: 89%;
+  margin-right: 10px;
+  border-radius: 10px;
+  height: 60px;
+  line-height: 60px;
+`
+export const SearchImg = styled.img `
+  cursor: pointer;
+  height: 60px;
+`
+
 export const CreateCommandButton = styled(Button)`
   padding: 0 40px;
 `
@@ -63,4 +80,9 @@ export const ModalCustom = styled(Modal)`
     border: none;
     padding-bottom: 30px;
   }
+`
+export const WhiteRoundedInfoSearchCustomer = styled.div`
+  background: #fff;
+  margin: ${props => props.margin || '0'};
+  display: ${props => props.display};
 `

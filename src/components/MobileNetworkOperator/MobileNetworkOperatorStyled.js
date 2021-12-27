@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button, Input } from 'antd'
+import { Scrollbars } from 'react-custom-scrollbars'
 
 export const ProviderWrapper = styled.div`
   // background: #fff;
@@ -12,10 +12,13 @@ export const TitlePickProviders = styled.h5`
   color: #979797;
 `
 
-export const TagProvider = styled.div `
-  display: flex;
-  overflow: hidden;
-  overflow-x: auto;
+export const ScrollbarsCustom = styled(Scrollbars) `
+  .view {
+    display: flex;
+  }
+  //div:nth-child(2) {
+  //  bottom: 0 !important;
+  //}
 `
 
 export const ImageProviderArea = styled.img`
@@ -26,6 +29,11 @@ export const ImageProviderArea = styled.img`
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  height: 72px;
+  width: auto;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
 `
 
 export const ImgIconProvider = styled.div `

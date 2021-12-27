@@ -38,7 +38,7 @@ export const TopupVouchersArea = styled(Col)`
 
 export const TopupVoucherContent = styled.div `
   border: ${props => `1px solid ${props.borderColor}`};
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 10px 89px 10px 20px;
   h4 {
     color: ${ props => props.color };

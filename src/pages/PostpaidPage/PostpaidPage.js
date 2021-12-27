@@ -19,81 +19,96 @@ import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/Moda
 import { inject, observer } from 'mobx-react'
 import SearchMobileNetworkOperatorPostPaid from '../../components/SearchMobileNetworkOperatorPostPaid'
 import { toJS } from 'mobx'
+import numberUtils from '../../utils/numberUtils'
+import DescriptionsCustom from '../../components/DescriptionsCustom'
 
 const PostpaidPage = props => {
 
-  const { providerStore, customerStore } = props
+  const { providerStore } = props
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState(null);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [selectedProvider, setSelectedProvider] = useState(null);
-  const [selectedTopupVoucher, setSelectedTopupVoucher ] = useState(null);
-  const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true);
-  const [customer, setCustomer] = useState(null);
-  const [ tax, setTax ] = useState(0);
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [selectedItem, setSelectedItem] = useState(null)
+  const [selectedProvider, setSelectedProvider] = useState(null)
+  const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true)
+  const [customer, setCustomer] = useState(null)
+  const [tax, setTax] = useState('')
 
-  const [fields, setFields] = useState(null);
+
+  const [fieldsModal, setFieldsModal] = useState(null)
+  const [fieldsDescription, setFieldsDescription] = useState(null)
 
   const handleSetPhoneNumber = (value) => {
-    setPhoneNumber(value);
+    setPhoneNumber(value)
   }
 
   const handleSetCustomer = (value) => {
-    setCustomer(value);
+    setCustomer(value)
   }
 
   const handleClickFunds = (value) => {
-    setSelectedItem(value);
+    setSelectedItem(value)
   }
 
   const handleCallbackHitBank = (value) => {
-    setSelectedItem(value);
+    setSelectedItem(value)
   }
 
   const handleSelectedProvider = (value) => {
-    console.log(toJS(value));
-    setSelectedProvider(value);
-    setSelectedTopupVoucher(null);
+    setSelectedProvider(value)
   }
 
   const handleEnterTax = (value) => {
-    setTax(value.target.value);
+    setTax(value.target.value)
+  }
+
+  const setDescriptions = () => {
+    let arrField = {
+      'Nhà cung cấp': selectedProvider?.name,
+      'Tên khách hàng': customer?.customerName,
+      'Kỳ thanh toán': customer?.payTerms,
+      'Số dư nợ cước': customer?.debitBalance && `${numberUtils.thousandSeparator(customer?.debitBalance)} đ`,
+    }
+    setFieldsDescription(arrField)
   }
 
   const showModalConfirmDeal = () => {
     let arrField = {
-      "Nguồn tiền": selectedItem?.accountNumber,
-      "Nhà cung cấp": selectedProvider?.name,
-      "Mã khách hàng": selectedProvider?.name,
-      "Tên khách hàng": selectedProvider?.name,
-      "Kỳ thanh toán": customer?.payTerms,
-      "Dư nợ cước": customer?.debitBalance,
-      "Số tiền": tax,
-      "Phí giao dịch": '0đ',
-      "Tổng tiền": tax,
-    };
-    setFields(arrField);
-    setIsModalVisible(true);
+      'Nguồn tiền': selectedItem?.accountNumber,
+      'Nhà cung cấp': selectedProvider?.name,
+      'Mã khách hàng': customer?.customerCode,
+      'Tên khách hàng': customer?.customerName,
+      'Kỳ thanh toán': customer?.payTerms,
+      'Dư nợ cước': numberUtils.thousandSeparator(customer?.debitBalance) + 'đ',
+      'Số tiền': numberUtils.thousandSeparator(tax) + 'đ',
+      'Phí giao dịch': '0đ',
+      'Tổng tiền': numberUtils.thousandSeparator(tax) + 'đ',
+    }
+    setFieldsModal(arrField)
+    setIsModalVisible(true)
   }
 
   const handleSetIsModalVisible = (value) => {
-    setIsModalVisible(value);
+    setIsModalVisible(value)
   }
+
+  useEffect(() => {
+    setDescriptions()
+  }, [customer, selectedProvider])
 
   useEffect(() => {
     providerStore.getProviderDetail(selectedProvider?.id)
       .then(res => {
       })
-  }, [selectedProvider]);
+  }, [selectedProvider])
 
   useEffect(() => {
-    if (selectedProvider && selectedItem)
-      setDisabledConfirmDeal(false);
+    if (selectedProvider && selectedItem && tax !== '' && !isNaN(+tax))
+      setDisabledConfirmDeal(false)
     else
-      setDisabledConfirmDeal(true);
+      setDisabledConfirmDeal(true)
 
-  }, [selectedItem, selectedProvider]);
+  }, [selectedItem, selectedProvider, tax])
 
   return (
     <DefaultLayout>
@@ -109,7 +124,7 @@ const PostpaidPage = props => {
             </Col>
           </Row>
           <Row>
-            <Col span={6}></Col>
+            <Col span={6} />
             <Col span={12}>
               <WhiteRoundedInfoService margin={'0 0 16px 0'}>
                 <SearchMobileNetworkOperatorPostPaid
@@ -121,17 +136,13 @@ const PostpaidPage = props => {
               </WhiteRoundedInfoService>
               <WhiteRoundedInfoService margin={'0 0 16px 0'} padding={'16px'}>
                 <ResultSearchForm>
-                  <Descriptions bordered column={1}>
-                    <Descriptions.Item label="Nhà cung cấp" labelStyle={{width: "30%"}}>{selectedProvider?.name}</Descriptions.Item>
-                    <Descriptions.Item label="Tên khách hàng">{customerStore.customer?.customerName}</Descriptions.Item>
-                    <Descriptions.Item label="Kỳ thanh toán" >{customer?.payTerms}</Descriptions.Item>
-                    <Descriptions.Item label="Số dư nợ cước" >{customer?.debitBalance}</Descriptions.Item>
-                  </Descriptions>
+                  <DescriptionsCustom
+                    fields={fieldsDescription} />
                 </ResultSearchForm>
-                <InputEnterTax placeholder={"Nhập số tiền"} onChange={handleEnterTax} />
+                <InputEnterTax placeholder={'Nhập số tiền'} onChange={handleEnterTax} />
               </WhiteRoundedInfoService>
             </Col>
-            <Col span={6}></Col>
+            <Col span={6} />
           </Row>
           <Row>
             <Col span={24}>
@@ -141,39 +152,39 @@ const PostpaidPage = props => {
               <Row>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'0 16px 0 0'}>
-                    <DigitalWallet selectedItem={selectedItem} setClickFunds={handleClickFunds}></DigitalWallet>
+                    <DigitalWallet selectedItem={selectedItem} setClickFunds={handleClickFunds} />
                   </WhiteRoundedBox>
                 </Col>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'16px 16px 0 0'}>
-                    <LinkDirectedBank selectedItem={selectedItem} setClickFunds={handleClickFunds}></LinkDirectedBank>
+                    <LinkDirectedBank selectedItem={selectedItem} setClickFunds={handleClickFunds} />
                   </WhiteRoundedBox>
                 </Col>
               </Row>
             </Col>
             <Col span={18}>
               <WhiteRoundedBox padding={'16px 0'}>
-                <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds} callbackHitBank={handleCallbackHitBank}></LinkInternalBank>
+                <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds}
+                                  callbackHitBank={handleCallbackHitBank} />
               </WhiteRoundedBox>
             </Col>
           </Row>
           <AreaCreateCommand>
-            <CreateCommandButton type={disabledConfirmDeal ? 'default' : 'primary'} onClick={showModalConfirmDeal} disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
+            <CreateCommandButton type={disabledConfirmDeal ? 'default' : 'primary'} onClick={showModalConfirmDeal}
+                                 disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
           </AreaCreateCommand>
         </WhiteRoundedBox>
       </PostpaidPageWrapper>
       <ModalCustomCommandForm
-        title={"Xác nhận giao dịch"}
-        fields={fields}
+        title={'Xác nhận giao dịch'}
+        fields={fieldsModal}
         visible={isModalVisible}
-        setIsModalVisible={handleSetIsModalVisible}></ModalCustomCommandForm>
+        setIsModalVisible={handleSetIsModalVisible} />
     </DefaultLayout>
 
   )
 }
 
-PostpaidPage.propTypes = {
+PostpaidPage.propTypes = {}
 
-}
-
-export default inject('providerStore', 'customerStore')(observer(PostpaidPage))
+export default inject('providerStore')(observer(PostpaidPage))

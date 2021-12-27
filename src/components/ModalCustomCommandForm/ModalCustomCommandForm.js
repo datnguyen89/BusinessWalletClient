@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { inject, observer } from 'mobx-react'
-import { ModalCustom, ResultSearchForm } from '../../pages/WaterBillPage/WaterBillPageStyled'
 import { Descriptions, message } from 'antd'
 import OtpModal from '../OtpModal'
 import SuccessModal from '../SuccessModal'
 import PropTypes from 'prop-types'
+import { ModalCustom, ResultSearchForm } from './ModalCustomCommandFormStyled'
 
 const _ = require('lodash')
 
@@ -63,14 +63,14 @@ const ModalCustomCommandForm = props => {
     if (fields) {
       let arr = [];
       Object.keys(fields).map(function(key,index) {
-        arr.push(<Descriptions.Item key={index} label={key} labelStyle={{width: "30%"}}>{fields[key]}</Descriptions.Item>)
+        arr.push(<Descriptions.Item key={index} label={key} labelStyle={{width: "35%"}}>{fields[key]}</Descriptions.Item>)
       });
       setItems(arr);
     }
   }, [fields])
 
   return (
-    <ModalCustom title={title} visible={visible} onOk={handleOk} onCancel={handleCancel} width={1000} okText={"Xác nhận"} maskClosable={"true"} closable={true}>
+    <ModalCustom title={title} visible={visible} onOk={handleOk} onCancel={handleCancel} width={764} okText={"Xác nhận"} maskClosable={"true"} closable={true}>
       <ResultSearchForm>
         <Descriptions bordered column={1}>
           {items}

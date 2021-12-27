@@ -22,14 +22,6 @@ export const SearchProvider = styled(Input)`
   height: 50px;
 `
 
-export const TagProvider = styled.div `
-  padding: 20px;
-  background: #F9F9F9;
-  display: flex;
-  overflow: hidden;
-  overflow-x: auto;
-`
-
 export const ButtonProviderArea = styled.div`
   margin: 10px;
   background: #9CA2C0;
@@ -41,20 +33,18 @@ export const ButtonProviderArea = styled.div`
 `
 
 export const AreaProvider = styled(Scrollbars)`
-  //.ant-row {
-  //  max-height: 220px;
-  //  overflow: hidden;
-  //  overflow-y: auto;
-  //}
+  .ant-row {
+    padding-right: 8px;
+  }
 `
 
 export const TagAreaProvider = styled.div`
   display: flex;
   border: ${props => `1px solid ${props.borderColor}`};
-  margin: 16px 8px 16px 16px;
+  margin: 12px 8px 6px 16px;
   border-radius: 10px;
   align-items: center;
-  padding: 15px;
+  padding: 12px;
   cursor: pointer;
 `
 

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Button, Input } from 'antd'
+import { Scrollbars } from 'react-custom-scrollbars'
 
 export const ProviderWrapper = styled.div`
   // background: #fff;
@@ -22,14 +23,15 @@ export const SearchProvider = styled(Input)`
 `
 
 export const TagProvider = styled.div `
-  padding: 20px;
   background: #F9F9F9;
   display: flex;
   overflow: hidden;
   overflow-x: auto;
+  justify-content: center;
+  align-self: center;
 `
 
-export const ButtonProviderArea = styled.div`
+export const ButtonProviderArea = styled.span`
   margin: 10px;
   background: #9CA2C0;
   color: white;
@@ -37,20 +39,29 @@ export const ButtonProviderArea = styled.div`
   padding: 10px 20px;
   border-radius: 25px;
   cursor: pointer;
+  height: 42px;
+  background: ${props => props.backgroundColor};
+`
+
+export const ScrollbarsCustom = styled(Scrollbars) `
+  >div {
+    display: flex;
+  }
 `
 
 export const AreaProvider = styled.div`
   .ant-row {
-    max-height: 220px;
-    overflow: hidden;
-    overflow-y: auto;
+    //max-height: 220px;
+    //overflow: hidden;
+    //overflow-y: auto;
+    padding: 10px;
   }
 `
 
 export const TagAreaProvider = styled.div`
   display: flex;
   border: ${props => `1px solid ${props.borderColor}`};
-  margin: 16px 8px 16px 16px;
+  margin: 0 6px 16px;
   border-radius: 10px;
   align-items: center;
   padding: 15px;

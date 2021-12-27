@@ -17,9 +17,7 @@ export const PaginationLabel = styled.span`
     margin-bottom: 16px;
   }
 `
-export const RowFlexDiv = styled.div`
-  display: flex;
-`
+
 export const RowFlexEndDiv = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -95,4 +93,7 @@ export const HeaderDropdownItem = styled.div`
       color: ${props => props.color};
     }
   }
+`
+export const LastItemScroll = styled.div`
+  min-width: 700px;
 `

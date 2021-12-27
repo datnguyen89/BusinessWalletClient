@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button, Input, Modal, Row } from 'antd'
+import { Button, Descriptions, Input, Modal, Row } from 'antd'
 
 export const TelevisionBillPageWrapper = styled.div`
 `
@@ -25,7 +25,7 @@ export const TitleFunds = styled.div`
   padding: 8px;
   color: ${props => props.color || '#848788'};
   background: ${props => props.background || '#F6F6F6'};
-  margin-top: ${props => props.marginTop || 0};
+  margin-top: ${props => props.marginTop || '20px'};
   margin-bottom: ${props => props.marginBottom || '16px'};
   text-align: ${props => props.textAlign || 'left'};
 `
@@ -68,6 +68,24 @@ export const ModalCustom = styled(Modal)`
 
 export const ResultSearchForm = styled.div`
   margin-bottom: 20px;
+  .ant-radio-group {
+    width: 100%;
+  }
+  .ant-radio {
+    margin-right: 20px;
+  }
+`
+export const SearchInputPhoneNumber = styled(Input) `
+  width: 89%;
+  margin-right: 10px;
+  border-radius: 10px;
+  height: 60px;
+  line-height: 60px;
+`
+
+export const SearchImg = styled.img `
+  cursor: pointer;
+  height: 60px;
 `
 
 export const InputEnterTax = styled(Input)`
@@ -76,3 +94,10 @@ export const InputEnterTax = styled(Input)`
   height: 60px;
   line-height: 60px;
 `
+export const WhiteRoundedInfoSearchCustomer = styled.div`
+  background: #fff;
+  margin: ${props => props.margin || '0'};
+  display: ${props => props.display};
+`
+
+export const DescriptionsCustomForKPlus = styled(Descriptions)``

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Modal } from 'antd'
 
 export const ProviderWrapper = styled.div`
   // background: #fff;
@@ -24,5 +25,34 @@ export const ImgIconProvider = styled.div `
   border-radius: 50%;
 `
 
+
 export const ContentProvider = styled.div `
+`
+export const ModalCustom = styled(Modal)`
+  .ant-modal-header {
+    background: #EBF0FF;
+  }
+  .ant-btn:first-child {
+    display: none;
+  }
+  .ant-modal-body {
+    padding-bottom: 0px;
+  }
+  .ant-modal-body>div {
+    margin-top: 0 !important;
+  }
+  .ant-modal-footer {
+    display: flex;
+    justify-content: center;
+    border: none;
+    padding-bottom: 30px;
+  }
+`
+
+export const ResultSearchForm = styled.div`
+  margin: 20px 0 20px;
+  .ant-descriptions-item-content {
+    display: flex;
+    justify-content: flex-end;
+  }
 `

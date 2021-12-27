@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import {
-  AreaCreateCommand, CreateCommandButton, InputEnterTax,
+  AreaCreateCommand, AreaSearchCustomer, CreateCommandButton, InputEnterTax,
   ResultSearchForm, SearchImg, SearchInputPhoneNumber,
   ServiceRechargePageWrapper,
   TitleFunds, TitleInfoService,
@@ -11,79 +11,101 @@ import DefaultLayout from '../../layouts/DefaultLayout'
 import { Helmet } from 'react-helmet/es/Helmet'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA } from '../../utils/constant'
-import { toJS } from 'mobx'
 import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
-import { Col, Descriptions, Row } from 'antd'
+import { Col, Row } from 'antd'
 import DigitalWallet from '../../components/DigitalWallet'
 import LinkDirectedBank from '../../components/LinkDirectedBank/LinkDirectedBank'
 import LinkInternalBank from '../../components/LinkInternalBank/LinkInternalBank'
 import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/ModalCustomCommandForm'
 import { inject, observer } from 'mobx-react'
+import numberUtils from '../../utils/numberUtils'
+import DescriptionsCustom from '../../components/DescriptionsCustom'
 
 const ServiceRechargePage = props => {
 
 
   const { customerStore } = props
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true);
-  const [customerCode, setCustomerCode] = useState(null);
-  const [customer, setCustomer] = useState(null);
-  const [tax, setTax] = useState(0);
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [selectedItem, setSelectedItem] = useState(null)
+  const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true)
+  const [customerCode, setCustomerCode] = useState('')
+  const [customer, setCustomer] = useState(null)
+  const [tax, setTax] = useState('')
 
-  const [fields, setFields] = useState(null);
+  const [fieldsModal, setFieldsModal] = useState(null)
+  const [fieldsDescription, setFieldsDescription] = useState(null)
 
 
   const handleOnChange = (value) => {
-    setCustomerCode(value.target.value);
+    setCustomerCode(value.target.value)
   }
 
   const handleSearchCustomer = () => {
-    console.log(customerCode);
-    customerStore.getCustomerByCodeOrContract(customerCode)
-      .then(res => {
-        setCustomer(res);
-      })
+    if (customerCode === '') {
+      setCustomer(null)
+    } else {
+      customerStore.getCustomerByCodeOrContract(customerCode)
+        .then(res => {
+          console.log(res)
+          setCustomer(res)
+        })
+    }
   }
 
   const handleClickFunds = (value) => {
-    setSelectedItem(value);
+    setSelectedItem(value)
   }
 
   const handleCallbackHitBank = (value) => {
-    setSelectedItem(value);
+    setSelectedItem(value)
   }
 
   const handleEnterTax = (value) => {
-    setTax(value.target.value);
+    setTax(value.target.value)
   }
 
   const showModalConfirmDeal = () => {
     let arrField = {
-      "Nguồn tiền": selectedItem?.accountNumber,
-      "Nhà cung cấp": 'VETC',
-      "Mã khách hàng": customer?.customerCode,
-      "Tên khách hàng": customer?.customerName,
-      "Số tiền": tax,
-      "Phí giao dịch": '0đ',
-      "Tổng tiền": tax,
-    };
-    setFields(arrField);
-    setIsModalVisible(true);
+      'Nguồn tiền': selectedItem?.accountNumber,
+      'Nhà cung cấp': 'VETC',
+      'Mã khách hàng': customer?.customerCode,
+      'Tên khách hàng': customer?.customerName,
+      'Số tiền': numberUtils.thousandSeparator(tax) + 'đ',
+      'Phí giao dịch': '0đ',
+      'Tổng tiền': numberUtils.thousandSeparator(tax) + 'đ',
+    }
+    setFieldsModal(arrField)
+    setIsModalVisible(true)
   }
 
   const handleSetIsModalVisible = (value) => {
-    setIsModalVisible(value);
+    setIsModalVisible(value)
   }
 
-  useEffect(() => {
-    if (selectedItem)
-      setDisabledConfirmDeal(false);
-    else
-      setDisabledConfirmDeal(true);
+  const showDescriptions = () => {
 
-  }, [selectedItem]);
+    let arrField = {
+      'Nhà cung cấp': customer?.providerBy,
+      'Tên khách hàng': customer?.customerName,
+    }
+    setFieldsDescription(arrField)
+  }
+  useEffect(() => {
+    console.log(fieldsDescription)
+  }, [fieldsDescription])
+
+  useEffect(() => {
+    showDescriptions()
+  }, [customer])
+
+  useEffect(() => {
+    if (selectedItem && tax !== '' && !isNaN(+tax) && customer)
+      setDisabledConfirmDeal(false)
+    else
+      setDisabledConfirmDeal(true)
+
+  }, [selectedItem, tax, customer])
 
   return (
     <DefaultLayout>
@@ -99,21 +121,23 @@ const ServiceRechargePage = props => {
             </Col>
           </Row>
           <Row>
-            <Col span={6}></Col>
+            <Col span={6} />
             <Col span={12}>
               <WhiteRoundedInfoService margin={'0 0 16px 0'} padding={'16px'}>
-                <SearchInputPhoneNumber placeholder={"Nhập mã khách hàng/hợp đồng"} onChange={(value) => handleOnChange(value)} />
-                <SearchImg src={require('../../media/icons/search_cus.png')} alt={"search_cus"} onClick={handleSearchCustomer}/>
+                <AreaSearchCustomer>
+                  <SearchInputPhoneNumber placeholder={'Nhập mã khách hàng/hợp đồng'}
+                                          onChange={(value) => handleOnChange(value)} />
+                  <SearchImg src={require('../../media/icons/search_cus.png')} alt={'search_cus'}
+                             onClick={handleSearchCustomer} />
+                </AreaSearchCustomer>
                 <ResultSearchForm>
-                  <Descriptions bordered column={1}>
-                    <Descriptions.Item label="Nhà cung cấp" labelStyle={{width: "30%"}}>{customer?.providerBy}</Descriptions.Item>
-                    <Descriptions.Item label="Tên khách hàng">{customerStore.customer?.customerName}</Descriptions.Item>
-                  </Descriptions>
+                  <DescriptionsCustom
+                    fields={fieldsDescription} />
                 </ResultSearchForm>
-                <InputEnterTax placeholder={"Nhập số tiền"} onChange={handleEnterTax} />
+                <InputEnterTax placeholder={'Nhập số tiền'} onChange={handleEnterTax} />
               </WhiteRoundedInfoService>
             </Col>
-            <Col span={6}></Col>
+            <Col span={6} />
           </Row>
           <Row>
             <Col span={24}>
@@ -123,39 +147,39 @@ const ServiceRechargePage = props => {
               <Row>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'0 16px 0 0'}>
-                    <DigitalWallet selectedItem={selectedItem} setClickFunds={handleClickFunds}></DigitalWallet>
+                    <DigitalWallet selectedItem={selectedItem} setClickFunds={handleClickFunds} />
                   </WhiteRoundedBox>
                 </Col>
                 <Col span={24}>
                   <WhiteRoundedBox margin={'16px 16px 0 0'}>
-                    <LinkDirectedBank selectedItem={selectedItem} setClickFunds={handleClickFunds}></LinkDirectedBank>
+                    <LinkDirectedBank selectedItem={selectedItem} setClickFunds={handleClickFunds} />
                   </WhiteRoundedBox>
                 </Col>
               </Row>
             </Col>
             <Col span={18}>
               <WhiteRoundedBox padding={'16px 0'}>
-                <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds} callbackHitBank={handleCallbackHitBank}></LinkInternalBank>
+                <LinkInternalBank selectedItem={selectedItem} setClickFunds={handleClickFunds}
+                                  callbackHitBank={handleCallbackHitBank} />
               </WhiteRoundedBox>
             </Col>
           </Row>
           <AreaCreateCommand>
-            <CreateCommandButton type={disabledConfirmDeal ? 'default' : 'primary'} onClick={showModalConfirmDeal} disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
+            <CreateCommandButton type={disabledConfirmDeal ? 'default' : 'primary'} onClick={showModalConfirmDeal}
+                                 disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
           </AreaCreateCommand>
         </WhiteRoundedBox>
       </ServiceRechargePageWrapper>
       <ModalCustomCommandForm
-        title={"Xác nhận giao dịch"}
-        fields={fields}
+        title={'Xác nhận giao dịch'}
+        fields={fieldsModal}
         visible={isModalVisible}
-        setIsModalVisible={handleSetIsModalVisible}></ModalCustomCommandForm>
+        setIsModalVisible={handleSetIsModalVisible} />
     </DefaultLayout>
 
   )
 }
 
-ServiceRechargePage.propTypes = {
-
-}
+ServiceRechargePage.propTypes = {}
 
 export default inject('customerStore')(observer(ServiceRechargePage))
