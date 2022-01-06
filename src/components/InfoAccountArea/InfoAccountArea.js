@@ -15,11 +15,16 @@ import { inject, observer } from 'mobx-react'
 const InfoAccountArea = props => {
   const { callbackBankAccount, selectedAccount, accountWalletStore } = props
 
+  const handleSelectedBankAccount = (item) => {
+    if (callbackBankAccount)
+      callbackBankAccount(item)
+  }
+
   const menu = (
     <InfoAccountOverLayWrapper>
       {
         accountWalletStore.accountWallets.map(item => (
-          <InfoAccountOverLayItem key={item.id} onClick={() => callbackBankAccount(item)}>
+          <InfoAccountOverLayItem key={item.id} onClick={() => handleSelectedBankAccount(item)}>
             <InfoAccountDropdown selectedItem={selectedAccount} data={item} enableBorder={true} />
           </InfoAccountOverLayItem>
 
@@ -50,6 +55,7 @@ const InfoAccountArea = props => {
 InfoAccountArea.propTypes = {
   listLinkedCard: PropTypes.array,
   callbackBankAccount: PropTypes.func,
+  selectedAccount: PropTypes.any,
 }
 
 export default inject('accountWalletStore')(observer(InfoAccountArea))

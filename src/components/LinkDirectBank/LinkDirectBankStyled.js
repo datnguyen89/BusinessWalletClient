@@ -8,7 +8,7 @@ export const IconStatusLabelText = styled.span`
   font-size: ${props => props.fontSize};     
   margin-left: 4px;
 `
-export const AreaBoundDirectBank = styled(Row) `
+export const AreaBoundDirectBank = styled(Row)`
   img {
     width: 100%;
   }
@@ -23,7 +23,7 @@ export const ImgBank = styled.img`
 `
 
 export const WrapperImage = styled.div`
-  padding: 10px 10px 3px 0;
+  padding: 8px 8px 4px 0;
   display: flex;
   justify-content: center;
   align-items: center;

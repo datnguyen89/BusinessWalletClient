@@ -22,7 +22,7 @@ export const LinkedCardNumber = styled.div`
   text-align: left;
 `
 
-export const AreaBoundInternalBank = styled(Row) `
+export const AreaBoundInternalBank = styled(Row)`
   img {
     width: 100%;
   }
@@ -36,12 +36,12 @@ export const ImgBank = styled.img`
 `
 
 export const WrapperImage = styled.div`
-  padding: 10px 10px 3px 0;
+  padding: 8px 8px 4px 0;
   display: flex;
   justify-content: center;
   align-items: center;
 `
-export const LinkInternalBankTitle = styled.div `
+export const LinkInternalBankTitle = styled.div`
   text-align: left;
   color: #979797;
   font-weight: 400;

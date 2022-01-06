@@ -1,148 +1,153 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import { inject, observer } from 'mobx-react'
 import DefaultLayout from '../../layouts/DefaultLayout'
-import { BREADCRUMB_DATA } from '../../utils/constant'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
-import { Input, Row, Col, Button, Form } from 'antd'
-import WrapperLabel from '../../components/WrapperLabel'
-import TransInfo from '../../components/TransInfo'
-import TransSourceFund from '../../components/TransSourceFund'
-import TransActionFooter from '../../components/TransActionFooter'
+import { BREADCRUMB_DATA } from '../../utils/constant'
+import { Helmet } from 'react-helmet/es/Helmet'
+import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
+import { Col, Row } from 'antd'
+import SuggestPriceList from '../../components/SuggestAmountMoney'
+import LinkDirectedBank from '../../components/LinkDirectedBank/LinkDirectedBank'
+import LinkInternalBank from '../../components/LinkInternalBank/LinkInternalBank'
+import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/ModalCustomCommandForm'
+import { inject, observer } from 'mobx-react'
+import InfoAccountArea from '../../components/InfoAccountArea'
 
 import {
-  DepositWrapper,
-  WrapperDetail,
+  AreaCreateCommand, CreateCommandButton,
+  InputCount,
   WithdrawPageWrapper,
+  TitleFunds, TitleInfoService,
+  WhiteRoundedInfoLink,
 } from './WithdrawPageStyled'
-import { Helmet } from 'react-helmet/es/Helmet'
+import numberUtils from '../../utils/numberUtils'
 
-const DepositPage = () => {
-  const [isConfirm, setIsConfirm] = useState(false)
-  const [form] = Form.useForm()
+const DepositPage = props => {
+  const { accountWalletStore } = props
 
-  const handleBtnBackClick = (e) => {
-    setIsConfirm(false)
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [selectedFund, setSelectedFund] = useState(null)
+  const [selectedBankAccount, setSelectedBankAccount] = useState(null)
+  const [depositAmount, setDepositAmount] = useState(0)
+  const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true)
+
+  const [fields, setFields] = useState(null)
+
+  const handleClickFunds = (value) => {
+    setSelectedFund(value)
   }
 
-  const handleSubmit = (e) => {
-    setIsConfirm(true)
+  const handleCallbackHitBank = (value) => {
+    setSelectedFund(value)
   }
 
-  const checkAmount = (_, value) => {
-    console.log('amount:', value)
-    if (value > 0) {
-      return Promise.resolve()
+  const handleSelectedBankAccount = (value) => {
+    console.log('handleSelectedWalletAccount', value)
+    setSelectedBankAccount(value)
+  }
+
+  const handleSelectedSuggestAmountMoney = (value) => {
+    setDepositAmount(value)
+  }
+
+  const showModalConfirmDeal = () => {
+    let arrField = {
+      'Tài khoản rút': selectedFund?.accountNumber,
+      'Ngân hàng nhận': selectedFund?.accountNumber,
+      'Tài khoản ví nhận': '12345678',
+      'Số tiền': '100.000đ',
+      'Phí giao dịch': '0đ',
+      'Tổng tiền': numberUtils.thousandSeparator(depositAmount) + 'đ',
     }
-
-    return Promise.reject(new Error('Số tiền phải lớn hơn 0!'))
+    setFields(arrField)
+    setIsModalVisible(true)
   }
 
-  let transInfoData = [{
-    label: 'Tài khoản chuyển',
-    value: 'Sacombank | 123123********4012',
-  }, {
-    label: 'Tài khoản nhận',
-    value: '000123435',
-  }, {
-    label: 'Tên tài khoản',
-    value: 'Nguyen Van B',
-  }, {
-    label: 'Số tiền',
-    value: '100.000.000 đ',
-  }, {
-    label: 'Nội dung chuyển',
-    value: 'Chuyen test test',
-  }, {
-    label: 'Phí giao dịch',
-    value: '5.000 đ',
-  }, {
-    label: 'Tổng tiền',
-    value: '100.005.000 đ',
-  }]
+  const hanledDepositValueChanged = (value) => {
+    console.log('hanledDepositValueChanged', value)
+    setDepositAmount(value)
+  }
 
-  const title = 'Thông tin giao dịch'
+  const handleSetIsModalVisible = (value) => {
+    setIsModalVisible(value)
+  }
 
-  // Get deposit data
   useEffect(() => {
+    if (depositAmount > 0 && selectedFund && selectedBankAccount)
+      setDisabledConfirmDeal(false)
+    else
+      setDisabledConfirmDeal(true)
 
-  })
+  }, [selectedFund, depositAmount, selectedBankAccount])
+
+  useEffect(() => {
+    accountWalletStore.getAccountWallets();
+  }, []);
 
   return (
     <DefaultLayout>
       <Helmet>
         <title>Rút tiền</title>
       </Helmet>
-      <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.WITHDRAW} />
       <WithdrawPageWrapper>
-        <Form
-          name='basic'
-          labelCol={{ span: 6 }}
-          wrapperCol={{ span: 18 }}
-          initialValues={{ amount: 0 }}
-          labelAlign='left'
-          form={form}
-          onFinish={handleSubmit}
-        >
-          <Row align={'center'}>
-            <Col xxl={12} xl={12} lg={16} md={24} sm={24} xs={24}>
-              <DepositWrapper>
-                <WrapperLabel value='Thông tin chuyển tiền' />
-                <WrapperDetail>
-                  <Form.Item
-                    label='Tài khoản chuyển'
-                  >
-                    <Row>
-                      <Col span={12}>
-                        452834901233
-                      </Col>
-                      <Col span={12} style={{ fontWeight: 600, textAlign: 'right' }}>
-                        Số dư: 100.500.000 đ
-                      </Col>
-                    </Row>
-                  </Form.Item>
-
-                  <Form.Item
-                    label='Tài khoản'
-                    name='toAccount'
-                  >
-                    <Input disabled={isConfirm} />
-                  </Form.Item>
-                  <Form.Item
-                    label='Nhập số tiền'
-                    name='amount'
-                    rules={[{ validator: checkAmount }]}
-                  >
-                    <Input disabled={isConfirm} />
-                  </Form.Item>
-                  <Form.Item
-                    label='Nội dung'
-                    name='note'
-                  >
-                    <Input disabled={isConfirm} />
-                  </Form.Item>
-                </WrapperDetail>
-              </DepositWrapper>
+        <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.WITHDRAW} />
+        <WhiteRoundedBox margin={'0 16px 16px 16px'}>
+          <Row>
+            <Col span={24}>
+              <TitleInfoService>Thông tin dịch vụ</TitleInfoService>
             </Col>
-
-            {
-              isConfirm &&
-              (<Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24}>
-                <TransInfo data={transInfoData} title={title} />
-              </Col>)
-            }
           </Row>
+          <Row>
+            <Col span={6} />
+            <Col span={12}>
+              <WhiteRoundedInfoLink margin={'0 0 16px 0'}>
+                <InfoAccountArea
+                  callbackBankAccount={handleSelectedBankAccount}
+                  data={[]}
+                  selectedAccount={selectedBankAccount}
+                />
+              </WhiteRoundedInfoLink>
 
-          <TransActionFooter
-            isConfirm={isConfirm}
-            backClickCallback={handleBtnBackClick}
-          />
-        </Form>
+              <InputCount
+                min={1}
+                placeholder={'Nhập số tiền'}
+                onChange={hanledDepositValueChanged}
+                value={depositAmount} />
+
+              <SuggestPriceList amountMoney={depositAmount} selectedSuggestAmountMoneyCallback={handleSelectedSuggestAmountMoney} />
+            </Col>
+            <Col span={6} />
+          </Row>
+          <Row>
+            <Col span={24}>
+              <TitleFunds>Nguồn tiền</TitleFunds>
+            </Col>
+            <Col span={6}>
+              <WhiteRoundedBox margin={'0 16px 0 0'}>
+                <LinkDirectedBank selectedItem={selectedFund} setClickFunds={handleClickFunds} />
+              </WhiteRoundedBox>
+            </Col>
+            <Col span={18}>
+              <WhiteRoundedBox padding={'16px 0'}>
+                <LinkInternalBank selectedItem={selectedFund} setClickFunds={handleClickFunds}
+                  callbackHitBank={handleCallbackHitBank} />
+              </WhiteRoundedBox>
+            </Col>
+          </Row>
+          <AreaCreateCommand>
+            <CreateCommandButton type={disabledConfirmDeal ? 'default' : 'primary'} onClick={showModalConfirmDeal}
+              disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
+          </AreaCreateCommand>
+        </WhiteRoundedBox>
       </WithdrawPageWrapper>
+      <ModalCustomCommandForm
+        title={'Xác nhận rút tiền'}
+        fields={fields}
+        visible={isModalVisible}
+        setIsModalVisible={handleSetIsModalVisible} />
     </DefaultLayout>
   )
 }
 
 DepositPage.propTypes = {}
 
-export default inject('commonStore')(observer(DepositPage))
+export default inject('providerStore', 'accountWalletStore')(observer(DepositPage))
