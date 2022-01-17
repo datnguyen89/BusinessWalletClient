@@ -113,7 +113,19 @@ const validator = {
       callback()
     }
   },
-
+  validateLoginPassword: (rule, value, callback) => {
+    const regex = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+    let inputValue = value?.trim()
+    if (!inputValue) {
+      callback('Vui lòng nhập mật khẩu')
+    } else if (inputValue.length < 8) {
+      callback('Mật khẩu cần có độ dài tối thiểu 8 ký tự')
+    } else if (!regex.test(inputValue)) {
+      callback('Mật khẩu phải bao gồm chữ không dấu, số, ký tự đặc biệt')
+    } else {
+      callback()
+    }
+  },
   validatePhoneNumber: (rule, value, callback) => {
     // const regex = /^(0|\+84|84|)(\s|\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\d)(\s|\.)?(\d{3})(\s|\.)?(\d{3})$/g
     const regex = /(84|\+84|0[35789])+([0-9]{8,9})\b/g

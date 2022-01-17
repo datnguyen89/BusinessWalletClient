@@ -9,10 +9,14 @@ import { Link, useHistory } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
 import * as forge from 'node-forge'
 import { PUBLIC_KEY } from '../../utils/constant'
+import { StringUtils } from '@azure/msal-browser'
+import stringUtils from '../../utils/stringUtils'
+import validator from '../../validator'
 
 const LoginPage = props => {
   const { commonStore, authenticationStore } = props
   const history = useHistory()
+  const [formLogin] = Form.useForm()
   const [visibleOtp, setVisibleOtp] = useState(false)
 
   const onFinish = (formCollection) => {
@@ -35,6 +39,15 @@ const LoginPage = props => {
     }
   }
 
+  const handleChangeUsername = (e) => {
+    let inputText = e.currentTarget.value.trim().replaceAll(' ','');
+    if (inputText.length === 0) return
+    inputText = stringUtils.removeVietnameseCharMark(inputText)
+    formLogin.setFieldsValue({
+      username: inputText
+    })
+  }
+
   return (
     <AuthLayout>
       <LoginPageWrapper>
@@ -44,6 +57,7 @@ const LoginPage = props => {
             <LoginFormTitle>ĐĂNG NHẬP MOBIFONE PAY DOANH NGHIỆP</LoginFormTitle>
           </TitleWrapper>
           <Form
+            form={formLogin}
             name='basic'
             labelCol={{ span: 0 }}
             wrapperCol={{ span: 24 }}
@@ -56,13 +70,13 @@ const LoginPage = props => {
               name='username'
               rules={[{ required: true, message: 'Vui lòng nhập tên đăng nhập' }]}
             >
-              <Input size={'large'} className={'auth-input'} placeholder={'Tên đăng nhập'} />
+              <Input size={'large'} className={'auth-input'} onChange={handleChangeUsername} placeholder={'Tên đăng nhập'} />
             </Form.Item>
 
             <Form.Item
               label=''
               name='password'
-              rules={[{ required: true, message: 'Vui lòng nhập mật khẩu' }]}
+              rules={[{ validator: validator.validateLoginPassword }]}
             >
               <Input.Password size={'large'} className={'auth-input'} placeholder={'Mật khẩu'} />
             </Form.Item>
