@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Col, Row } from 'antd'
 
 export const ProviderWrapper = styled(Row)`
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
 `
 
 export const SuggestAmountMoneyArea = styled.div`
