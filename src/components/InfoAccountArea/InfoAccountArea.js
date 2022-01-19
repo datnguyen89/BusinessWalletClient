@@ -43,7 +43,7 @@ const InfoAccountArea = props => {
           placement='bottomRight'
           overlayClassName={'dropdown-style-info-acount-class'}
         >
-          <a className='ant-dropdown-link' onClick={e => e.preventDefault()}>
+          <a href='_' className='ant-dropdown-link' onClick={e => e.preventDefault()}>
             Đổi tài khoản <DownOutlined />
           </a>
         </Dropdown>

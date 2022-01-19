@@ -7,12 +7,13 @@ import numberUtils from '../../utils/numberUtils'
 import { Col } from 'antd'
 
 const GenerateRandomSuggestPrice = (amount) => {
-  if (!amount)
+  console.log('amount', amount)
+  if (!amount || typeof amount !== 'string')
     return [
-      '10.000',
-      '20.000',
-      '50.000',
-      '100.000',
+      10000,
+      20000,
+      50000,
+      100000,
     ]
 
   amount = amount + ''
@@ -29,20 +30,21 @@ const SuggestAmountMoney = props => {
   const { amountMoney, selectedSuggestAmountMoneyCallback } = props
 
   const handleSelectedSuggestAmountMoney = (value) => {
+    console.log('value', value)
     if (selectedSuggestAmountMoneyCallback) {
       selectedSuggestAmountMoneyCallback(value)
     }
   }
 
-  let lstSuggestPrices = GenerateRandomSuggestPrice(amountMoney)
+  let lstSuggestPrices = GenerateRandomSuggestPrice(amountMoney ?? 0)
 
   return (
     <ProviderWrapper gutter={16} >
       {
         lstSuggestPrices.map(item =>
-          <Col className="gutter-row" span={6} key={item}>
+          <Col className='gutter-row' span={6} key={item}>
             <SuggestAmountMoneyArea
-              className="gutter-row"
+              className='gutter-row'
               span={6}
               onClick={() => handleSelectedSuggestAmountMoney(item)}
             >
@@ -57,7 +59,7 @@ const SuggestAmountMoney = props => {
 
 SuggestAmountMoney.propTypes = {
   selectedSuggestAmountMoneyCallback: PropTypes.func,
-  amount: PropTypes.number
+  amountMoney: PropTypes.number
 }
 
 export default SuggestAmountMoney
