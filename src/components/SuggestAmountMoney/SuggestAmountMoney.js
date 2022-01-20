@@ -43,11 +43,7 @@ const SuggestAmountMoney = props => {
       {
         lstSuggestPrices.map(item =>
           <Col className='gutter-row' span={6} key={item}>
-            <SuggestAmountMoneyArea
-              className='gutter-row'
-              span={6}
-              onClick={() => handleSelectedSuggestAmountMoney(item)}
-            >
+            <SuggestAmountMoneyArea onClick={() => handleSelectedSuggestAmountMoney(item)} >
               {numberUtils.thousandSeparator(item)}<span>đ</span>
             </SuggestAmountMoneyArea>
           </Col>

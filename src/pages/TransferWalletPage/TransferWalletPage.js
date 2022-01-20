@@ -121,7 +121,7 @@ const DepositPage = props => {
         <title>Chuyển tiền</title>
       </Helmet>
       <DepositPageWrapper>
-        <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.DEPOSIT} />
+        <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TRANSFER} />
         <WhiteRoundedBox margin={'0 16px 16px 16px'}>
           <Row>
             <Col span={24}>

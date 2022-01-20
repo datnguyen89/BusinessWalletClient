@@ -13,6 +13,9 @@ import { ReactComponent as TransactionIcon } from './media/icons/transaction-ico
 import { ReactComponent as PolicyIcon } from './media/icons/policy-icon.svg'
 import { ReactComponent as SupportIcon } from './media/icons/support-icon.svg'
 import { ReactComponent as PaymentIcon } from './media/icons/mobile-payment.svg'
+import { ReactComponent as DownloadFileIcon } from './media/icons/dowload-file-icon.svg'
+import { ReactComponent as UploadFileIcon } from './media/icons/upload-file-icon.svg'
+import { ReactComponent as CheckFileIcon } from './media/icons/check-file-icon.svg'
 
 const ICONS = {
   NOTIFY_BELL: require('./media/icons/notify-bell.svg'),
@@ -78,5 +81,8 @@ const ICONS = {
   TRANSACTION_WAITING: require('./media/icons/transaction-waiting.svg'),
   TRASH_RED: require('./media/icons/trash-icon.svg'),
   EDIT_BLUE: require('./media/icons/edit-icon.svg'),
+  DOWNLOAD_FILE_ICON: <DownloadFileIcon />,
+  UPLOAD_FILE_ICON: <UploadFileIcon />,
+  CHECK_FILE_ICON: <CheckFileIcon />
 }
 export default ICONS
