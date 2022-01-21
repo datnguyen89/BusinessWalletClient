@@ -11,8 +11,8 @@ import LinkInternalBank from '../../components/LinkInternalBank/LinkInternalBank
 import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/ModalCustomCommandForm'
 import { inject, observer } from 'mobx-react'
 import InfoAccountArea from '../../components/InfoAccountArea'
-import { Menu, Dropdown, Button, message, Space, Tooltip, Table } from 'antd';
-import { DownOutlined, ExportOutlined } from '@ant-design/icons';
+import { Menu, Dropdown, Button, message, Space, Tooltip, Table, Upload } from 'antd';
+import { DownOutlined, ExportOutlined, InboxOutlined } from '@ant-design/icons';
 import ICONS from '../../icons'
 
 import {
@@ -23,7 +23,6 @@ import {
   TitleInfoService,
   WhiteRoundedInfoLink,
   ButtonDropDown,
-  TextAreaDetail,
   ButtonDownload,
   ButtonUpload,
   ButtonCheck
@@ -44,15 +43,6 @@ const DepositPage = props => {
   const handleSelectedBankAccount = (value) => {
     console.log('handleSelectedWalletAccount', value)
     setSelectedBankAccount(value)
-  }
-
-  const handleSelectedSuggestAmountMoney = (value) => {
-    console.log('handleSelectedSuggestAmountMoney', value)
-
-    form.setFieldsValue({
-      transferAmount: value,
-    });
-    // setTransferAmount(value)
   }
 
   const lstReceiveTypes = [
@@ -76,10 +66,6 @@ const DepositPage = props => {
     setIsModalVisible(true)
   }
 
-  const hanledDepositValueChanged = (e) => {
-    setTransferAmount(e.target.value)
-  }
-
   const handleSetIsModalVisible = (value) => {
     setIsModalVisible(value)
   }
@@ -87,7 +73,6 @@ const DepositPage = props => {
   const onFormFinish = (value) => {
     console.log('onFormFinish', value)
   }
-
 
   useEffect(() => {
     if (transferAmount > 0 && selectedBankAccount)
@@ -141,6 +126,7 @@ const DepositPage = props => {
       dataIndex: 'note',
     },
   ];
+
   const data = [
     {
       stt: '1',
@@ -172,11 +158,7 @@ const DepositPage = props => {
       <DepositPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TRANSFER_MULTIPLE} />
         <WhiteRoundedBox margin={'0 16px 16px 16px'}>
-          <Row>
-            <Col span={24}>
-              <TitleInfoService>Thông tin chuyển tiền</TitleInfoService>
-            </Col>
-          </Row>
+          <TitleInfoService>Thông tin chuyển tiền</TitleInfoService>
 
           <Form
             form={form}
@@ -225,7 +207,13 @@ const DepositPage = props => {
                       </ButtonDownload>
                     </Col>
                     <Col className='gutter-row' span={16} >
-                      <ButtonUpload>
+                      {/* <ButtonUpload>
+                        {ICONS.UPLOAD_FILE_ICON}
+                        <div>Update file danh sách</div>
+                        <div>Chọn file hoặc kéo thả vào đây</div>
+
+                      </ButtonUpload> */}
+                      <ButtonUpload name="files" action="/upload.do">
                         {ICONS.UPLOAD_FILE_ICON}
                         <div>Update file danh sách</div>
                         <div>Chọn file hoặc kéo thả vào đây</div>
@@ -248,6 +236,13 @@ const DepositPage = props => {
                 disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
             </AreaCreateCommand>
           </Form>
+
+          <TitleInfoService>
+            <Row justify='space-between' align='middle'>
+              <Col>Số lượng: <a href='_'>3</a> &nbsp; Tổng tiền <a href='_'>500.000.000đ</a></Col>
+              <Col><a href='_'>Xuất file</a></Col>
+            </Row>
+          </TitleInfoService>
 
           <Table columns={columns} dataSource={data} />
 

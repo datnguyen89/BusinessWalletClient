@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button, Input, Modal, Row } from 'antd'
+import { Button, Input, Modal, Row, Upload } from 'antd'
 
 const { TextArea } = Input;
 
@@ -98,10 +98,8 @@ export const ButtonDownload = styled.div`
   }
 
   cursor: pointer;
-  padding: 16px;
   border: 1px solid #E0E0E0;
   border-radius: 8px;
-  text-align: center;
   color: #0465B0;
   height: 150px;
 
@@ -115,21 +113,22 @@ export const ButtonDownload = styled.div`
   flex-direction: column;
 `
 
-export const ButtonUpload = styled.div`
+export const ButtonUpload = styled(Upload.Dragger)`
   &:hover {
     border-color: #0465B0 !important;
   }
 
   cursor: pointer;
-  padding: 16px;
-  border: 1px solid #E0E0E0;
+  border: 1px solid #E0E0E0 !impotant;
   border-radius: 8px;
-  text-align: center;
-  color: #0465B0;
   height: 150px;
 
   path {
     fill: #0465B0
+  }
+
+  div {
+    color: #0465B0
   }
 `
 
@@ -139,10 +138,8 @@ export const ButtonCheck = styled.div`
   }
 
   cursor: pointer;
-  padding: 16px;
   border: 1px solid #E0E0E0;
   border-radius: 8px;
-  text-align: center;
   color: #FFF;
   background: #0465B0;
   height: 150px;
