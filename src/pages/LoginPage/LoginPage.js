@@ -9,7 +9,6 @@ import { Link, useHistory } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
 import * as forge from 'node-forge'
 import { PAGES, PUBLIC_KEY } from '../../utils/constant'
-import { StringUtils } from '@azure/msal-browser'
 import stringUtils from '../../utils/stringUtils'
 import validator from '../../validator'
 
