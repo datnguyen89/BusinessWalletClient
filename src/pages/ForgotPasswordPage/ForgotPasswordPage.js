@@ -86,7 +86,7 @@ const ForgotPasswordPage = props => {
                 name='companyAccount'
                 rules={[{ required: true, message: 'Vui lòng nhập số tài khoản doanh nghiệp' }]}
               >
-                <Input size={'large'} className={'auth-input'} placeholder={'Số tài khoản doanh nghiệp'} />
+                <Input className={'auth-input'} placeholder={'Số tài khoản doanh nghiệp'} />
               </Form.Item>
 
               <Form.Item
@@ -94,7 +94,7 @@ const ForgotPasswordPage = props => {
                 name='username'
                 rules={[{ required: true, message: 'Vui lòng nhập tên đăng nhập' }]}
               >
-                <Input size={'large'} className={'auth-input'} placeholder={'Tên đăng nhập'} />
+                <Input className={'auth-input'} placeholder={'Tên đăng nhập'} />
               </Form.Item>
 
               <Form.Item
@@ -102,7 +102,7 @@ const ForgotPasswordPage = props => {
                 name='passport'
                 rules={[{ required: true, message: 'Vui lòng nhập số CMND/CCCD/Hộ Chiếu' }]}
               >
-                <Input size={'large'} className={'auth-input'} placeholder={'Số CMND/CCCD/Hộ Chiếu'} />
+                <Input className={'auth-input'} placeholder={'Số CMND/CCCD/Hộ Chiếu'} />
               </Form.Item>
 
               <Form.Item
@@ -110,7 +110,7 @@ const ForgotPasswordPage = props => {
                 name='phoneNumber'
                 rules={[{ required: true, message: 'Vui lòng nhập số điện thoại User' }]}
               >
-                <Input size={'large'} className={'auth-input'} placeholder={'Số điện thoại User'} />
+                <Input className={'auth-input'} placeholder={'Số điện thoại User'} />
               </Form.Item>
               <Form.Item>
                 <InfoLabel>* Vui lòng nhập đầy đủ thông tin để lấy lại mật khẩu</InfoLabel>
@@ -119,12 +119,12 @@ const ForgotPasswordPage = props => {
               <Form.Item>
                 <Row align={'middle'} justify={'space-between'}>
                   <Col span={11}>
-                    <Button type='default' size={'large'} block onClick={handleClickBackLogin}>
+                    <Button type='default' block onClick={handleClickBackLogin}>
                       Về đăng nhập
                     </Button>
                   </Col>
                   <Col span={11}>
-                    <Button type='primary' htmlType='submit' size={'large'} block>
+                    <Button type='primary' htmlType='submit' block>
                       Tiếp theo
                     </Button>
                   </Col>
@@ -153,7 +153,7 @@ const ForgotPasswordPage = props => {
                 name='password'
                 rules={[{ required: true, message: 'Vui lòng nhập mật khẩu mới' }]}
               >
-                <Input.Password size={'large'} className={'auth-input'} placeholder={'Mật khẩu mới'} />
+                <Input.Password className={'auth-input'} placeholder={'Mật khẩu mới'} />
               </Form.Item>
               <Form.Item
                 label=''
@@ -171,17 +171,17 @@ const ForgotPasswordPage = props => {
                   }),
                 ]}
               >
-                <Input.Password size={'large'} className={'auth-input'} placeholder={'Xác nhận mật khẩu mới'} />
+                <Input.Password className={'auth-input'} placeholder={'Xác nhận mật khẩu mới'} />
               </Form.Item>
               <Form.Item>
                 <Row align={'middle'} justify={'space-between'}>
                   <Col span={11}>
-                    <Button type='default' size={'large'} block onClick={handleClickBackVerify}>
+                    <Button type='default' block onClick={handleClickBackVerify}>
                       Về bước trước
                     </Button>
                   </Col>
                   <Col span={11}>
-                    <Button type='primary' htmlType='submit' size={'large'} block>
+                    <Button type='primary' htmlType='submit' block>
                       Tiếp theo
                     </Button>
                   </Col>

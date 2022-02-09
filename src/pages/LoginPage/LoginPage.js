@@ -8,7 +8,7 @@ import { LoginFormTitle, LoginPageWrapper, TitleWrapper } from './LoginPageStyle
 import { Link, useHistory } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
 import * as forge from 'node-forge'
-import { PUBLIC_KEY } from '../../utils/constant'
+import { PAGES, PUBLIC_KEY } from '../../utils/constant'
 import { StringUtils } from '@azure/msal-browser'
 import stringUtils from '../../utils/stringUtils'
 import validator from '../../validator'
@@ -70,7 +70,7 @@ const LoginPage = props => {
               name='username'
               rules={[{ required: true, message: 'Vui lòng nhập tên đăng nhập' }]}
             >
-              <Input size={'large'} className={'auth-input'} onChange={handleChangeUsername} placeholder={'Tên đăng nhập'} />
+              <Input className={'auth-input'} onChange={handleChangeUsername} placeholder={'Tên đăng nhập'} />
             </Form.Item>
 
             <Form.Item
@@ -78,7 +78,7 @@ const LoginPage = props => {
               name='password'
               rules={[{ validator: validator.validateLoginPassword }]}
             >
-              <Input.Password size={'large'} className={'auth-input'} placeholder={'Mật khẩu'} />
+              <Input.Password className={'auth-input'} placeholder={'Mật khẩu'} />
             </Form.Item>
 
             <Form.Item>
@@ -87,7 +87,7 @@ const LoginPage = props => {
                   <Link to={'/forgot-password'}>Quên mật khẩu</Link>
                 </Col>
                 <Col span={12}>
-                  <Button type='primary' htmlType='submit' size={'large'} block>
+                  <Button type='primary' htmlType='submit' block>
                     Đăng nhập
                   </Button>
                 </Col>
