@@ -7,8 +7,7 @@ import numberUtils from '../../utils/numberUtils'
 import { Col } from 'antd'
 
 const GenerateRandomSuggestPrice = (amount) => {
-  console.log('amount', amount)
-  if (!amount || typeof amount !== 'string')
+  if (!amount || isNaN(amount))
     return [
       10000,
       20000,
@@ -30,7 +29,6 @@ const SuggestAmountMoney = props => {
   const { amountMoney, selectedSuggestAmountMoneyCallback } = props
 
   const handleSelectedSuggestAmountMoney = (value) => {
-    console.log('value', value)
     if (selectedSuggestAmountMoneyCallback) {
       selectedSuggestAmountMoneyCallback(value)
     }

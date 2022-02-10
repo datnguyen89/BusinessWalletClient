@@ -27,7 +27,7 @@ const DepositPage = props => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [selectedFund, setSelectedFund] = useState(null)
   const [selectedBankAccount, setSelectedBankAccount] = useState(null)
-  const [depositAmount, setDepositAmount] = useState(0)
+  const [depositAmount, setDepositAmount] = useState(null)
   const [disabledConfirmDeal, setDisabledConfirmDeal] = useState(true)
 
   const [fields, setFields] = useState(null)
@@ -111,7 +111,10 @@ const DepositPage = props => {
                 min={1}
                 placeholder={'Nhập số tiền'}
                 onChange={hanledDepositValueChanged}
-                value={depositAmount} />
+                value={depositAmount}
+                step="10000"
+                formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+              />
 
               <SuggestPriceList amountMoney={depositAmount} selectedSuggestAmountMoneyCallback={handleSelectedSuggestAmountMoney} />
             </Col>
@@ -119,7 +122,7 @@ const DepositPage = props => {
           </Row>
           <Row>
             <Col span={24}>
-              <TitleFunds>Nguồn tiền</TitleFunds>
+              <TitleFunds marginTop={'16px'}>Nguồn tiền</TitleFunds>
             </Col>
             <Col span={6}>
               <WhiteRoundedBox margin={'0 16px 0 0'}>
