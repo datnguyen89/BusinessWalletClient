@@ -207,12 +207,6 @@ const DepositPage = props => {
                       </ButtonDownload>
                     </Col>
                     <Col className='gutter-row' span={16} >
-                      {/* <ButtonUpload>
-                        {ICONS.UPLOAD_FILE_ICON}
-                        <div>Update file danh sách</div>
-                        <div>Chọn file hoặc kéo thả vào đây</div>
-
-                      </ButtonUpload> */}
                       <ButtonUpload name="files" action="/upload.do">
                         {ICONS.UPLOAD_FILE_ICON}
                         <div>Update file danh sách</div>

@@ -6,13 +6,11 @@ import { Helmet } from 'react-helmet/es/Helmet'
 import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
 import { Col, Row, Form } from 'antd'
 import SuggestAmountMoney from '../../components/SuggestAmountMoney'
-import LinkDirectedBank from '../../components/LinkDirectedBank/LinkDirectedBank'
-import LinkInternalBank from '../../components/LinkInternalBank/LinkInternalBank'
 import ModalCustomCommandForm from '../../components/ModalCustomCommandForm/ModalCustomCommandForm'
 import { inject, observer } from 'mobx-react'
 import InfoAccountArea from '../../components/InfoAccountArea'
-import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
+import { Menu, Dropdown, InputNumber } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 import {
   AreaCreateCommand,
@@ -25,6 +23,7 @@ import {
   TextAreaDetail
 } from './TransferWalletPageStyled'
 import numberUtils from '../../utils/numberUtils'
+import { InputCount } from '../DepositPage/DepositPageStyled'
 
 const DepositPage = props => {
   const { accountWalletStore } = props
@@ -73,7 +72,7 @@ const DepositPage = props => {
   }
 
   const hanledDepositValueChanged = (e) => {
-    setTransferAmount(e.target.value)
+    setTransferAmount(e?.target?.value)
   }
 
   const handleSetIsModalVisible = (value) => {
@@ -176,12 +175,12 @@ const DepositPage = props => {
                 <Form.Item
                   name='transferAmount'
                 >
-                  <InputDetail
+                  <InputCount
                     min={1}
                     placeholder={'Nhập số tiền'}
                     onChange={hanledDepositValueChanged}
-                  // value={transferAmount}
-
+                    step="10000"
+                    formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
                   />
                 </Form.Item>
 
