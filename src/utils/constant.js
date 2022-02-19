@@ -168,13 +168,13 @@ export const PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
     U9rPLFzN4YNrCnEsSezVw/W1FKVS8J/Xx4HSSg7AyVwniz8eHi0e3a8VzFg+H09I
     5wK+w39sjDYfAdnJUkr6PjtSbN4/Sg/NMkKB2Ngn8oj7LCfe/7RNqIdiS+dQuSFg
     eQIDAQAB
-    -----END PUBLIC KEY-----`;
+    -----END PUBLIC KEY-----`
 
 export const TRANSACTION_STATUS = {
   WAITING: 1,
   APPROVED: 2,
   REJECTED: 3,
-  CONFIRMED:4,
+  CONFIRMED: 4,
   ALL: 99,
 }
 export const USER_PROCESS_STATUS = {
@@ -310,7 +310,7 @@ export const BREADCRUMB_DATA = {
     { ID: 63, LABEL: 'Chính sách', PATH: null },
   ],
   ADD_LINK: [
-    { ID: 64,  LABEL: 'Trang chủ', PATH: PAGES.HOME.PATH },
+    { ID: 64, LABEL: 'Trang chủ', PATH: PAGES.HOME.PATH },
     { ID: 65, LABEL: 'Thêm liên kết', PATH: null },
   ],
 }
