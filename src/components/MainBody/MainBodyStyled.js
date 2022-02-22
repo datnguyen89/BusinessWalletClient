@@ -6,4 +6,5 @@ export const MainBodyWrapper = styled.section`
   margin-left: ${props => props.marginLeft}px;
   padding-bottom: 64px;
   padding-top: 56px;
+  min-height: 100vh;
 `

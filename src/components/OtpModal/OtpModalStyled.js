@@ -17,10 +17,7 @@ export const OtpModalWrapper = styled(Modal)`
     padding: 16px;
   }
 
-  .ant-modal-content {
-    border-radius: 10px;
-    overflow: hidden;
-  }
+  
 `
 export const OtpDescription = styled.div`
   text-align: center;

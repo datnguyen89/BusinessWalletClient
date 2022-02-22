@@ -15,8 +15,8 @@ export const UserInfoBoxHeader = styled.div`
   align-items: center;
   padding: 8px 16px;
   background: linear-gradient(270deg, #6634E0 -8.83%, #0465B0 74.3%);
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 `
 export const NotLinkedCardBox = styled.div`
   text-align: center;

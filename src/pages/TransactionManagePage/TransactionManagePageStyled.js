@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 
 export const TransactionManagePageWrapper = styled.div`
-  min-height: 100vh;
 `
 export const TransactionManagerBody = styled.div`
   margin: 16px;
   padding: 16px;
   background: #fff;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 4px;
   .site-collapse-custom-collapse {
     margin-top: 16px;
     background-color: transparent;
