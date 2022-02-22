@@ -51,10 +51,14 @@ class AuthenticationStore {
         .catch(error => reject(error))
     })
   }
-  @action logout = (payload) => {
+  @action logout = () => {
     return new Promise((resolve, reject) => {
-      AuthenticationRequest.logout(payload)
+      AuthenticationRequest.logout()
         .then(response => {
+          this.accessToken = undefined
+          this.coreSysToken = undefined
+          localStorage.removeItem('jwt')
+          localStorage.removeItem('coreSysToken')
           resolve(response.data)
         })
         .catch(error => reject(error))

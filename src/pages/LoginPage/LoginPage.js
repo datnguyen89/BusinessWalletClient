@@ -33,7 +33,6 @@ const LoginPage = props => {
     }
     authenticationStore.userLogin(payload)
       .then(res => {
-
         switch (res?.responseCode) {
           case 0:
             history.push(PAGES.HOME.PATH)

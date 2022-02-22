@@ -6,7 +6,7 @@ import ICONS from '../../icons'
 import { DropdownUserSetting, HeaderUserAreaWrapper, ThemePickerItem, ThemePickerWrapper } from './HeaderUserAreaStyled'
 import { useHistory } from 'react-router-dom'
 import ChangePasswordModal from '../ChangePasswordModal'
-import { THEME_LIST, TRANSFERS } from '../../utils/constant'
+import { PAGES, THEME_LIST, TRANSFERS } from '../../utils/constant'
 import {
   HeaderDropdownIconWrapper,
   HeaderDropdownItem,
@@ -16,11 +16,16 @@ import {
 
 const HeaderUserArea = props => {
 
-  const { commonStore } = props
+  const { commonStore, authenticationStore } = props
 
   const history = useHistory()
-  const handleClickMenu = (path) => {
-    history.push(path)
+  const handleClickLogout = () => {
+    authenticationStore.logout()
+      .then(res => {
+        if (!res.error) {
+          history.push(PAGES.LOGIN.PATH)
+        }
+      })
   }
 
   const [visibleChangePassword, setVisibleChangePassword] = useState(false)
@@ -49,7 +54,7 @@ const HeaderUserArea = props => {
       <HeaderDropdownItem
         justifyContent={'center'}
         columns={2}
-        onClick={() => handleClickMenu('/login')}
+        onClick={() => handleClickLogout()}
         color={commonStore.appTheme.solidColor}>
         <HeaderDropdownIconWrapper>
           {ICONS.LOGOUT}
@@ -84,4 +89,4 @@ const HeaderUserArea = props => {
 
 HeaderUserArea.propTypes = {}
 
-export default inject('commonStore')(observer(HeaderUserArea))
+export default inject('commonStore', 'authenticationStore')(observer(HeaderUserArea))

@@ -17,6 +17,7 @@ import { Provider } from 'mobx-react'
 import commonStore from './stores/commonStore.js'
 import mobileMoneyStore from './stores/mobileMoneyStore.js'
 import infoAccountStore from './stores/infoAccountStore.js'
+import testStore from './stores/testStore.js'
 // Pages
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
@@ -51,6 +52,7 @@ import EducationFeePage from './pages/EducationFeePage'
 import TransferWalletPage from './pages/TransferWalletPage'
 import ReceiveFromMmPage from './pages/ReceiveFromMmPage'
 import TransferToMmPage from './pages/TransferToMmPage'
+import TestPage from './pages/TestPage'
 
 //moment
 import moment from 'moment'
@@ -65,6 +67,7 @@ import providerStore from './stores/providerStore'
 import mobileNetworkOperatorStore from './stores/mobileNetworkOperatorStore'
 import customerStore from './stores/customerStore'
 import stringUtils from './utils/stringUtils'
+import { message } from 'antd'
 
 const history = createBrowserHistory()
 
@@ -101,14 +104,13 @@ const rootStores = {
   providerStore,
   mobileNetworkOperatorStore,
   customerStore,
+  testStore,
 }
 
 // axios.defaults.timeout = 20000
 publicIp.v4().then(res => {
-  axios.defaults.headers.common['Ip-Address'] = '2'
-  // axios.defaults.headers.common['Ip-Address'] = res
+  axios.defaults.headers.common['Ip-Address'] = res
 })
-axios.defaults.headers.common['Token-Core-System'] = authenticationStore?.coreSysToken
 
 axios.interceptors.request.use(
   config => {
@@ -139,8 +141,8 @@ axios.interceptors.response.use(
   response => {
     commonStore.setAppLoading(false)
     console.log('RESPONSE', response.config.url.replace(apiUrl, ''), response)
-    if (response.data.Error) {
-      message.error(response.data.Message)
+    if (response.data.error) {
+      console.log(response.data.message)
     }
     return response
   },
@@ -167,64 +169,65 @@ const App = () => {
       <ThemeProvider>
         <Router history={history}>
           <Switch>
-            <Route exact path={PAGES.HOME.PATH}
-                   component={HomePage} />
-            <Route exact path={PAGES.IDENTITY.PATH}
-                   component={IdentityInfoPage} /> {/*Thông tin định danh*/}
-            <Route exact path={PAGES.TRANSACTION_MANAGE.PATH}
-                   component={TransactionManagePage} /> {/*Quản lý giao dịch*/}
-            <Route exact path={PAGES.TRANSACTION_HISTORY.PATH}
-                   component={TransactionHistoryPage} /> {/*Lịch sử giao dịch*/}
-            <Route exact path={PAGES.TERM_OF_USE.PATH}
-                   component={TermsOfUsePage} /> {/*Điều khoản sử dụng*/}
-            <Route exact path={PAGES.SUPPORT.PATH}
-                   component={SupportPage} /> {/*Trợ giúp*/}
-            <Route exact path={PAGES.ABOUT_US.PATH}
-                   component={AboutUsPage} /> {/*Giới thiệu*/}
-            <Route exact path={PAGES.CONTACT.PATH}
-                   component={ContactPage} /> {/*Liên hệ*/}
-            <Route exact path={PAGES.POLICY.PATH}
-                   component={PolicyPage} /> {/*Chính sách*/}
-            <Route exact path={PAGES.PHONE_CARD.PATH}
-                   component={PhoneCardPage} /> {/*Mã thẻ*/}
-            <Route exact path={PAGES.PREPAID.PATH}
-                   component={PrepaidPage} /> {/*Nạp tiền điện thoại trả trước*/}
-            <Route exact path={PAGES.POSTPAID.PATH}
-                   component={PostpaidPage} /> {/*Nạp tiền điện thoại trả sau*/}
-            <Route exact path={PAGES.PHONE_DATA.PATH}
-                   component={PhoneDataPage} /> {/*Nạp data*/}
-            <Route exact path={PAGES.CARD_DATA.PATH}
-                   component={CardDataPage} /> {/*Mã thẻ data*/}
-            <Route exact path={PAGES.ELECTRIC_BILL.PATH}
-                   component={ElectricBillPage} /> {/*Hóa đơn điện*/}
-            <Route exact path={PAGES.WATER_BILL.PATH}
-                   component={WaterBillPage} /> {/*Hóa đơn nước*/}
-            <Route exact path={PAGES.INTERNET_BILL.PATH}
-                   component={InternetBillPage} /> {/*Internet*/}
-            <Route exact path={PAGES.TELEVISION_BILL.PATH}
-                   component={TelevisionBillPage} /> {/*Truyền hình*/}
-            <Route exact path={PAGES.SERVICE_RECHARGE.PATH}
-                   component={ServiceRechargePage} /> {/*Nạp dịch vụ*/}
-            <Route exact path={PAGES.APARTMENT_FEE.PATH}
-                   component={ApartmentFeePage} /> {/*Phí chung cư*/}
-            <Route exact path={PAGES.EDUCATION_FEE.PATH}
-                   component={EducationFeePage} /> {/*Học phí*/}
-            <Route exact path={PAGES.DEPOSIT.PATH}
-                   component={DepositPage} /> {/*Nạp tiền*/}
-            <Route exact path={PAGES.TRANSFER_WALLET.PATH}
-                   component={TransferWalletPage} /> {/*Chuyển tiền ví*/}
-            <Route exact path={PAGES.TRANSFER_MULTIPLE.PATH}
-                   component={TransferMultiplePage} /> {/*Chuyển tiền theo lô*/}
-            <Route exact path={PAGES.RECEIVE_FROM_MM.PATH}
-                   component={ReceiveFromMmPage} /> {/*Nhận chuyển tiền từ MM*/}
-            <Route exact path={PAGES.TRANSFER_TO_MM.PATH}
-                   component={TransferToMmPage} /> {/*Chuyển tiền tới MM*/}
-            <Route exact path={PAGES.LINK_BANK.PATH}
-                   component={LinkBankPage} /> {/*Liên kết*/}
-            <Route exact path={PAGES.ADD_LINK.PATH}
-                   component={AddLinkPage} /> {/*Thêm liên kết*/}
-            <Route exact path={PAGES.WITHDRAW.PATH}
-                   component={WithdrawPage} /> {/*Rút tiền*/}
+            <ProtectedRoute exact path={PAGES.HOME.PATH}
+                            component={HomePage} />
+            <ProtectedRoute exact path={PAGES.IDENTITY.PATH}
+                            component={IdentityInfoPage} /> {/*Thông tin định danh*/}
+            <ProtectedRoute exact path={PAGES.TRANSACTION_MANAGE.PATH}
+                            component={TransactionManagePage} /> {/*Quản lý giao dịch*/}
+            <ProtectedRoute exact path={PAGES.TRANSACTION_HISTORY.PATH}
+                            component={TransactionHistoryPage} /> {/*Lịch sử giao dịch*/}
+            <ProtectedRoute exact path={PAGES.TERM_OF_USE.PATH}
+                            component={TermsOfUsePage} /> {/*Điều khoản sử dụng*/}
+            <ProtectedRoute exact path={PAGES.SUPPORT.PATH}
+                            component={SupportPage} /> {/*Trợ giúp*/}
+            <ProtectedRoute exact path={PAGES.ABOUT_US.PATH}
+                            component={AboutUsPage} /> {/*Giới thiệu*/}
+            <ProtectedRoute exact path={PAGES.CONTACT.PATH}
+                            component={ContactPage} /> {/*Liên hệ*/}
+            <ProtectedRoute exact path={PAGES.POLICY.PATH}
+                            component={PolicyPage} /> {/*Chính sách*/}
+            <ProtectedRoute exact path={PAGES.PHONE_CARD.PATH}
+                            component={PhoneCardPage} /> {/*Mã thẻ*/}
+            <ProtectedRoute exact path={PAGES.PREPAID.PATH}
+                            component={PrepaidPage} /> {/*Nạp tiền điện thoại trả trước*/}
+            <ProtectedRoute exact path={PAGES.POSTPAID.PATH}
+                            component={PostpaidPage} /> {/*Nạp tiền điện thoại trả sau*/}
+            <ProtectedRoute exact path={PAGES.PHONE_DATA.PATH}
+                            component={PhoneDataPage} /> {/*Nạp data*/}
+            <ProtectedRoute exact path={PAGES.CARD_DATA.PATH}
+                            component={CardDataPage} /> {/*Mã thẻ data*/}
+            <ProtectedRoute exact path={PAGES.ELECTRIC_BILL.PATH}
+                            component={ElectricBillPage} /> {/*Hóa đơn điện*/}
+            <ProtectedRoute exact path={PAGES.WATER_BILL.PATH}
+                            component={WaterBillPage} /> {/*Hóa đơn nước*/}
+            <ProtectedRoute exact path={PAGES.INTERNET_BILL.PATH}
+                            component={InternetBillPage} /> {/*Internet*/}
+            <ProtectedRoute exact path={PAGES.TELEVISION_BILL.PATH}
+                            component={TelevisionBillPage} /> {/*Truyền hình*/}
+            <ProtectedRoute exact path={PAGES.SERVICE_RECHARGE.PATH}
+                            component={ServiceRechargePage} /> {/*Nạp dịch vụ*/}
+            <ProtectedRoute exact path={PAGES.APARTMENT_FEE.PATH}
+                            component={ApartmentFeePage} /> {/*Phí chung cư*/}
+            <ProtectedRoute exact path={PAGES.EDUCATION_FEE.PATH}
+                            component={EducationFeePage} /> {/*Học phí*/}
+            <ProtectedRoute exact path={PAGES.DEPOSIT.PATH}
+                            component={DepositPage} /> {/*Nạp tiền*/}
+            <ProtectedRoute exact path={PAGES.TRANSFER_WALLET.PATH}
+                            component={TransferWalletPage} /> {/*Chuyển tiền ví*/}
+            <ProtectedRoute exact path={PAGES.TRANSFER_MULTIPLE.PATH}
+                            component={TransferMultiplePage} /> {/*Chuyển tiền theo lô*/}
+            <ProtectedRoute exact path={PAGES.RECEIVE_FROM_MM.PATH}
+                            component={ReceiveFromMmPage} /> {/*Nhận chuyển tiền từ MM*/}
+            <ProtectedRoute exact path={PAGES.TRANSFER_TO_MM.PATH}
+                            component={TransferToMmPage} /> {/*Chuyển tiền tới MM*/}
+            <ProtectedRoute exact path={PAGES.LINK_BANK.PATH}
+                            component={LinkBankPage} /> {/*Liên kết*/}
+            <ProtectedRoute exact path={PAGES.ADD_LINK.PATH}
+                            component={AddLinkPage} /> {/*Thêm liên kết*/}
+            <ProtectedRoute exact path={PAGES.WITHDRAW.PATH}
+                            component={WithdrawPage} /> {/*Rút tiền*/}
+
             <Route exact path={PAGES.LOGIN.PATH}
                    component={LoginPage} /> {/*Đăng nhập*/}
             <Route exact path={PAGES.FORGOT_PASSWORD.PATH}
@@ -232,7 +235,9 @@ const App = () => {
             <Route exact path={PAGES.NOT_PERMISSION.PATH}
                    component={NotPermissionPage} /> {/*Không có quyền truy cập*/}
             <Route exact path={'/protected'}
-                   component={ProtectedPage} /> {/*Test*/}
+                   component={ProtectedPage} />
+            <Route exact path={'/test'}
+                   component={TestPage} /> {/*Test*/}
             <Route component={NotFoundPage} />
           </Switch>
         </Router>

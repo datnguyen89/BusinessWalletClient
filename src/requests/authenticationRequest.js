@@ -34,18 +34,21 @@ export const AuthenticationRequest = {
       url: `${apiUrl}/ActiveDevice`,
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authenticationStore.accessToken || ''}`,
+        'Token-Core-System': `Bearer ${authenticationStore.coreSysToken || ''}`,
       },
       data: payload,
     })
   },
-  logout: (payload) => {
+  logout: () => {
     return axios({
       method: 'post',
       url: `${apiUrl}/Logout`,
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authenticationStore.accessToken || ''}`,
+        'Token-Core-System': `Bearer ${authenticationStore.coreSysToken || ''}`,
       },
-      data: payload,
     })
   },
 }
