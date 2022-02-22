@@ -151,7 +151,7 @@ export const TRANSFER_GROUP_PAGES = [
   PAGES.RECEIVE_FROM_MM.NAME,
   PAGES.TRANSFER_TO_MM.NAME,
 ]
-
+export const APP_CLIENT_ID = 6
 export const SIDEBAR_WIDTH_EXPAND = 240
 export const SIDEBAR_WIDTH_COLLAPSE = 64
 export const DEVICE = {
