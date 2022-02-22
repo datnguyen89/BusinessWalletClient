@@ -67,6 +67,7 @@ const LoginPage = props => {
             history.push(PAGES.HOME.PATH)
             break
           case -10105:
+          case -1:
             message.error(res?.message)
             setVisibleOtp(false)
             setCurrPayload({})
