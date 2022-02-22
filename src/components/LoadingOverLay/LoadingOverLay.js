@@ -9,7 +9,7 @@ const LoadingOverLay = props => {
   return (
     appLoading > 0 &&
     <LoadingOverLayWrapper>
-      <Spin />
+      <Spin size={'large'} />
     </LoadingOverLayWrapper>
   )
 }

@@ -16,9 +16,12 @@ import {
 
 const HeaderUserArea = props => {
 
-  const { commonStore, authenticationStore } = props
+  const { commonStore, authenticationStore, profileStore } = props
 
   const history = useHistory()
+  const { userProfile } = profileStore
+
+
   const handleClickLogout = () => {
     authenticationStore.logout()
       .then(res => {
@@ -73,8 +76,8 @@ const HeaderUserArea = props => {
                 trigger={['click']}
                 getPopupContainer={() => document.getElementById('user-menu-wrapper')}>
         <DropdownUserSetting>
-          <UserAvatar avatarUrl={null} />
-          <span>Administrator</span>
+          <UserAvatar avatarUrl={userProfile?.avatar} />
+          <span>{userProfile?.fullName}</span>
           <img src={ICONS.WHITE_ARROW_DOWN} alt={''} height={8} />
         </DropdownUserSetting>
       </Dropdown>
@@ -89,4 +92,4 @@ const HeaderUserArea = props => {
 
 HeaderUserArea.propTypes = {}
 
-export default inject('commonStore', 'authenticationStore')(observer(HeaderUserArea))
+export default inject('commonStore', 'authenticationStore', 'profileStore')(observer(HeaderUserArea))

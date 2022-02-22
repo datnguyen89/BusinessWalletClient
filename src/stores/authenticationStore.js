@@ -1,5 +1,6 @@
 import { action, autorun, observable } from 'mobx'
 import { AuthenticationRequest } from '../requests/authenticationRequest'
+import userStore from './profileStore'
 
 class AuthenticationStore {
 
@@ -59,6 +60,7 @@ class AuthenticationStore {
           this.coreSysToken = undefined
           localStorage.removeItem('jwt')
           localStorage.removeItem('coreSysToken')
+          userStore.clearProfile()
           resolve(response.data)
         })
         .catch(error => reject(error))

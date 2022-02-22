@@ -17,12 +17,12 @@ import { LeftOutlined, RightOutlined, UserOutlined } from '@ant-design/icons'
 import IMAGES from '../../images'
 import LinkedCardCarousel from '../../components/LinkedCardCarousel'
 import { useHistory } from 'react-router-dom'
-
-
+import numberUtils from '../../utils/numberUtils'
 
 const IdentityInfoPage = props => {
-  const { commonStore } = props
+  const { commonStore, profileStore } = props
   const history = useHistory()
+  const { userProfile, entProfile } = profileStore
 
   const handleClickAddLink = (path) => {
     history.push(path)
@@ -45,17 +45,26 @@ const IdentityInfoPage = props => {
                 bordered
                 column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
                 size={'small'}>
-                <Descriptions.Item label={'Tên tổ chức'}>Công Ty Cổ phần thương mại Sài gòn</Descriptions.Item>
-                <Descriptions.Item label={'Số ĐKKD/ GPTL'}>9876543210000</Descriptions.Item>
-                <Descriptions.Item label={'Tên viết tắt'}>Solution Technologi Componel</Descriptions.Item>
-                <Descriptions.Item label={'Ngày cấp'}>15/03/2020</Descriptions.Item>
-                <Descriptions.Item label={'Địa chỉ ĐKKD'}>Số 123 , Đường Yên Hòa, Cầu Giấy, Hà Nội</Descriptions.Item>
-                <Descriptions.Item label={'Nơi cấp'}>Sở Thương mại TP Hà Nội</Descriptions.Item>
-                <Descriptions.Item label={'Địa chỉ giao dịch'}>Số 8 , Trần Duy Hưng, Cầu Giấy, Hà
-                  Nội</Descriptions.Item>
-                <Descriptions.Item label={'Số điện thoại'}>+84345678910</Descriptions.Item>
+                <Descriptions.Item label={'Tên tổ chức'}>
+                  Công Ty Cổ phần thương mại Sài gòn TODO
+                </Descriptions.Item>
+                <Descriptions.Item label={'Số ĐKKD/ GPTL'}>
+                  9876543210000 TODO
+                </Descriptions.Item>
+                <Descriptions.Item label={'Tên viết tắt'}>
+                  Solution Technologi Componel TODO
+                </Descriptions.Item>
+                <Descriptions.Item label={'Ngày cấp'}>15/03/2020 TODO</Descriptions.Item>
+                <Descriptions.Item label={'Địa chỉ ĐKKD'}>
+                  Số 123 , Đường Yên Hòa, Cầu Giấy, Hà Nội TODO
+                </Descriptions.Item>
+                <Descriptions.Item label={'Nơi cấp'}>Sở Thương mại TP Hà Nội TODO</Descriptions.Item>
+                <Descriptions.Item label={'Địa chỉ giao dịch'}>
+                  Số 8 , Trần Duy Hưng, Cầu Giấy, Hà Nội TODO
+                </Descriptions.Item>
+                <Descriptions.Item label={'Số điện thoại'}>{entProfile?.phone}</Descriptions.Item>
                 <Descriptions.Item label={'Mã số thuế'}>123456789</Descriptions.Item>
-                <Descriptions.Item label={'Email doanh nghiệp'}>stcorp@gmail.com</Descriptions.Item>
+                <Descriptions.Item label={'Email doanh nghiệp'}>{entProfile?.email}</Descriptions.Item>
               </Descriptions>
               <ColorTitle marginTop={'16px'}>
                 Thông tin tài khoản
@@ -64,17 +73,14 @@ const IdentityInfoPage = props => {
                 bordered
                 column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
                 size={'small'}>
-                <Descriptions.Item label={'Tên tổ chức'}>Công Ty Cổ phần thương mại Sài gòn</Descriptions.Item>
-                <Descriptions.Item label={'Số ĐKKD/ GPTL'}>9876543210000</Descriptions.Item>
-                <Descriptions.Item label={'Tên viết tắt'}>Solution Technologi Componel</Descriptions.Item>
-                <Descriptions.Item label={'Ngày cấp'}>15/03/2020</Descriptions.Item>
-                <Descriptions.Item label={'Địa chỉ ĐKKD'}>Số 123 , Đường Yên Hòa, Cầu Giấy, Hà Nội</Descriptions.Item>
-                <Descriptions.Item label={'Nơi cấp'}>Sở Thương mại TP Hà Nội</Descriptions.Item>
-                <Descriptions.Item label={'Địa chỉ giao dịch'}>Số 8 , Trần Duy Hưng, Cầu Giấy, Hà
-                  Nội</Descriptions.Item>
-                <Descriptions.Item label={'Số điện thoại'}>+84345678910</Descriptions.Item>
-                <Descriptions.Item label={'Mã số thuế'}>123456789</Descriptions.Item>
-                <Descriptions.Item label={'Email doanh nghiệp'}>stcorp@gmail.com</Descriptions.Item>
+                <Descriptions.Item label={'Số tài khoản'}>123321 TODO</Descriptions.Item>
+                <Descriptions.Item label={'Số dư khả dụng'}>
+                  {numberUtils.thousandSeparator(entProfile?.balance)}
+                </Descriptions.Item>
+                <Descriptions.Item label={'Số dư đóng băng'}>
+                  {numberUtils.thousandSeparator(entProfile?.freezeBalance)}
+                </Descriptions.Item>
+                <Descriptions.Item label={'Trạng thái tài khoản'}>Đang hoạt động TODO</Descriptions.Item>
               </Descriptions>
             </WhiteRoundedBox>
           </Col>
@@ -82,22 +88,22 @@ const IdentityInfoPage = props => {
             <WhiteRoundedBox margin={'0 16px 16px 0'} padding={'0'}>
               <UserInfoBox>
                 <UserInfoBoxHeader>
-                  <Avatar size={64} icon={<UserOutlined />} />
-                  <ColorText color={'#fff'} fontWeight={600}>Administrator</ColorText>
+                  <Avatar size={64} icon={userProfile?.avatar || <UserOutlined />} />
+                  <ColorText color={'#fff'} fontWeight={600}>{userProfile?.fullName}</ColorText>
                 </UserInfoBoxHeader>
                 <Descriptions
-                  labelStyle={{ width: '50%' }}
+                  labelStyle={{ width: '35%' }}
                   bordered
                   column={1}
                   size={'small'}>
-                  <Descriptions.Item label={'Tên đăng nhập'}>Adminstrator</Descriptions.Item>
-                  <Descriptions.Item label={'Họ và tên'}>Nguyễn Văn A</Descriptions.Item>
-                  <Descriptions.Item label={'Số điện thoại'}>0912345678</Descriptions.Item>
-                  <Descriptions.Item label={'Email'}>nguyenvana@gmail.com</Descriptions.Item>
-                  <Descriptions.Item label={'Số giấy tờ tùy thân'}>123456789</Descriptions.Item>
-                  <Descriptions.Item label={'Ngày cấp'}>15/03/2017</Descriptions.Item>
-                  <Descriptions.Item label={'Nơi cấp'}>Cục quản lý xuất nhập cảnh</Descriptions.Item>
-                  <Descriptions.Item label={'Vai trò'}>Tạo lệnh</Descriptions.Item>
+                  <Descriptions.Item label={'Tên đăng nhập'}>{userProfile?.accountName}</Descriptions.Item>
+                  <Descriptions.Item label={'Họ và tên'}>{userProfile?.fullName}</Descriptions.Item>
+                  <Descriptions.Item label={'Số điện thoại'}>{userProfile?.mobile}</Descriptions.Item>
+                  <Descriptions.Item label={'Email'}>{userProfile?.email}</Descriptions.Item>
+                  <Descriptions.Item label={'Số giấy tờ tùy thân'}>{userProfile?.passport}</Descriptions.Item>
+                  <Descriptions.Item label={'Ngày cấp'}>{userProfile?.passportDate}</Descriptions.Item>
+                  <Descriptions.Item label={'Nơi cấp'}>{userProfile?.passportPlace}</Descriptions.Item>
+                  <Descriptions.Item label={'Vai trò'}>Tạo lệnh (TODO)</Descriptions.Item>
                 </Descriptions>
               </UserInfoBox>
             </WhiteRoundedBox>
@@ -129,4 +135,4 @@ const IdentityInfoPage = props => {
 
 IdentityInfoPage.propTypes = {}
 
-export default inject('commonStore')(observer(IdentityInfoPage))
+export default inject('commonStore', 'profileStore')(observer(IdentityInfoPage))
