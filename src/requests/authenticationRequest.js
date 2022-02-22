@@ -11,21 +11,41 @@ export const AuthenticationRequest = {
   userLogin: (payload) => {
     return axios({
       method: 'post',
-      url: `${apiUrl}/api/login`,
+      url: `${apiUrl}/Login`,
       headers: {
         'Content-Type': 'application/json',
       },
-      data: { username: payload.username, password: payload.password },
+      data: payload,
     })
   },
-  userGet: (payload) => {
+  changePassword: (payload) => {
     return axios({
-      method: 'get',
-      url: `${apiUrl}/api/auth/login`,
+      method: 'post',
+      url: `${apiUrl}/ChangePassword`,
       headers: {
         'Content-Type': 'application/json',
       },
-      params: { username: payload.username, password: payload.password },
+      data: payload,
+    })
+  },
+  activeDevice: (payload) => {
+    return axios({
+      method: 'post',
+      url: `${apiUrl}/ActiveDevice`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: payload,
+    })
+  },
+  logout: (payload) => {
+    return axios({
+      method: 'post',
+      url: `${apiUrl}/Logout`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: payload,
     })
   },
 }

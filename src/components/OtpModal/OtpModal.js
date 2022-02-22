@@ -88,7 +88,7 @@ const OtpModal = props => {
       <Row justify={'center'}>
         <Col span={24}>
           <OtpDescription>
-            Mã xác thực đã được gửi qua SĐT {_.fill(phoneNumber.split(''), '*', 3, phoneNumber.length - 3)}.
+            Mã xác thực đã được gửi qua SĐT {_.fill(phoneNumber?.split(''), '*', 3, phoneNumber?.length - 3)}.
             <br />
             Nếu không nhận được OTP vui lòng ấn {timeResend === 0 ?
             <ResendOtp onClick={handleClickResend}>Gửi lại</ResendOtp> :

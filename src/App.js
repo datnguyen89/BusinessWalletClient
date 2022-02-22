@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { apiUrl } from './config'
 // Axios
 import axios from 'axios'
+// Encrypt
+import cypherUtil from './utils/cypherUtil'
 // ip
 const publicIp = require('public-ip')
 // Styling
@@ -61,6 +64,7 @@ import accountWalletStore from './stores/accountWalletStore'
 import providerStore from './stores/providerStore'
 import mobileNetworkOperatorStore from './stores/mobileNetworkOperatorStore'
 import customerStore from './stores/customerStore'
+import stringUtils from './utils/stringUtils'
 
 const history = createBrowserHistory()
 
@@ -96,29 +100,55 @@ const rootStores = {
   accountWalletStore,
   providerStore,
   mobileNetworkOperatorStore,
-  customerStore
+  customerStore,
 }
 
 // axios.defaults.timeout = 20000
+publicIp.v4().then(res => {
+  axios.defaults.headers.common['Ip-Address'] = '2'
+  // axios.defaults.headers.common['Ip-Address'] = res
+})
+axios.defaults.headers.common['Token-Core-System'] = authenticationStore?.coreSysToken
+
 axios.interceptors.request.use(
   config => {
-    //config.headers
-    //config.params
+    if (config.disableSpinner) {
+      commonStore.setAppLoading(false)
+    } else {
+      commonStore.setAppLoading(true)
+    }
+    console.log('REQUEST', config.url.replace(apiUrl, ''), config.data)
+    let k = stringUtils.randomId(16)
+    let obj = { key: k, iv: k }
+    let strDataKey = JSON.stringify(obj)
+    let strData = JSON.stringify({ ...config.data })
+
+    let encryptedDataKey = cypherUtil.rsaEncrypt(strDataKey)
+    let encryptedData = cypherUtil.aesEncrypt(strData, k, k)
+    config.data = { data: encryptedData, objKey: encryptedDataKey }
+
     return config
   },
   error => {
+    commonStore.setAppLoading(false)
     return Promise.reject(error)
   },
 )
 
 axios.interceptors.response.use(
   response => {
+    commonStore.setAppLoading(false)
+    console.log('RESPONSE', response.config.url.replace(apiUrl, ''), response)
+    if (response.data.Error) {
+      message.error(response.data.Message)
+    }
     return response
   },
   error => {
-    if (error?.response?.status === 401) {
-      // TODO: clear localstorage, user's State, store => redirect to login
-    }
+    commonStore.setAppLoading(false)
+    // if (error?.response?.status === 403) {
+    //   // TODO: do something
+    // }
     return Promise.reject(error)
   },
 )
@@ -126,7 +156,7 @@ axios.interceptors.response.use(
 const App = () => {
 
   // (async () => {
-  //   console.log(await publicIp.v4())
+  //   console.log('ip',await publicIp.v4())
   // })()
   // useEffect(() => {
   //   console.log(deviceDetect())

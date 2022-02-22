@@ -38,16 +38,23 @@ const stringUtils = {
     if (byte === null) return ''
     let result
     if (byte < 1000000) {
-      result = Math.round((byte / 1024) * 100) /100
+      result = Math.round((byte / 1024) * 100) / 100
       return `${result} KB`
     } else if (byte < 1000000000) {
-      result = Math.round((byte / 1024 / 1024) * 100) /100
+      result = Math.round((byte / 1024 / 1024) * 100) / 100
       return `${result} MB`
     } else {
-      result = Math.round((byte / 1024 / 1024 / 1024) * 100) /100
+      result = Math.round((byte / 1024 / 1024 / 1024) * 100) / 100
       return `${result} GB`
     }
-  }
+  },
+  randomId: (length) => {
+    let text = ''
+    let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    for (let i = 0; i < length; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length))
+    return text
+  },
 }
 
 export default stringUtils

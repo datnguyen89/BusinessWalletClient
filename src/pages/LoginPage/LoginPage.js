@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { inject, observer } from 'mobx-react'
 import AuthLayout from '../../layouts/AuthLayout'
 import { Button, Col, Form, Input, message, Row } from 'antd'
@@ -8,7 +8,7 @@ import { LoginFormTitle, LoginPageWrapper, TitleWrapper } from './LoginPageStyle
 import { Link, useHistory } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
 import * as forge from 'node-forge'
-import { PAGES, PUBLIC_KEY } from '../../utils/constant'
+import { APP_CLIENT_ID, PAGES, PUBLIC_KEY } from '../../utils/constant'
 import stringUtils from '../../utils/stringUtils'
 import validator from '../../validator'
 
@@ -16,36 +16,92 @@ const LoginPage = props => {
   const { commonStore, authenticationStore } = props
   const history = useHistory()
   const [formLogin] = Form.useForm()
+
   const [visibleOtp, setVisibleOtp] = useState(false)
+  const [currPayload, setCurrPayload] = useState({})
+  const [extendData, setExtendData] = useState('')
 
   const onFinish = (formCollection) => {
-    setVisibleOtp(true)
-    var rsa = forge.pki.publicKeyFromPem(PUBLIC_KEY);
-    formCollection.password = window.btoa(rsa.encrypt(formCollection.password));
+    // 0963493002
+    // 123456
+    let payload = {
+      ExtendData: '',
+      ActiveCode: '',
+      UserName: formCollection.userName,
+      Password: formCollection.password,
+      ClientId: APP_CLIENT_ID,
+    }
+    authenticationStore.userLogin(payload)
+      .then(res => {
 
-    authenticationStore.userLogin(formCollection);
-    console.log('Success:', formCollection)
+        switch (res?.responseCode) {
+          case 0:
+            history.push(PAGES.HOME.PATH)
+            break
+          case -52:
+            setCurrPayload(payload)
+            setVisibleOtp(true)
+            setExtendData(res?.extendData)
+            break
+          default:
+            message.error(res?.message)
+            break
+        }
+      })
   }
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
 
   const handleSubmitOtp = (otp) => {
-    if (otp === '123456') {
-      history.push(PAGES.HOME.PATH)
-    } else {
-      message.error('Mã OTP không đúng')
+    let payload = {
+      ExtendData: extendData,
+      ActiveCode: otp,
+      UserName: currPayload.UserName,
+      Password: currPayload.Password,
+      ClientId: APP_CLIENT_ID,
     }
+    authenticationStore.activeDevice(payload)
+      .then(res => {
+        switch (res?.responseCode) {
+          case 0:
+            history.push(PAGES.HOME.PATH)
+            break
+          case -10105:
+            message.error(res?.message)
+            setVisibleOtp(false)
+            setCurrPayload({})
+            setExtendData('')
+            formLogin.resetFields()
+            break
+          default:
+            message.error(res?.message)
+            break
+        }
+      })
+  }
+  const handleCancelOtp = () => {
+    setVisibleOtp(false)
+    setCurrPayload({})
+    setExtendData('')
   }
 
   const handleChangeUsername = (e) => {
-    let inputText = e.currentTarget.value.trim().replaceAll(' ','');
+    let inputText = e.currentTarget.value.trim().replaceAll(' ', '')
     if (inputText.length === 0) return
     inputText = stringUtils.removeVietnameseCharMark(inputText)
     formLogin.setFieldsValue({
-      username: inputText
+      username: inputText,
     })
   }
+
+  useEffect(() => {
+    return () => {
+      setVisibleOtp(false)
+      setCurrPayload({})
+      setExtendData('')
+    }
+  }, [])
 
   return (
     <AuthLayout>
@@ -66,7 +122,7 @@ const LoginPage = props => {
           >
             <Form.Item
               label=''
-              name='username'
+              name='userName'
               rules={[{ required: true, message: 'Vui lòng nhập tên đăng nhập' }]}
             >
               <Input className={'auth-input'} onChange={handleChangeUsername} placeholder={'Tên đăng nhập'} />
@@ -75,7 +131,7 @@ const LoginPage = props => {
             <Form.Item
               label=''
               name='password'
-              rules={[{ validator: validator.validateLoginPassword }]}
+              // rules={[{ validator: validator.validateLoginPassword }]}
             >
               <Input.Password className={'auth-input'} placeholder={'Mật khẩu'} />
             </Form.Item>
@@ -95,9 +151,9 @@ const LoginPage = props => {
           </Form>
         </AuthShadowBox>
         <OtpModal
-          phoneNumber={'0379631004'}
+          phoneNumber={currPayload?.UserName || ''}
           visible={visibleOtp}
-          onCancel={() => setVisibleOtp(false)}
+          onCancel={handleCancelOtp}
           callbackOtp={handleSubmitOtp} />
       </LoginPageWrapper>
     </AuthLayout>
