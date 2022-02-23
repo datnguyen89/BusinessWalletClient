@@ -144,16 +144,28 @@ axios.interceptors.response.use(
     console.log('RESPONSE', response.config.url.replace(apiUrl, ''), response)
     if (response.data.error) {
       console.log(response.data.message)
+      if (response.data.responseCode === 401) {
+        authenticationStore.logout()
+          .finally(() => {
+            history.push({
+              pathname: PAGES.LOGIN.PATH,
+              state: { from: window.location.pathname },
+            })
+          })
+      }
     }
     return response
   },
   error => {
     commonStore.setAppLoading(false)
     if (error?.response?.status === 401) {
-      history.push({
-        pathname: PAGES.LOGIN.PATH,
-        state: { from: window.location.pathname },
-      })
+      authenticationStore.logout()
+        .finally(() => {
+          history.push({
+            pathname: PAGES.LOGIN.PATH,
+            state: { from: window.location.pathname },
+          })
+        })
     }
     return Promise.reject(error)
   },

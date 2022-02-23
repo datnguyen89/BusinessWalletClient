@@ -24,11 +24,7 @@ const HeaderUserArea = props => {
 
   const handleClickLogout = () => {
     authenticationStore.logout()
-      .then(res => {
-        if (!res.error) {
-          history.push(PAGES.LOGIN.PATH)
-        }
-      })
+      .finally(() => history.push(PAGES.LOGIN.PATH))
   }
 
   const [visibleChangePassword, setVisibleChangePassword] = useState(false)

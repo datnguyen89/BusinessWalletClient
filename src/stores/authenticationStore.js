@@ -61,7 +61,7 @@ class AuthenticationStore {
           localStorage.removeItem('jwt')
           localStorage.removeItem('coreSysToken')
           userStore.clearProfile()
-          resolve(response.data)
+
         })
         .catch(error => reject(error))
     })

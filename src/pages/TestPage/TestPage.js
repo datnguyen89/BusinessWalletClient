@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { inject, observer } from 'mobx-react'
-import PropTypes from 'prop-types'
 import { TestPageWrapper } from './TestPageStyled'
 import { Helmet } from 'react-helmet/es/Helmet'
-import { Button, Form, TreeSelect } from 'antd'
+import { Button, TreeSelect } from 'antd'
 import DefaultLayout from '../../layouts/DefaultLayout'
-import { useHistory, useLocation } from 'react-router-dom'
-import { PAGES } from '../../utils/constant'
 
 const { SHOW_CHILD } = TreeSelect
 
@@ -60,17 +57,12 @@ const treeData = [
 ]
 
 const TestPageStyled = props => {
-  const { commonStore, testStore,authenticationStore } = props
+  const { commonStore, testStore } = props
   const { appTheme } = commonStore
-  const location = useLocation()
-  const history = useHistory()
 
   const handleClick = () => {
-    authenticationStore.logout()
-    history.push({
-      pathname: PAGES.LOGIN.PATH,
-      state: { from: window.location.pathname },
-    })
+    const payload = { a: 1 }
+    testStore.testRq(payload)
   }
 
   return (
@@ -88,4 +80,4 @@ const TestPageStyled = props => {
 
 TestPageStyled.propTypes = {}
 
-export default inject('commonStore', 'testStore', 'authenticationStore')(observer(TestPageStyled))
+export default inject('commonStore', 'testStore')(observer(TestPageStyled))
