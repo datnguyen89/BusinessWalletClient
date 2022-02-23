@@ -21,6 +21,11 @@ class CommonStore {
   @action setDevice(device) {
     this.device = device
   }
+  // ipAddress
+  @observable ipAddress = ''
+  @action setIpAddress = ip => {
+    this.ipAddress = ip
+  }
 
   // App theme
   @observable appTheme = THEME_LIST[0]

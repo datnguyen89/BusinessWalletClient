@@ -5,7 +5,7 @@ import { Button, Col, Form, Input, message, Row } from 'antd'
 import { AuthShadowBox } from '../../components/CommonStyled/CommonStyled'
 import IMAGES from '../../images'
 import { LoginFormTitle, LoginPageWrapper, TitleWrapper } from './LoginPageStyled'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useLocation, useParams } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
 import * as forge from 'node-forge'
 import { APP_CLIENT_ID, PAGES, PUBLIC_KEY } from '../../utils/constant'
@@ -15,6 +15,7 @@ import validator from '../../validator'
 const LoginPage = props => {
   const { commonStore, authenticationStore } = props
   const history = useHistory()
+  const location = useLocation()
   const [formLogin] = Form.useForm()
 
   const [visibleOtp, setVisibleOtp] = useState(false)
@@ -35,7 +36,7 @@ const LoginPage = props => {
       .then(res => {
         switch (res?.responseCode) {
           case 0:
-            history.push(PAGES.HOME.PATH)
+            history.push(location?.state?.from?.pathname || PAGES.HOME.PATH)
             break
           case -52:
             setCurrPayload(payload)
@@ -64,7 +65,7 @@ const LoginPage = props => {
       .then(res => {
         switch (res?.responseCode) {
           case 0:
-            history.push(PAGES.HOME.PATH)
+            history.push(location?.state?.from?.pathname || PAGES.HOME.PATH)
             break
           case -10105:
           case -1:

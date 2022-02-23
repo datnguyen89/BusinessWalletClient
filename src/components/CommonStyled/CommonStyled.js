@@ -46,6 +46,7 @@ export const ColorTitle = styled.h1`
 `
 export const WhiteRoundedBox = styled.div`
   background: #fff;
+  height: ${props => props.height || 'auto'};
   border-radius: ${props => props.borderRadius || '4px'};
   padding: ${props => props.padding || '16px'};
   margin: ${props => props.margin || '0'};

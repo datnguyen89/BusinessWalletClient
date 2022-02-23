@@ -4,8 +4,7 @@ import { apiUrl } from './config'
 import axios from 'axios'
 // Encrypt
 import cypherUtil from './utils/cypherUtil'
-// ip
-const publicIp = require('public-ip')
+
 import { deviceDetect } from 'react-device-detect'
 // util
 import stringUtils from './utils/stringUtils'
@@ -110,14 +109,12 @@ const rootStores = {
   testStore,
   profileStore,
 }
-
 // axios.defaults.timeout = 20000
-publicIp.v4().then(res => {
-  axios.defaults.headers.common['Ip-Address'] = res
-})
 
+axios.defaults.headers.common['Ip-Address'] = ''
 axios.interceptors.request.use(
   config => {
+    console.log(config)
     if (config.disableSpinner) {
       commonStore.setAppLoading(false)
     } else {

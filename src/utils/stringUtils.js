@@ -55,6 +55,20 @@ const stringUtils = {
       text += possible.charAt(Math.floor(Math.random() * possible.length))
     return text
   },
+  renderEntStatus: status => {
+    switch (status) {
+      case 0:
+        return 'Chưa kích hoạt'
+      case 1:
+        return 'Hoạt động'
+      case 2:
+        return 'Ngừng hoạt động'
+      case 3:
+        return 'Bị khóa'
+      case 4:
+        return 'Khóa dịch vụ'
+    }
+  }
 }
 
 export default stringUtils

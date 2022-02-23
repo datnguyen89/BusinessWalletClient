@@ -18,6 +18,7 @@ import IMAGES from '../../images'
 import LinkedCardCarousel from '../../components/LinkedCardCarousel'
 import { useHistory } from 'react-router-dom'
 import numberUtils from '../../utils/numberUtils'
+import stringUtils from '../../utils/stringUtils'
 
 const IdentityInfoPage = props => {
   const { commonStore, profileStore } = props
@@ -35,57 +36,75 @@ const IdentityInfoPage = props => {
       </Helmet>
       <IdentityInfoPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.IDENTITY} />
-        <Row align={'stretch'}>
+        <Row gutter={[16, 16]}>
           <Col span={17}>
-            <WhiteRoundedBox margin={'0 16px 16px 16px'}>
+            <WhiteRoundedBox>
               <ColorTitle>
                 Thông tin doanh nghiệp
               </ColorTitle>
               <Descriptions
+                labelStyle={{ width: '20%' }}
+                contentStyle={{ width: '30%' }}
                 bordered
-                column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
+                column={2}
                 size={'small'}>
                 <Descriptions.Item label={'Tên tổ chức'}>
-                  Công Ty Cổ phần thương mại Sài gòn TODO
+                  {entProfile?.businessName}
                 </Descriptions.Item>
                 <Descriptions.Item label={'Số ĐKKD/ GPTL'}>
-                  9876543210000 TODO
+                  {entProfile?.businessCertification}
                 </Descriptions.Item>
                 <Descriptions.Item label={'Tên viết tắt'}>
-                  Solution Technologi Componel TODO
+                  {entProfile?.shortName}
                 </Descriptions.Item>
-                <Descriptions.Item label={'Ngày cấp'}>15/03/2020 TODO</Descriptions.Item>
-                <Descriptions.Item label={'Địa chỉ ĐKKD'}>
-                  Số 123 , Đường Yên Hòa, Cầu Giấy, Hà Nội TODO
+                <Descriptions.Item label={'Số điện thoại'}>
+                  {entProfile?.phone}
                 </Descriptions.Item>
-                <Descriptions.Item label={'Nơi cấp'}>Sở Thương mại TP Hà Nội TODO</Descriptions.Item>
-                <Descriptions.Item label={'Địa chỉ giao dịch'}>
-                  Số 8 , Trần Duy Hưng, Cầu Giấy, Hà Nội TODO
+                <Descriptions.Item label={'Ngày cấp'}>
+                  {entProfile?.passportDate}
                 </Descriptions.Item>
-                <Descriptions.Item label={'Số điện thoại'}>{entProfile?.phone}</Descriptions.Item>
-                <Descriptions.Item label={'Mã số thuế'}>123456789</Descriptions.Item>
-                <Descriptions.Item label={'Email doanh nghiệp'}>{entProfile?.email}</Descriptions.Item>
+                <Descriptions.Item label={'Nơi cấp'}>
+                  {entProfile?.passportPlace}
+                </Descriptions.Item>
+                <Descriptions.Item label={'Mã số thuế'}>
+                  {entProfile?.taxCode}
+                </Descriptions.Item>
+                <Descriptions.Item label={'Email doanh nghiệp'}>
+                  {entProfile?.email}
+                </Descriptions.Item>
+                <Descriptions.Item span={2} label={'Địa chỉ ĐKKD'}>
+                  {entProfile?.businessCenterAddress}
+                </Descriptions.Item>
+                <Descriptions.Item span={2} label={'Địa chỉ giao dịch'}>
+                  {entProfile?.tradingAddress}
+                </Descriptions.Item>
               </Descriptions>
               <ColorTitle marginTop={'16px'}>
                 Thông tin tài khoản
               </ColorTitle>
               <Descriptions
+                labelStyle={{ width: '20%' }}
+                contentStyle={{ width: '30%' }}
                 bordered
                 column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
                 size={'small'}>
-                <Descriptions.Item label={'Số tài khoản'}>123321 TODO</Descriptions.Item>
+                <Descriptions.Item label={'Số tài khoản'}>
+                  {entProfile?.accountName}
+                </Descriptions.Item>
                 <Descriptions.Item label={'Số dư khả dụng'}>
                   {numberUtils.thousandSeparator(entProfile?.balance)}
                 </Descriptions.Item>
                 <Descriptions.Item label={'Số dư đóng băng'}>
                   {numberUtils.thousandSeparator(entProfile?.freezeBalance)}
                 </Descriptions.Item>
-                <Descriptions.Item label={'Trạng thái tài khoản'}>Đang hoạt động TODO</Descriptions.Item>
+                <Descriptions.Item label={'Trạng thái tài khoản'}>
+                  {stringUtils.renderEntStatus(entProfile?.status)}
+                </Descriptions.Item>
               </Descriptions>
             </WhiteRoundedBox>
           </Col>
           <Col span={7}>
-            <WhiteRoundedBox margin={'0 16px 16px 0'} padding={'0'}>
+            <WhiteRoundedBox height={'100%'}>
               <UserInfoBox>
                 <UserInfoBoxHeader>
                   <Avatar size={64} icon={userProfile?.avatar || <UserOutlined />} />
@@ -103,11 +122,16 @@ const IdentityInfoPage = props => {
                   <Descriptions.Item label={'Số giấy tờ tùy thân'}>{userProfile?.passport}</Descriptions.Item>
                   <Descriptions.Item label={'Ngày cấp'}>{userProfile?.passportDate}</Descriptions.Item>
                   <Descriptions.Item label={'Nơi cấp'}>{userProfile?.passportPlace}</Descriptions.Item>
-                  <Descriptions.Item label={'Vai trò'}>Tạo lệnh (TODO)</Descriptions.Item>
+                  <Descriptions.Item label={'Vai trò'}>{userProfile?.position}</Descriptions.Item>
                 </Descriptions>
               </UserInfoBox>
             </WhiteRoundedBox>
-            <WhiteRoundedBox margin={'0 16px 16px 0'}>
+          </Col>
+          <Col span={17}>
+
+          </Col>
+          <Col span={7}>
+            <WhiteRoundedBox>
               <NotLinkedCardBox>
                 <ColorTitle>Liên kết thẻ</ColorTitle>
                 <img src={IMAGES.ICON_ADD_CARD} alt={''} />
@@ -122,7 +146,7 @@ const IdentityInfoPage = props => {
                 >Liên kết thẻ mới</Button>
               </NotLinkedCardBox>
             </WhiteRoundedBox>
-            <WhiteRoundedBox margin={'0 16px 16px 0'}>
+            <WhiteRoundedBox margin={'16px 0 0 0'}>
               <ColorTitle>Thông tin tài khoản</ColorTitle>
               <LinkedCardCarousel listLinkedCard={mockupLinkedCard} />
             </WhiteRoundedBox>

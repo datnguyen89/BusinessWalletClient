@@ -2,10 +2,7 @@ import styled from 'styled-components'
 import { Button } from 'antd'
 
 export const IdentityInfoPageWrapper = styled.div`
-  .ant-descriptions-view {
-    border-radius: 8px;
-    border: none;
-  }
+  padding: 16px;
 `
 export const UserInfoBox = styled.div`
 `
