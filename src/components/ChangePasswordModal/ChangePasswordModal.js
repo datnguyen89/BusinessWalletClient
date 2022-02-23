@@ -56,8 +56,20 @@ const ChangePasswordModal = props => {
     authenticationStore.changePasswordForCustomer(payload)
       .then(res => {
         if (!res.error) {
-          setVisibleOtp(false)
-          setVisibleSuccess(true)
+          switch (res?.responseCode) {
+            case 0:
+              setVisibleOtp(false)
+              setVisibleSuccess(true)
+              break
+            case -671:
+            case -10002:
+              setVisibleOtp(false)
+              message.error(res?.message)
+              break
+            default:
+              break
+          }
+
         } else {
           message.error(res.message)
         }
