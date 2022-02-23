@@ -36,7 +36,7 @@ const LoginPage = props => {
       .then(res => {
         switch (res?.responseCode) {
           case 0:
-            history.push(location?.state?.from?.pathname || PAGES.HOME.PATH)
+            history.push(location?.state?.from || PAGES.HOME.PATH)
             break
           case -52:
             setCurrPayload(payload)
@@ -65,7 +65,7 @@ const LoginPage = props => {
       .then(res => {
         switch (res?.responseCode) {
           case 0:
-            history.push(location?.state?.from?.pathname || PAGES.HOME.PATH)
+            history.push(location?.state?.from || PAGES.HOME.PATH)
             break
           case -10105:
           case -1:

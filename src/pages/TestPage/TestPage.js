@@ -5,6 +5,8 @@ import { TestPageWrapper } from './TestPageStyled'
 import { Helmet } from 'react-helmet/es/Helmet'
 import { Button, Form, TreeSelect } from 'antd'
 import DefaultLayout from '../../layouts/DefaultLayout'
+import { useHistory, useLocation } from 'react-router-dom'
+import { PAGES } from '../../utils/constant'
 
 const { SHOW_CHILD } = TreeSelect
 
@@ -58,12 +60,17 @@ const treeData = [
 ]
 
 const TestPageStyled = props => {
-  const { commonStore, testStore } = props
+  const { commonStore, testStore,authenticationStore } = props
   const { appTheme } = commonStore
+  const location = useLocation()
+  const history = useHistory()
 
   const handleClick = () => {
-    const payload = { a: 1 }
-    testStore.testRq(payload)
+    authenticationStore.logout()
+    history.push({
+      pathname: PAGES.LOGIN.PATH,
+      state: { from: window.location.pathname },
+    })
   }
 
   return (
@@ -81,4 +88,4 @@ const TestPageStyled = props => {
 
 TestPageStyled.propTypes = {}
 
-export default inject('commonStore', 'testStore')(observer(TestPageStyled))
+export default inject('commonStore', 'testStore', 'authenticationStore')(observer(TestPageStyled))

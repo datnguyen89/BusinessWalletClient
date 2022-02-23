@@ -80,8 +80,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
       !localStorage.getItem('jwt') ? (
         <Redirect
           to={{
-            pathname: '/login',
-            state: { from: props.location },
+            pathname: PAGES.LOGIN.PATH,
+            state: { from: window.location.pathname },
           }}
         />
       ) : (
@@ -149,9 +149,12 @@ axios.interceptors.response.use(
   },
   error => {
     commonStore.setAppLoading(false)
-    // if (error?.response?.status === 403) {
-    //   // TODO: do something
-    // }
+    if (error?.response?.status === 401) {
+      history.push({
+        pathname: PAGES.LOGIN.PATH,
+        state: { from: window.location.pathname },
+      })
+    }
     return Promise.reject(error)
   },
 )
