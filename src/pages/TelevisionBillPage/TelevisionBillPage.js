@@ -148,7 +148,6 @@ const TelevisionBillPage = props => {
   }, [selectedProvider])
 
   useEffect(() => {
-    debugger;
     if (customer && selectedProvider?.name === 'K+') {
       return
     } else if (selectedProvider?.name !== 'K+')

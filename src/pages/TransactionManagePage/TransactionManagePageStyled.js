@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const TransactionManagePageWrapper = styled.div`
+  padding: 16px;
 `
 export const TransactionManagerBody = styled.div`
   margin: 16px;

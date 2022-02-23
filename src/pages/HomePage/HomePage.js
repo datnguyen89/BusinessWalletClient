@@ -9,7 +9,7 @@ import { BREADCRUMB_DATA } from '../../utils/constant'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
 import HomeWidgets from '../../components/HomeWidgets'
 import HomeServices from '../../components/HomeServices'
-import { CarouselWrapper } from './HomePageStyled'
+import { CarouselWrapper, HomePageWrapper } from './HomePageStyled'
 import IMAGES from '../../images'
 import { Helmet } from 'react-helmet/es/Helmet'
 
@@ -21,12 +21,14 @@ const HomePage = props => {
       <Helmet>
         <title>Trang chủ</title>
       </Helmet>
-      <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.HOME} />
-      <HomeWidgets />
-      <HomeServices />
-      <CarouselWrapper>
-        <img src={IMAGES.HOME_CAROUSEL} alt={''} />
-      </CarouselWrapper>
+      <HomePageWrapper>
+        <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.HOME} />
+        <HomeWidgets />
+        <HomeServices />
+        <CarouselWrapper>
+          <img src={IMAGES.HOME_CAROUSEL} alt={''} />
+        </CarouselWrapper>
+      </HomePageWrapper>
     </DefaultLayout>
   )
 }

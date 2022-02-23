@@ -141,12 +141,12 @@ const DepositPage = props => {
               disabled={disabledConfirmDeal}>Tạo lệnh</CreateCommandButton>
           </AreaCreateCommand>
         </WhiteRoundedBox>
+        <ModalCustomCommandForm
+          title={'Xác nhận rút tiền'}
+          fields={fields}
+          visible={isModalVisible}
+          setIsModalVisible={handleSetIsModalVisible} />
       </WithdrawPageWrapper>
-      <ModalCustomCommandForm
-        title={'Xác nhận rút tiền'}
-        fields={fields}
-        visible={isModalVisible}
-        setIsModalVisible={handleSetIsModalVisible} />
     </DefaultLayout>
   )
 }

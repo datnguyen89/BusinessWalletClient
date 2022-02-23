@@ -3,8 +3,13 @@ import { AuthenticationRequest } from '../requests/authenticationRequest'
 import userStore from './profileStore'
 
 class AuthenticationStore {
-
-  @observable accessToken = localStorage.getItem('jwt') || undefined  
+  constructor() {
+    autorun(() => {
+      this.jwtDecode = this.accessToken ? JSON.parse(atob(this.accessToken?.split('.')[1])) : {}
+    })
+  }
+  @observable jwtDecode = null
+  @observable accessToken = localStorage.getItem('jwt') || undefined
   @observable coreSysToken = localStorage.getItem('coreSysToken') || undefined
 
   @action userLogin = (payload) => {
@@ -26,9 +31,18 @@ class AuthenticationStore {
         .catch(error => reject(error))
     })
   }
-  @action changePassword = (payload) => {
+  @action transferExtendDataForChangePassword = (payload) => {
     return new Promise((resolve, reject) => {
-      AuthenticationRequest.changePassword(payload)
+      AuthenticationRequest.transferExtendDataForChangePassword(payload)
+        .then(response => {
+          resolve(response.data)
+        })
+        .catch(error => reject(error))
+    })
+  }
+  @action changePasswordForCustomer = (payload) => {
+    return new Promise((resolve, reject) => {
+      AuthenticationRequest.changePasswordForCustomer(payload)
         .then(response => {
           resolve(response.data)
         })
@@ -61,7 +75,7 @@ class AuthenticationStore {
           localStorage.removeItem('jwt')
           localStorage.removeItem('coreSysToken')
           userStore.clearProfile()
-
+          resolve(response.data)
         })
         .catch(error => reject(error))
     })

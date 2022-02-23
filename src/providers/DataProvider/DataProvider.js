@@ -5,14 +5,15 @@ import commonStore from '../../stores/commonStore'
 
 const DataProvider = props => {
 
-  const { children, profileStore, authenticationStore } = props
+  const { children, profileStore, authenticationStore, commonStore } = props
 
   const { accessToken, coreSysToken } = authenticationStore
+  const { ipAddress } = commonStore
 
   useEffect(() => {
-    if (!accessToken || !coreSysToken) return
+    if (!accessToken || !coreSysToken || !ipAddress) return
     profileStore.getProfile()
-  }, [accessToken, coreSysToken])
+  }, [accessToken, coreSysToken, ipAddress])
 
   return (
     <>
@@ -23,4 +24,4 @@ const DataProvider = props => {
 
 DataProvider.propTypes = {}
 
-export default inject('profileStore', 'authenticationStore')(observer(DataProvider))
+export default inject('profileStore', 'authenticationStore', 'commonStore')(observer(DataProvider))

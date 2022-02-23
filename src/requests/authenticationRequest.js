@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { apiUrl } from '../config'
 import authenticationStore from '../stores/authenticationStore'
+import commonStore from '../stores/commonStore'
 
 const source = axios.CancelToken.source()
 
@@ -14,20 +15,38 @@ export const AuthenticationRequest = {
       url: `${apiUrl}/Login`,
       headers: {
         'Content-Type': 'application/json',
+        'Ip-Address': commonStore.ipAddress,
       },
       data: payload,
     })
   },
-  changePassword: (payload) => {
+  transferExtendDataForChangePassword: (payload) => {
     return axios({
       method: 'post',
-      url: `${apiUrl}/ChangePassword`,
+      url: `${apiUrl}/TransferExtendDataForChangePassword`,
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authenticationStore.accessToken || ''}`,
+        'Token-Core-System': `Bearer ${authenticationStore.coreSysToken || ''}`,
+        'Ip-Address': commonStore.ipAddress,
       },
       data: payload,
     })
   },
+  changePasswordForCustomer: (payload) => {
+    return axios({
+      method: 'post',
+      url: `${apiUrl}/ChangePasswordForCustomer`,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authenticationStore.accessToken || ''}`,
+        'Token-Core-System': `Bearer ${authenticationStore.coreSysToken || ''}`,
+        'Ip-Address': commonStore.ipAddress,
+      },
+      data: payload,
+    })
+  },
+
   activeDevice: (payload) => {
     return axios({
       method: 'post',
@@ -36,6 +55,7 @@ export const AuthenticationRequest = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${authenticationStore.accessToken || ''}`,
         'Token-Core-System': `Bearer ${authenticationStore.coreSysToken || ''}`,
+        'Ip-Address': commonStore.ipAddress,
       },
       data: payload,
     })
@@ -48,6 +68,7 @@ export const AuthenticationRequest = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${authenticationStore.accessToken || ''}`,
         'Token-Core-System': `Bearer ${authenticationStore.coreSysToken || ''}`,
+        'Ip-Address': commonStore.ipAddress,
       },
     })
   },

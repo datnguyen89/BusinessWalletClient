@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { Button, Descriptions, Input, Modal, Row } from 'antd'
 
 export const TelevisionBillPageWrapper = styled.div`
+  padding: 16px;
+  
 `
 
 export const TitleInfoService = styled.div`

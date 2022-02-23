@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { Button, Input, Modal, Row } from 'antd'
 
 export const ServiceRechargePageWrapper = styled.div`
+  padding: 16px;
+
 `
 
 export const TitleInfoService = styled.div `

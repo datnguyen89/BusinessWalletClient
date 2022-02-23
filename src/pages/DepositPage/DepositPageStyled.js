@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Button, InputNumber, Modal, Row } from 'antd'
 
 export const DepositPageWrapper = styled.div`
+  padding: 16px;
 `
 
 export const TitleInfoService = styled.div`

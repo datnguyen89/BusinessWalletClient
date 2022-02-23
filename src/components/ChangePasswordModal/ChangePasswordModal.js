@@ -6,32 +6,58 @@ import { Button, Col, Form, Input, message, Row } from 'antd'
 import { ErrorLabel } from '../../pages/ForgotPasswordPage/ForgotPasswordPageStyled'
 import OtpModal from '../OtpModal'
 import SuccessModal from '../SuccessModal'
+import validator from '../../validator'
 
 const ChangePasswordModal = props => {
-  const { onClose, onSuccess, visible } = props
+  const { onClose, onSuccess, visible, authenticationStore, profileStore } = props
   const [formChangePassword] = Form.useForm()
+  const { jwtDecode } = authenticationStore
+  const { userProfile } = profileStore
 
   const [visibleOtp, setVisibleOtp] = useState(false)
   const [visibleSuccess, setVisibleSuccess] = useState(false)
+  const [currPayload, setCurrPayload] = useState(null)
+  const [extendData, setExtendData] = useState(null)
 
   const handleCancel = () => {
     onClose()
     formChangePassword.resetFields()
+    setExtendData(null)
+    setCurrPayload(null)
   }
   const onFinishChangePassword = (formCollection) => {
-    console.log('Success:', formCollection)
-    // TODO: handle submit new password then close modal change password
-    onClose()
-    // TODO: show modal OTP
-    setVisibleOtp(true)
+    let payload = {
+      Step: 1,
+      OldPassword: formCollection.oldPassword,
+      NewPassword: formCollection.password,
+    }
+    authenticationStore.transferExtendDataForChangePassword(payload)
+      .then(res => {
+        if (!res.error) {
+          onClose()
+          setVisibleOtp(true)
+          setExtendData(res.data)
+          setCurrPayload(payload)
+        }
+      })
   }
-  const onFinishFailedChangePassword = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
+
   const handleCallbackOtp = (otp) => {
-    console.log(otp)
-    setVisibleOtp(false)
-    setVisibleSuccess(true)
+    let payload = {
+      Step: 2,
+      UserId: jwtDecode.sub,
+      OldPassword: currPayload.OldPassword,
+      NewPassword: currPayload.NewPassword,
+      ExtendData: extendData,
+      SecureCode: otp,
+    }
+    authenticationStore.changePasswordForCustomer(payload)
+      .then(res => {
+        if (!res.error) {
+          setVisibleOtp(false)
+          setVisibleSuccess(true)
+        }
+      })
   }
 
   const handleSuccessChangePassword = () => {
@@ -58,7 +84,6 @@ const ChangePasswordModal = props => {
           labelCol={{ span: 0 }}
           wrapperCol={{ span: 24 }}
           onFinish={onFinishChangePassword}
-          onFinishFailed={onFinishFailedChangePassword}
           autoComplete='off'
           colon={false}
         >
@@ -72,7 +97,7 @@ const ChangePasswordModal = props => {
           <Form.Item
             label=''
             name='password'
-            rules={[{ required: true, message: 'Vui lòng nhập mật khẩu mới' }]}
+            rules={[{ validator: validator.validateLoginPassword }]}
           >
             <Input.Password className={'auth-input'} placeholder={'Mật khẩu mới'} />
           </Form.Item>
@@ -112,7 +137,7 @@ const ChangePasswordModal = props => {
         visible={visibleOtp}
         callbackOtp={handleCallbackOtp}
         onCancel={() => setVisibleOtp(false)}
-        phoneNumber={'0379631004'} />
+        phoneNumber={userProfile?.mobile} />
       <SuccessModal visible={visibleSuccess} description={'Đối mật khẩu thành công'}
                     callbackSuccess={handleSuccessChangePassword} />
     </>
@@ -126,4 +151,4 @@ ChangePasswordModal.propTypes = {
   onClose: PropTypes.func.isRequired,
 }
 
-export default ChangePasswordModal
+export default inject('authenticationStore','profileStore')(observer(ChangePasswordModal))

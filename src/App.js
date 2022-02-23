@@ -4,7 +4,8 @@ import { apiUrl } from './config'
 import axios from 'axios'
 // Encrypt
 import cypherUtil from './utils/cypherUtil'
-
+// app props
+import publicIp from 'public-ip';
 import { deviceDetect } from 'react-device-detect'
 // util
 import stringUtils from './utils/stringUtils'
@@ -111,7 +112,7 @@ const rootStores = {
 }
 // axios.defaults.timeout = 20000
 
-axios.defaults.headers.common['Ip-Address'] = ''
+// axios.defaults.headers.common['Ip-Address'] = commonStore.ipAddress
 axios.interceptors.request.use(
   config => {
     console.log(config)
@@ -179,6 +180,13 @@ const App = () => {
   // useEffect(() => {
   //   console.log(deviceDetect())
   // }, [])
+
+  useEffect(() => {
+    publicIp.v4()
+      .then(res => {
+        commonStore.setIpAddress(res)
+      })
+  }, [])
 
   return (
     <Provider {...rootStores}>

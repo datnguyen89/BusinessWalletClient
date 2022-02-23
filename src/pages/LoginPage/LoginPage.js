@@ -14,6 +14,7 @@ import validator from '../../validator'
 
 const LoginPage = props => {
   const { commonStore, authenticationStore } = props
+  const { appLoading } = commonStore
   const history = useHistory()
   const location = useLocation()
   const [formLogin] = Form.useForm()
@@ -23,6 +24,7 @@ const LoginPage = props => {
   const [extendData, setExtendData] = useState('')
 
   const onFinish = (formCollection) => {
+    if (appLoading) return
     // 0963493002
     // 123456
     let payload = {

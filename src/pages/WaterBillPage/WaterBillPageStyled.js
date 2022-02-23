@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { Button, Input, Modal, Row } from 'antd'
 
 export const WaterBillPageWrapper = styled.div`
+  padding: 16px;
+  
 `
 
 export const TitleInfoPayment = styled.div `

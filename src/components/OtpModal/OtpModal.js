@@ -124,7 +124,7 @@ OtpModal.propTypes = {
   visible: PropTypes.bool.isRequired,
   callbackOtp: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
-  phoneNumber: PropTypes.string.isRequired,
+  phoneNumber: PropTypes.string,
   otpLength: PropTypes.number,
 }
 

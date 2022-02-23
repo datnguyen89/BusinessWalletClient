@@ -12,8 +12,8 @@ const TermsOfUsePage = props => {
       <Helmet>
         <title>Điều khoản sử dụng</title>
       </Helmet>
-      <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TERM_OF_USE} />
       <TermsOfUsePageWrapper>
+        <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TERM_OF_USE} />
         TermsOfUsePage
       </TermsOfUsePageWrapper>
     </DefaultLayout>

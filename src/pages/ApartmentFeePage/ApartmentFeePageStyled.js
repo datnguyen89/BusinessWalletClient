@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Button, Descriptions, Input, Row } from 'antd'
 
 export const ApartmentFeePageWrapper = styled.div`
+  padding: 16px;
 `
 
 export const TitleInfoService = styled.div`

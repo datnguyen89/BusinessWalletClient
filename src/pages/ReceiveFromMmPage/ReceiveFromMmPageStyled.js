@@ -4,6 +4,7 @@ import { Button, Input, Modal, Row } from 'antd'
 const { TextArea } = Input;
 
 export const DepositPageWrapper = styled.div`
+  padding: 16px;
 `
 
 export const TitleInfoService = styled.div`

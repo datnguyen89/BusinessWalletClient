@@ -17,6 +17,7 @@ export const ProfileRequest = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${authenticationStore.accessToken || ''}`,
         'Token-Core-System': `Bearer ${authenticationStore.coreSysToken || ''}`,
+        'Ip-Address': commonStore.ipAddress,
       },
     })
   },

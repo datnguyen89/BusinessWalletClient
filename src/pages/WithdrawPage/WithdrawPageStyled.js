@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { Button, InputNumber, Modal, Row } from 'antd'
 
 export const WithdrawPageWrapper = styled.div`
+  padding: 16px;
+  
 `
 
 export const TitleInfoService = styled.div`
