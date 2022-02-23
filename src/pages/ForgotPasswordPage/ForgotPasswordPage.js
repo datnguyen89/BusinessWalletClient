@@ -25,7 +25,10 @@ const ForgotPasswordPage = props => {
   const [visibleSuccess, setVisibleSuccess] = useState(false)
 
   const onFinishVerify = (formCollection) => {
-    console.log('Success:', formCollection)
+    let payload = {
+      Step: 1,
+
+    }
     setProcessStep(1)
   }
   const onFinishFailedVerify = (errorInfo) => {

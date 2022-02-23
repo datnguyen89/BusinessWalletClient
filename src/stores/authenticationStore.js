@@ -80,6 +80,33 @@ class AuthenticationStore {
         .catch(error => reject(error))
     })
   }
+  @action transferExtendDataForResetPassword = (payload) => {
+    return new Promise((resolve, reject) => {
+      AuthenticationRequest.transferExtendDataForResetPassword(payload)
+        .then(response => {
+          resolve(response.data)
+        })
+        .catch(error => reject(error))
+    })
+  }
+  @action enterInfoForResetPasswordCustomer = (payload) => {
+    return new Promise((resolve, reject) => {
+      AuthenticationRequest.enterInfoForResetPasswordCustomer(payload)
+        .then(response => {
+          resolve(response.data)
+        })
+        .catch(error => reject(error))
+    })
+  }
+  @action resetPasswordCustomer = (payload) => {
+    return new Promise((resolve, reject) => {
+      AuthenticationRequest.resetPasswordCustomer(payload)
+        .then(response => {
+          resolve(response.data)
+        })
+        .catch(error => reject(error))
+    })
+  }
 
 }
 

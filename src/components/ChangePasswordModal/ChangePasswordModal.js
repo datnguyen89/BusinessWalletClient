@@ -38,6 +38,8 @@ const ChangePasswordModal = props => {
           setVisibleOtp(true)
           setExtendData(res.data)
           setCurrPayload(payload)
+        } else {
+          message.error(res.message)
         }
       })
   }

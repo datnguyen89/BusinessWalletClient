@@ -72,4 +72,43 @@ export const AuthenticationRequest = {
       },
     })
   },
+  transferExtendDataForResetPassword: (payload) => {
+    return axios({
+      method: 'post',
+      url: `${apiUrl}/TransferExtendDataForResetPassword`,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authenticationStore.accessToken || ''}`,
+        'Token-Core-System': `Bearer ${authenticationStore.coreSysToken || ''}`,
+        'Ip-Address': commonStore.ipAddress,
+      },
+      data: payload,
+    })
+  },
+  enterInfoForResetPasswordCustomer: (payload) => {
+    return axios({
+      method: 'post',
+      url: `${apiUrl}/EnterInfoForResetPasswordCustomer`,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authenticationStore.accessToken || ''}`,
+        'Token-Core-System': `Bearer ${authenticationStore.coreSysToken || ''}`,
+        'Ip-Address': commonStore.ipAddress,
+      },
+      data: payload,
+    })
+  },
+  resetPasswordCustomer: (payload) => {
+    return axios({
+      method: 'post',
+      url: `${apiUrl}/ResetPasswordCustomer`,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authenticationStore.accessToken || ''}`,
+        'Token-Core-System': `Bearer ${authenticationStore.coreSysToken || ''}`,
+        'Ip-Address': commonStore.ipAddress,
+      },
+      data: payload,
+    })
+  },
 }
