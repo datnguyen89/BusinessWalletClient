@@ -58,6 +58,8 @@ const ChangePasswordModal = props => {
         if (!res.error) {
           setVisibleOtp(false)
           setVisibleSuccess(true)
+        } else {
+          message.error(res.message)
         }
       })
   }
@@ -153,4 +155,4 @@ ChangePasswordModal.propTypes = {
   onClose: PropTypes.func.isRequired,
 }
 
-export default inject('authenticationStore','profileStore')(observer(ChangePasswordModal))
+export default inject('authenticationStore', 'profileStore')(observer(ChangePasswordModal))
