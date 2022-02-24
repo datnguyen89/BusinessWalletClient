@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { inject, observer } from 'mobx-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -7,7 +7,6 @@ import {
   faFileInvoiceDollar,
   faHandHoldingUsd,
   faLink,
-  faList,
 } from '@fortawesome/free-solid-svg-icons'
 import {
   CustomLink,
@@ -26,21 +25,14 @@ import ICONS from '../../icons'
 import { Drawer, Dropdown, Menu } from 'antd'
 import HeaderUserArea from '../HeaderUserArea'
 import { useHistory } from 'react-router-dom'
-import {
-  DEVICE,
-  PAGES,
-  PAYMENT_GROUP_PAGES,
-  SERVICES_DATA,
-  SIDEBAR_WIDTH_EXPAND, TRANSFER_GROUP_PAGES,
-  TRANSFERS,
-} from '../../utils/constant'
-import DrawerSideBar from '../DrawerSideBar'
+import { PAGES, PAYMENT_GROUP_PAGES, SERVICES_DATA, TRANSFER_GROUP_PAGES, TRANSFERS } from '../../utils/constant'
 import {
   HeaderDropdownIconWrapper,
   HeaderDropdownItem,
   HeaderDropdownItemText,
   HeaderDropdownWrapper,
 } from '../CommonStyled/CommonStyled'
+import MenuSideBarArea from '../MenuSideBarArea'
 
 const MainHeader = props => {
   const { commonStore } = props
@@ -95,29 +87,12 @@ const MainHeader = props => {
   return (
     <MainHeaderWrapper>
       <HeaderLogoArea>
-        <img src={IMAGES.MAIN_LOGO} alt={''} style={{ cursor: 'pointer' }}
+        <img src={IMAGES.MAIN_LOGO}
+             alt={''}
+             height={44}
+             style={{ cursor: 'pointer' }}
              onClick={() => history.push(PAGES.HOME.PATH)} />
         <span>Doanh Nghiệp</span>
-        <FontAwesomeIcon
-          onClick={() => setVisibleMobileDrawerLeft(true)}
-          icon={faList}
-          size={'2x'}
-          style={{
-            display: device === DEVICE.MOBILE ? 'block' : 'none',
-            cursor: 'pointer',
-            color: '#fff',
-            marginLeft: 8,
-          }} />
-        <Drawer
-          title={null}
-          placement='left'
-          closable={false}
-          width={SIDEBAR_WIDTH_EXPAND}
-          style={{ padding: 0 }}
-          onClose={() => setVisibleMobileDrawerLeft(false)}
-          visible={visibleMobileDrawerLeft}>
-          <DrawerSideBar />
-        </Drawer>
       </HeaderLogoArea>
       <MainHeaderRight>
         <HeaderTransactionArea>
@@ -155,11 +130,14 @@ const MainHeader = props => {
             <CustomLink to={PAGES.WITHDRAW.PATH}>{ICONS.WITHDRAW_ICON}<span>Rút tiền</span></CustomLink>
           </HeaderTransactionItem>
         </HeaderTransactionArea>
+
         <HeaderNotifyArea>
           <NotifyBell />
         </HeaderNotifyArea>
+
         <HeaderUserArea />
       </MainHeaderRight>
+
       <MainHeaderRightMobile>
         <FontAwesomeIcon
           onClick={() => setVisibleMobileDrawerRight(true)}
@@ -173,29 +151,7 @@ const MainHeader = props => {
           style={{ padding: 0 }}
           onClose={() => setVisibleMobileDrawerRight(false)}
           visible={visibleMobileDrawerRight}>
-          <Menu
-            onClick={handleClickDrawerMenu}
-            style={{ width: '100%' }}
-            defaultSelectedKeys={['1']}
-            mode='inline'
-          >
-            <Menu.Item key='1'>
-              <FontAwesomeIcon style={{ marginRight: '16px' }} icon={faFileInvoiceDollar} />
-              Nạp tiền
-            </Menu.Item>
-            <Menu.Item key='2'>
-              <FontAwesomeIcon style={{ marginRight: '16px' }} icon={faExchangeAlt} />
-              Chuyển tiền
-            </Menu.Item>
-            <Menu.Item key='3'>
-              <FontAwesomeIcon style={{ marginRight: '16px' }} icon={faLink} />
-              Liên kết
-            </Menu.Item>
-            <Menu.Item key='4'>
-              <FontAwesomeIcon style={{ marginRight: '16px' }} icon={faHandHoldingUsd} />
-              Rút tiền
-            </Menu.Item>
-          </Menu>
+          <MenuSideBarArea />
         </Drawer>
       </MainHeaderRightMobile>
     </MainHeaderWrapper>

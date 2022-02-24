@@ -196,100 +196,100 @@ const App = () => {
         <DataProvider>
           <Router history={history}>
             <Switch>
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.HOME.PATH}
                 component={HomePage} />
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.IDENTITY.PATH}
                 component={IdentityInfoPage} /> {/*Thông tin định danh*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.TRANSACTION_MANAGE.PATH}
                 component={TransactionManagePage} /> {/*Quản lý giao dịch*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.TRANSACTION_HISTORY.PATH}
                 component={TransactionHistoryPage} /> {/*Lịch sử giao dịch*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.TERM_OF_USE.PATH}
                 component={TermsOfUsePage} /> {/*Điều khoản sử dụng*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.SUPPORT.PATH}
                 component={SupportPage} /> {/*Trợ giúp*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.ABOUT_US.PATH}
                 component={AboutUsPage} /> {/*Giới thiệu*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.CONTACT.PATH}
                 component={ContactPage} /> {/*Liên hệ*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.POLICY.PATH}
                 component={PolicyPage} /> {/*Chính sách*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.PHONE_CARD.PATH}
                 component={PhoneCardPage} /> {/*Mã thẻ*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.PREPAID.PATH}
                 component={PrepaidPage} /> {/*Nạp tiền điện thoại trả trước*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.POSTPAID.PATH}
                 component={PostpaidPage} /> {/*Nạp tiền điện thoại trả sau*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.PHONE_DATA.PATH}
                 component={PhoneDataPage} /> {/*Nạp data*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.CARD_DATA.PATH}
                 component={CardDataPage} /> {/*Mã thẻ data*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.ELECTRIC_BILL.PATH}
                 component={ElectricBillPage} /> {/*Hóa đơn điện*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.WATER_BILL.PATH}
                 component={WaterBillPage} /> {/*Hóa đơn nước*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.INTERNET_BILL.PATH}
                 component={InternetBillPage} /> {/*Internet*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.TELEVISION_BILL.PATH}
                 component={TelevisionBillPage} /> {/*Truyền hình*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.SERVICE_RECHARGE.PATH}
                 component={ServiceRechargePage} /> {/*Nạp dịch vụ*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.APARTMENT_FEE.PATH}
                 component={ApartmentFeePage} /> {/*Phí chung cư*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.EDUCATION_FEE.PATH}
                 component={EducationFeePage} /> {/*Học phí*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.DEPOSIT.PATH}
                 component={DepositPage} /> {/*Nạp tiền*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.TRANSFER_WALLET.PATH}
                 component={TransferWalletPage} /> {/*Chuyển tiền ví*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.TRANSFER_MULTIPLE.PATH}
                 component={TransferMultiplePage} /> {/*Chuyển tiền theo lô*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.RECEIVE_FROM_MM.PATH}
                 component={ReceiveFromMmPage} /> {/*Nhận chuyển tiền từ MM*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.TRANSFER_TO_MM.PATH}
                 component={TransferToMmPage} /> {/*Chuyển tiền tới MM*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.LINK_BANK.PATH}
                 component={LinkBankPage} /> {/*Liên kết*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.ADD_LINK.PATH}
                 component={AddLinkPage} /> {/*Thêm liên kết*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.WITHDRAW.PATH}
                 component={WithdrawPage} /> {/*Rút tiền*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.REPORT_SUMMARY.PATH}
                 component={ReportSummaryPage} /> {/*Báo cáo tổng hợp*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.REPORT_DETAIL.PATH}
                 component={ReportDetailPage} /> {/*Báo cáo chi tiết*/}
-              <ProtectedRoute
+              <Route
                 exact path={PAGES.LIMIT_SETTING.PATH}
                 component={LimitSettingPage} /> {/*Cài đặt hạn mức*/}
 

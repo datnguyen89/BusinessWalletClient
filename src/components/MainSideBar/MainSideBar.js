@@ -49,13 +49,13 @@ const MainSideBar = props => {
 
       <SocialIconWrapper flexDirection={isCollapse ? 'column' : 'row'}>
         <Link to={'#'}>
-          <img src={ICONS.FACEBOOK} alt={''} />
+          <img src={ICONS.FACEBOOK} alt={''} width={32} height={32} />
         </Link>
         <Link to={'#'}>
-          <img src={ICONS.INSTAGRAM} alt={''} />
+          <img src={ICONS.INSTAGRAM} alt={''} width={32} height={32} />
         </Link>
         <Link to={'#'}>
-          <img src={ICONS.YOUTUBE} alt={''} />
+          <img src={ICONS.YOUTUBE} alt={''} width={32} height={32} />
         </Link>
       </SocialIconWrapper>
     </MainSideBarWrapper>

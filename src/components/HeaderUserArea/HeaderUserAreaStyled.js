@@ -1,17 +1,16 @@
 import styled from 'styled-components'
 
-export const HeaderUserAreaWrapper = styled.a`
+export const HeaderUserAreaWrapper = styled.div`
   color: #fff;
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   .header-user-area {
     width: 320px;
   }
 
-  &:hover {
-    color: #fff !important;
-  }
+  
 
   span {
     margin: 0 8px;

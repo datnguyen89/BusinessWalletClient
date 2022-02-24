@@ -22,7 +22,7 @@ const MenuSideBarArea = props => {
         onClick={() => handleClickMenu(PAGES.IDENTITY.PATH)}
         className={pageName === PAGES.IDENTITY.NAME ? 'active' : ''}
         color={commonStore.appTheme.solidColor}>
-        <img src={ICONS.TTDD_ICON} alt={''} />
+        <img src={ICONS.TTDD_ICON} alt={''} width={24} />
         <span
           className={'menu-sidebar-label'}
           style={{ display: isCollapse ? 'none' : 'block' }}>
@@ -33,7 +33,7 @@ const MenuSideBarArea = props => {
         onClick={() => handleClickMenu(PAGES.TRANSACTION_MANAGE.PATH)}
         className={pageName === PAGES.TRANSACTION_MANAGE.NAME ? 'active' : ''}
         color={commonStore.appTheme.solidColor}>
-        <img src={ICONS.QLGD_ICON} alt={''} />
+        <img src={ICONS.QLGD_ICON} alt={''} width={24} />
         <span
           className={'menu-sidebar-label'}
           style={{ display: isCollapse ? 'none' : 'block' }}>
@@ -44,7 +44,7 @@ const MenuSideBarArea = props => {
         onClick={() => handleClickMenu(PAGES.TRANSACTION_HISTORY.PATH)}
         className={pageName === PAGES.TRANSACTION_HISTORY.NAME ? 'active' : ''}
         color={commonStore.appTheme.solidColor}>
-        <img src={ICONS.LSGD_ICON} alt={''} />
+        <img src={ICONS.LSGD_ICON} alt={''} width={24} />
         <span
           className={'menu-sidebar-label'}
           style={{ display: isCollapse ? 'none' : 'block' }}>
@@ -55,7 +55,7 @@ const MenuSideBarArea = props => {
         onClick={() => handleClickMenu(PAGES.REPORT_SUMMARY.PATH)}
         className={pageName === PAGES.REPORT_SUMMARY.NAME ? 'active' : ''}
         color={commonStore.appTheme.solidColor}>
-        <img src={ICONS.BCTH_ICON} alt={''} />
+        <img src={ICONS.BCTH_ICON} alt={''} width={24} />
         <span
           className={'menu-sidebar-label'}
           style={{ display: isCollapse ? 'none' : 'block' }}>
@@ -66,7 +66,7 @@ const MenuSideBarArea = props => {
         onClick={() => handleClickMenu(PAGES.REPORT_DETAIL.PATH)}
         className={pageName === PAGES.REPORT_DETAIL.NAME ? 'active' : ''}
         color={commonStore.appTheme.solidColor}>
-        <img src={ICONS.BCCT_ICON} alt={''} />
+        <img src={ICONS.BCCT_ICON} alt={''} width={24} />
         <span
           className={'menu-sidebar-label'}
           style={{ display: isCollapse ? 'none' : 'block' }}>
@@ -77,7 +77,7 @@ const MenuSideBarArea = props => {
         onClick={() => handleClickMenu(PAGES.LIMIT_SETTING.PATH)}
         className={pageName === PAGES.LIMIT_SETTING.NAME ? 'active' : ''}
         color={commonStore.appTheme.solidColor}>
-        <img src={ICONS.CDHM_ICON} alt={''} />
+        <img src={ICONS.CDHM_ICON} alt={''} width={24} />
         <span
           className={'menu-sidebar-label'}
           style={{ display: isCollapse ? 'none' : 'block' }}>
