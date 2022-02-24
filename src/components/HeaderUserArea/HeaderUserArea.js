@@ -75,7 +75,7 @@ const HeaderUserArea = props => {
                 getPopupContainer={() => document.getElementById('user-menu-wrapper')}>
         <DropdownUserSetting>
           <UserAvatar avatarUrl={userProfile?.avatar} />
-          <span>{userProfile?.fullName}</span>
+          <span>{userProfile?.fullName || 'Admin'}</span>
           <img src={ICONS.WHITE_ARROW_DOWN} alt={''} height={8} />
         </DropdownUserSetting>
       </Dropdown>
