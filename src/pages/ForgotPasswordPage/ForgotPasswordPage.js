@@ -229,7 +229,7 @@ const ForgotPasswordPage = props => {
             >
               <Form.Item>
                 <ErrorLabel>
-                  * Vui lòng đặt mật khẩu gồm cả số và chữ, tối thiểu 8 ký tự và chứa ký tự đặc biệt
+                  * Vui lòng đặt mật khẩu gồm cả số và chữ, <br /> tối thiểu 8 ký tự và chứa ký tự đặc biệt
                 </ErrorLabel>
               </Form.Item>
               <Form.Item

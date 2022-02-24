@@ -9,14 +9,15 @@ export const ForgotPasswordPageWrapper = styled.div`
     width: 90%;
   }
 
-  .ant-input {
-    height: 53px !important;
-    border-radius: 5px;
-  }
-
-  .ant-input-password {
-    border-radius: 5px;
-  }
+  //.ant-input {
+  //  height: 53px !important;
+  //  border-radius: 5px;
+  //}
+  //
+  //.ant-input-password {
+  //  border-radius: 5px;
+  //}
+  
 `
 export const ForgotPasswordFormTitle = styled.h1`
   text-align: center;
