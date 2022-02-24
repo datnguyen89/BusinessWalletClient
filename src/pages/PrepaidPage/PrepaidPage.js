@@ -99,7 +99,7 @@ const PrepaidPage = props => {
       </Helmet>
       <PrepaidPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.PREPAID} />
-        <WhiteRoundedBox margin={'0 16px 16px 16px'}>
+        <WhiteRoundedBox>
           <Row>
             <Col span={24}>
               <TitleInfoService>Chọn nhà cung cấp</TitleInfoService>

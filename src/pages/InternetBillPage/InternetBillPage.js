@@ -133,7 +133,7 @@ const InternetBillPage = props => {
       </Helmet>
       <InternetBillPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.INTERNET_BILL} />
-        <WhiteRoundedBox margin={'0 16px 16px 16px'}>
+        <WhiteRoundedBox>
           <Row>
             <Col span={24}>
               <TitleInfoService>Thông tin dịch vụ</TitleInfoService>

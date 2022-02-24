@@ -38,7 +38,7 @@ const IdentityInfoPage = props => {
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.IDENTITY} />
         <Row gutter={[16, 16]}>
           <Col span={17}>
-            <WhiteRoundedBox>
+            <WhiteRoundedBox height={'100%'}>
               <ColorTitle>
                 Thông tin doanh nghiệp
               </ColorTitle>
@@ -46,8 +46,7 @@ const IdentityInfoPage = props => {
                 labelStyle={{ width: '20%' }}
                 contentStyle={{ width: '30%' }}
                 bordered
-                column={2}
-                size={'small'}>
+                column={2}>
                 <Descriptions.Item label={'Tên tổ chức'}>
                   {entProfile?.businessName}
                 </Descriptions.Item>
@@ -79,28 +78,6 @@ const IdentityInfoPage = props => {
                   {entProfile?.tradingAddress}
                 </Descriptions.Item>
               </Descriptions>
-              <ColorTitle marginTop={'16px'}>
-                Thông tin tài khoản
-              </ColorTitle>
-              <Descriptions
-                labelStyle={{ width: '20%' }}
-                contentStyle={{ width: '30%' }}
-                bordered
-                column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
-                size={'small'}>
-                <Descriptions.Item label={'Số tài khoản'}>
-                  {entProfile?.accountName}
-                </Descriptions.Item>
-                <Descriptions.Item label={'Số dư khả dụng'}>
-                  {numberUtils.thousandSeparator(entProfile?.balance)}
-                </Descriptions.Item>
-                <Descriptions.Item label={'Số dư đóng băng'}>
-                  {numberUtils.thousandSeparator(entProfile?.freezeBalance)}
-                </Descriptions.Item>
-                <Descriptions.Item label={'Trạng thái tài khoản'}>
-                  {stringUtils.renderEntStatus(entProfile?.status)}
-                </Descriptions.Item>
-              </Descriptions>
             </WhiteRoundedBox>
           </Col>
           <Col span={7}>
@@ -128,7 +105,30 @@ const IdentityInfoPage = props => {
             </WhiteRoundedBox>
           </Col>
           <Col span={17}>
-
+            <WhiteRoundedBox>
+              <ColorTitle>
+                Thông tin tài khoản
+              </ColorTitle>
+              <Descriptions
+                labelStyle={{ width: '20%' }}
+                contentStyle={{ width: '30%' }}
+                bordered
+                column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
+                size={'small'}>
+                <Descriptions.Item label={'Số tài khoản'}>
+                  {entProfile?.accountName}
+                </Descriptions.Item>
+                <Descriptions.Item label={'Số dư khả dụng'}>
+                  {numberUtils.thousandSeparator(entProfile?.balance)}
+                </Descriptions.Item>
+                <Descriptions.Item label={'Số dư đóng băng'}>
+                  {numberUtils.thousandSeparator(entProfile?.freezeBalance)}
+                </Descriptions.Item>
+                <Descriptions.Item label={'Trạng thái tài khoản'}>
+                  {stringUtils.renderEntStatus(entProfile?.status)}
+                </Descriptions.Item>
+              </Descriptions>
+            </WhiteRoundedBox>
           </Col>
           <Col span={7}>
             <WhiteRoundedBox>

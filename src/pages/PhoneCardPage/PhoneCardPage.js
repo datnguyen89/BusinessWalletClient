@@ -97,7 +97,7 @@ const PhoneCardPage = props => {
       </Helmet>
       <PhoneCardPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.PHONE_CARD} />
-        <WhiteRoundedBox margin={'0 16px 16px 16px'}>
+        <WhiteRoundedBox>
           <Row>
             <Col span={24}>
               <TitleInfoService>Thông tin dịch vụ</TitleInfoService>

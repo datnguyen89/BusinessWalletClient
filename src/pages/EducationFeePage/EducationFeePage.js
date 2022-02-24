@@ -137,7 +137,7 @@ const EducationFeePage = props => {
       </Helmet>
       <EducationFeePageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.EDUCATION_FEE} />
-        <WhiteRoundedBox margin={'0 16px 16px 16px'}>
+        <WhiteRoundedBox>
           <Row>
             <Col span={24}>
               <TitleInfoService>Thông tin dịch vụ</TitleInfoService>

@@ -54,40 +54,67 @@ const MainSideBar = props => {
           onClick={() => handleClickMenu(PAGES.IDENTITY.PATH)}
           className={pageName === PAGES.IDENTITY.NAME ? 'active' : ''}
           color={commonStore.appTheme.solidColor}>
-          {ICONS.IDENTITY_ICON}
-          <span className={'menu-sidebar-label'}
-                style={{ display: isCollapse ? 'none' : 'block' }}>Thông tin định danh</span>
+          <img src={ICONS.TTDD_ICON} alt={''} />
+          <span
+            className={'menu-sidebar-label'}
+            style={{ display: isCollapse ? 'none' : 'block' }}>
+            Thông tin định danh
+          </span>
         </MenuSidebarItem>
         <MenuSidebarItem
           onClick={() => handleClickMenu(PAGES.TRANSACTION_MANAGE.PATH)}
           className={pageName === PAGES.TRANSACTION_MANAGE.NAME ? 'active' : ''}
           color={commonStore.appTheme.solidColor}>
-          {ICONS.TRANSACTION_ICON}
-          <span className={'menu-sidebar-label'}
-                style={{ display: isCollapse ? 'none' : 'block' }}>Quản lý giao dịch</span>
+          <img src={ICONS.QLGD_ICON} alt={''} />
+          <span
+            className={'menu-sidebar-label'}
+            style={{ display: isCollapse ? 'none' : 'block' }}>
+            Quản lý giao dịch
+          </span>
         </MenuSidebarItem>
         <MenuSidebarItem
           onClick={() => handleClickMenu(PAGES.TRANSACTION_HISTORY.PATH)}
           className={pageName === PAGES.TRANSACTION_HISTORY.NAME ? 'active' : ''}
           color={commonStore.appTheme.solidColor}>
-          {ICONS.HISTORY_ICON}
-          <span className={'menu-sidebar-label'}
-                style={{ display: isCollapse ? 'none' : 'block' }}>Lịch sử giao dịch</span>
+          <img src={ICONS.LSGD_ICON} alt={''} />
+          <span
+            className={'menu-sidebar-label'}
+            style={{ display: isCollapse ? 'none' : 'block' }}>
+            Lịch sử giao dịch
+          </span>
         </MenuSidebarItem>
         <MenuSidebarItem
-          onClick={() => handleClickMenu(PAGES.TERM_OF_USE.PATH)}
-          className={pageName === PAGES.TERM_OF_USE.NAME ? 'active' : ''}
+          onClick={() => handleClickMenu(PAGES.REPORT_SUMMARY.PATH)}
+          className={pageName === PAGES.REPORT_SUMMARY.NAME ? 'active' : ''}
           color={commonStore.appTheme.solidColor}>
-          {ICONS.POLICY_ICON}
-          <span className={'menu-sidebar-label'}
-                style={{ display: isCollapse ? 'none' : 'block' }}>Điều khoản sử dụng</span>
+          <img src={ICONS.BCTH_ICON} alt={''} />
+          <span
+            className={'menu-sidebar-label'}
+            style={{ display: isCollapse ? 'none' : 'block' }}>
+            Báo cáo tổng hợp
+          </span>
         </MenuSidebarItem>
         <MenuSidebarItem
-          onClick={() => handleClickMenu(PAGES.SUPPORT.PATH)}
-          className={pageName === PAGES.SUPPORT.NAME ? 'active' : ''}
+          onClick={() => handleClickMenu(PAGES.REPORT_DETAIL.PATH)}
+          className={pageName === PAGES.REPORT_DETAIL.NAME ? 'active' : ''}
           color={commonStore.appTheme.solidColor}>
-          {ICONS.SUPPORT_ICON}
-          <span className={'menu-sidebar-label'} style={{ display: isCollapse ? 'none' : 'block' }}>Trợ giúp</span>
+          <img src={ICONS.BCCT_ICON} alt={''} />
+          <span
+            className={'menu-sidebar-label'}
+            style={{ display: isCollapse ? 'none' : 'block' }}>
+            Báo cáo chi tiết
+          </span>
+        </MenuSidebarItem>
+        <MenuSidebarItem
+          onClick={() => handleClickMenu(PAGES.LIMIT_SETTING.PATH)}
+          className={pageName === PAGES.LIMIT_SETTING.NAME ? 'active' : ''}
+          color={commonStore.appTheme.solidColor}>
+          <img src={ICONS.CDHM_ICON} alt={''} />
+          <span
+            className={'menu-sidebar-label'}
+            style={{ display: isCollapse ? 'none' : 'block' }}>
+            Cài đặt hạn mức
+          </span>
         </MenuSidebarItem>
       </MenuSidebarArea>
       <SocialIconWrapper flexDirection={isCollapse ? 'column' : 'row'}>

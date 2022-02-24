@@ -50,7 +50,8 @@ export const WhiteRoundedBox = styled.div`
   border-radius: ${props => props.borderRadius || '4px'};
   padding: ${props => props.padding || '16px'};
   margin: ${props => props.margin || '0'};
-  border: ${props => props.border || '1px solid #ccc'};
+  border: ${props => props.border || 'none'};
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 `
 export const ColorText = styled.span`
   color: ${props => props.color || '#333'};

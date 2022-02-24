@@ -83,6 +83,13 @@ const ICONS = {
   EDIT_BLUE: require('./media/icons/edit-icon.svg'),
   DOWNLOAD_FILE_ICON: <DownloadFileIcon />,
   UPLOAD_FILE_ICON: <UploadFileIcon />,
-  CHECK_FILE_ICON: <CheckFileIcon />
+  CHECK_FILE_ICON: <CheckFileIcon />,
+  // Side menu
+  TTDD_ICON: require('./media/icons/side-menu/ttdd.svg'),
+  QLGD_ICON: require('./media/icons/side-menu/qlgd.svg'),
+  LSGD_ICON: require('./media/icons/side-menu/lsgd.svg'),
+  BCTH_ICON: require('./media/icons/side-menu/bcth.svg'),
+  BCCT_ICON: require('./media/icons/side-menu/bcct.svg'),
+  CDHM_ICON: require('./media/icons/side-menu/cdhm.svg'),
 }
 export default ICONS

@@ -141,7 +141,7 @@ const ElectricBillPage = props => {
       </Helmet>
       <ElectricBillPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.ELECTRIC_BILL} />
-        <WhiteRoundedBox margin={'0 16px 16px 16px'}>
+        <WhiteRoundedBox>
           <Row>
             <Col span={24}>
               <TitleInfoService>Thông tin dịch vụ</TitleInfoService>

@@ -69,7 +69,7 @@ const AddLinkPage = props => {
       </Helmet>
       <AddLinkPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.ADD_LINK} />
-        <WhiteRoundedBox margin={'0 16px 16px 16px'}>
+        <WhiteRoundedBox>
           <Row>
             <Col span={24}>
               <TitleInfoLink>Thông tin liên kết</TitleInfoLink>

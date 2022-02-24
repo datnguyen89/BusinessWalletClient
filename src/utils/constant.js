@@ -117,6 +117,20 @@ export const PAGES = {
     NAME: 'withdraw',
     PATH: '/withdraw',
   },
+
+  REPORT_SUMMARY: {
+    NAME: 'report-summary',
+    PATH: '/report-summary',
+  },
+  REPORT_DETAIL: {
+    NAME: 'report-detail',
+    PATH: '/report-detail',
+  },
+  LIMIT_SETTING: {
+    NAME: 'limit-setting',
+    PATH: '/limit-setting',
+  },
+
   LOGIN: {
     NAME: 'login',
     PATH: '/login',
@@ -312,6 +326,19 @@ export const BREADCRUMB_DATA = {
   ADD_LINK: [
     { ID: 64, LABEL: 'Trang chủ', PATH: PAGES.HOME.PATH },
     { ID: 65, LABEL: 'Thêm liên kết', PATH: null },
+  ],
+
+  REPORT_SUMMARY: [
+    { ID: 64, LABEL: 'Trang chủ', PATH: PAGES.HOME.PATH },
+    { ID: 65, LABEL: 'Báo cáo tổng hợp', PATH: null },
+  ],
+  REPORT_DETAIL: [
+    { ID: 64, LABEL: 'Trang chủ', PATH: PAGES.HOME.PATH },
+    { ID: 65, LABEL: 'Báo cáo chi tiết', PATH: null },
+  ],
+  LIMIT_SETTING: [
+    { ID: 64, LABEL: 'Trang chủ', PATH: PAGES.HOME.PATH },
+    { ID: 65, LABEL: 'Cài đặt hạn mức', PATH: null },
   ],
 }
 export const HOME_WIDGET_DATA = [

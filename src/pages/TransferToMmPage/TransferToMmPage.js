@@ -89,7 +89,7 @@ const DepositPage = props => {
       </Helmet>
       <DepositPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TRANSFER_TO_MM} />
-        <WhiteRoundedBox margin={'0 16px 16px 16px'}>
+        <WhiteRoundedBox>
           <Row>
             <Col span={24}>
               <TitleInfoService>Thông tin chuyển tiền</TitleInfoService>

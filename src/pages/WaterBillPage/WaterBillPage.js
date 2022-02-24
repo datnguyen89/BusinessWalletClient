@@ -117,7 +117,7 @@ const WaterBillPage = props => {
       </Helmet>
       <WaterBillPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.WATER_BILL} />
-        <WhiteRoundedBox margin={'0 16px 16px 16px'}>
+        <WhiteRoundedBox>
           <Row>
             <Col span={24}>
               <TitleInfoPayment>Thông tin thanh toán</TitleInfoPayment>

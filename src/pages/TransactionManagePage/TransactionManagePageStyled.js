@@ -4,10 +4,9 @@ export const TransactionManagePageWrapper = styled.div`
   padding: 16px;
 `
 export const TransactionManagerBody = styled.div`
-  margin: 16px;
   padding: 16px;
   background: #fff;
-  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   .site-collapse-custom-collapse {
     margin-top: 16px;

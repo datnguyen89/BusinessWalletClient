@@ -6,6 +6,7 @@ import MainBreadCrumb from '../../components/MainBreadCrumb'
 import Contract from '../../components/Contract'
 import { Helmet } from 'react-helmet/es/Helmet'
 import { LinkBankPageWrapper } from './LinkBankPageStyled'
+import { WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
 
 const LinkBankPage = props => {
   const { commonStore } = props
@@ -17,7 +18,9 @@ const LinkBankPage = props => {
       </Helmet>
       <LinkBankPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.LINK_BANK} />
-        <Contract/>
+        <WhiteRoundedBox>
+          <Contract/>
+        </WhiteRoundedBox>
       </LinkBankPageWrapper>
     </DefaultLayout>
   )

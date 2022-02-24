@@ -168,7 +168,7 @@ const TelevisionBillPage = props => {
       </Helmet>
       <TelevisionBillPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TELEVISION_BILL} />
-        <WhiteRoundedBox margin={'0 16px 16px 16px'}>
+        <WhiteRoundedBox>
           <Row>
             <Col span={24}>
               <TitleInfoService>Chọn nhà cung cấp</TitleInfoService>

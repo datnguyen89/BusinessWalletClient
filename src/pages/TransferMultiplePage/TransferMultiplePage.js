@@ -157,7 +157,7 @@ const DepositPage = props => {
       </Helmet>
       <DepositPageWrapper>
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TRANSFER_MULTIPLE} />
-        <WhiteRoundedBox margin={'0 16px 16px 16px'}>
+        <WhiteRoundedBox>
           <TitleInfoService>Thông tin chuyển tiền</TitleInfoService>
 
           <Form

@@ -17,7 +17,6 @@ const TermsOfUsePage = props => {
         TermsOfUsePage
       </TermsOfUsePageWrapper>
     </DefaultLayout>
-
   )
 }
 
