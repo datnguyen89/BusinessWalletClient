@@ -115,7 +115,6 @@ const rootStores = {
 // axios.defaults.headers.common['Ip-Address'] = commonStore.ipAddress
 axios.interceptors.request.use(
   config => {
-    console.log(config)
     if (config.disableSpinner) {
       commonStore.setAppLoading(false)
     } else {

@@ -15,20 +15,22 @@ import { Link, useHistory } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
 import SuccessModal from '../../components/SuccessModal'
 import authenticationStore from '../../stores/authenticationStore'
+import { PAGES } from '../../utils/constant'
 
 const ForgotPasswordPage = props => {
   const history = useHistory()
-  const [formVerify] = Form.useForm()
+  const [formEnterInfo] = Form.useForm()
   const [formResetPassword] = Form.useForm()
 
   const [processStep, setProcessStep] = useState(0)
+
   const [visibleOtp, setVisibleOtp] = useState(false)
   const [visibleSuccess, setVisibleSuccess] = useState(false)
 
   const [currPayload, setCurrPayload] = useState(null)
   const [extendData, setExtendData] = useState(null)
 
-  const onFinishVerify = (formCollection) => {
+  const onFinishEnterInfo = (formCollection) => {
     let payload = {
       Step: 1,
       BusinessAccountName: formCollection.BusinessAccountName,
@@ -66,11 +68,20 @@ const ForgotPasswordPage = props => {
     setCurrPayload(newPayload)
     authenticationStore.transferExtendDataForResetPassword(payload)
       .then(res => {
-        if (!res?.error) {
-          setExtendData(res?.data)
-          setVisibleOtp(true)
-        } else {
-          message.error(res?.message)
+        console.log(res)
+        switch (res?.responseCode) {
+          case 0:
+            setExtendData(res?.data)
+            setVisibleOtp(true)
+            break
+          case -10002:
+          case -10105:
+            handleBackEnterInfo()
+            message.error(res.message)
+            break
+          default:
+            message.error(res?.message)
+            break
         }
       })
   }
@@ -88,26 +99,50 @@ const ForgotPasswordPage = props => {
     }
     authenticationStore.resetPasswordCustomer(payload)
       .then(res => {
-        if (!res.error) {
-          setVisibleOtp(false)
-          message.success(res.message)
-        } else {
-          message.error(res.message)
+        console.log(res)
+        switch (res?.responseCode) {
+          case 0:
+            setVisibleOtp(false)
+            setVisibleSuccess(true)
+            break
+          case -10002:
+          case -10105:
+            setVisibleOtp(false)
+            handleBackEnterInfo()
+            message.error(res.message)
+            break
+          default:
+            message.error(res.message)
+            break
         }
+
       })
   }
 
   const handleCloseSuccessModal = () => {
     setVisibleSuccess(false)
-    history.push('/login')
+    formEnterInfo.resetFields()
+    formResetPassword.resetFields()
+    setCurrPayload(null)
+    setExtendData(null)
+    setProcessStep(0)
+    history.push(PAGES.LOGIN.PATH)
   }
 
   const handleClickBackLogin = () => {
-    formVerify.resetFields()
-    history.push('/login')
-  }
-  const handleClickBackVerify = () => {
+    formEnterInfo.resetFields()
     formResetPassword.resetFields()
+    setCurrPayload(null)
+    setExtendData(null)
+    setProcessStep(0)
+    history.push(PAGES.LOGIN.PATH)
+  }
+  const handleBackEnterInfo = () => {
+    console.log('back enter info')
+    formEnterInfo.resetFields()
+    formResetPassword.resetFields()
+    setCurrPayload(null)
+    setExtendData(null)
     setProcessStep(0)
   }
 
@@ -122,11 +157,11 @@ const ForgotPasswordPage = props => {
           {
             processStep === 0 &&
             <Form
-              form={formVerify}
+              form={formEnterInfo}
               name='basic'
               labelCol={{ span: 0 }}
               wrapperCol={{ span: 24 }}
-              onFinish={onFinishVerify}
+              onFinish={onFinishEnterInfo}
               onFinishFailed={onFinishFailedVerify}
               autoComplete='off'
             >
@@ -225,7 +260,7 @@ const ForgotPasswordPage = props => {
               <Form.Item>
                 <Row align={'middle'} justify={'space-between'}>
                   <Col span={11}>
-                    <Button type='default' block onClick={handleClickBackVerify}>
+                    <Button type='default' block onClick={handleBackEnterInfo}>
                       Về bước trước
                     </Button>
                   </Col>
@@ -240,7 +275,7 @@ const ForgotPasswordPage = props => {
           }
         </AuthShadowBox>
         <OtpModal
-          phoneNumber={'0379631004'}
+          phoneNumber={currPayload?.AccountName}
           callbackOtp={handleSubmitOtp}
           visible={visibleOtp}
           onCancel={() => setVisibleOtp(false)} />
