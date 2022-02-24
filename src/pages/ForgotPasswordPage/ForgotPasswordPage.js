@@ -14,6 +14,7 @@ import {
 import { Link, useHistory } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
 import SuccessModal from '../../components/SuccessModal'
+import authenticationStore from '../../stores/authenticationStore'
 
 const ForgotPasswordPage = props => {
   const history = useHistory()
@@ -24,31 +25,76 @@ const ForgotPasswordPage = props => {
   const [visibleOtp, setVisibleOtp] = useState(false)
   const [visibleSuccess, setVisibleSuccess] = useState(false)
 
+  const [currPayload, setCurrPayload] = useState(null)
+  const [extendData, setExtendData] = useState(null)
+
   const onFinishVerify = (formCollection) => {
     let payload = {
       Step: 1,
-
+      BusinessAccountName: formCollection.BusinessAccountName,
+      AccountName: formCollection.AccountName,
+      Mobile: formCollection.Mobile,
+      Email: formCollection.Email,
     }
-    setProcessStep(1)
+    authenticationStore.enterInfoForResetPasswordCustomer(payload)
+      .then(res => {
+        if (!res?.error) {
+          setExtendData(res.data)
+          setCurrPayload(payload)
+          setProcessStep(1)
+        } else {
+          message.error(res?.message)
+        }
+      })
   }
   const onFinishFailedVerify = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
   const onFinishResetPassword = (formCollection) => {
-    setVisibleOtp(true)
-    console.log('Success:', formCollection)
+    let payload = {
+      Step: 2,
+      ExtendData: extendData,
+      Password: formCollection.password,
+      AccountName: currPayload.AccountName,
+    }
+    let newPayload = {
+      ...currPayload,
+      ExtendData: extendData,
+      Password: formCollection.password,
+      AccountName: currPayload.AccountName,
+    }
+    setCurrPayload(newPayload)
+    authenticationStore.transferExtendDataForResetPassword(payload)
+      .then(res => {
+        if (!res?.error) {
+          setExtendData(res?.data)
+          setVisibleOtp(true)
+        } else {
+          message.error(res?.message)
+        }
+      })
   }
   const onFinishFailedResetPassword = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
 
   const handleSubmitOtp = (otp) => {
-    if (otp === '123456') {
-      setVisibleOtp(false)
-      setVisibleSuccess(true)
-    } else {
-      message.error('OTP không chính xác')
+    let payload = {
+      Step: 3,
+      Password: currPayload.Password,
+      SecureCode: otp,
+      AccountName: currPayload.AccountName,
+      ExtendData: extendData,
     }
+    authenticationStore.resetPasswordCustomer(payload)
+      .then(res => {
+        if (!res.error) {
+          setVisibleOtp(false)
+          message.success(res.message)
+        } else {
+          message.error(res.message)
+        }
+      })
   }
 
   const handleCloseSuccessModal = () => {
@@ -86,7 +132,7 @@ const ForgotPasswordPage = props => {
             >
               <Form.Item
                 label=''
-                name='companyAccount'
+                name='BusinessAccountName'
                 rules={[{ required: true, message: 'Vui lòng nhập số tài khoản doanh nghiệp' }]}
               >
                 <Input className={'auth-input'} placeholder={'Số tài khoản doanh nghiệp'} />
@@ -94,7 +140,7 @@ const ForgotPasswordPage = props => {
 
               <Form.Item
                 label=''
-                name='username'
+                name='AccountName'
                 rules={[{ required: true, message: 'Vui lòng nhập tên đăng nhập' }]}
               >
                 <Input className={'auth-input'} placeholder={'Tên đăng nhập'} />
@@ -102,18 +148,18 @@ const ForgotPasswordPage = props => {
 
               <Form.Item
                 label=''
-                name='passport'
-                rules={[{ required: true, message: 'Vui lòng nhập số CMND/CCCD/Hộ Chiếu' }]}
+                name='Mobile'
+                rules={[{ required: true, message: 'Vui lòng nhập số điện thoại User' }]}
               >
-                <Input className={'auth-input'} placeholder={'Số CMND/CCCD/Hộ Chiếu'} />
+                <Input className={'auth-input'} placeholder={'Số điện thoại User'} />
               </Form.Item>
 
               <Form.Item
                 label=''
-                name='phoneNumber'
-                rules={[{ required: true, message: 'Vui lòng nhập số điện thoại User' }]}
+                name='Email'
+                rules={[{ required: true, message: 'Vui lòng nhập email' }]}
               >
-                <Input className={'auth-input'} placeholder={'Số điện thoại User'} />
+                <Input className={'auth-input'} placeholder={'Email'} />
               </Form.Item>
               <Form.Item>
                 <InfoLabel>* Vui lòng nhập đầy đủ thông tin để lấy lại mật khẩu</InfoLabel>
