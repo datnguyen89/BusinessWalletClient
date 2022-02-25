@@ -108,7 +108,7 @@ const ServiceRechargePage = props => {
   }, [selectedItem, tax, customer])
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Nạp dịch vụ</title>
       </Helmet>
@@ -175,7 +175,7 @@ const ServiceRechargePage = props => {
         fields={fieldsModal}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
-    </DefaultLayout>
+    </>
 
   )
 }

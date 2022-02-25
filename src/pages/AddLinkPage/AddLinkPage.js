@@ -63,7 +63,7 @@ const AddLinkPage = props => {
   }, [selectedItem, selectedAccount]);
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Thêm liên kết</title>
       </Helmet>
@@ -79,7 +79,7 @@ const AddLinkPage = props => {
               <WhiteRoundedInfoLink margin={'0 16px 16px 0'}>
                 <InfoAccountArea
                   callbackBankAccount={handlerCallbackBankAccount}
-                  selectedAccount={selectedAccount}></InfoAccountArea>
+                  selectedAccount={selectedAccount} />
               </WhiteRoundedInfoLink>
             </Col>
             <Col span={6}></Col>
@@ -90,12 +90,12 @@ const AddLinkPage = props => {
             </Col>
             <Col span={6}>
               <WhiteRoundedBox margin={'0 16px 0 0'}>
-                <LinkDirectBank callbackHitBank={handlerCallbackHitBank} selectedItem={selectedItem}></LinkDirectBank>
+                <LinkDirectBank callbackHitBank={handlerCallbackHitBank} selectedItem={selectedItem} />
               </WhiteRoundedBox>
             </Col>
             <Col span={18}>
               <WhiteRoundedBox padding={'16px 0'}>
-                <LinkInternalBank callbackHitBank={handlerCallbackHitBank} selectedItem={selectedItem}></LinkInternalBank>
+                <LinkInternalBank callbackHitBank={handlerCallbackHitBank} selectedItem={selectedItem} />
               </WhiteRoundedBox>
             </Col>
           </Row>
@@ -106,10 +106,10 @@ const AddLinkPage = props => {
             title={"Xác nhận giao dịch"}
             fields={fields}
             visible={isModalVisible}
-            setIsModalVisible={handleSetIsModalVisible}></ModalCustomCommandForm>
+            setIsModalVisible={handleSetIsModalVisible} />
         </WhiteRoundedBox>
       </AddLinkPageWrapper>
-    </DefaultLayout>
+    </>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { apiUrl } from './config'
 // Axios
 import axios from 'axios'
@@ -6,7 +6,6 @@ import axios from 'axios'
 import cypherUtil from './utils/cypherUtil'
 // app props
 import publicIp from 'public-ip'
-import { deviceDetect } from 'react-device-detect'
 // util
 import stringUtils from './utils/stringUtils'
 // provider
@@ -15,6 +14,8 @@ import DataProvider from './providers/DataProvider'
 import './App.less'
 import ThemeProvider from './providers/ThemeProvider'
 import LoadingOverLay from './components/LoadingOverLay'
+import DefaultLayout from './layouts/DefaultLayout'
+import AuthLayout from './layouts/AuthLayout'
 // React Router
 import { Redirect, Route, Router, Switch } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
@@ -38,7 +39,6 @@ import { PAGES } from './utils/constant'
 import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import NotPermissionPage from './pages/NotPermissionPage'
-import ProtectedPage from './pages/ProtectedPage'
 import LoginPage from './pages/LoginPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
 import IdentityInfoPage from './pages/IdentityInfoPage'
@@ -73,6 +73,9 @@ import AddLinkPage from './pages/AddLinkPage'
 import ReportSummaryPage from './pages/ReportSummaryPage'
 import ReportDetailPage from './pages/ReportDetailPage'
 import LimitSettingPage from './pages/LimitSettingPage'
+import AuthModule from './modules/AuthModule'
+import PublicModule from './modules/PublicModule'
+import ProtectedModule from './modules/ProtectedModule'
 
 
 const history = createBrowserHistory()
@@ -196,118 +199,58 @@ const App = () => {
         <DataProvider>
           <Router history={history}>
             <Switch>
+              <Route
+                exact path={[
+                PAGES.LOGIN.PATH,
+                PAGES.FORGOT_PASSWORD.PATH,
+              ]}
+                component={AuthModule}
+              />
+              <Route
+                exact path={[
+                PAGES.TEST.PATH,
+                PAGES.NOT_PERMISSION.PATH,
+              ]}
+                component={PublicModule}
+              />
               <ProtectedRoute
-                exact path={PAGES.HOME.PATH}
-                component={HomePage} />
-              <ProtectedRoute
-                exact path={PAGES.IDENTITY.PATH}
-                component={IdentityInfoPage} /> {/*Thông tin định danh*/}
-              <ProtectedRoute
-                exact path={PAGES.TRANSACTION_MANAGE.PATH}
-                component={TransactionManagePage} /> {/*Quản lý giao dịch*/}
-              <ProtectedRoute
-                exact path={PAGES.TRANSACTION_HISTORY.PATH}
-                component={TransactionHistoryPage} /> {/*Lịch sử giao dịch*/}
-              <ProtectedRoute
-                exact path={PAGES.TERM_OF_USE.PATH}
-                component={TermsOfUsePage} /> {/*Điều khoản sử dụng*/}
-              <ProtectedRoute
-                exact path={PAGES.SUPPORT.PATH}
-                component={SupportPage} /> {/*Trợ giúp*/}
-              <ProtectedRoute
-                exact path={PAGES.ABOUT_US.PATH}
-                component={AboutUsPage} /> {/*Giới thiệu*/}
-              <ProtectedRoute
-                exact path={PAGES.CONTACT.PATH}
-                component={ContactPage} /> {/*Liên hệ*/}
-              <ProtectedRoute
-                exact path={PAGES.POLICY.PATH}
-                component={PolicyPage} /> {/*Chính sách*/}
-              <ProtectedRoute
-                exact path={PAGES.PHONE_CARD.PATH}
-                component={PhoneCardPage} /> {/*Mã thẻ*/}
-              <ProtectedRoute
-                exact path={PAGES.PREPAID.PATH}
-                component={PrepaidPage} /> {/*Nạp tiền điện thoại trả trước*/}
-              <ProtectedRoute
-                exact path={PAGES.POSTPAID.PATH}
-                component={PostpaidPage} /> {/*Nạp tiền điện thoại trả sau*/}
-              <ProtectedRoute
-                exact path={PAGES.PHONE_DATA.PATH}
-                component={PhoneDataPage} /> {/*Nạp data*/}
-              <ProtectedRoute
-                exact path={PAGES.CARD_DATA.PATH}
-                component={CardDataPage} /> {/*Mã thẻ data*/}
-              <ProtectedRoute
-                exact path={PAGES.ELECTRIC_BILL.PATH}
-                component={ElectricBillPage} /> {/*Hóa đơn điện*/}
-              <ProtectedRoute
-                exact path={PAGES.WATER_BILL.PATH}
-                component={WaterBillPage} /> {/*Hóa đơn nước*/}
-              <ProtectedRoute
-                exact path={PAGES.INTERNET_BILL.PATH}
-                component={InternetBillPage} /> {/*Internet*/}
-              <ProtectedRoute
-                exact path={PAGES.TELEVISION_BILL.PATH}
-                component={TelevisionBillPage} /> {/*Truyền hình*/}
-              <ProtectedRoute
-                exact path={PAGES.SERVICE_RECHARGE.PATH}
-                component={ServiceRechargePage} /> {/*Nạp dịch vụ*/}
-              <ProtectedRoute
-                exact path={PAGES.APARTMENT_FEE.PATH}
-                component={ApartmentFeePage} /> {/*Phí chung cư*/}
-              <ProtectedRoute
-                exact path={PAGES.EDUCATION_FEE.PATH}
-                component={EducationFeePage} /> {/*Học phí*/}
-              <ProtectedRoute
-                exact path={PAGES.DEPOSIT.PATH}
-                component={DepositPage} /> {/*Nạp tiền*/}
-              <ProtectedRoute
-                exact path={PAGES.TRANSFER_WALLET.PATH}
-                component={TransferWalletPage} /> {/*Chuyển tiền ví*/}
-              <ProtectedRoute
-                exact path={PAGES.TRANSFER_MULTIPLE.PATH}
-                component={TransferMultiplePage} /> {/*Chuyển tiền theo lô*/}
-              <ProtectedRoute
-                exact path={PAGES.RECEIVE_FROM_MM.PATH}
-                component={ReceiveFromMmPage} /> {/*Nhận chuyển tiền từ MM*/}
-              <ProtectedRoute
-                exact path={PAGES.TRANSFER_TO_MM.PATH}
-                component={TransferToMmPage} /> {/*Chuyển tiền tới MM*/}
-              <ProtectedRoute
-                exact path={PAGES.LINK_BANK.PATH}
-                component={LinkBankPage} /> {/*Liên kết*/}
-              <ProtectedRoute
-                exact path={PAGES.ADD_LINK.PATH}
-                component={AddLinkPage} /> {/*Thêm liên kết*/}
-              <ProtectedRoute
-                exact path={PAGES.WITHDRAW.PATH}
-                component={WithdrawPage} /> {/*Rút tiền*/}
-              <ProtectedRoute
-                exact path={PAGES.REPORT_SUMMARY.PATH}
-                component={ReportSummaryPage} /> {/*Báo cáo tổng hợp*/}
-              <ProtectedRoute
-                exact path={PAGES.REPORT_DETAIL.PATH}
-                component={ReportDetailPage} /> {/*Báo cáo chi tiết*/}
-              <ProtectedRoute
-                exact path={PAGES.LIMIT_SETTING.PATH}
-                component={LimitSettingPage} /> {/*Cài đặt hạn mức*/}
+                exact path={[
+                PAGES.HOME.PATH,
+                PAGES.IDENTITY.PATH,
+                PAGES.TRANSACTION_MANAGE.PATH,
+                PAGES.TRANSACTION_HISTORY.PATH,
+                PAGES.TERM_OF_USE.PATH,
+                PAGES.SUPPORT.PATH,
+                PAGES.ABOUT_US.PATH,
+                PAGES.CONTACT.PATH,
+                PAGES.POLICY.PATH,
+                PAGES.PHONE_CARD.PATH,
+                PAGES.PREPAID.PATH,
+                PAGES.POSTPAID.PATH,
+                PAGES.PHONE_DATA.PATH,
+                PAGES.CARD_DATA.PATH,
+                PAGES.ELECTRIC_BILL.PATH,
+                PAGES.WATER_BILL.PATH,
+                PAGES.INTERNET_BILL.PATH,
+                PAGES.TELEVISION_BILL.PATH,
+                PAGES.SERVICE_RECHARGE.PATH,
+                PAGES.APARTMENT_FEE.PATH,
+                PAGES.EDUCATION_FEE.PATH,
+                PAGES.DEPOSIT.PATH,
+                PAGES.TRANSFER_WALLET.PATH,
+                PAGES.TRANSFER_MULTIPLE.PATH,
+                PAGES.RECEIVE_FROM_MM.PATH,
+                PAGES.TRANSFER_TO_MM.PATH,
+                PAGES.LINK_BANK.PATH,
+                PAGES.ADD_LINK.PATH,
+                PAGES.WITHDRAW.PATH,
+                PAGES.REPORT_SUMMARY.PATH,
+                PAGES.REPORT_DETAIL.PATH,
+                PAGES.LIMIT_SETTING.PATH,
 
-              <Route
-                exact path={PAGES.LOGIN.PATH}
-                component={LoginPage} /> {/*Đăng nhập*/}
-              <Route
-                exact path={PAGES.FORGOT_PASSWORD.PATH}
-                component={ForgotPasswordPage} /> {/*Quên mật khẩu*/}
-              <Route
-                exact path={PAGES.NOT_PERMISSION.PATH}
-                component={NotPermissionPage} /> {/*Không có quyền truy cập*/}
-              <Route
-                exact path={'/protected'}
-                component={ProtectedPage} />
-              <Route
-                exact path={'/test'}
-                component={TestPage} /> {/*Test*/}
+              ]}
+                component={ProtectedModule} />
+
               <Route component={NotFoundPage} />
             </Switch>
           </Router>

@@ -8,7 +8,7 @@ import MainBreadCrumb from '../../components/MainBreadCrumb'
 
 const TransactionHistoryPage = props => {
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Lịch sử giao dịch</title>
       </Helmet>
@@ -16,7 +16,7 @@ const TransactionHistoryPage = props => {
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TRANSACTION_HISTORY} />
         TransactionHistoryPage
       </TransactionHistoryPageWrapper>
-    </DefaultLayout>
+    </>
   )
 }
 

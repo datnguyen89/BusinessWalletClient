@@ -91,7 +91,7 @@ const PhoneCardPage = props => {
   }, [selectedItem, selectedProvider, selectedTopUpVoucher, countTopUpVoucher])
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Mua mã thẻ điện thoại</title>
       </Helmet>
@@ -158,7 +158,7 @@ const PhoneCardPage = props => {
         fields={fields}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
-    </DefaultLayout>
+    </>
 
   )
 }

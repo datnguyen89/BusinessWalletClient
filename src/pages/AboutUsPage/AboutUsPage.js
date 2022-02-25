@@ -8,7 +8,7 @@ import { BREADCRUMB_DATA } from '../../utils/constant'
 
 const AboutUsPage = props => {
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Giới thiệu</title>
       </Helmet>
@@ -16,7 +16,7 @@ const AboutUsPage = props => {
       <AboutUsPageWrapper>
         AboutUs
       </AboutUsPageWrapper>
-    </DefaultLayout>
+    </>
 
   )
 }

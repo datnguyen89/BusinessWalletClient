@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { inject, observer } from 'mobx-react'
-import AuthLayout from '../../layouts/AuthLayout'
 import { Button, Col, Form, Input, message, Row } from 'antd'
 import { AuthShadowBox } from '../../components/CommonStyled/CommonStyled'
 import IMAGES from '../../images'
 import { LoginFormTitle, LoginPageWrapper, TitleWrapper } from './LoginPageStyled'
-import { Link, useHistory, useLocation, useParams } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import OtpModal from '../../components/OtpModal'
-import * as forge from 'node-forge'
-import { APP_CLIENT_ID, PAGES, PUBLIC_KEY } from '../../utils/constant'
+import { APP_CLIENT_ID, PAGES } from '../../utils/constant'
 import stringUtils from '../../utils/stringUtils'
-import validator from '../../validator'
 
 const LoginPage = props => {
   const { commonStore, authenticationStore } = props
@@ -107,7 +104,7 @@ const LoginPage = props => {
   }, [])
 
   return (
-    <AuthLayout>
+    <>
       <LoginPageWrapper>
         <AuthShadowBox color={commonStore.appTheme.solidColor}>
           <TitleWrapper>
@@ -159,7 +156,7 @@ const LoginPage = props => {
           onCancel={handleCancelOtp}
           callbackOtp={handleSubmitOtp} />
       </LoginPageWrapper>
-    </AuthLayout>
+    </>
   )
 }
 

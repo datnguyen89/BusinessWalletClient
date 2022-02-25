@@ -8,7 +8,7 @@ import { BREADCRUMB_DATA } from '../../utils/constant'
 
 const ReportDetailPage = props => {
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Báo cáo chi tiết</title>
       </Helmet>
@@ -16,7 +16,7 @@ const ReportDetailPage = props => {
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.REPORT_DETAIL} />
         Báo cáo chi tiết
       </ReportDetailPageWrapper>
-    </DefaultLayout>
+    </>
   )
 }
 

@@ -84,7 +84,7 @@ const DepositPage = props => {
   }, []);
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Rút tiền</title>
       </Helmet>
@@ -147,7 +147,7 @@ const DepositPage = props => {
           visible={isModalVisible}
           setIsModalVisible={handleSetIsModalVisible} />
       </WithdrawPageWrapper>
-    </DefaultLayout>
+    </>
   )
 }
 

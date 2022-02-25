@@ -111,7 +111,7 @@ const PostpaidPage = props => {
   }, [selectedItem, selectedProvider, tax])
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Nạp trả sau</title>
       </Helmet>
@@ -180,7 +180,7 @@ const PostpaidPage = props => {
         fields={fieldsModal}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
-    </DefaultLayout>
+    </>
 
   )
 }

@@ -8,7 +8,7 @@ import MainBreadCrumb from '../../components/MainBreadCrumb'
 
 const PolicyPage = props => {
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Chính sách</title>
       </Helmet>
@@ -16,7 +16,7 @@ const PolicyPage = props => {
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.POLICY} />
         PolicyPage
       </PolicyPageWrapper>
-    </DefaultLayout>
+    </>
   )
 }
 

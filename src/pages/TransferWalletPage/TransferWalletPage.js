@@ -115,7 +115,7 @@ const DepositPage = props => {
   }
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Chuyển tiền</title>
       </Helmet>
@@ -214,7 +214,7 @@ const DepositPage = props => {
         fields={fields}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
-    </DefaultLayout>
+    </>
   )
 }
 

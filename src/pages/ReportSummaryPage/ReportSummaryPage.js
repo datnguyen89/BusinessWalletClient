@@ -8,7 +8,7 @@ import { BREADCRUMB_DATA } from '../../utils/constant'
 
 const ReportSummaryPage = props => {
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Báo cáo tổng hợp</title>
       </Helmet>
@@ -16,7 +16,7 @@ const ReportSummaryPage = props => {
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.REPORT_SUMMARY} />
         Báo cáo tổng hợp
       </ReportSummaryPageWrapper>
-    </DefaultLayout>
+    </>
   )
 }
 

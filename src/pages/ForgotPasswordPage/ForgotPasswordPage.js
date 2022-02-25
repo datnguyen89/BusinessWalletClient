@@ -147,7 +147,7 @@ const ForgotPasswordPage = props => {
   }
 
   return (
-    <AuthLayout>
+    <>
       <ForgotPasswordPageWrapper>
         <AuthShadowBox>
           <TitleWrapper>
@@ -285,7 +285,7 @@ const ForgotPasswordPage = props => {
           visible={visibleSuccess}
           callbackSuccess={handleCloseSuccessModal} />
       </ForgotPasswordPageWrapper>
-    </AuthLayout>
+    </>
   )
 }
 

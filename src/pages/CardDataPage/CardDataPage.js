@@ -88,7 +88,7 @@ const CardDataPage = props => {
   }, [selectedItem, selectedProvider, selectedTopUpVoucher, countTopUpVoucher])
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Mã thẻ data</title>
       </Helmet>
@@ -155,7 +155,7 @@ const CardDataPage = props => {
         fields={fields}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
-    </DefaultLayout>
+    </>
 
   )
 }

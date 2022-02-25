@@ -127,7 +127,7 @@ const InternetBillPage = props => {
   }, [selectedItem, selectedProvider, customer])
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Hóa đơn internet</title>
       </Helmet>
@@ -202,7 +202,7 @@ const InternetBillPage = props => {
         fields={fieldsModal}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
-    </DefaultLayout>
+    </>
   )
 }
 

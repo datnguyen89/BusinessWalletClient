@@ -111,7 +111,7 @@ const WaterBillPage = props => {
   }, [selectedItem, selectedProvider, customer])
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Hóa đơn tiền nước</title>
       </Helmet>
@@ -188,7 +188,7 @@ const WaterBillPage = props => {
         fields={fieldsModal}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
-    </DefaultLayout>
+    </>
   )
 }
 

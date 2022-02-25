@@ -26,7 +26,7 @@ const TransactionManagePage = props => {
   }, [])
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Quản lý giao dịch</title>
       </Helmet>
@@ -90,7 +90,7 @@ const TransactionManagePage = props => {
           </Collapse>
         </TransactionManagerBody>
       </TransactionManagePageWrapper>
-    </DefaultLayout>
+    </>
   )
 }
 

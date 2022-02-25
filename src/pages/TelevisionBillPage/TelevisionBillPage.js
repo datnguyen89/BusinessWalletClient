@@ -162,7 +162,7 @@ const TelevisionBillPage = props => {
   }, [selectedItem, selectedProvider, tax, customer])
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Hóa đơn truyền hình</title>
       </Helmet>
@@ -264,7 +264,7 @@ const TelevisionBillPage = props => {
         fields={fieldsModal}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
-    </DefaultLayout>
+    </>
   )
 }
 

@@ -8,7 +8,7 @@ import { BREADCRUMB_DATA } from '../../utils/constant'
 
 const TermsOfUsePage = props => {
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Điều khoản sử dụng</title>
       </Helmet>
@@ -16,7 +16,7 @@ const TermsOfUsePage = props => {
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.TERM_OF_USE} />
         TermsOfUsePage
       </TermsOfUsePageWrapper>
-    </DefaultLayout>
+    </>
   )
 }
 

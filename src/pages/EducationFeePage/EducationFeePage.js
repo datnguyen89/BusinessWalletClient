@@ -131,7 +131,7 @@ const EducationFeePage = props => {
   }, [selectedItem, selectedProvider, customer])
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Học phí</title>
       </Helmet>
@@ -206,7 +206,7 @@ const EducationFeePage = props => {
         fields={fieldsModal}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
-    </DefaultLayout>
+    </>
   )
 }
 

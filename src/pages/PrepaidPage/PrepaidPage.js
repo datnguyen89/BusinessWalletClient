@@ -93,7 +93,7 @@ const PrepaidPage = props => {
   }
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Nạp tiền điện thoại</title>
       </Helmet>
@@ -156,7 +156,7 @@ const PrepaidPage = props => {
         fields={fields}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
-    </DefaultLayout>
+    </>
 
   )
 }

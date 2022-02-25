@@ -143,6 +143,10 @@ export const PAGES = {
     NAME: 'not-permission',
     PATH: '/not-permission',
   },
+  TEST: {
+    NAME: 'test',
+    PATH: '/test',
+  },
 }
 
 export const PAYMENT_GROUP_PAGES = [

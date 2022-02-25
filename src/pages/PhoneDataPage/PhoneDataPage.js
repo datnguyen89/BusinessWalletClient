@@ -92,7 +92,7 @@ const PhoneDataPage = props => {
   }
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Nạp data điện thoại</title>
       </Helmet>
@@ -155,7 +155,7 @@ const PhoneDataPage = props => {
         fields={fields}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
-    </DefaultLayout>
+    </>
 
   )
 }

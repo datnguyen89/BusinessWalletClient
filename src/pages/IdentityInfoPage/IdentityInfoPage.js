@@ -1,19 +1,12 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import PropTypes from 'prop-types'
-import {
-  IdentityInfoPageWrapper,
-  NotLinkedCardBox,
-  UserInfoBox,
-  UserInfoBoxHeader,
-} from './IdentityInfoPageStyled'
-import DefaultLayout from '../../layouts/DefaultLayout'
+import { IdentityInfoPageWrapper, NotLinkedCardBox, UserInfoBox, UserInfoBoxHeader } from './IdentityInfoPageStyled'
 import { Helmet } from 'react-helmet/es/Helmet'
 import MainBreadCrumb from '../../components/MainBreadCrumb'
 import { BREADCRUMB_DATA, mockupLinkedCard, PAGES } from '../../utils/constant'
-import { Avatar, Button, Carousel, Col, Descriptions, Row } from 'antd'
+import { Avatar, Button, Col, Descriptions, Row } from 'antd'
 import { ColorText, ColorTitle, WhiteRoundedBox } from '../../components/CommonStyled/CommonStyled'
-import { LeftOutlined, RightOutlined, UserOutlined } from '@ant-design/icons'
+import { UserOutlined } from '@ant-design/icons'
 import IMAGES from '../../images'
 import LinkedCardCarousel from '../../components/LinkedCardCarousel'
 import { useHistory } from 'react-router-dom'
@@ -30,7 +23,7 @@ const IdentityInfoPage = props => {
   }
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Thông tin định danh</title>
       </Helmet>
@@ -153,7 +146,7 @@ const IdentityInfoPage = props => {
           </Col>
         </Row>
       </IdentityInfoPageWrapper>
-    </DefaultLayout>
+    </>
   )
 }
 

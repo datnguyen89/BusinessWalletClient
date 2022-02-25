@@ -8,7 +8,7 @@ import MainBreadCrumb from '../../components/MainBreadCrumb'
 
 const SupportPage = props => {
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Trợ giúp</title>
       </Helmet>
@@ -16,7 +16,7 @@ const SupportPage = props => {
         <MainBreadCrumb breadcrumbData={BREADCRUMB_DATA.SUPPORT} />
         SupportPage
       </SupportPageWrapper>
-    </DefaultLayout>
+    </>
 
   )
 }

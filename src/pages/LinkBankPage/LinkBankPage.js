@@ -12,7 +12,7 @@ const LinkBankPage = props => {
   const { commonStore } = props
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Liên kết</title>
       </Helmet>
@@ -22,7 +22,7 @@ const LinkBankPage = props => {
           <Contract/>
         </WhiteRoundedBox>
       </LinkBankPageWrapper>
-    </DefaultLayout>
+    </>
   )
 }
 

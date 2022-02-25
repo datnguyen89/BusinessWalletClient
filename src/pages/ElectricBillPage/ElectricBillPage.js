@@ -135,7 +135,7 @@ const ElectricBillPage = props => {
   }, [selectedItem, selectedProvider, customer])
 
   return (
-    <DefaultLayout>
+    <>
       <Helmet>
         <title>Thanh toán điện</title>
       </Helmet>
@@ -210,7 +210,7 @@ const ElectricBillPage = props => {
         fields={fieldsModal}
         visible={isModalVisible}
         setIsModalVisible={handleSetIsModalVisible} />
-    </DefaultLayout>
+    </>
   )
 }
 
