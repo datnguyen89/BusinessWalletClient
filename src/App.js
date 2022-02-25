@@ -76,6 +76,7 @@ import LimitSettingPage from './pages/LimitSettingPage'
 import AuthModule from './modules/AuthModule'
 import PublicModule from './modules/PublicModule'
 import ProtectedModule from './modules/ProtectedModule'
+import { message } from 'antd'
 
 
 const history = createBrowserHistory()
@@ -158,6 +159,7 @@ axios.interceptors.response.use(
               state: { from: window.location.pathname },
             })
           })
+        message.error('Phiên đăng nhập hết hạn')
       }
     }
     return response

@@ -34,7 +34,6 @@ const DefaultLayout = props => {
           <MainFooter />
         </MainBody>
       </MainContent>
-
     </DefaultLayoutWrapper>
   )
 }

@@ -4,8 +4,6 @@ import IMAGES from '../../images'
 export const MainSideBarWrapper = styled.aside`
   position: fixed;
   height: 100vh;
-  width: ${props => props.width}px;
-  display: ${props => props.display};
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
@@ -28,7 +26,6 @@ export const BankInfoArea = styled.div`
   background: url(${IMAGES.BANK_BG}) center center no-repeat;
   background-size: cover;
   min-height: 120px;
-  display: ${props => props.display};
   justify-content: center;
   align-items: center;
   position: relative;
@@ -47,7 +44,6 @@ export const BankInfoArea = styled.div`
     top: 8px;
     right: 8px;
     cursor: pointer;
-    display: ${props => props.display} !important;
   }
 `
 export const BankAvatarWrapper = styled.div`

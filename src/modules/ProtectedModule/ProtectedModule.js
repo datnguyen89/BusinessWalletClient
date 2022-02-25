@@ -145,6 +145,4 @@ const ProtectedModule = (props) => {
 
 ProtectedModule.propTypes = {}
 
-export default inject(
-  'commonStore',
-)(observer(ProtectedModule))
+export default ProtectedModule

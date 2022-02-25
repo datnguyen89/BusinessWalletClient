@@ -32,9 +32,16 @@ const MainSideBar = props => {
 
   return (
     <MainSideBarWrapper
-      display={device === DEVICE.MOBILE ? 'none' : 'flex'}
-      width={isCollapse ? SIDEBAR_WIDTH_COLLAPSE : SIDEBAR_WIDTH_EXPAND}>
-      <BankInfoArea display={isCollapse ? 'none' : 'flex'} color={commonStore.appTheme.solidColor}>
+      style={{
+        width: isCollapse ? SIDEBAR_WIDTH_COLLAPSE : SIDEBAR_WIDTH_EXPAND,
+        display: device === DEVICE.MOBILE ? 'none' : 'flex',
+      }}>
+      <BankInfoArea
+        style={{
+          display: isCollapse ? 'none' : 'flex',
+        }}
+        color={commonStore.appTheme.solidColor}
+      >
         <BankAvatarWrapper>
           <img src={IMAGES.SACOMBANK} alt={''} height={60} />
         </BankAvatarWrapper>
