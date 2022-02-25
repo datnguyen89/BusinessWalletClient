@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const HomePageWrapper = styled.div`
   padding: 16px;
+  min-height: 100vh;
 `
 
 export const CarouselWrapper = styled.div`

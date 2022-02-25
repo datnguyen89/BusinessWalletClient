@@ -3,6 +3,7 @@ import { Button, Row } from 'antd'
 
 export const PhoneDataPageWrapper = styled.div`
   padding: 16px;
+  min-height: 100vh;
 `
 
 export const TitleInfoPayment = styled.div `

@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { Button, Row } from 'antd'
 
 export const AddLinkPageWrapper = styled.div`
+  padding: 16px;
+  min-height: 100vh;
   .ant-descriptions-view {
     border-radius: 8px;
     border: none;

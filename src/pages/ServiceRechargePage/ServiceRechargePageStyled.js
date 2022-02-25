@@ -3,6 +3,7 @@ import { Button, Input, Modal, Row } from 'antd'
 
 export const ServiceRechargePageWrapper = styled.div`
   padding: 16px;
+  min-height: 100vh;
 
 `
 

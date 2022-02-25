@@ -3,6 +3,7 @@ import { Button, InputNumber, Modal, Row } from 'antd'
 
 export const CardDataPageWrapper = styled.div`
   padding: 16px;
+  min-height: 100vh;
   
 `
 

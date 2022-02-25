@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const TransactionManagePageWrapper = styled.div`
   padding: 16px;
+  min-height: 100vh;
 `
 export const TransactionManagerBody = styled.div`
   padding: 16px;

@@ -3,6 +3,7 @@ import { Button } from 'antd'
 
 export const IdentityInfoPageWrapper = styled.div`
   padding: 16px;
+  min-height: 100vh;
 `
 export const UserInfoBox = styled.div`
 `

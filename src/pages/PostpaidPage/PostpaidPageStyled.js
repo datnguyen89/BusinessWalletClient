@@ -3,6 +3,7 @@ import { Button, Input, Modal, Row } from 'antd'
 
 export const PostpaidPageWrapper = styled.div`
   padding: 16px;
+  min-height: 100vh;
 `
 
 export const TitleInfoService = styled.div `
