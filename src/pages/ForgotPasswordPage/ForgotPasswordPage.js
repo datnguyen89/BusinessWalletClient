@@ -40,12 +40,12 @@ const ForgotPasswordPage = props => {
     }
     authenticationStore.enterInfoForResetPasswordCustomer(payload)
       .then(res => {
-        if (!res?.error) {
-          setExtendData(res.data)
+        if (res?.responseCode === 0) {
+          setExtendData(res?.param)
           setCurrPayload(payload)
           setProcessStep(1)
         } else {
-          message.error(res?.message)
+          message.error(res?.description)
         }
       })
   }
@@ -71,16 +71,16 @@ const ForgotPasswordPage = props => {
         console.log(res)
         switch (res?.responseCode) {
           case 0:
-            setExtendData(res?.data)
+            setExtendData(res?.param)
             setVisibleOtp(true)
             break
           case -10002:
           case -10105:
             handleBackEnterInfo()
-            message.error(res.message)
+            message.error(res.description)
             break
           default:
-            message.error(res?.message)
+            message.error(res?.description)
             break
         }
       })
@@ -109,10 +109,10 @@ const ForgotPasswordPage = props => {
           case -10105:
             setVisibleOtp(false)
             handleBackEnterInfo()
-            message.error(res.message)
+            message.error(res?.description)
             break
           default:
-            message.error(res.message)
+            message.error(res?.description)
             break
         }
 

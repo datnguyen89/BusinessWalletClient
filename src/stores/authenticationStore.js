@@ -16,15 +16,17 @@ class AuthenticationStore {
     return new Promise((resolve, reject) => {
       AuthenticationRequest.userLogin(payload)
         .then(response => {
-          if (response.data?.responseCode === -52) {
-            // show otp active modal
-          } else {
-            const tokenData = response.data?.data?.token
-            const coreSysTokenData = response.data?.data?.coreSysToken
-            localStorage.setItem('jwt', tokenData)
-            localStorage.setItem('coreSysToken', coreSysTokenData)
-            this.accessToken = tokenData
-            this.coreSysToken = coreSysTokenData
+          switch (response.data?.responseCode) {
+            case 0:
+              const tokenData = response.data?.param?.token
+              const coreSysTokenData = response.data?.param?.coreSysToken
+              localStorage.setItem('jwt', tokenData)
+              localStorage.setItem('coreSysToken', coreSysTokenData)
+              this.accessToken = tokenData
+              this.coreSysToken = coreSysTokenData
+              break
+            default:
+              break
           }
           resolve(response.data)
         })
@@ -53,13 +55,17 @@ class AuthenticationStore {
     return new Promise((resolve, reject) => {
       AuthenticationRequest.activeDevice(payload)
         .then(response => {
-          if (!response.data?.error) {
-            const tokenData = response.data?.data?.token
-            const coreSysTokenData = response.data?.data?.coreSysToken
-            localStorage.setItem('jwt', tokenData)
-            localStorage.setItem('coreSysToken', coreSysTokenData)
-            this.accessToken = tokenData
-            this.coreSysToken = coreSysTokenData
+          switch (response.data?.responseCode) {
+            case 0:
+              const tokenData = response.data?.param?.token
+              const coreSysTokenData = response.data?.param?.coreSysToken
+              localStorage.setItem('jwt', tokenData)
+              localStorage.setItem('coreSysToken', coreSysTokenData)
+              this.accessToken = tokenData
+              this.coreSysToken = coreSysTokenData
+              break
+            default:
+              break
           }
           resolve(response.data)
         })

@@ -12,8 +12,10 @@ class ProfileStore {
     return new Promise((resolve, reject) => {
       ProfileRequest.getProfile()
         .then(response => {
-          this.userProfile = response.data?.data?.user
-          this.entProfile = response.data?.data?.enterprize
+          if (response.data?.responseCode === 0) {
+            this.userProfile = response.data?.param?.user
+            this.entProfile = response.data?.param?.enterprize
+          }
           resolve(response.data)
         })
         .catch(error => reject(error))

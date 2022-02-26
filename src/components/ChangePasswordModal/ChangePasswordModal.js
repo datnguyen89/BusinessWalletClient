@@ -33,13 +33,13 @@ const ChangePasswordModal = props => {
     }
     authenticationStore.transferExtendDataForChangePassword(payload)
       .then(res => {
-        if (!res.error) {
+        if (res?.responseCode === 0) {
           onClose()
           setVisibleOtp(true)
-          setExtendData(res.data)
+          setExtendData(res?.param)
           setCurrPayload(payload)
         } else {
-          message.error(res.message)
+          message.error(res?.description)
         }
       })
   }
@@ -55,7 +55,7 @@ const ChangePasswordModal = props => {
     }
     authenticationStore.changePasswordForCustomer(payload)
       .then(res => {
-        if (!res.error) {
+        if (res?.responseCode === 0) {
           switch (res?.responseCode) {
             case 0:
               setVisibleOtp(false)
@@ -64,14 +64,14 @@ const ChangePasswordModal = props => {
             case -671:
             case -10002:
               setVisibleOtp(false)
-              message.error(res?.message)
+              message.error(res?.description)
               break
             default:
               break
           }
 
         } else {
-          message.error(res.message)
+          message.error(res?.description)
         }
       })
   }

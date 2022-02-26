@@ -43,7 +43,7 @@ const LoginPage = props => {
             setExtendData(res?.extendData)
             break
           default:
-            message.error(res?.message)
+            message.error(res?.description)
             break
         }
       })
@@ -68,14 +68,14 @@ const LoginPage = props => {
             break
           case -10105:
           case -1:
-            message.error(res?.message)
+            message.error(res?.description)
             setVisibleOtp(false)
             setCurrPayload({})
             setExtendData('')
             formLogin.resetFields()
             break
           default:
-            message.error(res?.message)
+            message.error(res?.description)
             break
         }
       })
