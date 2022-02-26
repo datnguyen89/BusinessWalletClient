@@ -68,13 +68,13 @@ class AuthenticationStore {
   }
   @action logout = () => {
     return new Promise((resolve, reject) => {
+      this.accessToken = undefined
+      this.coreSysToken = undefined
+      localStorage.removeItem('jwt')
+      localStorage.removeItem('coreSysToken')
+      userStore.clearProfile()
       AuthenticationRequest.logout()
         .then(response => {
-          this.accessToken = undefined
-          this.coreSysToken = undefined
-          localStorage.removeItem('jwt')
-          localStorage.removeItem('coreSysToken')
-          userStore.clearProfile()
           resolve(response.data)
         })
         .catch(error => reject(error))

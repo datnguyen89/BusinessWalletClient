@@ -106,8 +106,7 @@ const IdentityInfoPage = props => {
                 labelStyle={{ width: '20%' }}
                 contentStyle={{ width: '30%' }}
                 bordered
-                column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}
-                size={'small'}>
+                column={{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }}>
                 <Descriptions.Item label={'Số tài khoản'}>
                   {entProfile?.accountName}
                 </Descriptions.Item>
