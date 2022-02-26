@@ -41,7 +41,7 @@ const ForgotPasswordPage = props => {
     authenticationStore.enterInfoForResetPasswordCustomer(payload)
       .then(res => {
         if (!res?.error) {
-          setExtendData(res.data)
+          setExtendData(res?.extendData)
           setCurrPayload(payload)
           setProcessStep(1)
         } else {
