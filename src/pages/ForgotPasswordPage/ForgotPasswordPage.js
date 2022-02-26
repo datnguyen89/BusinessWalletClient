@@ -41,7 +41,7 @@ const ForgotPasswordPage = props => {
     authenticationStore.enterInfoForResetPasswordCustomer(payload)
       .then(res => {
         if (res?.responseCode === 0) {
-          setExtendData(res?.param)
+          setExtendData(res?.extendData)
           setCurrPayload(payload)
           setProcessStep(1)
         } else {
@@ -71,7 +71,7 @@ const ForgotPasswordPage = props => {
         console.log(res)
         switch (res?.responseCode) {
           case 0:
-            setExtendData(res?.param)
+            setExtendData(res?.extendData)
             setVisibleOtp(true)
             break
           case -10002:
