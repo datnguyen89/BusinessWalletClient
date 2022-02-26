@@ -18,8 +18,9 @@ class AuthenticationStore {
         .then(response => {
           switch (response.data?.responseCode) {
             case 0:
-              const tokenData = response.data?.param?.token
-              const coreSysTokenData = response.data?.param?.coreSysToken
+              let param = JSON.parse(response.data?.param)
+              const tokenData = param?.token
+              const coreSysTokenData = param?.coreSysToken
               localStorage.setItem('jwt', tokenData)
               localStorage.setItem('coreSysToken', coreSysTokenData)
               this.accessToken = tokenData
@@ -57,8 +58,9 @@ class AuthenticationStore {
         .then(response => {
           switch (response.data?.responseCode) {
             case 0:
-              const tokenData = response.data?.param?.token
-              const coreSysTokenData = response.data?.param?.coreSysToken
+              let param = JSON.parse(response.data?.param)
+              const tokenData = param?.token
+              const coreSysTokenData = param?.coreSysToken
               localStorage.setItem('jwt', tokenData)
               localStorage.setItem('coreSysToken', coreSysTokenData)
               this.accessToken = tokenData
