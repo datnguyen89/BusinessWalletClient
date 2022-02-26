@@ -71,7 +71,7 @@ const ForgotPasswordPage = props => {
         console.log(res)
         switch (res?.responseCode) {
           case 0:
-            setExtendData(res?.extendData)
+            setExtendData(res?.extendData )
             setVisibleOtp(true)
             break
           case -10002:
