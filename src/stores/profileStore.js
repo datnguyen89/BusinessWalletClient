@@ -13,8 +13,9 @@ class ProfileStore {
       ProfileRequest.getProfile()
         .then(response => {
           if (response.data?.responseCode === 0) {
-            this.userProfile = response.data?.param?.user
-            this.entProfile = response.data?.param?.enterprize
+            let param = JSON.parse(response.data?.param)
+            this.userProfile = param?.user
+            this.entProfile = param?.enterprize
           }
           resolve(response.data)
         })

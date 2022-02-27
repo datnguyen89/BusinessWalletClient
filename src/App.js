@@ -188,12 +188,12 @@ const App = () => {
   //   console.log(deviceDetect())
   // }, [])
 
-  useEffect(() => {
-    publicIp.v4()
-      .then(res => {
-        commonStore.setIpAddress(res)
-      })
-  }, [])
+  // useEffect(() => {
+  //   publicIp.v4()
+  //     .then(res => {
+  //       commonStore.setIpAddress(res)
+  //     })
+  // }, [])
 
   return (
     <Provider {...rootStores}>

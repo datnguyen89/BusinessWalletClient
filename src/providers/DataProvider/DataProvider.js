@@ -11,9 +11,9 @@ const DataProvider = props => {
   const { ipAddress } = commonStore
 
   useEffect(() => {
-    if (!accessToken || !coreSysToken || !ipAddress) return
+    if (!accessToken || !coreSysToken) return
     profileStore.getProfile()
-  }, [accessToken, coreSysToken, ipAddress])
+  }, [accessToken, coreSysToken])
 
   return (
     <>
