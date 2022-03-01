@@ -18,6 +18,8 @@ const HeaderUserArea = props => {
 
   const { commonStore, authenticationStore, profileStore } = props
 
+  const { jwtDecode } = authenticationStore
+
   const history = useHistory()
   const { userProfile } = profileStore
 
